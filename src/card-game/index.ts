@@ -1,11 +1,6 @@
 import { Tabletop, TabletopOptions, Player } from "../tabletop";
-
-export interface Card {
-	/**
-	 * 1 - 13, Ace is 1, King is 13
-	 */
-	number: number;
-}
+import { Deck } from "./deck";
+import { Card } from "./card";
 
 export interface CardGamePlayer extends Player {
 	cards: Card[];
@@ -21,13 +16,17 @@ export interface CardGameOptions extends TabletopOptions {
 
 export class CardGame extends Tabletop {
 	protected players: CardGamePlayer[];
+	protected deck: Deck;
 
 	constructor(
 		protected canvas: JQuery<HTMLElement>,
-		protected opts: TabletopOptions
+		protected opts: CardGameOptions
 	) {
 		super(canvas, opts);
+		this.deck = new Deck();
 		this.dealInitialCards();
+
+		console.log(this.deck);
 	}
 
 	protected dealInitialCards() {

@@ -23,7 +23,7 @@ export class Tabletop {
 		this.players.forEach(player => this.canvas.append(`<p>${ player.name }</p>`));
 	}
 
-	protected initializePlayers() {
+	private initializePlayers() {
 		this.players = [];
 		for (let i = 0; i < this.opts.players; i++) {
 			this.players.push({
