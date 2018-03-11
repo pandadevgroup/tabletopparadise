@@ -13,7 +13,7 @@ export class Deck {
 
 		let cards = [];
 		while (numCards > 0) {
-			let index = Utils.random(0, this.cards.length - 1);
+			let index = Utils.random(0, this.cards.length);
 			console.log(index);
 			cards.push(this.cards.splice(index, 1));
 			numCards--;
