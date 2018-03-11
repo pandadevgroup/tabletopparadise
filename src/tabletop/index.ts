@@ -20,7 +20,6 @@ export class Tabletop {
 	) {
 		this.initializePlayers();
 		this.canvas.append(`<p>Number of players: ${opts.players}`);
-		this.players.forEach(player => this.canvas.append(`<p>${ player.name }</p>`));
 	}
 
 	private initializePlayers() {

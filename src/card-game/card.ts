@@ -11,4 +11,8 @@ export class Card {
 		this.number = number;
 		this.suit = suit;
 	}
+
+	toString() {
+		return `${this.number} of ${this.suit}s`;
+	}
 }

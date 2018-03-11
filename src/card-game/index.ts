@@ -26,7 +26,12 @@ export class CardGame extends Tabletop {
 		this.deck = new Deck();
 		this.dealInitialCards();
 
-		console.log(this.deck, this.players);
+		this.players.forEach(player => this.canvas.append(
+			`
+				<p>${ player.name }</p>
+				<p>${ player.cards.join(", ") }</p>
+			`
+		));
 	}
 
 	protected dealInitialCards() {
