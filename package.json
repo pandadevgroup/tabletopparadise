@@ -15,10 +15,14 @@
   },
   "homepage": "https://github.com/pandadevgroup/tabletopparadise#readme",
   "devDependencies": {
+    "@types/jquery": "^3.3.1",
     "ts-loader": "^4.0.1",
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
   }
 }
