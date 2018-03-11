@@ -15,11 +15,11 @@ export class Tabletop {
 	protected players: Player[];
 
 	constructor(
-		protected canvas: JQuery<HTMLElement>,
+		protected $canvas: JQuery<HTMLElement>,
 		protected opts: TabletopOptions
 	) {
 		this.initializePlayers();
-		this.canvas.append(`<p>Number of players: ${opts.players}`);
+		this.$canvas.append(`<p>Number of players: ${opts.players}`);
 	}
 
 	private initializePlayers() {
