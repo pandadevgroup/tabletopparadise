@@ -1,10 +1,10 @@
 import * as $ from "jquery";
-import { CardGame, CardGameOptions } from "./card-game";
+import { DrawingCardsGame } from "./games/drawing-cards";
 
-const tabletop = new CardGame(
+const tabletop = new DrawingCardsGame(
 	$("#game"),
 	{
-		players: 4,
+		players: 1,
 		initialHandSize: 13
 	}
 );

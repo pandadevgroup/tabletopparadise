@@ -14,7 +14,7 @@ export interface CardGameOptions extends TabletopOptions {
 	initialHandSize: number;
 }
 
-export class CardGame extends Tabletop {
+export abstract class CardGame extends Tabletop {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
 
@@ -35,6 +35,6 @@ export class CardGame extends Tabletop {
 	}
 
 	protected dealInitialCards() {
-		this.players.forEach(player => player.cards = this.deck.get(13));
+		this.players.forEach(player => player.cards = this.deck.get(this.opts.initialHandSize));
 	}
 }
