@@ -1,11 +1,9 @@
 import * as $ from "jquery";
-import { Tabletop, TabletopOptions } from "./tabletop";
+import { CardGame, CardGameOptions } from "./card-game";
 
-const tabletop = new Tabletop(
-	$("#game") as JQuery<HTMLCanvasElement>,
+const tabletop = new CardGame(
+	$("#game"),
 	{
 		players: 4
 	}
 );
-
-console.log(tabletop);

@@ -7,11 +7,28 @@ export interface TabletopOptions {
 	players: number;
 }
 
+export interface Player {
+	name: string;
+}
+
 export class Tabletop {
+	protected players: Player[];
+
 	constructor(
-		private canvas: JQuery<HTMLCanvasElement>,
-		private opts: TabletopOptions
+		protected canvas: JQuery<HTMLElement>,
+		protected opts: TabletopOptions
 	) {
-		console.log(canvas);
+		this.initializePlayers();
+		this.canvas.append(`<p>Number of players: ${opts.players}`);
+		this.players.forEach(player => this.canvas.append(`<p>${ player.name }</p>`));
+	}
+
+	protected initializePlayers() {
+		this.players = [];
+		for (let i = 0; i < this.opts.players; i++) {
+			this.players.push({
+				name: `Player ${i + 1}`
+			});
+		}
 	}
 }
