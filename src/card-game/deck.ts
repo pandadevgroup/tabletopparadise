@@ -1,10 +1,23 @@
 import { Card } from "./card";
+import Utils from "../util";
 
 export class Deck {
 	protected cards: Card[];
 
 	constructor() {
 		this.initialize();
+	}
+
+	get(numCards: number): Card[] {
+		if (numCards > this.cards.length) throw "Not enough cards in deck";
+
+		let cards = [];
+		while (numCards > 0) {
+			let index = Utils.random(0, this.cards.length);
+			cards.push(this.cards.splice(index, 1));
+			numCards--;
+		}
+		return cards;
 	}
 
 	private initialize() {
