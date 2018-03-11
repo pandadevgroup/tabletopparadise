@@ -1,5 +1,5 @@
 export default class Utils {
 	static random(from: number, to: number) {
-		return Math.floor(Math.random() * (to - from + 1)) + from;
+		return Math.floor(Math.random() * (to - from)) + from;
 	}
 }
