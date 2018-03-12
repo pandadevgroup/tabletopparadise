@@ -1,5 +1,7 @@
 import * as $ from "jquery";
 
+declare const Phaser: any;
+
 export interface TabletopOptions {
 	/**
 	 * Number of players (1 - 12)
@@ -11,7 +13,7 @@ export interface Player {
 	name: string;
 }
 
-export class Tabletop {
+export abstract class Tabletop {
 	protected players: Player[];
 
 	constructor(
@@ -19,7 +21,7 @@ export class Tabletop {
 		protected opts: TabletopOptions
 	) {
 		this.initializePlayers();
-		this.$canvas.append(`<p>Number of players: ${opts.players}`);
+		this.initializeGame();
 	}
 
 	private initializePlayers() {
@@ -30,4 +32,32 @@ export class Tabletop {
 			});
 		}
 	}
+
+	private initializeGame() {
+		let config = {
+			type: Phaser.AUTO,
+			width: 800,
+			height: 600,
+			scene: {
+				preload: preload,
+				create: create
+			}
+		};
+
+		let game = new Phaser.Game(config);
+
+		let _this = this;
+
+		function preload() {
+			this.load.setBaseURL('/assets');
+			_this.preload.call(this);
+		}
+
+		function create() {
+			_this.initialize.call(this);
+		}
+	}
+
+	protected abstract preload();
+	protected abstract initialize();
 }

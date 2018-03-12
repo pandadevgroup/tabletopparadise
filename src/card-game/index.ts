@@ -25,11 +25,7 @@ export abstract class CardGame extends Tabletop {
 		super($canvas, opts);
 		this.deck = new Deck();
 		this.dealInitialCards();
-
-		this.initialize();
 	}
-
-	protected abstract initialize();
 
 	protected dealInitialCards() {
 		this.players.forEach(player => player.cards = this.deck.get(this.opts.initialHandSize));
