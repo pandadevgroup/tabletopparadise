@@ -8,6 +8,13 @@ export class DrawingCardsGame extends CardGame {
 		});
 	}
 
+	protected initialize(this: any) {
+		let card = this.add.image(400, 300, 'jc').setInteractive();
+		card.on('pointerdown', function(pointer) {
+			this.setTint(0xff0000);
+		});
+	}
+
 	protected preload(this: any) {
 		for (let i = 1; i <= 10; i++) {
 			this.load.image(`${i}c`, `cards/clubs/${i}c.svg`);
@@ -27,10 +34,5 @@ export class DrawingCardsGame extends CardGame {
 		this.load.image("js", "cards/spades/js.svg");
 		this.load.image("qs", "cards/spades/qs.svg");
 		this.load.image("ks", "cards/spades/ks.svg");
-	}
-
-	protected initialize(this: any) {
-		this.add.image(400, 300, 'jc');
-		this.add.image(450, 300, 'qc');
 	}
 }
