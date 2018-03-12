@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@pixi/filter-glow@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@pixi/filter-glow/-/filter-glow-2.5.0.tgz#44bd462ccbfebe2b7932291dddbee7ce14cb62c0"
+"@pixi/filter-outline@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@pixi/filter-outline/-/filter-outline-2.6.0.tgz#a8d1503db17bcb5830cc1f6b424ca78007eb841f"
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
