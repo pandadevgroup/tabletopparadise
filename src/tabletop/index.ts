@@ -36,8 +36,9 @@ export abstract class Tabletop {
 	private initializeGame() {
 		let config = {
 			type: Phaser.AUTO,
-			width: 800,
-			height: 600,
+			width: 1900,
+			height: 700,
+			canvas: this.$canvas[0],
 			scene: {
 				preload: preload,
 				create: create
