@@ -80,12 +80,14 @@ export abstract class CardGame extends Tabletop {
 			cardSprite.buttonMode = true;
 
 			cardSprite.on("pointerdown", () => {
-				if (cardSprite.filters && cardSprite.filters.length != 0)
+				if (cardSprite.filters && cardSprite.filters.length != 0) {
 					cardSprite.filters = [];
-				else cardSprite.filters = [new OutlineFilter(4, 0xFF0000)];
-
-				if (this.selectedCardSprite) this.selectedCardSprite.filters = [];
-				this.selectedCardSprite = cardSprite;
+					this.selectedCardSprite = null;
+				} else {
+					cardSprite.filters = [new OutlineFilter(4, 0xFF0000)];
+					if (this.selectedCardSprite) this.selectedCardSprite.filters = [];
+					this.selectedCardSprite = cardSprite;
+				}
 			});
 
 			cardSprite.on("mouseover", () => {
