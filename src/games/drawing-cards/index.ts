@@ -9,9 +9,14 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	protected initialize(this: any) {
-		let card = this.add.image(400, 300, 'jc').setInteractive();
-		card.on('pointerdown', function(pointer) {
-			this.setTint(0xff0000);
+		let card = this.add.sprite(400, 300, 'jc').setInteractive();
+		card.on('pointerdown', (pointer) => {
+			this.tweens.add({
+				targets: card,
+				scaleY: 1.1,
+				scaleX: 1.1,
+				duration: 200
+			});
 		});
 	}
 
