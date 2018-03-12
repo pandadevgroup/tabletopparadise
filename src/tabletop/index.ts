@@ -44,7 +44,13 @@ export abstract class Tabletop {
 			width: 1800,
 			height: 700,
 			view: this.$canvas[0],
-			antialias: true
+			antialias: true,
+			transparent: true
 		});
+
+		this.app.renderer.view.style.position = "absolute";
+		this.app.renderer.view.style.display = "block";
+		this.app.renderer.autoResize = true;
+		this.app.renderer.resize(window.innerWidth, window.innerHeight);
 	}
 }
