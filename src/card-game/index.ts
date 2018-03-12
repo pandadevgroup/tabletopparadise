@@ -19,7 +19,7 @@ export abstract class CardGame extends Tabletop {
 	protected deck: Deck;
 
 	constructor(
-		protected $canvas: JQuery<HTMLElement>,
+		protected $canvas: JQuery<HTMLCanvasElement>,
 		protected opts: CardGameOptions
 	) {
 		super($canvas, opts);

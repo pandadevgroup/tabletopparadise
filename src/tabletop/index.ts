@@ -1,6 +1,5 @@
 import * as $ from "jquery";
-
-declare const Phaser: any;
+import * as PIXI from "pixi.js";
 
 export interface TabletopOptions {
 	/**
@@ -15,13 +14,14 @@ export interface Player {
 
 export abstract class Tabletop {
 	protected players: Player[];
+	protected app: PIXI.Application;
 
 	constructor(
-		protected $canvas: JQuery<HTMLElement>,
+		protected $canvas: JQuery<HTMLCanvasElement>,
 		protected opts: TabletopOptions
 	) {
 		this.initializePlayers();
-		this.initializeGame();
+		this.initializePixi();
 	}
 
 	private initializePlayers() {
@@ -33,32 +33,18 @@ export abstract class Tabletop {
 		}
 	}
 
-	private initializeGame() {
-		let config = {
-			type: Phaser.AUTO,
-			width: 1900,
+	private initializePixi() {
+		let type = "WebGL"
+		if(!PIXI.utils.isWebGLSupported()){
+			type = "canvas";
+		}
+		PIXI.utils.sayHello(type);
+
+		this.app = new PIXI.Application({
+			width: 1800,
 			height: 700,
-			canvas: this.$canvas[0],
-			scene: {
-				preload: preload,
-				create: create
-			}
-		};
-
-		let game = new Phaser.Game(config);
-
-		let _this = this;
-
-		function preload() {
-			this.load.setBaseURL('/assets');
-			_this.preload.call(this);
-		}
-
-		function create() {
-			_this.initialize.call(this);
-		}
+			view: this.$canvas[0],
+			antialias: true
+		});
 	}
-
-	protected abstract preload();
-	protected abstract initialize();
 }
