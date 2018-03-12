@@ -1,6 +1,7 @@
 import { CardGame } from "../../card-game";
 
 const resources = PIXI.loader.resources,
+	loader = PIXI.loader,
 	Sprite = PIXI.Sprite;
 
 export class DrawingCardsGame extends CardGame {
@@ -24,13 +25,29 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	protected loadResources() {
-		PIXI.loader
-			.add("jc", "/assets/cards/clubs/jc.svg")
-			.load(() => this.setup());
+		for (let i = 1; i <= 10; i++) {
+			loader.add(`${i}c`, `/assets/cards/clubs/${i}c.svg`);
+			loader.add(`${i}d`, `/assets/cards/diamonds/${i}d.svg`);
+			loader.add(`${i}h`, `/assets/cards/hearts/${i}h.svg`);
+			loader.add(`${i}s`, `/assets/cards/spades/${i}s.svg`);
+		}
+		loader.add("jc", "/assets/cards/clubs/jc.svg");
+		loader.add("qc", "/assets/cards/clubs/qc.svg");
+		loader.add("kc", "/assets/cards/clubs/kc.svg");
+		loader.add("jd", "/assets/cards/diamonds/jd.svg");
+		loader.add("qd", "/assets/cards/diamonds/qd.svg");
+		loader.add("kd", "/assets/cards/diamonds/kd.svg");
+		loader.add("jh", "/assets/cards/hearts/jh.svg");
+		loader.add("qh", "/assets/cards/hearts/qh.svg");
+		loader.add("kh", "/assets/cards/hearts/kh.svg");
+		loader.add("js", "/assets/cards/spades/js.svg");
+		loader.add("qs", "/assets/cards/spades/qs.svg");
+		loader.add("ks", "/assets/cards/spades/ks.svg");
 	}
 
 	protected setup() {
-		let sprite = new Sprite(resources.jc.texture);
-		this.app.stage.addChild(sprite);
+		let card = new Sprite(resources["1c"].texture);
+
+		this.app.stage.addChild(card);
 	}
 }
