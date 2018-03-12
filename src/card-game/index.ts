@@ -88,6 +88,13 @@ export abstract class CardGame extends Tabletop {
 				this.selectedCardSprite = cardSprite;
 			});
 
+			cardSprite.on("mouseover", () => {
+				cardSprite.y -= 30;
+			});
+			cardSprite.on("mouseout", () => {
+				cardSprite.y += 30;
+			});
+
 			this.app.stage.addChild(cardSprite);
 		});
 	}
