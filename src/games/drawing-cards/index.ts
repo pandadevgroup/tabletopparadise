@@ -1,4 +1,5 @@
 import { CardGame } from "../../card-game";
+import { GlowFilter } from '@pixi/filter-glow';
 
 const resources = PIXI.loader.resources,
 	loader = PIXI.loader,
@@ -47,6 +48,15 @@ export class DrawingCardsGame extends CardGame {
 
 	protected setup() {
 		let card = new Sprite(resources["1c"].texture);
+
+		card.x = 100;
+		card.y = 100;
+		card.interactive = true;
+		card.buttonMode = true;
+
+		card.on("pointerdown", () => {
+			card.filters = [new GlowFilter(15, 2, 1, 0xFF0000, 0.5)]
+		});
 
 		this.app.stage.addChild(card);
 	}
