@@ -22,8 +22,6 @@ export abstract class Tabletop {
 	) {
 		this.initializePlayers();
 		this.initializePixi();
-		this.loadResources();
-		PIXI.loader.load(() => this.setup());
 	}
 
 	protected abstract loadResources();
