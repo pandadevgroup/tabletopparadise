@@ -1,5 +1,5 @@
 import * as $ from "jquery";
-import * as PIXI from "pixi.js";
+import "pixi.js";
 
 export interface TabletopOptions {
 	/**
@@ -22,7 +22,10 @@ export abstract class Tabletop {
 	) {
 		this.initializePlayers();
 		this.initializePixi();
+		this.loadResources();
 	}
+
+	protected abstract loadResources();
 
 	private initializePlayers() {
 		this.players = [];
@@ -41,8 +44,6 @@ export abstract class Tabletop {
 		PIXI.utils.sayHello(type);
 
 		this.app = new PIXI.Application({
-			width: 1800,
-			height: 700,
 			view: this.$canvas[0],
 			antialias: true,
 			transparent: true

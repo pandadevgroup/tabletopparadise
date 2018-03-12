@@ -1,5 +1,8 @@
 import { CardGame } from "../../card-game";
 
+const resources = PIXI.loader.resources,
+	Sprite = PIXI.Sprite;
+
 export class DrawingCardsGame extends CardGame {
 	constructor(protected $canvas: JQuery<HTMLCanvasElement>) {
 		super($canvas, {
@@ -20,7 +23,14 @@ export class DrawingCardsGame extends CardGame {
 		});
 	}
 
-	protected preload() {
+	protected loadResources() {
+		PIXI.loader
+			.add("jc", "/assets/cards/clubs/jc.svg")
+			.load(() => this.setup());
+	}
 
+	protected setup() {
+		let sprite = new Sprite(resources.jc.texture);
+		this.app.stage.addChild(sprite);
 	}
 }
