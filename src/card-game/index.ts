@@ -52,12 +52,11 @@ export abstract class CardGame extends Tabletop {
 			} else if (i == 13) {
 				num = "k"
 			}
-			loader.add(`${num}c`, `/assets/cards/clubs/${i}c.svg`);
-			loader.add(`${num}d`, `/assets/cards/diamonds/${i}d.svg`);
-			loader.add(`${num}h`, `/assets/cards/hearts/${i}h.svg`);
-			loader.add(`${num}s`, `/assets/cards/spades/${i}s.svg`);
+			loader.add(`${num}c`, `/assets/cards/clubs/${num}c.svg`);
+			loader.add(`${num}d`, `/assets/cards/diamonds/${num}d.svg`);
+			loader.add(`${num}h`, `/assets/cards/hearts/${num}h.svg`);
+			loader.add(`${num}s`, `/assets/cards/spades/${num}s.svg`);
 		}
-
 	}
 
 	protected dealInitialCards() {
