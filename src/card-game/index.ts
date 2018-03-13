@@ -41,24 +41,23 @@ export abstract class CardGame extends Tabletop {
 	}
 
 	protected loadCards() {
-		for (let i = 1; i <= 10; i++) {
-			loader.add(`${i}c`, `/assets/cards/clubs/${i}c.svg`);
-			loader.add(`${i}d`, `/assets/cards/diamonds/${i}d.svg`);
-			loader.add(`${i}h`, `/assets/cards/hearts/${i}h.svg`);
-			loader.add(`${i}s`, `/assets/cards/spades/${i}s.svg`);
+		let num;
+		for (let i = 1; i <= 13; i++) {
+			if (i <= 10) {
+				num = i;
+			} else if (i == 11) {
+				num = "j"
+			} else if (i == 12) {
+				num = "q"
+			} else if (i == 13) {
+				num = "k"
+			}
+			loader.add(`${num}c`, `/assets/cards/clubs/${i}c.svg`);
+			loader.add(`${num}d`, `/assets/cards/diamonds/${i}d.svg`);
+			loader.add(`${num}h`, `/assets/cards/hearts/${i}h.svg`);
+			loader.add(`${num}s`, `/assets/cards/spades/${i}s.svg`);
 		}
-		loader.add("jc", "/assets/cards/clubs/jc.svg");
-		loader.add("qc", "/assets/cards/clubs/qc.svg");
-		loader.add("kc", "/assets/cards/clubs/kc.svg");
-		loader.add("jd", "/assets/cards/diamonds/jd.svg");
-		loader.add("qd", "/assets/cards/diamonds/qd.svg");
-		loader.add("kd", "/assets/cards/diamonds/kd.svg");
-		loader.add("jh", "/assets/cards/hearts/jh.svg");
-		loader.add("qh", "/assets/cards/hearts/qh.svg");
-		loader.add("kh", "/assets/cards/hearts/kh.svg");
-		loader.add("js", "/assets/cards/spades/js.svg");
-		loader.add("qs", "/assets/cards/spades/qs.svg");
-		loader.add("ks", "/assets/cards/spades/ks.svg");
+
 	}
 
 	protected dealInitialCards() {
