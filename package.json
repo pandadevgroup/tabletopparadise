@@ -16,7 +16,6 @@
   "homepage": "https://github.com/pandadevgroup/tabletopparadise#readme",
   "devDependencies": {
     "@types/jquery": "^3.3.1",
-    "@types/pixi.js": "^4.7.2",
     "copy-webpack-plugin": "^4.5.1",
     "ts-loader": "^4.0.1",
     "typescript": "^2.7.2",
@@ -25,8 +24,6 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "@pixi/filter-outline": "^2.6.0",
-    "jquery": "^3.3.1",
-    "pixi.js": "^4.7.0"
+    "jquery": "^3.3.1"
   }
 }

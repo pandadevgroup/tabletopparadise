@@ -1,21 +1,13 @@
 import { CardGame } from "../../card-game";
 
-const resources = PIXI.loader.resources,
-	loader = PIXI.loader,
-	Sprite = PIXI.Sprite;
-
 export class DrawingCardsGame extends CardGame {
-	constructor(protected $canvas: JQuery<HTMLCanvasElement>) {
-		super($canvas, {
+	constructor(protected container: JQuery<HTMLElement>) {
+		super(container, {
 			players: 1,
 			initialHandSize: 13,
 			showDeck: true
 		});
 	}
-
-	protected loadResources() {}
-
-	protected setup() {}
 
 	protected onDeckClick() {
 		console.log("Deck click");
