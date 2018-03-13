@@ -1,4 +1,5 @@
 import * as $ from "jquery";
+import * as Velocity from "velocity-animate";
 
 export interface TabletopOptions {
 	/**
@@ -19,6 +20,8 @@ export abstract class Tabletop {
 		protected opts: TabletopOptions
 	) {
 		this.initializePlayers();
+
+		console.log(Velocity);
 	}
 
 	private initializePlayers() {
