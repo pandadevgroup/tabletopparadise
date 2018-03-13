@@ -15,7 +15,9 @@ export class DrawingCardsGame extends CardGame {
 
 	protected loadResources() {}
 
-	protected setup() {
+	protected setup() {}
 
+	protected onDeckClick() {
+		console.log("Deck click");
 	}
 }
