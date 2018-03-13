@@ -30,16 +30,23 @@ export abstract class CardGame extends Tabletop {
 	protected deck: Deck;
 
 	constructor(
-		protected container: JQuery<HTMLElement>,
+		protected $container: JQuery<HTMLElement>,
 		protected opts: CardGameOptions
 	) {
-		super(container, opts);
+		super($container, opts);
 		this.deck = new Deck();
 		this.dealInitialCards();
+
+		if (this.opts.showDeck) this.renderDeck();
 	}
 
 	protected dealInitialCards() {
 		this.players.forEach(player => player.cards = this.deck.get(this.opts.initialHandSize));
+	}
+
+	protected renderDeck() {
+		let $deck = this.$container.append("<div class='deck'>Deck</div>");
+		$deck[0].velocity({ "color": "red" });
 	}
 
 	protected onDeckClick() {}

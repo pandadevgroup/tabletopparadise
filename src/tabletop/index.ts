@@ -1,5 +1,3 @@
-import * as $ from "jquery";
-
 export interface TabletopOptions {
 	/**
 	 * Number of players (1 - 12)
@@ -15,12 +13,10 @@ export abstract class Tabletop {
 	protected players: Player[];
 
 	constructor(
-		protected container: JQuery<HTMLElement>,
+		protected $container: JQuery<HTMLElement>,
 		protected opts: TabletopOptions
 	) {
 		this.initializePlayers();
-
-		console.log(Velocity);
 	}
 
 	private initializePlayers() {
