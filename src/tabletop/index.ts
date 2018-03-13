@@ -1,5 +1,4 @@
 import * as $ from "jquery";
-import * as Velocity from "velocity-animate";
 
 export interface TabletopOptions {
 	/**
