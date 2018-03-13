@@ -8,7 +8,8 @@ export class DrawingCardsGame extends CardGame {
 	constructor(protected $canvas: JQuery<HTMLCanvasElement>) {
 		super($canvas, {
 			players: 1,
-			initialHandSize: 13
+			initialHandSize: 13,
+			showDeck: true
 		});
 	}
 

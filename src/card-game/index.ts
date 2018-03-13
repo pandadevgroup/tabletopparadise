@@ -14,9 +14,20 @@ export interface CardGamePlayer extends Player {
 export interface CardGameOptions extends TabletopOptions {
 	/**
 	 * Number of cards to deal to each player in the beginning of the game.
+	 *
 	 * @example 13 (Bridge)
+	 * @type {number}
+	 * @memberof CardGameOptions
 	 */
 	initialHandSize: number;
+	/**
+	 * If true, render a deck of cards.
+	 * Override CardGame.onDeckClick() to add handler when deck is clicked.
+	 *
+	 * @type {boolean}
+	 * @memberof CardGameOptions
+	 */
+	showDeck: boolean;
 }
 
 export abstract class CardGame extends Tabletop {
@@ -36,6 +47,7 @@ export abstract class CardGame extends Tabletop {
 
 		loader.load(() => {
 			this.renderPlayerCards();
+			if (this.opts.showDeck) this.renderDeck();
 			this.setup();
 		});
 	}
@@ -57,6 +69,7 @@ export abstract class CardGame extends Tabletop {
 			loader.add(`${num}h`, `/assets/cards/hearts/${num}h.svg`);
 			loader.add(`${num}s`, `/assets/cards/spades/${num}s.svg`);
 		}
+		loader.add("card_back", "/assets/cards/card_back.png");
 	}
 
 	protected dealInitialCards() {
@@ -73,7 +86,7 @@ export abstract class CardGame extends Tabletop {
 
 			cardSprite.x = xOffset;
 			xOffset += 60;
-			cardSprite.y = 200;
+			cardSprite.y = 600;
 			cardSprite.interactive = true;
 			cardSprite.buttonMode = true;
 
@@ -98,4 +111,23 @@ export abstract class CardGame extends Tabletop {
 			this.app.stage.addChild(cardSprite);
 		});
 	}
+
+	protected renderDeck() {
+		let deckSprite = new Sprite(resources["card_back"].texture);
+
+		deckSprite.x = 50;
+		deckSprite.y = 200;
+		deckSprite.height = 314;
+		deckSprite.width = 225;
+		deckSprite.buttonMode = true;
+		deckSprite.interactive = true;
+
+		deckSprite.on("pointerdown", () => {
+			this.onDeckClick();
+		});
+
+		this.app.stage.addChild(deckSprite);
+	}
+
+	protected onDeckClick() {}
 }
