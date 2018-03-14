@@ -12,16 +12,7 @@ export class CardGamePlayer extends Player {
 		this.cards = [...this.cards, ...cards];
 		let $cards = $(this.getCardsCode(cards));
 		this.$player.append($cards);
-<<<<<<< HEAD
 		
-=======
-		$cards.velocity({
-			translateY: "-50px"
-		}, { duration: 0 });
-		$cards.velocity({
-			translateY: "0px"
-		});
->>>>>>> parent of 0689e8b... remove render code
 	}
 	addCard(card: Card) {
 		let renderCode = card.getRenderCode();
