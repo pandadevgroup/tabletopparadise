@@ -5,10 +5,7 @@ export class DrawingCardsGame extends CardGame {
 		super(container, {
 			players: 1,
 			initialHandSize: 13,
-			showDeck: true,
-			shuffle:function(array) {
-				return array;
-			}//dosent work.
+			showDeck: true
 		});
 	}
 
