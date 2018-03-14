@@ -62,7 +62,11 @@ export abstract class CardGame {
 	}
 
 	protected initializeDom() {
-		$(window).resize(() => this.resize());
+		let debounce;
+		$(window).resize(() => {
+			clearTimeout(debounce);
+			debounce = setTimeout(() => this.resize(), 200);
+		});
 	}
 
 	protected initializeDeck() {
