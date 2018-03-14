@@ -16,15 +16,19 @@ export class CardGamePlayer extends Player {
 	}
 	addCard(card: Card) {
 		let renderCode = card.getRenderCode();
-		console.log(1)
-		var player = this.$player;
-		console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().top);
-		console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().left);
-		$("#" + card.getID()).animate({
-			left:$("#" + this.cards[this.cards.length - 2/*second to last card. the last card is this current card*/].getID()).offset().left,
-            top:$("#" + this.cards[this.cards.length - 2].getID()).offset().top,
+		//console.log(1)
+		let player = this.$player;
+		//console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().top);
+		//console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().left);
+		let $lastCard = $("#" + this.cards[this.cards.length - 1].getID() + "_img");
+		let $currentCard = $("#" + card.getID());
+		let parent = this;
+		$currentCard.animate({
+			left:$lastCard.offset().left - $currentCard.offset().left,
+            top:$lastCard.offset().top - $currentCard.offset().top,
 			
 		  },1000,function(){
+			  parent.cards.push(card);
 			$(player).append(renderCode);
 			console.log(2)
 		});
