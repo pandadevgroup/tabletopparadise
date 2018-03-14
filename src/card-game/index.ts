@@ -46,7 +46,7 @@ export abstract class CardGame extends Tabletop {
 		super($container, opts, CardGamePlayer);
 		this.renderPlayers();
 
-		this.deck = new Deck(this.$center);
+		this.deck = new Deck(this.$container);
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);

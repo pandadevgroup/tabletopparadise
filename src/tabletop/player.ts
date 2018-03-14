@@ -1,8 +1,11 @@
+import { Tabletop } from ".";
+
 export class Player {
 	protected $player: JQuery<HTMLElement>;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
+		protected parent: Tabletop,
 		protected name?: string
 	) {}
 
@@ -14,6 +17,8 @@ export class Player {
 		`);
 		this.$container.append(this.$player);
 	}
+
+	resize() {};
 
 	protected generatePlayerCode() {
 		return `<span class="player__name">${this.name}</span>`;

@@ -4,6 +4,8 @@ import { Card } from "./card";
 export class CardGamePlayer extends Player {
 	protected cards: Card[] = [];
 
+	resize() {}
+
 	generatePlayerCode() {
 		return this.getCardsCode(this.cards);
 	}
@@ -14,6 +16,7 @@ export class CardGamePlayer extends Player {
 		this.$player.append($cards);
 
 	}
+
 	addCard(card: Card) {
 
 	}
