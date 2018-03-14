@@ -22,7 +22,7 @@ export abstract class Tabletop {
 	private initializePlayers() {
 		this.players = [];
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new Player(`Player ${i + 1}`));
+			this.players.push(new Player(this.$container, `Player ${i + 1}`));
 		}
 	}
 }

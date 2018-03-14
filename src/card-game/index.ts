@@ -40,6 +40,7 @@ export abstract class CardGame extends Tabletop {
 		this.dealInitialCards();
 
 		if (this.opts.showDeck) this.renderDeck();
+		this.renderPlayers();
 	}
 
 	protected dealInitialCards() {
@@ -48,6 +49,11 @@ export abstract class CardGame extends Tabletop {
 
 	protected renderDeck() {
 		this.deck.render();
+	}
+
+	protected renderPlayers() {
+		const numPlayers = this.opts.players;
+		this.players.forEach(player => player.renderContainer(numPlayers));
 	}
 
 	protected onDeckClick() {}
