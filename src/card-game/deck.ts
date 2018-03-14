@@ -8,6 +8,9 @@ export class Deck {
 	private _actionable: boolean = false;
 
 	get cards() {
+		if (this._cards.length === 0) {
+			$(".deck").addClass("empty");
+		};
 		return this._cards;
 	}
 
@@ -28,31 +31,42 @@ export class Deck {
 
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
-
-		return this._cards.splice(0, numCards);
+		let spliced : Card[] = this._cards.splice(0, numCards);
+		if (this._cards.length === 0) {
+			$(".deck").addClass("empty");
+		};
+		return spliced;
 	}
 
-	shuffle(algorithm = function(array : Card[]){
+	shuffle(algorithm = function (array: Card[]) {
 		//Fisher-yates shuffle
 		//based on algorithm(them minified) from: https://bost.ocks.org/mike/shuffle/ | https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
-		
-		for(var t,i,m=array.length;m;)i=Math.floor(Math.random()*m--),t=array[m],array[m]=array[i],array[i]=t;return array;
+
+		for (var t, i, m = array.length; m;)i = Math.floor(Math.random() * m--), t = array[m], array[m] = array[i], array[i] = t; return array;
 	}) {
-		
+
 		this._cards = algorithm(this._cards);
 	}
 
 	render() {
 		let cardsCode = [];
-		this.cards.forEach(card => cardsCode.push(card.getRenderCode()));
+		this.cards.forEach(card =>
+			cardsCode.push(card.getRenderCode())
+		);
 
 		this.$deck = $(`<div class="deck">${cardsCode.join("")}</div>`);
+
+
 		// Add class "actionable" if actionable is true
 		this.actionable = this.actionable;
 
 		this.$deck.click(() => this.handleOnDeckClick());
 
 		this.$container.append(this.$deck);
+
+		this.cards.forEach(card =>
+			$("#" + card.getID()).addClass("hidden")
+		);
 	}
 
 	onClick(callback: Function) {

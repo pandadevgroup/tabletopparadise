@@ -7,3 +7,7 @@ html, body {
 body {
 	margin: 0;
 }
+.hidden {
+	/*keep space for debugging. In production, use display:none; */
+	visibility:hidden;
+}

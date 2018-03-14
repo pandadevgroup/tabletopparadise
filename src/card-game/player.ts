@@ -18,6 +18,7 @@ export class CardGamePlayer extends Player {
 		let renderCode = card.getRenderCode();
 		let player = this.$player;
 		let $lastCard = $("#" + this.cards[this.cards.length - 1].getID() + "_img");
+		$("#" + card.getID()).removeClass("hidden");
 		let $currentCard = $("#" + card.getID());
 		let parent = this;
 		$currentCard.animate({

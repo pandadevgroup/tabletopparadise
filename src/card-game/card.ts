@@ -38,7 +38,7 @@ export class Card {
 	}
 	getRenderCode() {
 		return `
-			<div class="card"id="card__${this.number}${this.suit}">
+			<div class="card" id="card__${this.number}${this.suit}">
 				<img class="card__img" src="/assets/cards/${this.getImgName()}.svg" id="card__${this.number}${this.suit}_img">
 			</div>
 		`;
