@@ -3,10 +3,22 @@
 	height: 175px;
 }
 
+@mixin actionable {
+	cursor: pointer;
+	box-shadow: 0 0 25px lightblue;
+	&:hover {
+		box-shadow: 0 0 20px 5px lightblue;
+	}
+}
+
 .card {
 	@include card-size;
 	margin-left: -70px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+	&.actionable {
+		@include actionable;
+	}
 
 	.card__img {
 		@include card-size;

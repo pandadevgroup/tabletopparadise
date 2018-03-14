@@ -22,8 +22,8 @@ export class Deck {
 	}
 
 	render() {
-		this.$deck = $(`<div class="deck"></div>`);
-		this.$container.append(this.$deck);;
+		this.$deck = $(`<div class="deck actionable"></div>`);
+		this.$container.append(this.$deck);
 	}
 
 	private initialize() {
