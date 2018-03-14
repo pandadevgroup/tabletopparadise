@@ -1,9 +1,10 @@
-import { Tabletop, TabletopOptions, Player } from "../tabletop";
+import { Tabletop, TabletopOptions } from "../tabletop";
 import { CardGamePlayer } from "./player";
 import { Deck } from "./deck";
 import { Card } from "./card";
 import Utils from "../util";
 import "../styles/cards/index.scss";
+import { CardGameDomHelper } from "./dom-helper";
 
 export interface CardGameOptions extends TabletopOptions {
 	/**
@@ -39,16 +40,19 @@ export abstract class CardGame {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
 	protected tabletop: Tabletop;
+	protected domHelper: CardGameDomHelper;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		protected opts: CardGameOptions
 	) {
+		this.domHelper = new CardGameDomHelper(this.$container);
 		this.tabletop = new Tabletop($container, {
 			players: opts.players
-		}, CardGamePlayer);
+		}, this.domHelper);
 
 		this.initializeDom();
+		this.initializePlayers();
 		this.initializeDeck();
 
 		this.resize();
@@ -60,7 +64,7 @@ export abstract class CardGame {
 	}
 
 	protected initializeDeck() {
-		this.deck = new Deck(this.$container, this);
+		this.deck = new Deck(this.domHelper, this);
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
@@ -68,12 +72,20 @@ export abstract class CardGame {
 	}
 
 	protected resize() {
+		console.log("hi");
 		if (this.opts.showDeck) this.deck.resize();
 		this.players.forEach(player => player.resize());
 	}
 
 	protected dealInitialCards() {
 		this.players.forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
+	}
+
+	protected initializePlayers() {
+		this.players = [];
+		for (let i = 0; i < this.opts.players; i++) {
+			this.players.push(new CardGamePlayer(this.domHelper, this, `Player ${i + 1}`));
+		}
 	}
 
 	protected onDeckClick() {}

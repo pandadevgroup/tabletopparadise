@@ -1,14 +1,18 @@
 import { CardGamePlayer } from "./player";
 import { Deck } from "./deck";
+import { CardGameDomHelper } from "./dom-helper";
 
 export class Card {
+	private $card: JQuery<HTMLElement>;
 
 	constructor(
-		private $container: JQuery<HTMLElement>,
+		private domHelper: CardGameDomHelper,
 		private parent: CardGamePlayer | Deck,
 		private number: number,
 		private suit: "club" | "diamond" | "heart" | "spade"
-	) {}
+	) {
+		this.$card = domHelper.createCardFrag(this.getImgName());
+	}
 
 	resize() {}
 
@@ -19,14 +23,6 @@ export class Card {
 			let names = ["j", "q", "k"];
 			return `${this.suit}s/${names[this.number - 11]}${this.suit[0]}`;
 		}
-	}
-
-	getRenderCode() {
-		return `
-			<div class="card"id="card__${this.number}${this.suit}">
-				<img class="card__img" src="/assets/cards/${this.getImgName()}.svg" id="card__${this.number}${this.suit}_img">
-			</div>
-		`;
 	}
 
 	toString() {
