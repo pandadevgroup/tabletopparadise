@@ -18,11 +18,13 @@ export class CardGamePlayer extends Player {
 		let renderCode = card.getRenderCode();
 		console.log(1)
 		var player = this.$player;
+		console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().top);
+		console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().left);
 		$("#" + card.getID()).animate({
-			left:$(player).offset().left,
-            top:$(player).offset().top,
+			left:$("#" + this.cards[this.cards.length - 2/*second to last card. the last card is this current card*/].getID()).offset().left,
+            top:$("#" + this.cards[this.cards.length - 2].getID()).offset().top,
 			
-		  },200,function(){
+		  },1000,function(){
 			$(player).append(renderCode);
 			console.log(2)
 		});
