@@ -33,17 +33,17 @@ export abstract class CardGame extends Tabletop {
 		protected opts: CardGameOptions
 	) {
 		super($container, opts, CardGamePlayer);
+		this.renderPlayers();
+
 		this.deck = new Deck(this.$center);
 		this.dealInitialCards();
-
 		if (this.opts.showDeck) this.renderDeck();
-		this.renderPlayers();
 
 		this.startGame();
 	}
 
 	protected dealInitialCards() {
-		this.players.forEach(player => player.cards = this.deck.get(this.opts.initialHandSize));
+		this.players.forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
 	}
 
 	protected renderDeck() {
@@ -53,7 +53,7 @@ export abstract class CardGame extends Tabletop {
 
 	protected renderPlayers() {
 		const numPlayers = this.opts.players;
-		this.players.forEach((player, i) => player.renderContainer(i + 1, numPlayers));
+		this.players.forEach((player, i) => player.renderPlayer(i + 1, numPlayers));
 	}
 
 	protected onDeckClick() {}

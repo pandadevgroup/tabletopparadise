@@ -10,7 +10,8 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	protected onDeckClick() {
-		console.log("Deck click");
+		this.players[0].addCards(this.deck.get(1));
+		if (this.deck.cards.length === 0) this.deck.actionable = false;
 	}
 
 	protected startGame() {

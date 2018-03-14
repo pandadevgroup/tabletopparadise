@@ -6,6 +6,8 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	user-select: none;
+	-webkit-user-drag: none;
 
 	&.actionable {
 		@include actionable;

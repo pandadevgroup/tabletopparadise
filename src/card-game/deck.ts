@@ -2,10 +2,14 @@ import { Card } from "./card";
 import Utils from "../util";
 
 export class Deck {
-	protected cards: Card[];
+	protected _cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
 	protected clickListeners: Function[] = [];
 	private _actionable: boolean = false;
+
+	get cards() {
+		return this._cards;
+	}
 
 	constructor(private $container: JQuery<HTMLElement>) {
 		this.initialize();
@@ -49,12 +53,12 @@ export class Deck {
 	}
 
 	protected initialize() {
-		this.cards = [];
+		this._cards = [];
 		for (let i = 0; i < 13; i++) {
-			this.cards.push(new Card(i + 1, "club"));
-			this.cards.push(new Card(i + 1, "diamond"));
-			this.cards.push(new Card(i + 1, "heart"));
-			this.cards.push(new Card(i + 1, "spade"));
+			this._cards.push(new Card(i + 1, "club"));
+			this._cards.push(new Card(i + 1, "diamond"));
+			this._cards.push(new Card(i + 1, "heart"));
+			this._cards.push(new Card(i + 1, "spade"));
 		}
 	}
 

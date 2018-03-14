@@ -18,8 +18,8 @@ export abstract class Tabletop {
 		protected opts: TabletopOptions,
 		protected PlayerClass: typeof Player
 	) {
-		this.initializePlayers();
 		this.initializeDom();
+		this.initializePlayers();
 	}
 
 	protected initializePlayers() {

@@ -6,7 +6,7 @@ export class Player {
 		protected name?: string
 	) {}
 
-	renderContainer(playerNum: number, numPlayers: number) {
+	renderPlayer(playerNum: number, numPlayers: number) {
 		this.$player = $(`
 			<div class="player player--${playerNum}of${numPlayers}">
 				${this.generatePlayerCode()}
