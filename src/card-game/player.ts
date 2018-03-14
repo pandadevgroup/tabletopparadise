@@ -27,7 +27,7 @@ export class CardGamePlayer extends Player {
 			left:$lastCard.offset().left - $currentCard.offset().left,
             top:$lastCard.offset().top - $currentCard.offset().top,
 			
-		  },1000,function(){
+		  },400,function(){
 			  parent.cards.push(card);
 			$(player).append(renderCode);
 			console.log(2)
