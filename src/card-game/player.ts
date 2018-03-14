@@ -13,6 +13,10 @@ export class CardGamePlayer {
 
 	resize() {}
 
+	getCardPosition() {
+		return {};
+	}
+
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
 	}

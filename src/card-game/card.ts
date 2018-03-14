@@ -8,13 +8,18 @@ export class Card {
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private parent: CardGamePlayer | Deck,
-		private number: number,
-		private suit: "club" | "diamond" | "heart" | "spade"
+		public number: number,
+		public suit: "club" | "diamond" | "heart" | "spade",
+		public index: number
 	) {
 		this.$card = domHelper.createCardFrag(this.getImgName());
 	}
 
-	resize() {}
+	resize() {
+		const positionInfo = this.parent.getCardPosition();
+
+		this.domHelper.resizeEl(this.$card, positionInfo);
+	}
 
 	getImgName() {
 		if (this.number <= 10) {

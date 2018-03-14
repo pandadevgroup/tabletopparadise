@@ -33,6 +33,13 @@ export class Deck {
 		return this._cards.splice(0, numCards);
 	}
 
+	getCardPosition() {
+		return {
+			translateX: Utils.random(0, 800),
+			translateY: Utils.random(0, 500)
+		};
+	}
+
 	shuffle(algorithm = function(array: Card[]) {
 		// Fisher-yates shuffle
 		// based on algorithm(them minified) from: https://bost.ocks.org/mike/shuffle/ | https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
@@ -49,10 +56,10 @@ export class Deck {
 	protected initialize() {
 		this._cards = [];
 		for (let i = 0; i < 13; i++) {
-			this._cards.push(new Card(this.domHelper, this, i + 1, "club"));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "diamond"));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "heart"));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "spade"));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "club", this._cards.length));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "diamond", this._cards.length));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "heart", this._cards.length));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "spade", this._cards.length));
 		}
 	}
 }
