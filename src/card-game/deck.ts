@@ -4,6 +4,7 @@ import Utils from "../util";
 export class Deck {
 	protected cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
+	protected clickListeners: Function[] = [];
 	private _actionable: boolean = false;
 
 	constructor(private $container: JQuery<HTMLElement>) {
@@ -40,6 +41,10 @@ export class Deck {
 		this.$container.append(this.$deck);
 	}
 
+	onClick(callback: Function) {
+		this.clickListeners.push(callback);
+	}
+
 	protected initialize() {
 		this.cards = [];
 		for (let i = 0; i < 13; i++) {
@@ -48,5 +53,9 @@ export class Deck {
 			this.cards.push(new Card(i + 1, "heart"));
 			this.cards.push(new Card(i + 1, "spade"));
 		}
+	}
+
+	protected handleOnDeckClick() {
+		if (this.actionable) this.clickListeners.forEach(listener => listener());
 	}
 }
