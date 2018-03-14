@@ -10,14 +10,7 @@ export class CardGamePlayer extends Player {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		let $cards = $(this.getCardsCode(cards));
-		this.$player.append($cards);
-		$cards.velocity({
-			translateY: "-50px"
-		}, { duration: 0 });
-		$cards.velocity({
-			translateY: "0px"
-		});
+		// TODO: Render?
 	}
 
 	getCardsCode(cards: Card[]): string {
