@@ -4,7 +4,7 @@ import Utils from "../util";
 export class Deck {
 	protected cards: Card[];
 
-	constructor() {
+	constructor(private $container: JQuery<HTMLElement>) {
 		this.initialize();
 	}
 
@@ -18,6 +18,10 @@ export class Deck {
 			numCards--;
 		}
 		return cards;
+	}
+
+	render() {
+		this.$container.append(`<div class="deck"></div>`);;
 	}
 
 	private initialize() {

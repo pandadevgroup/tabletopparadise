@@ -36,7 +36,7 @@ export abstract class CardGame extends Tabletop {
 		protected opts: CardGameOptions
 	) {
 		super($container, opts);
-		this.deck = new Deck();
+		this.deck = new Deck($container);
 		this.dealInitialCards();
 
 		if (this.opts.showDeck) this.renderDeck();
@@ -47,7 +47,7 @@ export abstract class CardGame extends Tabletop {
 	}
 
 	protected renderDeck() {
-		let $deck = Utils.renderDeck(this.$container);
+		this.deck.render();
 	}
 
 	protected onDeckClick() {}

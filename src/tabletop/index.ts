@@ -1,4 +1,5 @@
 import "../styles/index.scss";
+import Utils from "../util";
 
 export interface TabletopOptions {
 	/**
