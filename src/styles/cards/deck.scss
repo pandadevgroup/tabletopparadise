@@ -13,8 +13,4 @@
 	&.actionable {
 		@include actionable;
 	}
-
-	.card {
-		position: absolute;
-	}
 }
