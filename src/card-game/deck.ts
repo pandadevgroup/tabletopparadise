@@ -4,7 +4,6 @@ import Utils from "../util";
 export class Deck {
 	protected cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
-	protected clickListeners: Function[] = [];
 	private _actionable: boolean = false;
 
 	constructor(private $container: JQuery<HTMLElement>) {
@@ -39,12 +38,6 @@ export class Deck {
 		// Add class "actionable" if actionable is true
 		this.actionable = this.actionable;
 		this.$container.append(this.$deck);
-
-		this.$deck.click(() => this.handleOnDeckClick());
-	}
-
-	onClick(callback: Function) {
-		this.clickListeners.push(callback);
 	}
 
 	protected initialize() {
@@ -55,9 +48,5 @@ export class Deck {
 			this.cards.push(new Card(i + 1, "heart"));
 			this.cards.push(new Card(i + 1, "spade"));
 		}
-	}
-
-	protected handleOnDeckClick() {
-		if (this.actionable) this.clickListeners.forEach(listener => listener());
 	}
 }

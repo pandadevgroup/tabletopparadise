@@ -48,7 +48,6 @@ export abstract class CardGame extends Tabletop {
 
 	protected renderDeck() {
 		this.deck.render();
-		this.deck.onClick(() => this.onDeckClick());
 	}
 
 	protected renderPlayers() {

@@ -22,5 +22,7 @@
 
 	.card__img {
 		@include card-size;
+		user-select: none;
+		-webkit-user-drag: none;
 	}
 }
