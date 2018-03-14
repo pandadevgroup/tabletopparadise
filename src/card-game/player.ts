@@ -16,11 +16,7 @@ export class CardGamePlayer extends Player {
 	getCardsCode(cards: Card[]): string {
 		let cardsCode = [];
 		cards.forEach(card => {
-			cardsCode.push(`
-				<div class="card">
-					<img class="card__img" src="/assets/cards/${card.getImgName()}.svg">
-				</div>
-			`);
+			cardsCode.push(card.getRenderCode());
 		});
 		return cardsCode.join("");
 	}

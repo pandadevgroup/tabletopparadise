@@ -39,7 +39,10 @@ export class Deck {
 	}
 
 	render() {
-		this.$deck = $(`<div class="deck"></div>`);
+		let cardsCode = [];
+		this.cards.forEach(card => cardsCode.push(card.getRenderCode()));
+
+		this.$deck = $(`<div class="deck">${cardsCode.join("")}</div>`);
 		// Add class "actionable" if actionable is true
 		this.actionable = this.actionable;
 
