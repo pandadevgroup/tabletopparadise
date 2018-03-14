@@ -1,6 +1,7 @@
+@import "card";
+
 .deck {
-	width: 100px;
-	height: 140px;
+	@include card-size;
 	background-image: url("../../assets/cards/card_back.png");
 	background-size: cover;
 	background-repeat: no-repeat;
