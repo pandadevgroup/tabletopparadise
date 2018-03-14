@@ -29,13 +29,17 @@ export class Deck {
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
 
-		let cards = [];
-		while (numCards > 0) {
-			let index = Utils.random(0, this.cards.length);
-			cards.push(this.cards.splice(index, 1)[0]);
-			numCards--;
-		}
-		return cards;
+		return this._cards.splice(0, numCards);
+	}
+
+	shuffle(algorithm = function(array : Card[]){
+		//Fisher-yates shuffle
+		//based on algorithm(them minified) from: https://bost.ocks.org/mike/shuffle/ | https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
+		
+		for(var t,i,m=array.length;m;)i=Math.floor(Math.random()*m--),t=array[m],array[m]=array[i],array[i]=t;return array;
+	}) {
+		
+		this._cards = algorithm(this._cards);
 	}
 
 	render() {

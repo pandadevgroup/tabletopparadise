@@ -10,7 +10,7 @@ export interface CardGameOptions extends TabletopOptions {
 	 * Number of cards to deal to each player in the beginning of the game.
 	 *
 	 * @example 13 (Bridge)
-	 * @type {number}
+	 * @type {number} initialHandSize
 	 * @memberof CardGameOptions
 	 */
 	initialHandSize: number;
@@ -18,10 +18,21 @@ export interface CardGameOptions extends TabletopOptions {
 	 * If true, render a deck of cards.
 	 * Override CardGame.onDeckClick() to add handler when deck is clicked.
 	 *
-	 * @type {boolean}
+	 * @type {boolean} showDeck
 	 * @memberof CardGameOptions
 	 */
 	showDeck: boolean;
+
+	/**
+	 * If true or omitted, or if a shuffle function is provided, shuffle the deck before dealing.
+	 * Otherwise deal without shuffling(defualt deck is AofClubs, AofDiamonds, AofHearts, AofSpades, 2OfClubs...KofSpades)
+	 *
+	 * 
+	 * @type {Function | boolean} [shuffle=true]
+	 * @memberof CardGameOptions
+	 */
+	shuffle? : Function | boolean;
+	//or undefined
 }
 
 export abstract class CardGame extends Tabletop {
@@ -36,6 +47,8 @@ export abstract class CardGame extends Tabletop {
 		this.renderPlayers();
 
 		this.deck = new Deck(this.$center);
+		//TODO: let commented code work. Expected: if the shuffle option is a function, pass it to the shuffle function. Otherwise, pass undefined or nothing
+		if (this.opts.shuffle !== false) this.deck.shuffle(/*typeof this.opts.shuffle == "function" ? this.opts.shuffle : undefined*/);
 		this.dealInitialCards();
 		if (this.opts.showDeck) this.renderDeck();
 
