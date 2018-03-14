@@ -1,15 +1,4 @@
-@mixin card-size {
-	width: 125px;
-	height: 175px;
-}
-
-@mixin actionable {
-	cursor: pointer;
-	box-shadow: 0 0 25px lightblue;
-	&:hover {
-		box-shadow: 0 0 20px 5px lightblue;
-	}
-}
+@import "mixins";
 
 .card {
 	@include card-size;
