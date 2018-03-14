@@ -18,7 +18,6 @@ export abstract class Tabletop {
 		protected opts: TabletopOptions,
 		protected PlayerClass: typeof Player
 	) {
-		this.initializeDom();
 		this.initializePlayers();
 	}
 
@@ -27,11 +26,6 @@ export abstract class Tabletop {
 		for (let i = 0; i < this.opts.players; i++) {
 			this.players.push(new this.PlayerClass(this.$container, `Player ${i + 1}`));
 		}
-	}
-
-	protected initializeDom() {
-		this.$center = $(`<div class="gameboard__center"></div>`);
-		this.$container.append(this.$center);
 	}
 }
 

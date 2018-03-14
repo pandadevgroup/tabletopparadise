@@ -17,10 +17,6 @@ export class Deck {
 
 	set actionable(actionable: boolean) {
 		this._actionable = actionable;
-		if (this.$deck) {
-			if (actionable) this.$deck.addClass("actionable");
-			else this.$deck.removeClass("actionable");
-		}
 	}
 	get actionable() {
 		return this._actionable;
@@ -32,32 +28,16 @@ export class Deck {
 		return this._cards.splice(0, numCards);
 	}
 
-	shuffle(algorithm = function(array : Card[]){
-		//Fisher-yates shuffle
-		//based on algorithm(them minified) from: https://bost.ocks.org/mike/shuffle/ | https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
-		
-		for(var t,i,m=array.length;m;)i=Math.floor(Math.random()*m--),t=array[m],array[m]=array[i],array[i]=t;return array;
+	shuffle(algorithm = function(array: Card[]) {
+		// Fisher-yates shuffle
+		// based on algorithm(them minified) from: https://bost.ocks.org/mike/shuffle/ | https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
+		for (var t, i, m = array.length; m; ) (i = Math.floor(Math.random() * m--)), (t = array[m]), (array[m] = array[i]), (array[i] = t);
+		return array;
 	}) {
-		
 		this._cards = algorithm(this._cards);
 	}
 
-	render() {
-		let cardsCode = [];
-		this.cards.forEach(card => cardsCode.push(card.getRenderCode()));
-
-		this.$deck = $(`<div class="deck">${cardsCode.join("")}</div>`);
-		// Add class "actionable" if actionable is true
-		this.actionable = this.actionable;
-
-		this.$deck.click(() => this.handleOnDeckClick());
-
-		this.$container.append(this.$deck);
-	}
-
-	onClick(callback: Function) {
-		this.clickListeners.push(callback);
-	}
+	render() {}
 
 	protected initialize() {
 		this._cards = [];
@@ -67,9 +47,5 @@ export class Deck {
 			this._cards.push(new Card(i + 1, "heart"));
 			this._cards.push(new Card(i + 1, "spade"));
 		}
-	}
-
-	protected handleOnDeckClick() {
-		if (this.actionable) this.clickListeners.forEach(listener => listener());
 	}
 }
