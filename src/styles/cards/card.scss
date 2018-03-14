@@ -2,3 +2,12 @@
 	width: 100px;
 	height: 140px;
 }
+
+.card {
+	@include card-size;
+	margin-left: -70px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	.card__img {
+		@include card-size;
+	}
+}

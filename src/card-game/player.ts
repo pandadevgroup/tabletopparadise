@@ -9,7 +9,7 @@ export class CardGamePlayer extends Player {
 		this.cards.forEach(card => {
 			cardsCode.push(`
 				<div class="card">
-					${ card.toString() }
+					<img class="card__img" src="/assets/cards/${card.getImgName()}.svg">
 				</div>
 			`);
 		});

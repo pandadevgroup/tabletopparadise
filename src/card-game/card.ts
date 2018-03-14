@@ -14,10 +14,10 @@ export class Card {
 
 	getImgName() {
 		if (this.number <= 10) {
-			return `${this.number}${this.suit[0]}`;
+			return `${this.suit}s/${this.number}${this.suit[0]}`;
 		} else {
 			let names = ["j", "q", "k"];
-			return `${names[this.number - 11]}${this.suit[0]}`;
+			return `${this.suit}s/${names[this.number - 11]}${this.suit[0]}`;
 		}
 	}
 
