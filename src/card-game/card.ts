@@ -1,15 +1,16 @@
+import { CardGamePlayer } from "./player";
+import { Deck } from "./deck";
+
 export class Card {
-	/**
-	 * 1 - 13, Ace is 1, King is 13
-	 */
-	number: number;
 
-	suit: "club" | "diamond" | "heart" | "spade";
+	constructor(
+		private $container: JQuery<HTMLElement>,
+		private parent: CardGamePlayer | Deck,
+		private number: number,
+		private suit: "club" | "diamond" | "heart" | "spade"
+	) {}
 
-	constructor(number: number, suit: "club" | "diamond" | "heart" | "spade") {
-		this.number = number;
-		this.suit = suit;
-	}
+	resize() {}
 
 	getImgName() {
 		if (this.number <= 10) {

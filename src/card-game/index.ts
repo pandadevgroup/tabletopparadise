@@ -35,38 +35,45 @@ export interface CardGameOptions extends TabletopOptions {
 	//or undefined
 }
 
-export abstract class CardGame extends Tabletop {
+export abstract class CardGame {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
+	protected tabletop: Tabletop;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		protected opts: CardGameOptions
 	) {
-		super($container, opts, CardGamePlayer);
-		this.renderPlayers();
+		this.tabletop = new Tabletop($container, {
+			players: opts.players
+		}, CardGamePlayer);
 
-		this.deck = new Deck(this.$container);
+		this.initializeDom();
+		this.initializeDeck();
+
+		this.resize();
+		this.startGame();
+	}
+
+	protected initializeDom() {
+		$(window).resize(() => this.resize());
+	}
+
+	protected initializeDeck() {
+		this.deck = new Deck(this.$container, this);
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
 		this.dealInitialCards();
-		if (this.opts.showDeck) this.renderDeck();
+	}
 
-		this.startGame();
+	protected resize() {
+		if (this.opts.showDeck) this.deck.resize();
+		this.players.forEach(player => player.resize());
 	}
 
 	protected dealInitialCards() {
 		this.players.forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
-	}
-
-	protected renderDeck() {
-		this.deck.render();
-	}
-
-	protected renderPlayers() {
-		const numPlayers = this.opts.players;
-		this.players.forEach((player, i) => player.renderPlayer(i + 1, numPlayers));
 	}
 
 	protected onDeckClick() {}

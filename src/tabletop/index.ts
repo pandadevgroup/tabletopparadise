@@ -1,6 +1,7 @@
 import "../styles/index.scss";
 import { Player } from "./player";
 import Utils from "../util";
+import { DomHelper } from "./dom-helper";
 
 export abstract class TabletopOptions {
 	/**
@@ -9,7 +10,7 @@ export abstract class TabletopOptions {
 	abstract players: number;
 }
 
-export abstract class Tabletop {
+export class Tabletop {
 	protected players: Player[] = [];
 	protected layout: {
 		width: number,
@@ -18,21 +19,15 @@ export abstract class Tabletop {
 		width: 1080,
 		height: 720
 	};
+	protected domHelper: DomHelper;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		protected opts: TabletopOptions,
 		protected PlayerClass: typeof Player
 	) {
-		this.initializeDom();
+		this.domHelper = new DomHelper();
 		this.initializePlayers();
-	}
-
-	protected initializeDom() {
-		$(window).resize(() => {
-			this.resize();
-			this.players.forEach(player => player.resize());
-		});
 	}
 
 	protected resize() {
@@ -40,12 +35,13 @@ export abstract class Tabletop {
 			width: this.$container.width(),
 			height: this.$container.height()
 		};
+		this.players.forEach(player => player.resize());
 	}
 
 	protected initializePlayers() {
 		this.players = [];
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new this.PlayerClass(this.$container, this, `Player ${i + 1}`));
+			this.players.push(new this.PlayerClass(this.domHelper, this, `Player ${i + 1}`));
 		}
 	}
 }
