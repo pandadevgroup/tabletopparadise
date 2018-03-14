@@ -16,10 +16,7 @@ export class CardGamePlayer extends Player {
 	}
 	addCard(card: Card) {
 		let renderCode = card.getRenderCode();
-		//console.log(1)
 		let player = this.$player;
-		//console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().top);
-		//console.log($("#" + this.cards[this.cards.length - 2].getID()).offset().left);
 		let $lastCard = $("#" + this.cards[this.cards.length - 1].getID() + "_img");
 		let $currentCard = $("#" + card.getID());
 		let parent = this;
