@@ -2,6 +2,7 @@ import { Tabletop, TabletopOptions, Player } from "../tabletop";
 import { Deck } from "./deck";
 import { Card } from "./card";
 import Utils from "../util";
+import "../styles/cards/index.scss";
 
 export interface CardGamePlayer extends Player {
 	cards: Card[];

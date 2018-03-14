@@ -1,3 +1,5 @@
+import "../styles/index.scss";
+
 export interface TabletopOptions {
 	/**
 	 * Number of players (1 - 12)
