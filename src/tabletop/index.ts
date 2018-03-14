@@ -1,4 +1,5 @@
 import "../styles/index.scss";
+import { Player } from "./player";
 import Utils from "../util";
 
 export interface TabletopOptions {
@@ -6,10 +7,6 @@ export interface TabletopOptions {
 	 * Number of players (1 - 12)
 	*/
 	players: number;
-}
-
-export interface Player {
-	name: string;
 }
 
 export abstract class Tabletop {
@@ -25,9 +22,9 @@ export abstract class Tabletop {
 	private initializePlayers() {
 		this.players = [];
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push({
-				name: `Player ${i + 1}`
-			});
+			this.players.push(new Player(`Player ${i + 1}`));
 		}
 	}
 }
+
+export * from "./player";

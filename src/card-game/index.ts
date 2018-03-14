@@ -52,3 +52,6 @@ export abstract class CardGame extends Tabletop {
 
 	protected onDeckClick() {}
 }
+
+export * from "./card";
+export * from "./deck";
