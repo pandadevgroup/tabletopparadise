@@ -27,11 +27,11 @@ export interface CardGameOptions extends TabletopOptions {
 	 * If true or omitted, or if a shuffle function is provided, shuffle the deck before dealing.
 	 * Otherwise deal without shuffling(defualt deck is AofClubs, AofDiamonds, AofHearts, AofSpades, 2OfClubs...KofSpades)
 	 *
-	 * 
-	 * @type {Function | boolean} [shuffle=true]
+	 *
+	 * @type {((cards: Card[]) => Card[]) | boolean} [shuffle=true]
 	 * @memberof CardGameOptions
 	 */
-	shuffle? : Function | boolean;
+	shuffle? : ((cards: Card[]) => Card[]) | boolean;
 	//or undefined
 }
 
@@ -47,8 +47,9 @@ export abstract class CardGame extends Tabletop {
 		this.renderPlayers();
 
 		this.deck = new Deck(this.$center);
-		//TODO: let commented code work. Expected: if the shuffle option is a function, pass it to the shuffle function. Otherwise, pass undefined or nothing
-		if (this.opts.shuffle !== false) this.deck.shuffle(/*typeof this.opts.shuffle == "function" ? this.opts.shuffle : undefined*/);
+		if (this.opts.shuffle !== false) this.deck.shuffle(
+			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
+		);
 		this.dealInitialCards();
 		if (this.opts.showDeck) this.renderDeck();
 
