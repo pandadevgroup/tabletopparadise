@@ -7,6 +7,19 @@ export class Card {
 	/** */
 	suit: "club" | "diamond" | "heart" | "spade";
 
+	//constants for better readibility
+	static ACE : number = 1;
+	static JACK : number = 11;
+	static QUEEN : number = 12;
+	static KING : number = 13;
+	static faceCards :number[] = [Card.JACK, Card.QUEEN, Card.KING];
+
+	static CLUB : String = "club";
+	static DIAMOND : String = "diamond";
+	static HEART : String = "heart";
+	static SPADE : String = "spade";
+	static suits : String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
+
 	constructor(number: number, suit: "club" | "diamond" | "heart" | "spade") {
 		this.number = number;
 		this.suit = suit;
