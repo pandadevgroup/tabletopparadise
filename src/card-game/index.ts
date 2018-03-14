@@ -53,7 +53,7 @@ export abstract class CardGame extends Tabletop {
 
 	protected renderPlayers() {
 		const numPlayers = this.opts.players;
-		this.players.forEach(player => player.renderContainer(numPlayers));
+		this.players.forEach((player, i) => player.renderContainer(i + 1, numPlayers));
 	}
 
 	protected onDeckClick() {}

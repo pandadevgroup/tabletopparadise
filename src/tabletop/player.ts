@@ -6,9 +6,9 @@ export class Player {
 		protected name?: string
 	) {}
 
-	renderContainer(numPlayers: number) {
+	renderContainer(playerNum: number, numPlayers: number) {
 		this.$player = $(`
-			<div class="player player--${numPlayers}">
+			<div class="player player--${playerNum}of${numPlayers}">
 				<span class="player__name">${this.name}</span>
 			</div>
 		`);
