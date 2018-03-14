@@ -4,9 +4,22 @@ import Utils from "../util";
 export class Deck {
 	protected cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
+	protected clickListeners: Function[] = [];
+	private _actionable: boolean = false;
 
 	constructor(private $container: JQuery<HTMLElement>) {
 		this.initialize();
+	}
+
+	set actionable(actionable: boolean) {
+		this._actionable = actionable;
+		if (this.$deck) {
+			if (actionable) this.$deck.addClass("actionable");
+			else this.$deck.removeClass("actionable");
+		}
+	}
+	get actionable() {
+		return this._actionable;
 	}
 
 	get(numCards: number): Card[] {
@@ -22,11 +35,19 @@ export class Deck {
 	}
 
 	render() {
-		this.$deck = $(`<div class="deck actionable"></div>`);
+		this.$deck = $(`<div class="deck"></div>`);
+		// Add class "actionable" if actionable is true
+		this.actionable = this.actionable;
 		this.$container.append(this.$deck);
+
+		this.$deck.click(() => this.handleOnDeckClick());
 	}
 
-	private initialize() {
+	onClick(callback: Function) {
+		this.clickListeners.push(callback);
+	}
+
+	protected initialize() {
 		this.cards = [];
 		for (let i = 0; i < 13; i++) {
 			this.cards.push(new Card(i + 1, "club"));
@@ -34,5 +55,9 @@ export class Deck {
 			this.cards.push(new Card(i + 1, "heart"));
 			this.cards.push(new Card(i + 1, "spade"));
 		}
+	}
+
+	protected handleOnDeckClick() {
+		if (this.actionable) this.clickListeners.forEach(listener => listener());
 	}
 }

@@ -12,4 +12,8 @@ export class DrawingCardsGame extends CardGame {
 	protected onDeckClick() {
 		console.log("Deck click");
 	}
+
+	protected startGame() {
+		this.deck.actionable = true;
+	}
 }

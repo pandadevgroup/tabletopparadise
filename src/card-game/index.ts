@@ -38,6 +38,8 @@ export abstract class CardGame extends Tabletop {
 
 		if (this.opts.showDeck) this.renderDeck();
 		this.renderPlayers();
+
+		this.startGame();
 	}
 
 	protected dealInitialCards() {
@@ -46,6 +48,7 @@ export abstract class CardGame extends Tabletop {
 
 	protected renderDeck() {
 		this.deck.render();
+		this.deck.onClick(() => this.onDeckClick());
 	}
 
 	protected renderPlayers() {
@@ -54,6 +57,7 @@ export abstract class CardGame extends Tabletop {
 	}
 
 	protected onDeckClick() {}
+	protected abstract startGame();
 }
 
 export * from "./card";
