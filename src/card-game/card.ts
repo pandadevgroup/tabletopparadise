@@ -33,11 +33,13 @@ export class Card {
 			return `${this.suit}s/${names[this.number - 11]}${this.suit[0]}`;
 		}
 	}
-
+	getID() {
+		return `card__${this.number}${this.suit}`;
+	}
 	getRenderCode() {
 		return `
-			<div class="card">
-				<img class="card__img" src="/assets/cards/${this.getImgName()}.svg">
+			<div class="card"id="card__${this.number}${this.suit}">
+				<img class="card__img" src="/assets/cards/${this.getImgName()}.svg" id="card__${this.number}${this.suit}_img">
 			</div>
 		`;
 	}
