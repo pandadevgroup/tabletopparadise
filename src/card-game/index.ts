@@ -1,6 +1,7 @@
 import { Tabletop, TabletopOptions, Player } from "../tabletop";
 import { Deck } from "./deck";
 import { Card } from "./card";
+import Utils from "../util";
 
 export interface CardGamePlayer extends Player {
 	cards: Card[];
@@ -45,8 +46,7 @@ export abstract class CardGame extends Tabletop {
 	}
 
 	protected renderDeck() {
-		let $deck = this.$container.append("<div class='deck'>Deck</div>");
-		$deck[0].velocity({ "color": "red" });
+		let $deck = Utils.renderDeck(this.$container);
 	}
 
 	protected onDeckClick() {}
