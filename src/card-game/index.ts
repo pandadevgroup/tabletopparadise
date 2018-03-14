@@ -55,6 +55,8 @@ export abstract class CardGame {
 		this.initializePlayers();
 		this.initializeDeck();
 
+		this.domHelper.renderFrag();
+
 		this.resize();
 		this.startGame();
 	}
@@ -72,7 +74,6 @@ export abstract class CardGame {
 	}
 
 	protected resize() {
-		console.log("hi");
 		if (this.opts.showDeck) this.deck.resize();
 		this.players.forEach(player => player.resize());
 	}

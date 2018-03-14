@@ -1,8 +1,6 @@
 import { DomHelper } from "../tabletop/dom-helper";
 
 export class CardGameDomHelper extends DomHelper {
-	$frag = $(document.createDocumentFragment());
-
 	createCardFrag(cardImgUrl: string) {
 		let $card = $(`
 			<div class="card">
@@ -11,6 +9,7 @@ export class CardGameDomHelper extends DomHelper {
 		`);
 
 		this.$frag.append($card);
+
 		return $card;
 	}
 }
