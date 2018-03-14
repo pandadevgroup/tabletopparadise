@@ -38,6 +38,9 @@ export class Deck {
 		this.$deck = $(`<div class="deck"></div>`);
 		// Add class "actionable" if actionable is true
 		this.actionable = this.actionable;
+
+		this.$deck.click(() => this.handleOnDeckClick());
+
 		this.$container.append(this.$deck);
 	}
 
