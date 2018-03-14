@@ -9,9 +9,13 @@ export class Player {
 	renderContainer(playerNum: number, numPlayers: number) {
 		this.$player = $(`
 			<div class="player player--${playerNum}of${numPlayers}">
-				<span class="player__name">${this.name}</span>
+				${this.generatePlayerCode()}
 			</div>
 		`);
 		this.$container.append(this.$player);
+	}
+
+	protected generatePlayerCode() {
+		return `<span class="player__name">${this.name}</span>`;
 	}
 }

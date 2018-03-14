@@ -15,7 +15,8 @@ export abstract class Tabletop {
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected opts: TabletopOptions
+		protected opts: TabletopOptions,
+		protected PlayerClass: typeof Player
 	) {
 		this.initializePlayers();
 		this.initializeDom();
@@ -24,7 +25,7 @@ export abstract class Tabletop {
 	protected initializePlayers() {
 		this.players = [];
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new Player(this.$container, `Player ${i + 1}`));
+			this.players.push(new this.PlayerClass(this.$container, `Player ${i + 1}`));
 		}
 	}
 

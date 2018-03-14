@@ -1,12 +1,9 @@
 import { Tabletop, TabletopOptions, Player } from "../tabletop";
+import { CardGamePlayer } from "./player";
 import { Deck } from "./deck";
 import { Card } from "./card";
 import Utils from "../util";
 import "../styles/cards/index.scss";
-
-export interface CardGamePlayer extends Player {
-	cards: Card[];
-}
 
 export interface CardGameOptions extends TabletopOptions {
 	/**
@@ -35,7 +32,7 @@ export abstract class CardGame extends Tabletop {
 		protected $container: JQuery<HTMLElement>,
 		protected opts: CardGameOptions
 	) {
-		super($container, opts);
+		super($container, opts, CardGamePlayer);
 		this.deck = new Deck(this.$center);
 		this.dealInitialCards();
 
@@ -61,3 +58,4 @@ export abstract class CardGame extends Tabletop {
 
 export * from "./card";
 export * from "./deck";
+export * from "./player";
