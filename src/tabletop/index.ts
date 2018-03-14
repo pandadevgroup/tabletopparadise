@@ -11,19 +11,26 @@ export interface TabletopOptions {
 
 export abstract class Tabletop {
 	protected players: Player[];
+	protected $center: JQuery<HTMLElement>;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		protected opts: TabletopOptions
 	) {
 		this.initializePlayers();
+		this.initializeDom();
 	}
 
-	private initializePlayers() {
+	protected initializePlayers() {
 		this.players = [];
 		for (let i = 0; i < this.opts.players; i++) {
 			this.players.push(new Player(this.$container, `Player ${i + 1}`));
 		}
+	}
+
+	protected initializeDom() {
+		this.$center = $(`<div class="gameboard__center"></div>`);
+		this.$container.append(this.$center);
 	}
 }
 

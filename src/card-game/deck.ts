@@ -3,6 +3,7 @@ import Utils from "../util";
 
 export class Deck {
 	protected cards: Card[];
+	protected $deck: JQuery<HTMLElement>;
 
 	constructor(private $container: JQuery<HTMLElement>) {
 		this.initialize();
@@ -21,7 +22,8 @@ export class Deck {
 	}
 
 	render() {
-		this.$container.append(`<div class="deck"></div>`);;
+		this.$deck = $(`<div class="deck"></div>`);
+		this.$container.append(this.$deck);;
 	}
 
 	private initialize() {
