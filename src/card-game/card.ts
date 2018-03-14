@@ -34,6 +34,14 @@ export class Card {
 		}
 	}
 
+	getRenderCode() {
+		return `
+			<div class="card">
+				<img class="card__img" src="/assets/cards/${this.getImgName()}.svg">
+			</div>
+		`;
+	}
+
 	toString() {
 		return `${this.number} of ${this.suit}s`;
 	}

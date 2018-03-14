@@ -6,9 +6,15 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
 
-"@types/jquery@^3.3.1":
+"@types/jquery@*", "@types/jquery@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.3.1.tgz#55758d44d422756d6329cbf54e6d41931d7ba28f"
+
+"@types/velocity-animate@^1.2.32":
+  version "1.2.32"
+  resolved "https://registry.yarnpkg.com/@types/velocity-animate/-/velocity-animate-1.2.32.tgz#ce31f4061331fcb4857653779536a6f6c2468f3b"
+  dependencies:
+    "@types/jquery" "*"
 
 abbrev@1:
   version "1.1.1"
@@ -6212,10 +6218,6 @@ validate-npm-package-license@^3.0.1:
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
-
-velocity-animate@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-2.0.2.tgz#e2662eef3fa5a910d07d379b0cf7f4e3fe35fdb1"
 
 vendors@^1.0.0:
   version "1.0.1"

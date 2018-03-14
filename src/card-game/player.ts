@@ -10,17 +10,20 @@ export class CardGamePlayer extends Player {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		this.$player.append(this.getCardsCode(cards));
+		let $cards = $(this.getCardsCode(cards));
+		this.$player.append($cards);
+		$cards.velocity({
+			translateY: "-50px"
+		}, { duration: 0 });
+		$cards.velocity({
+			translateY: "0px"
+		});
 	}
 
 	getCardsCode(cards: Card[]): string {
 		let cardsCode = [];
 		cards.forEach(card => {
-			cardsCode.push(`
-				<div class="card">
-					<img class="card__img" src="/assets/cards/${card.getImgName()}.svg">
-				</div>
-			`);
+			cardsCode.push(card.getRenderCode());
 		});
 		return cardsCode.join("");
 	}
