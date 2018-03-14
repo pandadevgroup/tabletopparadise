@@ -12,7 +12,7 @@ export class CardGamePlayer extends Player {
 		this.cards = [...this.cards, ...cards];
 		let $cards = $(this.getCardsCode(cards));
 		this.$player.append($cards);
-		
+
 	}
 	addCard(card: Card) {
 		let renderCode = card.getRenderCode();
@@ -24,17 +24,18 @@ export class CardGamePlayer extends Player {
 		let $currentCard = $("#" + card.getID());
 		let parent = this;
 		$currentCard.animate({
-			left:$lastCard.offset().left - $currentCard.offset().left,
-            top:$lastCard.offset().top - $currentCard.offset().top,
-			
-		  },400,function(){
-			  parent.cards.push(card);
+			left: $lastCard.offset().left - $currentCard.offset().left,
+			top: $lastCard.offset().top - $currentCard.offset().top,
+
+		}, 400, function () {
+			$currentCard.remove();
+			parent.cards.push(card);
 			$(player).append(renderCode);
 			console.log(2)
 		});
-		
+
 	}
-	
+
 	getCardsCode(cards: Card[]): string {
 		let cardsCode = [];
 		cards.forEach(card => {
