@@ -62,7 +62,11 @@ export class Deck {
 	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];//lowest to highest
 	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];//lowest to highest
 
-	sort(compare?: string | ((a, b) => number), suitValueSystem = Deck.DEFUALT_SUIT_VALUE_SYSTEM, numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM) {
+	sort(
+		compare?: string | ((a, b) => number),
+		suitValueSystem = Deck.DEFUALT_SUIT_VALUE_SYSTEM,
+		numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM
+	) {
 		//if they provide a compare function, then we use that.
 		if (typeof compare == "function") {
 			this._cards.sort(compare);

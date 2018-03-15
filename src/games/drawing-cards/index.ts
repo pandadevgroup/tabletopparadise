@@ -15,8 +15,12 @@ export class DrawingCardsGame extends CardGame {
 		//console.log(this.deck.sort());
 		console.log(this.deck.cards);
 		//console.log(this.deck.sort(Deck.COMPARE_BY_SUIT).shuffle().sort(Deck.COMPARE_BY_VALUE));
-		this.deck.sort(Deck.COMPARE_BY_SUIT).shuffle().sort(Deck.COMPARE_BY_VALUE)
-		console.log(this.deck.cards);
+		this.deck.sort(Deck.COMPARE_BY_SUIT);
+		// console.log(this.deck.cards);
+		// this.deck.shuffle();
+		// console.log(this.deck.cards);
+		// this.deck.sort(Deck.COMPARE_BY_VALUE)
+		// console.log(this.deck.cards);
 	}
 
 	protected startGame() {
