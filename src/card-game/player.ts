@@ -19,7 +19,7 @@ export class CardGamePlayer {
 		const tbl = this.game.tabletop;
 		const opts = this.game.layoutOpts;
 
-		let left = tbl.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * this.cards.length) / 2;
+		let left = Math.round(tbl.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * this.cards.length) / 2);
 		return {
 			translateX: left + opts.cardSpacing * index,
 			translateY: tbl.height - opts.cardHeight - opts.playerPadding,
