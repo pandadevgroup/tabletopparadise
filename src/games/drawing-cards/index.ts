@@ -12,15 +12,8 @@ export class DrawingCardsGame extends CardGame {
 
 	protected onDeckClick() {
 		this.drawCard(this.players[0]);
-		//console.log(this.deck.sort());
+		this.deck.sort(Deck.COMPARE_BY_SUIT).shuffle().sort(Deck.COMPARE_BY_VALUE);
 		console.log(this.deck.cards);
-		//console.log(this.deck.sort(Deck.COMPARE_BY_SUIT).shuffle().sort(Deck.COMPARE_BY_VALUE));
-		this.deck.sort(Deck.COMPARE_BY_SUIT);
-		// console.log(this.deck.cards);
-		// this.deck.shuffle();
-		// console.log(this.deck.cards);
-		// this.deck.sort(Deck.COMPARE_BY_VALUE)
-		// console.log(this.deck.cards);
 	}
 
 	protected startGame() {
