@@ -55,12 +55,13 @@ export class Deck {
 		return this;
 	}
 
-	//constants to be used by user for better readibility
-	static COMPARE_BY_SUIT = "suit";//(group by suit -- lowest to highest: clubs, diamonds, hearts, spades), then group by number within suits
-	static COMPARE_BY_VALUE = "value";//(group by number -- lowest to highest: 2, 3 ... 10, j, q, k, ace/1), then group by suit within numbers
+	// (group by suit -- lowest to highest: clubs, diamonds, hearts, spades), then group by number within suits
+	static COMPARE_BY_SUIT = "suit";
+	// (group by number -- lowest to highest: 2, 3 ... 10, j, q, k, ace/1), then group by suit within numbers
+	static COMPARE_BY_VALUE = "value";
 
-	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];//lowest to highest
-	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];//lowest to highest
+	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
+	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];
 
 	sort(
 		compare?: string | ((a, b) => number),
