@@ -39,6 +39,8 @@ export abstract class CardGame {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
 	protected domHelper: CardGameDomHelper;
+	protected $playButton: JQuery<HTMLElement>;
+	private _showPlayButton = false;
 	tabletop: Tabletop;
 	layoutOpts = {
 		cardWidth: 125,
@@ -67,7 +69,22 @@ export abstract class CardGame {
 		this.startGame();
 	}
 
+	get showPlayButton() {
+		return this._showPlayButton;
+	}
+	set showPlayButton(show: boolean) {
+		if (show !== this._showPlayButton) {
+			if (show) {
+				this.domHelper.showPlayButton(this.$playButton);
+			} else {
+				this.domHelper.hidePlayButton(this.$playButton);
+			}
+		}
+		this._showPlayButton = show;
+	}
+
 	protected initializeDom() {
+		this.$playButton = this.domHelper.createPlayButtonFrag();
 		$(window).resize(() => {
 			this.resize();
 		});

@@ -11,6 +11,24 @@ export class CardGameDomHelper extends DomHelper {
 		return $deck;
 	}
 
+	showPlayButton($btn: JQuery<HTMLElement>) {
+		$btn.addClass("play-button--show");
+	}
+
+	hidePlayButton($btn: JQuery<HTMLElement>) {
+		$btn.removeClass("play-button--show");
+	}
+
+	createPlayButtonFrag() {
+		let $btn = $(`
+			<button class="play-button">Play</button>
+		`);
+
+		this.$frag.append($btn);
+
+		return $btn;
+	}
+
 	createCardFrag(cardImgUrl: string, visible: boolean) {
 		let $card = $(`
 			<div class="card ${visible ? "" : "card--hidden"}">

@@ -20,7 +20,7 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onCardClick() {
-
+		this.showPlayButton = true;
 	}
 
 	startGame() {
