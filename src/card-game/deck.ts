@@ -95,9 +95,7 @@ export class Deck {
 			});
 
 		}
-		this._cards.sort(function (a, b) {
-			return 1;
-		});
+		
 	}
 
 	resize() {
