@@ -16,9 +16,14 @@ export class Card {
 	}
 
 	resize() {
-		const positionInfo = this.parent.getCardPosition();
+		const positionInfo = this.parent.getCardPosition(this.index);
 
 		this.domHelper.resizeEl(this.$card, positionInfo);
+	}
+
+	setParent(parent: CardGamePlayer | Deck) {
+		this.parent = parent;
+		this.resize();
 	}
 
 	getImgName() {

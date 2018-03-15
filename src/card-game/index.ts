@@ -33,7 +33,6 @@ export interface CardGameOptions extends TabletopOptions {
 	 * @memberof CardGameOptions
 	 */
 	shuffle? : ((cards: Card[]) => Card[]) | boolean;
-	//or undefined
 }
 
 export abstract class CardGame {
@@ -43,7 +42,8 @@ export abstract class CardGame {
 	tabletop: Tabletop;
 	layoutOpts = {
 		cardWidth: 125,
-		cardHeight: 175
+		cardHeight: 175,
+		playerPadding: 20
 	};
 
 	constructor(

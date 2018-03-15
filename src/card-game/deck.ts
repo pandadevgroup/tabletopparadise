@@ -15,7 +15,7 @@ export class Deck {
 
 	constructor(
 		private domHelper: CardGameDomHelper,
-		private parent: CardGame
+		private game: CardGame
 	) {
 		this.initialize();
 	}
@@ -33,10 +33,10 @@ export class Deck {
 		return this._cards.splice(0, numCards);
 	}
 
-	getCardPosition() {
+	getCardPosition(index) {
 		return {
-			translateX: this.parent.tabletop.width / 2 - this.parent.layoutOpts.cardWidth / 2,
-			translateY: this.parent.tabletop.height / 2 - this.parent.layoutOpts.cardHeight / 2,
+			translateX: this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2,
+			translateY: this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2,
 			rotateY: 180
 		};
 	}
