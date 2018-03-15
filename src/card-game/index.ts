@@ -98,8 +98,19 @@ export abstract class CardGame {
 
 	protected initializePlayers() {
 		this.players = [];
+
+		let playerPositions;
+		if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
+		else playerPositions = ["bottom", "left", "top", "right"];
+
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new CardGamePlayer(this.domHelper, this, `Player ${i + 1}`));
+			this.players.push(new CardGamePlayer(
+				this.domHelper,
+				this,
+				`Player ${i + 1}`,
+				playerPositions[i],
+				i !== 0
+			));
 		}
 	}
 

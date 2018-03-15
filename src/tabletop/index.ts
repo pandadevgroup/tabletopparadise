@@ -4,7 +4,7 @@ import { DomHelper } from "./dom-helper";
 
 export abstract class TabletopOptions {
 	/**
-	 * Number of players (1 - 12)
+	 * Number of players (1 - 4)
 	*/
 	abstract players: number;
 }

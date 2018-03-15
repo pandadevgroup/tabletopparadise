@@ -41,6 +41,7 @@ export class Deck {
 			translateX: Math.round(this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2),
 			translateY: Math.round(this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2),
 			rotateX: 180,
+			rotateZ: undefined,
 			zIndex: undefined
 		};
 	}

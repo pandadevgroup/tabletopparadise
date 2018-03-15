@@ -37,10 +37,16 @@ export class Card {
 			translateY: positionInfo.translateY
 		});
 
-		this.domHelper.setElStyles(this.$card, {
-			zIndex: positionInfo.zIndex,
-			rotateX: positionInfo.rotateX
+		this.domHelper.transformEl(this.$card, {
+			rotateX: positionInfo.rotateX,
+			rotateZ: positionInfo.rotateZ
 		});
+
+		this.domHelper.setElStyles(this.$card, {
+			zIndex: positionInfo.zIndex
+		});
+
+		console.log(positionInfo);
 	}
 
 	setParent(parent: CardGamePlayer | Deck) {

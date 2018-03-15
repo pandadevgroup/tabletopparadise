@@ -15,6 +15,10 @@ export class DomHelper {
 		});
 	}
 
+	transformEl($el: JQuery<HTMLElement>, options: any) {
+		$el.velocity(options, { duration: 0 });
+	}
+
 	setElStyles($el: JQuery<HTMLElement>, styles: any) {
 		$el.css(styles);
 	}
