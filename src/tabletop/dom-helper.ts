@@ -4,10 +4,13 @@ export class DomHelper {
 	constructor(protected $container: JQuery<HTMLElement>) {}
 
 	resizeEl($el: JQuery<HTMLElement>, options: any) {
-		$el.velocity({
+		const defaultOpts = {
 			translateZ: 0, // Force hardware acceleration
 			duration: 200,
-			...options
+		};
+		$el.velocity({
+			...defaultOpts,
+			...options,
 		});
 	}
 

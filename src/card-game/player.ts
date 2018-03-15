@@ -18,9 +18,13 @@ export class CardGamePlayer {
 	getCardPosition(index) {
 		const tbl = this.game.tabletop;
 		const opts = this.game.layoutOpts;
+
+		let left = tbl.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * this.cards.length) / 2;
 		return {
-			translateX: tbl.width / 2 - opts.cardWidth / 2,
-			translateY: tbl.height - opts.cardHeight - opts.playerPadding
+			translateX: left + opts.cardSpacing * index,
+			translateY: tbl.height - opts.cardHeight - opts.playerPadding,
+			rotateY: 0,
+			zIndex: index
 		};
 	}
 

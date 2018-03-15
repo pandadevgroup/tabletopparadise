@@ -43,7 +43,8 @@ export abstract class CardGame {
 	layoutOpts = {
 		cardWidth: 125,
 		cardHeight: 175,
-		playerPadding: 20
+		playerPadding: 20,
+		cardSpacing: 30
 	};
 
 	constructor(
