@@ -74,7 +74,7 @@ export class Deck {
 		} else if (compare == Deck.COMPARE_BY_SUIT) {
 			// Sort cards based on suit, then value
 			this._cards.sort(function (a, b) {
-				if (a.suit = b.suit) {
+				if (a.suit == b.suit) {
 					// if a is higher, return a negative number
 					// if a and b are equal, return 0
 					// if b is higher, return a positive number
@@ -87,8 +87,7 @@ export class Deck {
 		} else {
 			// Sort cards based on numbers, then suit
 			this._cards.sort(function (a, b) {
-				if (a.number = b.number) {
-
+				if (a.number == b.number) {
 					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
 				} else {
 					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
