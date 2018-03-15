@@ -1,28 +1,43 @@
+import { CardGamePlayer } from "./player";
+import { Deck } from "./deck";
+import { CardGameDomHelper } from "./dom-helper";
+
 export class Card {
-	/**
-	 * 1 - 13, Ace is 1, King is 13
-	 */
-	number: number;
+	private $card: JQuery<HTMLElement>;
 
-	/** */
-	suit: "club" | "diamond" | "heart" | "spade";
+	constructor(
+		private domHelper: CardGameDomHelper,
+		private parent: CardGamePlayer | Deck,
+		public number: number,
+		public suit: "club" | "diamond" | "heart" | "spade",
+		public index: number,
+		private visible: boolean = true
+	) {
+		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
+	}
 
-	//constants for better readibility
-	static ACE : number = 1;
-	static JACK : number = 11;
-	static QUEEN : number = 12;
-	static KING : number = 13;
-	static faceCards :number[] = [Card.JACK, Card.QUEEN, Card.KING];
+	resize() {
+		const positionInfo = this.parent.getCardPosition(this.index);
 
-	static CLUB : String = "club";
-	static DIAMOND : String = "diamond";
-	static HEART : String = "heart";
-	static SPADE : String = "spade";
-	static suits : String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
+		this.domHelper.resizeEl(this.$card, {
+			translateX: positionInfo.translateX,
+			translateY: positionInfo.translateY,
+			rotateX: positionInfo.rotateX
+		});
 
-	constructor(number: number, suit: "club" | "diamond" | "heart" | "spade") {
-		this.number = number;
-		this.suit = suit;
+		this.domHelper.setElStyles(this.$card, {
+			zIndex: positionInfo.zIndex
+		});
+	}
+
+	setParent(parent: CardGamePlayer | Deck) {
+		this.parent = parent;
+	}
+
+	setVisible(visible: boolean) {
+		this.visible = visible;
+		if (this.visible) this.$card.removeClass("card--hidden");
+		else this.$card.addClass("card--hidden");
 	}
 
 	getImgName() {
@@ -32,16 +47,6 @@ export class Card {
 			let names = ["j", "q", "k"];
 			return `${this.suit}s/${names[this.number - 11]}${this.suit[0]}`;
 		}
-	}
-	getID() {
-		return `card__${this.number}${this.suit}`;
-	}
-	getRenderCode() {
-		return `
-			<div class="card" id="card__${this.number}${this.suit}">
-				<img class="card__img" src="/assets/cards/${this.getImgName()}.svg" id="card__${this.number}${this.suit}_img">
-			</div>
-		`;
 	}
 
 	toString() {

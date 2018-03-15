@@ -1,38 +1,26 @@
 import "../styles/index.scss";
-import { Player } from "./player";
 import Utils from "../util";
+import { DomHelper } from "./dom-helper";
 
-export interface TabletopOptions {
+export abstract class TabletopOptions {
 	/**
 	 * Number of players (1 - 12)
 	*/
-	players: number;
+	abstract players: number;
 }
 
-export abstract class Tabletop {
-	protected players: Player[];
-	protected $center: JQuery<HTMLElement>;
+export class Tabletop {
+	width = 1080;
+	height = 720;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		protected opts: TabletopOptions,
-		protected PlayerClass: typeof Player
-	) {
-		this.initializeDom();
-		this.initializePlayers();
-	}
+		protected domHelper: DomHelper
+	) {}
 
-	protected initializePlayers() {
-		this.players = [];
-		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new this.PlayerClass(this.$container, `Player ${i + 1}`));
-		}
-	}
-
-	protected initializeDom() {
-		this.$center = $(`<div class="gameboard__center"></div>`);
-		this.$container.append(this.$center);
+	resize() {
+		this.width = this.$container.width(),
+		this.height = this.$container.height()
 	}
 }
-
-export * from "./player";

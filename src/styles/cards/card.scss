@@ -1,28 +1,34 @@
-@mixin card-size {
-	width: 125px;
-	height: 175px;
-}
-
-@mixin actionable {
-	cursor: pointer;
-	box-shadow: 0 0 25px lightblue;
-	&:hover {
-		box-shadow: 0 0 20px 5px lightblue;
-	}
-}
+@import "mixins";
 
 .card {
 	@include card-size;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	position: absolute;
+	transform-style: preserve-3d;
 
 	&.actionable {
 		@include actionable;
 	}
 
-	.card__img {
+	.card__front {
+		position: absolute;
 		@include card-size;
 		user-select: none;
 		-webkit-user-drag: none;
+		backface-visibility: hidden;
+	}
+
+	.card__back {
+		position: absolute;
+		@include card-size;
+		transform: rotateX(180deg);
+		user-select: none;
+		-webkit-user-drag: none;
+		backface-visibility: hidden;
+	}
+
+	&--hidden {
+		display: none;
 	}
 }
 

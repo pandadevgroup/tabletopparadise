@@ -1,9 +1,10 @@
-import { Tabletop, TabletopOptions, Player } from "../tabletop";
+import { Tabletop, TabletopOptions } from "../tabletop";
 import { CardGamePlayer } from "./player";
 import { Deck } from "./deck";
 import { Card } from "./card";
 import Utils from "../util";
 import "../styles/cards/index.scss";
+import { CardGameDomHelper } from "./dom-helper";
 
 export interface CardGameOptions extends TabletopOptions {
 	/**
@@ -32,42 +33,78 @@ export interface CardGameOptions extends TabletopOptions {
 	 * @memberof CardGameOptions
 	 */
 	shuffle? : ((cards: Card[]) => Card[]) | boolean;
-	//or undefined
 }
 
-export abstract class CardGame extends Tabletop {
+export abstract class CardGame {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
+	protected domHelper: CardGameDomHelper;
+	tabletop: Tabletop;
+	layoutOpts = {
+		cardWidth: 125,
+		cardHeight: 175,
+		playerPadding: 20,
+		cardSpacing: 30
+	};
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		protected opts: CardGameOptions
 	) {
-		super($container, opts, CardGamePlayer);
-		this.renderPlayers();
+		this.domHelper = new CardGameDomHelper(this.$container);
+		this.tabletop = new Tabletop($container, {
+			players: opts.players
+		}, this.domHelper);
 
-		this.deck = new Deck(this.$center);
+		this.initializeDom();
+		this.initializePlayers();
+		this.initializeDeck();
+
+		this.resize();
+		this.domHelper.renderFrag();
+
+		this.startGame();
+	}
+
+	protected initializeDom() {
+		let debounce;
+		$(window).resize(() => {
+			clearTimeout(debounce);
+			debounce = setTimeout(() => this.resize(), 200);
+		});
+	}
+
+	protected initializeDeck() {
+		this.deck = new Deck(this.domHelper, this, this.opts.showDeck);
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
 		this.dealInitialCards();
-		if (this.opts.showDeck) this.renderDeck();
+		if (this.opts.showDeck) this.deck.actionable = true;
+		this.deck.onClick(() => this.onDeckClick());
+	}
 
-		this.startGame();
+	protected resize() {
+		this.tabletop.resize();
+		if (this.opts.showDeck) this.deck.resize();
+		this.players.forEach(player => player.resize());
 	}
 
 	protected dealInitialCards() {
 		this.players.forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
 	}
 
-	protected renderDeck() {
-		this.deck.render();
-		this.deck.onClick(() => this.onDeckClick());
+	protected initializePlayers() {
+		this.players = [];
+		for (let i = 0; i < this.opts.players; i++) {
+			this.players.push(new CardGamePlayer(this.domHelper, this, `Player ${i + 1}`));
+		}
 	}
 
-	protected renderPlayers() {
-		const numPlayers = this.opts.players;
-		this.players.forEach((player, i) => player.renderPlayer(i + 1, numPlayers));
+	protected drawCard(player: CardGamePlayer) {
+		player.addCards(this.deck.get(1));
+		if (this.deck.cards.length === 0) this.deck.actionable = false;
+		player.resize();
 	}
 
 	protected onDeckClick() {}

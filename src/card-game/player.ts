@@ -1,44 +1,42 @@
-import { Player } from "../tabletop";
 import { Card } from "./card";
+import { CardGameDomHelper } from "./dom-helper";
+import { CardGame } from ".";
 
-export class CardGamePlayer extends Player {
+export class CardGamePlayer {
 	protected cards: Card[] = [];
 
-	generatePlayerCode() {
-		return this.getCardsCode(this.cards);
+	constructor(
+		protected domHelper: CardGameDomHelper,
+		protected game: CardGame,
+		protected name: string
+	) {}
+
+	resize() {
+		this.cards.forEach(card => card.resize());
+	}
+
+	getCardPosition(index) {
+		const tbl = this.game.tabletop;
+		const opts = this.game.layoutOpts;
+
+		let left = tbl.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * this.cards.length) / 2;
+		return {
+			translateX: left + opts.cardSpacing * index,
+			translateY: tbl.height - opts.cardHeight - opts.playerPadding,
+			rotateX: "20deg",
+			zIndex: index
+		};
 	}
 
 	addCards(cards: Card[]) {
+		let numPrevCards = this.cards.length;
+
 		this.cards = [...this.cards, ...cards];
-		let $cards = $(this.getCardsCode(cards));
-		this.$player.append($cards);
 
-	}
-	addCard(card: Card) {
-		let renderCode = card.getRenderCode();
-		let player = this.$player;
-		let $lastCard = $("#" + this.cards[this.cards.length - 1].getID() + "_img");
-		$("#" + card.getID()).removeClass("hidden");
-		let $currentCard = $("#" + card.getID());
-		let parent = this;
-		$currentCard.animate({
-			left: $lastCard.offset().left - $currentCard.offset().left,
-			top: $lastCard.offset().top - $currentCard.offset().top,
-
-		}, 400, function () {
-			$currentCard.remove();
-			parent.cards.push(card);
-			$(player).append(renderCode);
-			console.log(2)
+		cards.forEach((card, i) => {
+			card.index = numPrevCards + i;
+			card.setParent(this);
+			card.setVisible(true);
 		});
-
-	}
-
-	getCardsCode(cards: Card[]): string {
-		let cardsCode = [];
-		cards.forEach(card => {
-			cardsCode.push(card.getRenderCode());
-		});
-		return cardsCode.join("");
 	}
 }
