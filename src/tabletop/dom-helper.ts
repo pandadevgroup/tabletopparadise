@@ -14,6 +14,10 @@ export class DomHelper {
 		});
 	}
 
+	setElStyles($el: JQuery<HTMLElement>, styles: any) {
+		$el.css(styles);
+	}
+
 	renderFrag() {
 		this.$container.append(this.$frag);
 	}

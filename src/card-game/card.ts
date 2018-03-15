@@ -19,7 +19,15 @@ export class Card {
 	resize() {
 		const positionInfo = this.parent.getCardPosition(this.index);
 
-		this.domHelper.resizeEl(this.$card, positionInfo);
+		this.domHelper.resizeEl(this.$card, {
+			translateX: positionInfo.translateX,
+			translateY: positionInfo.translateY
+		});
+
+		this.domHelper.setElStyles(this.$card, {
+			zIndex: positionInfo.zIndex,
+			rotateY: positionInfo.rotateY
+		});
 	}
 
 	setParent(parent: CardGamePlayer | Deck) {

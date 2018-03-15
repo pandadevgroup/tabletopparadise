@@ -40,7 +40,8 @@ export class Deck {
 		return {
 			translateX: this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2,
 			translateY: this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2,
-			rotateY: 180
+			rotateY: 180,
+			zIndex: undefined
 		};
 	}
 
