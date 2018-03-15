@@ -24,6 +24,7 @@ export class Card {
 		return this._actionable;
 	}
 	set actionable(actionable: boolean) {
+		this._actionable = actionable;
 		if (actionable) this.$card.addClass("actionable");
 		else this.$card.removeClass("actionable");
 	}
@@ -37,7 +38,6 @@ export class Card {
 		private visible: boolean = true
 	) {
 		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
-		this.actionable = true;
 		this.$card.click(() => {
 			if (this.actionable) {
 				this.selected = !this.selected;
