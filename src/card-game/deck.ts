@@ -9,12 +9,6 @@ export class Deck {
 	protected clickListeners: Function[] = [];
 	private _actionable: boolean = false;
 
-	get cards() {
-		return this._cards;
-	}
-
-
-
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private game: CardGame,
@@ -32,7 +26,9 @@ export class Deck {
 		return this._actionable;
 	}
 
-
+	get cards() {
+		return this._cards;
+	}
 
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
@@ -59,7 +55,6 @@ export class Deck {
 		return this;
 	}
 
-
 	//constants to be used by user for better readibility
 	static COMPARE_BY_SUIT = "suit";//(group by suit -- lowest to highest: clubs, diamonds, hearts, spades), then group by number within suits
 	static COMPARE_BY_VALUE = "value";//(group by number -- lowest to highest: 2, 3 ... 10, j, q, k, ace/1), then group by suit within numbers
@@ -67,7 +62,6 @@ export class Deck {
 	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];//lowest to highest
 	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];//lowest to highest
 
-	
 	sort(compare?: string | ((a, b) => number), suitValueSystem = Deck.DEFUALT_SUIT_VALUE_SYSTEM, numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM) {
 		//if they provide a compare function, then we use that.
 		if (typeof compare == "function") {
@@ -80,8 +74,6 @@ export class Deck {
 					//if a is higher, return a negative number
 					//if a and b are equal, return 0
 					//if b is higher, return a positive number
-
-
 					//this will return a number following the above rules
 					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
 				} else {
@@ -89,14 +81,13 @@ export class Deck {
 
 				}
 			});
-
 			//for chaning
 			return this;
 		} else {
 			//defualt is compare by value
 			this._cards.sort(function (a, b) {
 				if (a.number = b.number) {
-					
+
 					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
 				} else {
 					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
@@ -105,7 +96,6 @@ export class Deck {
 			});
 			return this;
 		}
-		
 	}
 
 	resize() {
