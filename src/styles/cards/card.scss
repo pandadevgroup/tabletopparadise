@@ -4,6 +4,7 @@
 	@include card-size;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 	position: absolute;
+	transform-style: preserve-3d;
 
 	&.actionable {
 		@include actionable;
@@ -14,6 +15,7 @@
 		@include card-size;
 		user-select: none;
 		-webkit-user-drag: none;
+		backface-visibility: hidden;
 	}
 
 	.card__back {
@@ -22,5 +24,6 @@
 		transform: rotateY(180deg);
 		user-select: none;
 		-webkit-user-drag: none;
+		backface-visibility: hidden;
 	}
 }
