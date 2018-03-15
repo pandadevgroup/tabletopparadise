@@ -66,7 +66,7 @@ export class Deck {
 		//if they provide a compare function, then we use that.
 		if (typeof compare == "function") {
 			this._cards.sort(compare);
-		//otherwise, if they provide a string stating how they want us to compare, and that string tells us to compare by the suit, then we do
+			//otherwise, if they provide a string stating how they want us to compare, and that string tells us to compare by the suit, then we do
 		} else if (compare == Deck.COMPARE_BY_SUIT) {
 			//sort the cards with our custom compare function
 			this._cards.sort(function (a, b) {
