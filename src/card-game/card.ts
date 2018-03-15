@@ -41,7 +41,7 @@ export class Card {
 		this.$card.click(() => {
 			if (this.actionable) {
 				this.selected = !this.selected;
-				this.resize();
+				if (this.parent instanceof CardGamePlayer) this.parent.handleCardClick(this.index);
 			}
 		});
 	}

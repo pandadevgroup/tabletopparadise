@@ -6,7 +6,6 @@ import { CardGameDomHelper } from "./dom-helper";
 export class Deck {
 	protected _cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
-	protected clickListeners: Function[] = [];
 	private _actionable: boolean = false;
 
 	constructor(
@@ -60,11 +59,6 @@ export class Deck {
 		return this;
 	}
 
-	onClick(callback: Function) {
-		this.clickListeners.push(callback);
-		return this;
-	}
-
 	protected initialize() {
 		this._cards = [];
 		for (let i = 0; i < 13; i++) {
@@ -77,7 +71,7 @@ export class Deck {
 		if (this.visible) {
 			this.$deck = this.domHelper.createDeckFrag();
 			this.$deck.click(() => this.actionable
-				? this.clickListeners.forEach(listener => listener())
+				? this.game.onDeckClick()
 				: undefined
 			);
 		}

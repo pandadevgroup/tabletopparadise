@@ -80,7 +80,6 @@ export abstract class CardGame {
 		);
 		this.dealInitialCards();
 		if (this.opts.showDeck) this.deck.actionable = true;
-		this.deck.onClick(() => this.onDeckClick());
 	}
 
 	protected resize() {
@@ -119,7 +118,8 @@ export abstract class CardGame {
 		return cards[0];
 	}
 
-	protected onDeckClick() {}
+	onDeckClick() {}
+	abstract onCardClick(cardIndex: number);
 	protected abstract startGame();
 }
 

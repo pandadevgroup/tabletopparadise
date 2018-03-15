@@ -5,6 +5,7 @@ import { CardUtils } from "./utils";
 
 export class CardGamePlayer {
 	cards: Card[] = [];
+	selectedCards: Card[] = [];
 
 	constructor(
 		protected domHelper: CardGameDomHelper,
@@ -68,5 +69,15 @@ export class CardGamePlayer {
 			card.setParent(this);
 			card.setVisible(true);
 		});
+	}
+
+	handleCardClick(index: number) {
+		let card = this.cards[index];
+		card.resize();
+
+		if (card.selected) this.selectedCards.push(card);
+		else this.selectedCards.splice(this.selectedCards.indexOf(card), 1);
+
+		this.game.onCardClick(index);
 	}
 }
