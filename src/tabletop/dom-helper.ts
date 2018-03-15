@@ -3,24 +3,22 @@ export class DomHelper {
 
 	constructor(protected $container: JQuery<HTMLElement>) {}
 
-	resizeEl($el: JQuery<HTMLElement>, options: any) {
-		const defaultOpts = {
-			translateZ: 0, // Force hardware acceleration
-		};
-		$el.velocity({
-			...defaultOpts,
-			...options,
-		}, {
-			duration: 200
-		});
-	}
-
-	transformEl($el: JQuery<HTMLElement>, options: any) {
-		$el.velocity(options, { duration: 0 });
-	}
-
-	setElStyles($el: JQuery<HTMLElement>, styles: any) {
-		$el.css(styles);
+	updateEl($el: JQuery<HTMLElement>, options: {
+		x: number,
+		y: number,
+		zIndex?: number,
+		rotateX?: number,
+		rotateY?: number,
+		rotateZ?: number
+	}) {
+		let { x, y, zIndex, rotateX, rotateY, rotateZ } = options;
+		$el.prop("style", `transform: translate(${x}px, ${y}px) ` +
+				(rotateX ? `rotateX(${rotateX}deg) ` : "") +
+				(rotateY ? `rotateY(${rotateY}deg) ` : "") +
+				(rotateZ ? `rotateZ(${rotateZ}deg) ` : "") +
+				`; ` +
+				(zIndex ? `z-index: ${zIndex};` : "")
+		);
 	}
 
 	renderFrag() {

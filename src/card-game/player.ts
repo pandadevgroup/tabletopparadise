@@ -27,31 +27,31 @@ export class CardGamePlayer {
 
 		if (this.position === "bottom") {
 			return {
-				translateX: left + opts.cardSpacing * index,
-				translateY: tbl.height - opts.cardHeight - opts.playerPadding,
+				x: left + opts.cardSpacing * index,
+				y: tbl.height - opts.cardHeight - opts.playerPadding,
 				rotateX: this.hideCards ? 180 : 0,
 				zIndex: index
 			};
 		} else if (this.position === "left") {
 			return {
-				translateX: Math.round(opts.playerPadding + (opts.cardHeight - opts.cardWidth) / 2),
-				translateY: top + opts.cardSpacing * index,
+				x: Math.round(opts.playerPadding + (opts.cardHeight - opts.cardWidth) / 2),
+				y: top + opts.cardSpacing * index,
 				rotateX: this.hideCards ? 180 : 0,
 				rotateZ: 90,
 				zIndex: index
 			};
 		} else if (this.position === "right") {
 			return {
-				translateX: Math.round(tbl.width - opts.playerPadding - opts.cardWidth - (opts.cardHeight - opts.cardWidth) / 2),
-				translateY: top + opts.cardSpacing * index,
+				x: Math.round(tbl.width - opts.playerPadding - opts.cardWidth - (opts.cardHeight - opts.cardWidth) / 2),
+				y: top + opts.cardSpacing * index,
 				rotateX: this.hideCards ? 180 : 0,
 				rotateZ: 90,
 				zIndex: index
 			};
 		} else if (this.position === "top") {
 			return {
-				translateX: left + opts.cardSpacing * index,
-				translateY: opts.playerPadding,
+				x: left + opts.cardSpacing * index,
+				y: opts.playerPadding,
 				rotateX: this.hideCards ? 180 : 0,
 				zIndex: index
 			};

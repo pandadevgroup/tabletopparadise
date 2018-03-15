@@ -32,21 +32,7 @@ export class Card {
 	resize() {
 		const positionInfo = this.parent.getCardPosition(this.index);
 
-		this.domHelper.resizeEl(this.$card, {
-			translateX: positionInfo.translateX,
-			translateY: positionInfo.translateY
-		});
-
-		this.domHelper.transformEl(this.$card, {
-			rotateX: positionInfo.rotateX,
-			rotateZ: positionInfo.rotateZ
-		});
-
-		this.domHelper.setElStyles(this.$card, {
-			zIndex: positionInfo.zIndex
-		});
-
-		console.log(positionInfo);
+		this.domHelper.updateEl(this.$card, positionInfo);
 	}
 
 	setParent(parent: CardGamePlayer | Deck) {
