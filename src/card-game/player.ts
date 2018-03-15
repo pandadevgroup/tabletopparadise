@@ -1,6 +1,7 @@
 import { Card } from "./card";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGame } from ".";
+import { CardUtils } from "./utils";
 
 export class CardGamePlayer {
 	protected cards: Card[] = [];
@@ -29,12 +30,11 @@ export class CardGamePlayer {
 	}
 
 	addCards(cards: Card[]) {
-		let numPrevCards = this.cards.length;
-
 		this.cards = [...this.cards, ...cards];
+		CardUtils.sort(this.cards);
 
-		cards.forEach((card, i) => {
-			card.index = numPrevCards + i;
+		this.cards.forEach((card, i) => {
+			card.index = i;
 			card.setParent(this);
 			card.setVisible(true);
 		});
