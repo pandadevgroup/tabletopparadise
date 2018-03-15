@@ -32,8 +32,10 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CopyWebpackPlugin([{ from: "src/assets", to: "assets"}]),
-		new CopyWebpackPlugin([{ from: "index.html", to: "docs"}])
+		new CopyWebpackPlugin([
+			{ from: "src/assets", to: "assets"},
+			{ from: "index.html", to: "docs"}
+		])
 	],
 	devServer: {
 		port: 3000
