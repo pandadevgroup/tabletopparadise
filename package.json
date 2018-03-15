@@ -2,7 +2,8 @@
   "name": "tabletopparadise",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server"
+	"start": "webpack-dev-server",
+	"build": "webpack -p"
   },
   "repository": {
     "type": "git",
