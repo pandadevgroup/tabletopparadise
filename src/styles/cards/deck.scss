@@ -1,4 +1,4 @@
-@import "card";
+@import "mixins";
 
 .deck {
 	@include card-size;
@@ -13,13 +13,4 @@
 	&.actionable {
 		@include actionable;
 	}
-
-	.card {
-		position: absolute;
-	}
-
-	
-}
-.empty {
-	background-image: none;
 }
