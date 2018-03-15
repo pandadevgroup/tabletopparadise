@@ -4,7 +4,7 @@ import { CardGame } from ".";
 import { CardUtils } from "./utils";
 
 export class CardGamePlayer {
-	protected cards: Card[] = [];
+	cards: Card[] = [];
 
 	constructor(
 		protected domHelper: CardGameDomHelper,

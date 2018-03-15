@@ -111,9 +111,11 @@ export abstract class CardGame {
 	}
 
 	protected drawCard(player: CardGamePlayer) {
-		player.addCards(this.deck.get(1));
+		let cards = this.deck.get(1);
+		player.addCards(cards);
 		if (this.deck.cards.length === 0) this.deck.actionable = false;
 		requestAnimationFrame(() => player.resize());
+		return cards[0];
 	}
 
 	protected onDeckClick() {}

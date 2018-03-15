@@ -18,6 +18,11 @@ export class Card {
 	static SPADE: String = "spade";
 	static suits: String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
 
+	set actionable(actionable: boolean) {
+		if (actionable) this.$card.addClass("actionable");
+		else this.$card.removeClass("actionable");
+	}
+
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private parent: CardGamePlayer | Deck,

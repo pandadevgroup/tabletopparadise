@@ -13,11 +13,14 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	protected onDeckClick() {
-		this.drawCard(this.players[this.playerIndex++]);
+		let card = this.drawCard(this.players[this.playerIndex++]);
+		card.actionable = this.playerIndex === 1;
+
 		if (this.playerIndex >= 4) this.playerIndex = 0;
 	}
 
 	protected startGame() {
 		this.deck.actionable = true;
+		this.players[0].cards.forEach(card => card.actionable = true);
 	}
 }
