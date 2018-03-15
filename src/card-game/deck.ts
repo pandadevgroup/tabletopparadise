@@ -68,28 +68,21 @@ export class Deck {
 		suitValueSystem = Deck.DEFUALT_SUIT_VALUE_SYSTEM,
 		numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM
 	) {
-		//if they provide a compare function, then we use that.
 		if (typeof compare == "function") {
 			this._cards.sort(compare);
-			//otherwise, if they provide a string stating how they want us to compare, and that string tells us to compare by the suit, then we do
 		} else if (compare == Deck.COMPARE_BY_SUIT) {
-			//sort the cards with our custom compare function
 			this._cards.sort(function (a, b) {
 				if (a.suit = b.suit) {
-					//if a is higher, return a negative number
-					//if a and b are equal, return 0
-					//if b is higher, return a positive number
-					//this will return a number following the above rules
+					// if a is higher, return a negative number
+					// if a and b are equal, return 0
+					// if b is higher, return a positive number
 					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
 				} else {
 					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
-
 				}
 			});
-			//for chaning
 			return this;
 		} else {
-			//defualt is compare by value
 			this._cards.sort(function (a, b) {
 				if (a.number = b.number) {
 
