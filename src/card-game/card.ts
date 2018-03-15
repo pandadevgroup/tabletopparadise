@@ -21,12 +21,12 @@ export class Card {
 
 		this.domHelper.resizeEl(this.$card, {
 			translateX: positionInfo.translateX,
-			translateY: positionInfo.translateY,
-			rotateX: positionInfo.rotateX
+			translateY: positionInfo.translateY
 		});
 
 		this.domHelper.setElStyles(this.$card, {
-			zIndex: positionInfo.zIndex
+			zIndex: positionInfo.zIndex,
+			rotateX: positionInfo.rotateX
 		});
 	}
 
