@@ -21,7 +21,7 @@
 	.card__back {
 		position: absolute;
 		@include card-size;
-		transform: rotateY(180deg);
+		transform: rotateX(180deg);
 		user-select: none;
 		-webkit-user-drag: none;
 		backface-visibility: hidden;
