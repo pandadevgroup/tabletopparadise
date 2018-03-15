@@ -69,10 +69,8 @@ export abstract class CardGame {
 	}
 
 	protected initializeDom() {
-		let debounce;
 		$(window).resize(() => {
-			clearTimeout(debounce);
-			debounce = setTimeout(() => this.resize(), 200);
+			this.resize();
 		});
 	}
 
