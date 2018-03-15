@@ -35,8 +35,8 @@ export class Deck {
 
 	getCardPosition() {
 		return {
-			translateX: Utils.random(0, 800),
-			translateY: Utils.random(0, 500)
+			translateX: this.parent.tabletop.width / 2 - this.parent.layoutOpts.cardWidth / 2,
+			translateY: this.parent.tabletop.height / 2 - this.parent.layoutOpts.cardHeight / 2
 		};
 	}
 

@@ -10,13 +10,8 @@ export abstract class TabletopOptions {
 }
 
 export class Tabletop {
-	layout: {
-		width: number,
-		height: number
-	} = {
-		width: 1080,
-		height: 720
-	};
+	width = 1080;
+	height = 720;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
@@ -25,9 +20,7 @@ export class Tabletop {
 	) {}
 
 	resize() {
-		this.layout = {
-			width: this.$container.width(),
-			height: this.$container.height()
-		};
+		this.width = this.$container.width(),
+		this.height = this.$container.height()
 	}
 }

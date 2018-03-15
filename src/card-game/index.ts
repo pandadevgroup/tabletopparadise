@@ -39,8 +39,12 @@ export interface CardGameOptions extends TabletopOptions {
 export abstract class CardGame {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
-	protected tabletop: Tabletop;
 	protected domHelper: CardGameDomHelper;
+	tabletop: Tabletop;
+	layoutOpts = {
+		cardWidth: 125,
+		cardHeight: 175
+	};
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
@@ -78,6 +82,7 @@ export abstract class CardGame {
 	}
 
 	protected resize() {
+		this.tabletop.resize();
 		if (this.opts.showDeck) this.deck.resize();
 		this.players.forEach(player => player.resize());
 	}
