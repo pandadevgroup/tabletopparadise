@@ -101,6 +101,12 @@ export abstract class CardGame {
 		}
 	}
 
+	protected drawCard(player: CardGamePlayer) {
+		player.addCards(this.deck.get(1));
+		if (this.deck.cards.length === 0) this.deck.actionable = false;
+		player.resize();
+	}
+
 	protected onDeckClick() {}
 	protected abstract startGame();
 }
