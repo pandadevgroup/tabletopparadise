@@ -69,8 +69,10 @@ export class Deck {
 		numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM
 	) {
 		if (typeof compare == "function") {
+			// Use given function
 			this._cards.sort(compare);
 		} else if (compare == Deck.COMPARE_BY_SUIT) {
+			// Sort cards based on suit, then value
 			this._cards.sort(function (a, b) {
 				if (a.suit = b.suit) {
 					// if a is higher, return a negative number
@@ -83,6 +85,7 @@ export class Deck {
 			});
 			return this;
 		} else {
+			// Sort cards based on numbers, then suit
 			this._cards.sort(function (a, b) {
 				if (a.number = b.number) {
 
