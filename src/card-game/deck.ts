@@ -56,6 +56,7 @@ export class Deck {
 		return array;
 	}) {
 		this._cards = algorithm(this._cards);
+		return this;
 	}
 
 	static COMPARE_BY_SUIT = "suit";//(group by suit -- lowest to highest: clubs, diamonds, hearts, spades), then group by number within suits
@@ -82,7 +83,7 @@ export class Deck {
 
 				}
 			});
-			
+			return this;
 		} else {
 			//defualt is compare by value
 			this._cards.sort(function (a, b) {
@@ -93,7 +94,7 @@ export class Deck {
 
 				}
 			});
-
+			return this;
 		}
 		
 	}
@@ -101,10 +102,12 @@ export class Deck {
 	resize() {
 		this.domHelper.resizeEl(this.$deck, this.getCardPosition());
 		this._cards.forEach(card => card.resize());
+		return this;
 	}
 
 	onClick(callback: Function) {
 		this.clickListeners.push(callback);
+		return this;
 	}
 
 	protected initialize() {
@@ -123,5 +126,6 @@ export class Deck {
 				: undefined
 			);
 		}
+		return this;
 	}
 }
