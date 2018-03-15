@@ -1,9 +1,19 @@
 import { DomHelper } from "../tabletop/dom-helper";
 
 export class CardGameDomHelper extends DomHelper {
-	createCardFrag(cardImgUrl: string) {
+	createDeckFrag() {
+		let $deck = $(`
+			<div class="deck"></div>
+		`);
+
+		this.$frag.append($deck);
+
+		return $deck;
+	}
+
+	createCardFrag(cardImgUrl: string, visible: boolean) {
 		let $card = $(`
-			<div class="card">
+			<div class="card ${visible ? "" : "card--hidden"}">
 				<img class="card__front" src="/assets/cards/${cardImgUrl}.svg">
 				<img class="card__back" src="/assets/cards/card_back.png">
 			</div>

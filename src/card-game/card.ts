@@ -10,9 +10,10 @@ export class Card {
 		private parent: CardGamePlayer | Deck,
 		public number: number,
 		public suit: "club" | "diamond" | "heart" | "spade",
-		public index: number
+		public index: number,
+		private visible: boolean = true
 	) {
-		this.$card = domHelper.createCardFrag(this.getImgName());
+		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
 	}
 
 	resize() {
@@ -23,6 +24,12 @@ export class Card {
 
 	setParent(parent: CardGamePlayer | Deck) {
 		this.parent = parent;
+	}
+
+	setVisible(visible: boolean) {
+		this.visible = visible;
+		if (this.visible) this.$card.removeClass("card--hidden");
+		else this.$card.addClass("card--hidden");
 	}
 
 	getImgName() {

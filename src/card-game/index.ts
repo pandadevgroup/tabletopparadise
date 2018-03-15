@@ -75,11 +75,13 @@ export abstract class CardGame {
 	}
 
 	protected initializeDeck() {
-		this.deck = new Deck(this.domHelper, this);
+		this.deck = new Deck(this.domHelper, this, this.opts.showDeck);
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
 		this.dealInitialCards();
+		if (this.opts.showDeck) this.deck.actionable = true;
+		this.deck.onClick(() => this.onDeckClick());
 	}
 
 	protected resize() {

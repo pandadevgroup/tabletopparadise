@@ -36,6 +36,7 @@ export class CardGamePlayer {
 		cards.forEach((card, i) => {
 			card.index = numPrevCards + i;
 			card.setParent(this);
+			card.setVisible(true);
 		});
 	}
 }
