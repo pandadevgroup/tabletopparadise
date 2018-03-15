@@ -6,6 +6,7 @@ export class DomHelper {
 	resizeEl($el: JQuery<HTMLElement>, options: any) {
 		$el.velocity({
 			translateZ: 0, // Force hardware acceleration
+			duration: 200,
 			...options
 		});
 	}

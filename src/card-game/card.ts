@@ -23,7 +23,6 @@ export class Card {
 
 	setParent(parent: CardGamePlayer | Deck) {
 		this.parent = parent;
-		this.resize();
 	}
 
 	getImgName() {

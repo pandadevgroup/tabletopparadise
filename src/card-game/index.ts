@@ -59,9 +59,9 @@ export abstract class CardGame {
 		this.initializePlayers();
 		this.initializeDeck();
 
+		this.resize();
 		this.domHelper.renderFrag();
 
-		this.resize();
 		this.startGame();
 	}
 
