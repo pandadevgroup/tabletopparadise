@@ -34,7 +34,7 @@ module.exports = {
 	plugins: [
 		new CopyWebpackPlugin([
 			{ from: "src/assets", to: "assets"},
-			{ from: "index.html", to: "docs"}
+			{ from: "index.html", to: "."}
 		])
 	],
 	devServer: {
