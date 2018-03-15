@@ -13,6 +13,8 @@ export class Deck {
 		return this._cards;
 	}
 
+
+
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private game: CardGame,
@@ -30,6 +32,8 @@ export class Deck {
 		return this._actionable;
 	}
 
+
+
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
 
@@ -45,13 +49,55 @@ export class Deck {
 		};
 	}
 
-	shuffle(algorithm = function(array: Card[]) {
+	shuffle(algorithm = function (array: Card[]) {
 		// Fisher-yates shuffle
 		// based on algorithm(them minified) from: https://bost.ocks.org/mike/shuffle/ | https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
-		for (var t, i, m = array.length; m; ) (i = Math.floor(Math.random() * m--)), (t = array[m]), (array[m] = array[i]), (array[i] = t);
+		for (var t, i, m = array.length; m;) (i = Math.floor(Math.random() * m--)), (t = array[m]), (array[m] = array[i]), (array[i] = t);
 		return array;
 	}) {
 		this._cards = algorithm(this._cards);
+	}
+
+	static COMPARE_BY_SUIT = "suit";//(group by suit -- lowest to highest: clubs, diamonds, hearts, spades), then group by number within suits
+	static COMPARE_BY_VALUE = "value";//(group by number -- lowest to highest: 2, 3 ... 10, j, q, k, ace/1), then group by suit within numbers
+
+	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];//lowest to highest
+	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];//lowest to highest
+
+	sort(compare?: string | ((a, b) => number), suitValueSystem = Deck.DEFUALT_SUIT_VALUE_SYSTEM, numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM) {
+
+		if (typeof compare == "function") {
+			this._cards.sort(compare);
+		} else if (compare == Deck.COMPARE_BY_SUIT) {
+
+			this._cards.sort(function (a, b) {
+				if (a.suit = b.suit) {
+					//if a is higher, return a negative number
+					//if a and b are equal, return 0
+					//if b is higher, return a positive number
+
+					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
+				} else {
+					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
+
+				}
+			});
+			
+		} else {
+			//defualt is compare by value
+			this._cards.sort(function (a, b) {
+				if (a.number = b.number) {
+					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
+				} else {
+					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
+
+				}
+			});
+
+		}
+		this._cards.sort(function (a, b) {
+			return 1;
+		});
 	}
 
 	resize() {

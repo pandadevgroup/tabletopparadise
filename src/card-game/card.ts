@@ -5,6 +5,19 @@ import { CardGameDomHelper } from "./dom-helper";
 export class Card {
 	private $card: JQuery<HTMLElement>;
 
+	//constants for better readibility
+	static ACE: number = 1;
+	static JACK: number = 11;
+	static QUEEN: number = 12;
+	static KING: number = 13;
+	static faceCards: number[] = [Card.JACK, Card.QUEEN, Card.KING];
+
+	static CLUB: String = "club";
+	static DIAMOND: String = "diamond";
+	static HEART: String = "heart";
+	static SPADE: String = "spade";
+	static suits: String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
+
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private parent: CardGamePlayer | Deck,
