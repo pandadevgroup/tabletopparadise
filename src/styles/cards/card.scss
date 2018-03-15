@@ -9,8 +9,17 @@
 		@include actionable;
 	}
 
-	.card__img {
+	.card__front {
+		position: absolute;
 		@include card-size;
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	.card__back {
+		position: absolute;
+		@include card-size;
+		transform: rotateY(180deg);
 		user-select: none;
 		-webkit-user-drag: none;
 	}
