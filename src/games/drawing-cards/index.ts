@@ -2,19 +2,29 @@ import { CardGame } from "../../card-game";
 import { Deck } from "../../card-game";
 
 export class DrawingCardsGame extends CardGame {
+	private playerIndex = 0;
+
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
-			players: 1,
-			initialHandSize: 13,
+			players: 4,
+			initialHandSize: 5,
 			showDeck: true
 		});
 	}
 
-	protected onDeckClick() {
-		this.drawCard(this.players[0]);
+	onDeckClick() {
+		let card = this.drawCard(this.players[this.playerIndex++]);
+		card.actionable = this.playerIndex === 1;
+
+		if (this.playerIndex >= 4) this.playerIndex = 0;
 	}
 
-	protected startGame() {
+	onCardClick() {
+		this.showPlayButton = true;
+	}
+
+	startGame() {
 		this.deck.actionable = true;
+		this.players[0].cards.forEach(card => card.actionable = true);
 	}
 }

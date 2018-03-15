@@ -6,8 +6,6 @@ import Utils from "../util";
 import "../styles/cards/index.scss";
 import { CardGameDomHelper } from "./dom-helper";
 
-
-
 export interface CardGameOptions extends TabletopOptions {
 	/**
 	 * Number of cards to deal to each player in the beginning of the game.
@@ -41,12 +39,15 @@ export abstract class CardGame {
 	protected players: CardGamePlayer[];
 	protected deck: Deck;
 	protected domHelper: CardGameDomHelper;
+	protected $playButton: JQuery<HTMLElement>;
+	private _showPlayButton = false;
 	tabletop: Tabletop;
 	layoutOpts = {
 		cardWidth: 125,
 		cardHeight: 175,
 		playerPadding: 20,
-		cardSpacing: 30
+		cardSpacing: 30,
+		cardShift: 20
 	};
 
 	constructor(
@@ -68,11 +69,24 @@ export abstract class CardGame {
 		this.startGame();
 	}
 
+	get showPlayButton() {
+		return this._showPlayButton;
+	}
+	set showPlayButton(show: boolean) {
+		if (show !== this._showPlayButton) {
+			if (show) {
+				this.domHelper.showPlayButton(this.$playButton);
+			} else {
+				this.domHelper.hidePlayButton(this.$playButton);
+			}
+		}
+		this._showPlayButton = show;
+	}
+
 	protected initializeDom() {
-		let debounce;
+		this.$playButton = this.domHelper.createPlayButtonFrag();
 		$(window).resize(() => {
-			clearTimeout(debounce);
-			debounce = setTimeout(() => this.resize(), 200);
+			this.resize();
 		});
 	}
 
@@ -83,7 +97,6 @@ export abstract class CardGame {
 		);
 		this.dealInitialCards();
 		if (this.opts.showDeck) this.deck.actionable = true;
-		this.deck.onClick(() => this.onDeckClick());
 	}
 
 	protected resize() {
@@ -98,18 +111,32 @@ export abstract class CardGame {
 
 	protected initializePlayers() {
 		this.players = [];
+
+		let playerPositions;
+		if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
+		else playerPositions = ["bottom", "left", "top", "right"];
+
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new CardGamePlayer(this.domHelper, this, `Player ${i + 1}`));
+			this.players.push(new CardGamePlayer(
+				this.domHelper,
+				this,
+				`Player ${i + 1}`,
+				playerPositions[i],
+				i !== 0
+			));
 		}
 	}
 
 	protected drawCard(player: CardGamePlayer) {
-		player.addCards(this.deck.get(1));
+		let cards = this.deck.get(1);
+		player.addCards(cards);
 		if (this.deck.cards.length === 0) this.deck.actionable = false;
-		player.resize();
+		requestAnimationFrame(() => player.resize());
+		return cards[0];
 	}
 
-	protected onDeckClick() {}
+	onDeckClick() {}
+	abstract onCardClick(cardIndex: number);
 	protected abstract startGame();
 }
 

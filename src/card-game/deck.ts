@@ -6,7 +6,6 @@ import { CardGameDomHelper } from "./dom-helper";
 export class Deck {
 	protected _cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
-	protected clickListeners: Function[] = [];
 	private _actionable: boolean = false;
 
 	constructor(
@@ -38,10 +37,9 @@ export class Deck {
 
 	getCardPosition(index?) {
 		return {
-			translateX: Math.round(this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2),
-			translateY: Math.round(this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2),
-			rotateX: 180,
-			zIndex: undefined
+			x: Math.round(this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2),
+			y: Math.round(this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2),
+			rotateX: 180
 		};
 	}
 
@@ -56,13 +54,8 @@ export class Deck {
 	}
 
 	resize() {
-		this.domHelper.resizeEl(this.$deck, this.getCardPosition());
+		this.domHelper.updateEl(this.$deck, this.getCardPosition());
 		this._cards.forEach(card => card.resize());
-		return this;
-	}
-
-	onClick(callback: Function) {
-		this.clickListeners.push(callback);
 		return this;
 	}
 
@@ -78,7 +71,7 @@ export class Deck {
 		if (this.visible) {
 			this.$deck = this.domHelper.createDeckFrag();
 			this.$deck.click(() => this.actionable
-				? this.clickListeners.forEach(listener => listener())
+				? this.game.onDeckClick()
 				: undefined
 			);
 		}

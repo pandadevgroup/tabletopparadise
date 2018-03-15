@@ -22,21 +22,18 @@ export class CardUtils {
 			// Sort cards based on suit, then value
 			cards.sort(function (a, b) {
 				if (a.suit == b.suit) {
-					// if a is higher, return a negative number
-					// if a and b are equal, return 0
-					// if b is higher, return a positive number
-					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
+					return numberValueSystem.indexOf(a.number) - numberValueSystem.indexOf(b.number);
 				} else {
-					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
+					return suitValueSystem.indexOf(a.suit) - suitValueSystem.indexOf(b.suit);
 				}
 			});
 		} else {
 			// Sort cards based on numbers, then suit
 			cards.sort(function (a, b) {
 				if (a.number == b.number) {
-					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
+					return suitValueSystem.indexOf(a.suit) - suitValueSystem.indexOf(b.suit);
 				} else {
-					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
+					return numberValueSystem.indexOf(a.number) - numberValueSystem.indexOf(b.number);
 
 				}
 			});

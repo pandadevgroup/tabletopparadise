@@ -4,6 +4,8 @@ import { CardGameDomHelper } from "./dom-helper";
 
 export class Card {
 	private $card: JQuery<HTMLElement>;
+	private _actionable: boolean = false;
+	selected = false;
 
 	//constants for better readibility
 	static ACE: number = 1;
@@ -18,6 +20,15 @@ export class Card {
 	static SPADE: String = "spade";
 	static suits: String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
 
+	get actionable() {
+		return this._actionable;
+	}
+	set actionable(actionable: boolean) {
+		this._actionable = actionable;
+		if (actionable) this.$card.addClass("actionable");
+		else this.$card.removeClass("actionable");
+	}
+
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private parent: CardGamePlayer | Deck,
@@ -27,20 +38,18 @@ export class Card {
 		private visible: boolean = true
 	) {
 		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
+		this.$card.click(() => {
+			if (this.actionable) {
+				this.selected = !this.selected;
+				if (this.parent instanceof CardGamePlayer) this.parent.handleCardClick(this.index);
+			}
+		});
 	}
 
 	resize() {
 		const positionInfo = this.parent.getCardPosition(this.index);
 
-		this.domHelper.resizeEl(this.$card, {
-			translateX: positionInfo.translateX,
-			translateY: positionInfo.translateY
-		});
-
-		this.domHelper.setElStyles(this.$card, {
-			zIndex: positionInfo.zIndex,
-			rotateX: positionInfo.rotateX
-		});
+		this.domHelper.updateEl(this.$card, positionInfo);
 	}
 
 	setParent(parent: CardGamePlayer | Deck) {

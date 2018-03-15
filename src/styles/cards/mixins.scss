@@ -5,8 +5,8 @@
 
 @mixin actionable {
 	cursor: pointer;
-	box-shadow: 0 0 25px lightblue;
+	box-shadow: 0 0 5px lightblue;
 	&:hover {
-		box-shadow: 0 0 20px 5px lightblue;
+		box-shadow: 0 0 10px 5px lightblue;
 	}
 }
