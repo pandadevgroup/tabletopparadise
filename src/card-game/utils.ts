@@ -9,7 +9,7 @@ export class CardUtils {
 	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
 	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, 10, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];
 
-	static sort(
+	static sortCards(
 		cards: Card[],
 		compare?: string | ((a, b) => number),
 		suitValueSystem = CardUtils.DEFUALT_SUIT_VALUE_SYSTEM,

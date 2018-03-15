@@ -31,7 +31,7 @@ export class CardGamePlayer {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		CardUtils.sort(this.cards);
+		CardUtils.sortCards(this.cards);
 
 		this.cards.forEach((card, i) => {
 			card.index = i;
