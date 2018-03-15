@@ -23,7 +23,7 @@ export class CardGamePlayer {
 		return {
 			translateX: left + opts.cardSpacing * index,
 			translateY: tbl.height - opts.cardHeight - opts.playerPadding,
-			rotateX: "20deg",
+			rotateX: 0,
 			zIndex: index
 		};
 	}
