@@ -1,7 +1,6 @@
 import "../styles/index.scss";
 import Utils from "../util";
 import { DomHelper } from "./dom-helper";
-import '../util/modal.ts';
 
 export abstract class TabletopOptions {
 	/**

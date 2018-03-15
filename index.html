@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Tabletop Paradise</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 	<!-- <script defer src="/assets/fontawesome/js/fa-brands.js"></script> -->
 	<!-- <script defer src="/assets/fontawesome/js/fa-light.js"></script> -->
 	<!-- <script defer src="/assets/fontawesome/js/fa-regular.js"></script> -->
@@ -17,7 +19,7 @@
 		<div id="info-tray">
 			<div id="info-tray-body">
 				<a>jeffkmeng</a>
-				<a id="settings-icon" class="icon-link">
+				<a id="settings-icon" class="icon-link" data-toggle="modal" data-target="#options-modal">
 					<i class="fas fa-cog"></i>
 				</a>
 				<a id="close-icon" class="icon-link">
@@ -28,44 +30,33 @@
 		</div>
 	</div>
 	<!-- The Modal -->
-	<div id="options-modal" class="modal">
 
-		<!-- Modal content -->
-		<div class="modal-content" tabindex="-1" role="dialog">
-			<div class="modal-header">
-				<span class="close">
-					<i class="fas fa-times"></i>
-				</span>
-				<h2>Options</h2>
-			</div>
-			<div class="modal-body">
-				<p>Some text in the Modal Body</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-				<p>Some other text...</p>
-			</div>
-			<div class="modal-footer">
-				<p>Tabletop Paradise, v1.0.0, build 3174</p>
+	<div class="modal fade " id="options-modal" tabindex="-1" role="dialog" aria-labelledby="options-modal-label" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="options-modal-label">Options</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+				</div>
 			</div>
 		</div>
-
 	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
 	<script src="bundle.js"></script>
-	<script>
-		$("#settings-icon").click(function () {
-			$("#options-modal").modal("show");
-		});
-	</script>
+
 </body>
 
 </html>
