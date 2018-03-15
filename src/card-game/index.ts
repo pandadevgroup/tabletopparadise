@@ -6,8 +6,6 @@ import Utils from "../util";
 import "../styles/cards/index.scss";
 import { CardGameDomHelper } from "./dom-helper";
 
-
-
 export interface CardGameOptions extends TabletopOptions {
 	/**
 	 * Number of cards to deal to each player in the beginning of the game.
