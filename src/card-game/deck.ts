@@ -13,8 +13,6 @@ export class Deck {
 		return this._cards;
 	}
 
-
-
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private game: CardGame,
@@ -67,12 +65,12 @@ export class Deck {
 	static DEFUALT_SUIT_VALUE_SYSTEM = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];//lowest to highest
 	static DEFUALT_NUMBER_VALUE_SYSTEM = [2, 3, 4, 5, 6, 7, 8, 9, Card.JACK, Card.QUEEN, Card.KING, Card.ACE];//lowest to highest
 
-	
+
 	sort(compare?: string | ((a, b) => number), suitValueSystem = Deck.DEFUALT_SUIT_VALUE_SYSTEM, numberValueSystem = Deck.DEFUALT_NUMBER_VALUE_SYSTEM) {
 		//if they provide a compare function, then we use that.
 		if (typeof compare == "function") {
 			this._cards.sort(compare);
-		//otherwise, if they provide a string stating how they want us to compare, and that string tells us to compare by the suit, then we do
+			//otherwise, if they provide a string stating how they want us to compare, and that string tells us to compare by the suit, then we do
 		} else if (compare == Deck.COMPARE_BY_SUIT) {
 			//sort the cards with our custom compare function
 			this._cards.sort(function (a, b) {
@@ -96,7 +94,7 @@ export class Deck {
 			//defualt is compare by value
 			this._cards.sort(function (a, b) {
 				if (a.number = b.number) {
-					
+
 					return suitValueSystem.indexOf(b.suit) - suitValueSystem.indexOf(a.suit);
 				} else {
 					return numberValueSystem.indexOf(b.number) - numberValueSystem.indexOf(a.number);
@@ -105,7 +103,7 @@ export class Deck {
 			});
 			return this;
 		}
-		
+
 	}
 
 	resize() {
