@@ -2,8 +2,8 @@
   "name": "tabletopparadise",
   "version": "1.0.0",
   "scripts": {
-	"start": "webpack-dev-server",
-	"build": "webpack -p"
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,6 @@
   "homepage": "https://github.com/pandadevgroup/tabletopparadise#readme",
   "devDependencies": {
     "@types/jquery": "^3.3.1",
-    "@types/velocity-animate": "^1.2.32",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.10",
     "file-loader": "^1.1.11",
