@@ -4,6 +4,8 @@ import { CardGameDomHelper } from "./dom-helper";
 
 export class Card {
 	private $card: JQuery<HTMLElement>;
+	private _actionable: boolean = false;
+	selected = false;
 
 	//constants for better readibility
 	static ACE: number = 1;
@@ -18,6 +20,9 @@ export class Card {
 	static SPADE: String = "spade";
 	static suits: String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
 
+	get actionable() {
+		return this._actionable;
+	}
 	set actionable(actionable: boolean) {
 		if (actionable) this.$card.addClass("actionable");
 		else this.$card.removeClass("actionable");
@@ -32,6 +37,13 @@ export class Card {
 		private visible: boolean = true
 	) {
 		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
+		this.actionable = true;
+		this.$card.click(() => {
+			if (this.actionable) {
+				this.selected = !this.selected;
+				this.resize();
+			}
+		});
 	}
 
 	resize() {

@@ -44,7 +44,8 @@ export abstract class CardGame {
 		cardWidth: 125,
 		cardHeight: 175,
 		playerPadding: 20,
-		cardSpacing: 30
+		cardSpacing: 30,
+		cardShift: 20
 	};
 
 	constructor(

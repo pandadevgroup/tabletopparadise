@@ -21,6 +21,7 @@ export class CardGamePlayer {
 	getCardPosition(index) {
 		const tbl = this.game.tabletop;
 		const opts = this.game.layoutOpts;
+		const selected = this.cards[index].selected;
 
 		let left = Math.round(tbl.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * (this.cards.length - 1)) / 2);
 		let top = Math.round(tbl.height / 2 - opts.cardWidth / 2 - (opts.cardSpacing * (this.cards.length - 1)) / 2);
@@ -28,13 +29,13 @@ export class CardGamePlayer {
 		if (this.position === "bottom") {
 			return {
 				x: left + opts.cardSpacing * index,
-				y: tbl.height - opts.cardHeight - opts.playerPadding,
+				y: tbl.height - opts.cardHeight - opts.playerPadding - (selected ? opts.cardShift : 0),
 				rotateX: this.hideCards ? 180 : 0,
 				zIndex: index
 			};
 		} else if (this.position === "left") {
 			return {
-				x: Math.round(opts.playerPadding + (opts.cardHeight - opts.cardWidth) / 2),
+				x: Math.round(opts.playerPadding + (opts.cardHeight - opts.cardWidth) / 2) + (selected ? opts.cardShift : 0),
 				y: top + opts.cardSpacing * index,
 				rotateX: this.hideCards ? 180 : 0,
 				rotateZ: 90,
@@ -42,7 +43,7 @@ export class CardGamePlayer {
 			};
 		} else if (this.position === "right") {
 			return {
-				x: Math.round(tbl.width - opts.playerPadding - opts.cardWidth - (opts.cardHeight - opts.cardWidth) / 2),
+				x: Math.round(tbl.width - opts.playerPadding - opts.cardWidth - (opts.cardHeight - opts.cardWidth) / 2) - (selected ? opts.cardShift : 0),
 				y: top + opts.cardSpacing * index,
 				rotateX: this.hideCards ? 180 : 0,
 				rotateZ: 90,
@@ -51,7 +52,7 @@ export class CardGamePlayer {
 		} else if (this.position === "top") {
 			return {
 				x: left + opts.cardSpacing * index,
-				y: opts.playerPadding,
+				y: opts.playerPadding + (selected ? opts.cardShift : 0),
 				rotateX: this.hideCards ? 180 : 0,
 				zIndex: index
 			};
