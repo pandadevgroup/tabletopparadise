@@ -4,14 +4,55 @@
 <head>
 	<meta charset="utf-8">
 	<title>Tabletop Paradise</title>
+	<!-- <script defer src="/assets/fontawesome/js/fa-brands.js"></script> -->
+	<!-- <script defer src="/assets/fontawesome/js/fa-light.js"></script> -->
+	<!-- <script defer src="/assets/fontawesome/js/fa-regular.js"></script> -->
+	<script defer src="/assets/fontawesome/js/fa-solid.js"></script>
+	<script src="/assets/fontawesome/js/fontawesome.js"></script>
+
 </head>
 
 <body>
-	<div id="game" class="gameboard"></div>
+	<div id="game" class="gameboard">
+		<div id="info-tray">
+			<div id="info-tray-body">
+				<a>Hello, User!</a>
+						<a id="settings-cog icon-link">
+								<i class="fas fa-cog"></i>
+							</a>
+				
+			</div>
+		</div>
+	</div>
+	<!-- The Modal -->
+	<div id="options-modal" class="modal">
 
+		<!-- Modal content -->
+		<div class="modal-content" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<span class="close">
+					<i class="fas fa-times"></i>
+				</span>
+				<h2>Modal Header</h2>
+			</div>
+			<div class="modal-body">
+				<p>Some text in the Modal Body</p>
+				<p>Some other text...</p>
+			</div>
+			<div class="modal-footer">
+				<h3>Modal Footer</h3>
+			</div>
+		</div>
+
+	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
 	<script src="bundle.js"></script>
+	<script>
+		$("#settings-cog").click(function () {
+			$("#options-modal").modal("show");
+		});
+	</script>
 </body>
 
 </html>

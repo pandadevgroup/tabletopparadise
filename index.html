@@ -4,14 +4,68 @@
 <head>
 	<meta charset="utf-8">
 	<title>Tabletop Paradise</title>
+	<!-- <script defer src="/assets/fontawesome/js/fa-brands.js"></script> -->
+	<!-- <script defer src="/assets/fontawesome/js/fa-light.js"></script> -->
+	<!-- <script defer src="/assets/fontawesome/js/fa-regular.js"></script> -->
+	<script defer src="/assets/fontawesome/js/fa-solid.js"></script>
+	<script src="/assets/fontawesome/js/fontawesome.js"></script>
+
 </head>
 
 <body>
-	<div id="game" class="gameboard"></div>
+	<div id="game" class="gameboard">
+		<div id="info-tray">
+			<div id="info-tray-body">
+				<a>jeffkmeng</a>
+				<a id="settings-icon" class="icon-link">
+					<i class="fas fa-cog"></i>
+				</a>
+				<a id="close-icon" class="icon-link">
+					<i class="fas fa-times"></i>
+				</a>
 
+			</div>
+		</div>
+	</div>
+	<!-- The Modal -->
+	<div id="options-modal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content" tabindex="-1" role="dialog">
+			<div class="modal-header">
+				<span class="close">
+					<i class="fas fa-times"></i>
+				</span>
+				<h2>Options</h2>
+			</div>
+			<div class="modal-body">
+				<p>Some text in the Modal Body</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+				<p>Some other text...</p>
+			</div>
+			<div class="modal-footer">
+				<p>Tabletop Paradise, v1.0.0, build 3174</p>
+			</div>
+		</div>
+
+	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
 	<script src="bundle.js"></script>
+	<script>
+		$("#settings-icon").click(function () {
+			$("#options-modal").modal("show");
+		});
+	</script>
 </body>
 
 </html>

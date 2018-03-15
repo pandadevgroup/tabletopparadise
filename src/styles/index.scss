@@ -1,13 +1,46 @@
 @import "tabletop";
-
-html, body {
-	height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
-	margin: 0;
+    margin: 0;
 }
+
 .hidden {
-	/*keep space for debugging. In production, use display:none; */
-	visibility:hidden;
+    /*keep space for debugging. In production, use display:none; */
+    visibility: hidden;
+}
+
+#info-tray {
+	z-index: 99; /* Sit on top */
+
+    #info-tray-body {
+        padding: 10px;
+        a.icon-link {
+            color: #000000;
+        }
+        a.icon-link:hover {
+            color: #262626;
+        }
+        a:not(.icon-link) {
+            color: #0056b3;
+            text-decoration: none;
+            background-color: transparent;
+            -webkit-text-decoration-skip: objects;
+        }
+        a:not(.icon-link):hover {
+            color: #003166;
+            text-decoration: underline;
+        }
+        span,
+        p,
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
