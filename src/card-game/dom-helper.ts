@@ -21,7 +21,7 @@ export class CardGameDomHelper extends DomHelper {
 
 	createPlayButtonFrag() {
 		let $btn = $(`
-			<button class="play-button">Play</button>
+			<button class="play-button btn btn-dark btn-lg">Play!</button>
 		`);
 
 		this.$frag.append($btn);
