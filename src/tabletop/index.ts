@@ -19,7 +19,9 @@ export class Tabletop {
 		protected domHelper: DomHelper
 	) {}
 
-	resize() {
+	resize() {}
+
+	layoutResize() {
 		this.width = this.$container.width();
 		this.height = this.$container.height();
 	}

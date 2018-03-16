@@ -39,7 +39,6 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 	}
 
 	resize() {
-		super.resize();
 		this.cards.forEach(card => card.resize());
 	}
 
