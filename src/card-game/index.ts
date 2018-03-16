@@ -62,7 +62,6 @@ export abstract class CardGame {
 
 		this.initializeDom();
 		this.initializePlayers();
-
 		this.initializeDeck();
 
 		this.render();
