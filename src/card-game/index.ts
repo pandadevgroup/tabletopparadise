@@ -102,7 +102,7 @@ export abstract class CardGame {
 	}
 
 	protected resize() {
-		this.tabletop.resize();
+		this.tabletop.layoutResize();
 
 		if (this.tabletop.height <= 1000) {
 			this.layoutOpts.cardWidth = 100;
@@ -112,6 +112,7 @@ export abstract class CardGame {
 			this.layoutOpts.cardHeight = 175;
 		}
 
+		this.tabletop.resize();
 		if (this.opts.showDeck) this.deck.resize();
 		this.players.forEach(player => player.resize());
 	}
