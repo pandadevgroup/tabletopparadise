@@ -1,4 +1,5 @@
 import { Action } from "./action";
+import "firebase";
 
 export class Server {
 	private listeners: { type: string, callback: Function }[] = [];
