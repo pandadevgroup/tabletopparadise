@@ -63,8 +63,8 @@ export class Card {
 
 	setVisible(visible: boolean) {
 		this.visible = visible;
-		if (this.visible) this.$card.removeClass("card--hidden");
-		else this.$card.addClass("card--hidden");
+		if (this.visible) this.$card.addClass("card--visible");
+		else this.$card.removeClass("card--visible");
 	}
 
 	getImgName() {

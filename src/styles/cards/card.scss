@@ -7,6 +7,9 @@
 	transition: transform 0.2s;
 	transform-style: preserve-3d;
 	will-change: transform;
+	visibility: hidden;
+	pointer-events: none;
+	transform: rotateX(180deg);
 
 	&.actionable {
 		@include actionable;
@@ -29,9 +32,9 @@
 		backface-visibility: hidden;
 	}
 
-	&--hidden {
-		visibility: hidden;
-		pointer-events: none;
+	&--visible {
+		visibility: visible;
+		pointer-events: all;
 	}
 }
 
