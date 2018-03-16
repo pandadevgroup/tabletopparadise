@@ -9,4 +9,5 @@
 	&--show {
 		transform: translate(calc(100vw - 200px), calc(100vh - 100px));
 	}
+	z-index:99;
 }
