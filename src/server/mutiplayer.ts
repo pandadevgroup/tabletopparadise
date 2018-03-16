@@ -3,9 +3,6 @@ import { Action } from "./action";
 import * as firebase from 'firebase';
 import * as action from "./action";
 
-
-
-
 export class Mutiplayer {
     // Speed up calls to hasOwnProperty
     private _gameid: string;
@@ -45,7 +42,7 @@ export class Mutiplayer {
     constructor(gameid) {
         this._gameid = gameid;
     }
-    
+
     public on(event: string, callback: ((event?: Event) => void)) {
         let options = {
             callback: callback,
