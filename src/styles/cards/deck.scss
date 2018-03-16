@@ -9,6 +9,8 @@
 	user-select: none;
 	-webkit-user-drag: none;
 	position: relative;
+	transition: transform 0.2s;
+	will-change: transform;
 
 	&.actionable {
 		@include actionable;
