@@ -35,6 +35,7 @@ module.exports = {
 		new CopyWebpackPlugin([
 			{ from: "src/assets", to: "assets"},
 			{ from: "src/index.html", to: "."},
+			{ from: "src/game.html", to: "./game/index.html"},
 			{ from: "CNAME", to: "."}
 		])
 	],
