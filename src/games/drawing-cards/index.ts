@@ -1,6 +1,6 @@
 import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
-import { Mutiplayer, Action, Event } from "../../server";
+import { Mutiplayer, Action } from "../../server";
 
 export class DrawingCardsGame extends CardGame {
 	server: Mutiplayer;
@@ -13,8 +13,9 @@ export class DrawingCardsGame extends CardGame {
 		});
 
 		this.server = new Mutiplayer("test");
-		this.server.on("card_dealt", (action: Event) => {
+		this.server.on("card_dealt", (action: Action) => {
 			console.log(action);
+			alert("Drew card")
 		});
 	}
 

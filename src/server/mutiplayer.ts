@@ -1,4 +1,3 @@
-import { Event } from "./event";
 import { Action } from "./action";
 import * as firebase from 'firebase';
 import * as action from "./action";
@@ -35,7 +34,7 @@ export class Mutiplayer {
     }
     private _watching: {
         [key: string]: {
-            callback: ((event?: Event) => void)
+            callback: ((action?: Action) => void)
         }
     };
 
@@ -54,7 +53,7 @@ export class Mutiplayer {
         this._watching = {};
     }
 
-    public on(event: string, callback: ((event?: Event) => void)) {
+    public on(event: string, callback: ((action?: Action) => void)) {
         let options = {
             callback: callback,
             event: event
@@ -77,7 +76,7 @@ export class Mutiplayer {
                     return;
                 }
                 //otherwise run callback
-                watching[data.name].callback(new Event(new Action(data.name, data.action), data.name));
+                watching[data.name].callback(new Action(data.name, data.action));
             });
         }
         this._watching[event] = options;
