@@ -40,7 +40,18 @@ export class Mutiplayer {
     };
 
     constructor(gameid) {
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAulUtZj74h98YWLWJ9uZPn1nI0N_480HQ",
+            authDomain: "tabletop-paradise.firebaseapp.com",
+            databaseURL: "https://tabletop-paradise.firebaseio.com",
+            projectId: "tabletop-paradise",
+            storageBucket: "tabletop-paradise.appspot.com",
+            messagingSenderId: "941646063027"
+        };
+        firebase.initializeApp(config);
         this._gameid = gameid;
+        this._watching = {};
     }
 
     public on(event: string, callback: ((event?: Event) => void)) {
@@ -49,18 +60,20 @@ export class Mutiplayer {
             event: event
         }
         if (this.isEmpty(this._watching)) {
-            let parent = this;
+            let watching = this._watching;
+            
             firebase.database().ref("/game/" + this._gameid + "/actions/").on("value", function (snapshot) {
                 var data: {
                     event: string,
                     action: object
 
                 } = snapshot.val();
-                if (!(parent._watching.hasOwnProperty(data.event))) {
+                if (!(watching.hasOwnProperty(data.event))) {
                     return;
                 }
                 //otherwise run callback
-                parent._watching[data.event].callback(new Event(new Action(data.event, data.action), data.event));
+                
+                watching[data.event].callback(new Event(new Action(data.event, data.action), data.event));
             });
         }
         this._watching[event] = options;

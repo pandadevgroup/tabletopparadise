@@ -15,7 +15,7 @@ export class DrawingCardsGame extends CardGame {
 		});
 		this.mp = new Mutiplayer("test");
 		this.mp.on("card_dealt", function(event:Event) {
-			alert("card_dealt")
+			alert("card_dealt");
 		});
 	}
 
@@ -23,7 +23,7 @@ export class DrawingCardsGame extends CardGame {
 		let card = this.drawCard();
 		card.setActionable(true);
 		this.mp.push(new Action("card_dealt", {
-			parent:this.deck,
+			parent:"deck",//this.deck
 			target:"Jeffrey"
 		}));
 
