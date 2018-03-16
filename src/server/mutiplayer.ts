@@ -1,4 +1,3 @@
-import { Event } from "./event";
 import { Action } from "./action";
 import * as firebase from 'firebase';
 import * as action from "./action";
@@ -35,7 +34,7 @@ export class Mutiplayer {
     }
     private _watching: {
         [key: string]: {
-            callback: ((event?: Event) => void)
+            callback: ((action?: Action) => void)
         }
     };
 
@@ -54,7 +53,7 @@ export class Mutiplayer {
         this._watching = {};
     }
 
-    public on(event: string, callback: ((event?: Event) => void)) {
+    public on(event: string, callback: ((action?: Action) => void)) {
         let options = {
             callback: callback,
             event: event
@@ -62,19 +61,22 @@ export class Mutiplayer {
         if (this.isEmpty(this._watching)) {
             let watching = this._watching;
 
-            firebase.database().ref("/game/" + this._gameid + "/actions/").on("value", function (snapshot) {
+            firebase.database().ref("/game/" + this._gameid + "/actions/").on("child_added", function (snapshot) {
                 var data: {
                     name: string,
                     action: object
 
                 } = snapshot.val();
                 console.log(snapshot.val());
-                if (!(watching.hasOwnProperty(data.name))) {
+                console.log(1);
+                console.log(watching);
+                console.log(data.name)
+                if (watching[data.name] == undefined) {
+                    console.log(2);
                     return;
                 }
                 //otherwise run callback
-
-                watching[data.name].callback(new Event(new Action(data.name, data.action), data.name));
+                watching[data.name].callback(new Action(data.name, data.action));
             });
         }
         this._watching[event] = options;
@@ -96,6 +98,7 @@ export class Mutiplayer {
     }
 
     public push(action: Action) {
+        console.log(action.name)
         return firebase.database().ref("/game/" + this._gameid + "/actions/").push({
             name:action.name,
             action:action.val()
