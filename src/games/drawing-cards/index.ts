@@ -25,6 +25,10 @@ export class DrawingCardsGame extends CardGame {
 		else this.showPlayButton = false;
 	}
 
+	onPlayBtnClick() {
+		this.playSelectedCards();
+	}
+
 	startGame() {
 		this.deck.actionable = true;
 		this.players[0].cards.forEach(card => card.actionable = true);

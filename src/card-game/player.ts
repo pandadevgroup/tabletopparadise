@@ -77,6 +77,20 @@ export class CardGamePlayer {
 		});
 	}
 
+	removeCards(cards: Card[]) {
+		const cardIds = new Set(cards.map(card => card.index));
+		this.cards = this.cards.filter(card => !cardIds.has(card.index));
+
+		this.cards.forEach((card, i) => {
+			console.log(i);
+			card.index = i;
+		});
+	}
+
+	clearSelectedCards() {
+		this.selectedCards = [];
+	}
+
 	handleCardClick(index: number) {
 		let card = this.cards[index];
 		card.resize();

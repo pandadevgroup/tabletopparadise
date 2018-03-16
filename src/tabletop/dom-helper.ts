@@ -12,13 +12,15 @@ export class DomHelper {
 		rotateZ?: number
 	}) {
 		let { x, y, zIndex, rotateX, rotateY, rotateZ } = options;
-		$el.prop("style", `transform: translate(${x}px, ${y}px) ` +
-				(rotateX ? `rotateX(${rotateX}deg) ` : "") +
-				(rotateY ? `rotateY(${rotateY}deg) ` : "") +
-				(rotateZ ? `rotateZ(${rotateZ}deg) ` : "") +
-				`; ` +
-				(zIndex ? `z-index: ${zIndex};` : "")
-		);
+		requestAnimationFrame(() => {
+			$el.prop("style", `transform: translate(${x}px, ${y}px) ` +
+					(rotateX ? `rotateX(${rotateX}deg) ` : "") +
+					(rotateY ? `rotateY(${rotateY}deg) ` : "") +
+					(rotateZ ? `rotateZ(${rotateZ}deg) ` : "") +
+					`; ` +
+					(zIndex ? `z-index: ${zIndex};` : "")
+			);
+		});
 	}
 
 	renderFrag() {

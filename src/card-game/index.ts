@@ -85,6 +85,7 @@ export abstract class CardGame {
 
 	protected initializeDom() {
 		this.$playButton = this.domHelper.createPlayButtonFrag();
+		this.$playButton.click(() => this.onPlayBtnClick());
 		$(window).resize(() => {
 			this.resize();
 		});
@@ -128,6 +129,16 @@ export abstract class CardGame {
 		}
 	}
 
+	protected playSelectedCards() {
+		this.playCards(this.players[0], this.players[0].selectedCards);
+		this.players[0].clearSelectedCards();
+	}
+
+	protected playCards(player: CardGamePlayer, cards: Card[]) {
+		player.removeCards(cards);
+		player.resize();
+	}
+
 	protected drawCard(player: CardGamePlayer) {
 		let cards = this.deck.get(1);
 		player.addCards(cards);
@@ -138,6 +149,7 @@ export abstract class CardGame {
 
 	onDeckClick() {}
 	abstract onCardClick(player: CardGamePlayer, cardIndex: number, selectedCards: Card[]);
+	abstract onPlayBtnClick();
 	protected abstract startGame();
 }
 
