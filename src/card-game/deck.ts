@@ -6,7 +6,7 @@ import { CardGameDomHelper } from "./dom-helper";
 export class Deck implements CardParent {
 	protected _cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
-	private _actionable: boolean = false;
+	public actionable: boolean = false;
 
 	constructor(
 		private domHelper: CardGameDomHelper,
@@ -14,15 +14,6 @@ export class Deck implements CardParent {
 		private visible: boolean
 	) {
 		this.initialize();
-	}
-
-	set actionable(actionable: boolean) {
-		this._actionable = actionable;
-		if (actionable && this.$deck) this.$deck.addClass("actionable");
-		else if (this.$deck) this.$deck.removeClass("actionable");
-	}
-	get actionable() {
-		return this._actionable;
 	}
 
 	get cards() {
@@ -39,7 +30,7 @@ export class Deck implements CardParent {
 		return {
 			x: Math.round(this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2),
 			y: Math.round(this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2),
-			rotateX: 180
+			rotateX: index === -1 ? 0 : 180
 		};
 	}
 
@@ -54,9 +45,22 @@ export class Deck implements CardParent {
 	}
 
 	resize() {
-		this.domHelper.updateEl(this.$deck, this.getCardPosition());
+		this.domHelper.updateEl(this.$deck, this.getCardPosition(-1));
 		this._cards.forEach(card => card.resize());
-		return this;
+	}
+
+	render() {
+		this.domHelper.updateEl(this.$deck, this.getCardPosition(-1));
+		this._cards.forEach(card => card.render());
+
+		if (this.actionable && this.$deck) this.$deck.addClass("actionable");
+		else if (this.$deck) this.$deck.removeClass("actionable");
+	}
+
+	setAcitonable(actionable: boolean) {
+		this.actionable = actionable;
+		if (actionable && this.$deck) this.$deck.addClass("actionable");
+		else if (this.$deck) this.$deck.removeClass("actionable");
 	}
 
 	protected initialize() {

@@ -8,7 +8,7 @@ export class DrawingCardsGame extends CardGame {
 		super(container, {
 			players: 4,
 			initialHandSize: 5,
-			showDeck: false
+			showDeck: true
 		});
 	}
 

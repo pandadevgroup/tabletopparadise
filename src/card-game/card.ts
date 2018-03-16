@@ -44,7 +44,7 @@ export class Card {
 		public number: number,
 		public suit: "club" | "diamond" | "heart" | "spade",
 		public index: number,
-		private visible: boolean = true
+		public visible: boolean = true
 	) {
 		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
 		this.$card.click(() => {
@@ -61,8 +61,16 @@ export class Card {
 		this.domHelper.updateEl(this.$card, positionInfo);
 	}
 
+	render() {
+		this.resize();
+
+		if (this.visible) this.$card.addClass("card--visible");
+		else this.$card.removeClass("card--visible");
+	}
+
 	setVisible(visible: boolean) {
 		this.visible = visible;
+
 		if (this.visible) this.$card.addClass("card--visible");
 		else this.$card.removeClass("card--visible");
 	}

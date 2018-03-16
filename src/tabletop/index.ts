@@ -20,6 +20,9 @@ export class Tabletop {
 	) {}
 
 	resize() {}
+	render() {
+		this.resize();
+	}
 
 	layoutResize() {
 		this.width = this.$container.width();

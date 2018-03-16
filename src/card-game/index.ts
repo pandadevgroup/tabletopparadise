@@ -65,9 +65,7 @@ export abstract class CardGame {
 
 		this.initializeDeck();
 
-		this.resize();
-		this.domHelper.renderFrag();
-
+		this.render();
 		this.startGame();
 	}
 
@@ -103,6 +101,14 @@ export abstract class CardGame {
 	}
 
 	protected resize() {
+		this.resizeLayout();
+		this.tabletop.resize();
+
+		if (this.opts.showDeck) this.deck.resize();
+		this.players.forEach(player => player.resize());
+	}
+
+	protected resizeLayout() {
 		this.tabletop.layoutResize();
 
 		if (this.tabletop.height <= 1000) {
@@ -112,10 +118,15 @@ export abstract class CardGame {
 			this.layoutOpts.cardWidth = 125;
 			this.layoutOpts.cardHeight = 175;
 		}
+	}
 
-		this.tabletop.resize();
-		if (this.opts.showDeck) this.deck.resize();
-		this.players.forEach(player => player.resize());
+	protected render() {
+		this.resizeLayout();
+		if (this.opts.showDeck) this.deck.render();
+		this.players.forEach(player => player.render());
+		this.tabletop.render();
+
+		this.domHelper.renderFrag();
 	}
 
 	protected dealInitialCards() {

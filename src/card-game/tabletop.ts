@@ -42,6 +42,10 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 		this.cards.forEach(card => card.resize());
 	}
 
+	render() {
+		this.cards.forEach(card => card.render());
+	}
+
 	getCardPosition(index: number) {
 		const card = this.cards[index];
 		const opts = this.game.layoutOpts;

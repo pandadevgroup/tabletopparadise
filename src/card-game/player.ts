@@ -25,6 +25,10 @@ export class CardGamePlayer implements CardParent {
 		this.cards.forEach(card => card.resize());
 	}
 
+	render() {
+		this.cards.forEach(card => card.render());
+	}
+
 	getCardPosition(index) {
 		const tbl = this.game.tabletop;
 		const opts = this.game.layoutOpts;

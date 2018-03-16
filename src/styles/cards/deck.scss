@@ -2,7 +2,7 @@
 
 .deck {
 	@include card-size;
-	background-image: url("../../assets/cards/card_back.png");
+	background-image: url("/assets/cards/card_back.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
