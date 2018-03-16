@@ -5,6 +5,7 @@ import { Card } from "./card";
 import Utils from "../util";
 import "../styles/cards/index.scss";
 import { CardGameDomHelper } from "./dom-helper";
+import { CardGameTabletop } from "./tabletop";
 
 export interface CardGameOptions extends TabletopOptions {
 	/**
@@ -41,7 +42,7 @@ export abstract class CardGame {
 	protected domHelper: CardGameDomHelper;
 	protected $playButton: JQuery<HTMLElement>;
 	private _showPlayButton = false;
-	tabletop: Tabletop;
+	tabletop: CardGameTabletop;
 	layoutOpts = {
 		cardWidth: 125,
 		cardHeight: 175,
@@ -55,9 +56,9 @@ export abstract class CardGame {
 		protected opts: CardGameOptions
 	) {
 		this.domHelper = new CardGameDomHelper(this.$container);
-		this.tabletop = new Tabletop($container, {
+		this.tabletop = new CardGameTabletop($container, {
 			players: opts.players
-		}, this.domHelper);
+		}, this.domHelper, this);
 
 		this.initializeDom();
 		this.initializePlayers();
@@ -136,6 +137,7 @@ export abstract class CardGame {
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
 		player.removeCards(cards);
+		this.tabletop.playCards(player.position, cards);
 		player.resize();
 	}
 

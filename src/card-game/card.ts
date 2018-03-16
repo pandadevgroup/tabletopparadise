@@ -1,11 +1,20 @@
 import { CardGamePlayer } from "./player";
 import { Deck } from "./deck";
 import { CardGameDomHelper } from "./dom-helper";
+import { CardGameTabletop } from "./tabletop";
+
+export interface CardParent {
+	getCardPosition(index?: number): any;
+}
 
 export class Card {
 	private $card: JQuery<HTMLElement>;
 	private _actionable: boolean = false;
 	selected = false;
+	/**
+	 * Used by CardGameTabletop. Represents which player played the card.
+	 */
+	position: "left" | "right" | "top" | "bottom";
 
 	//constants for better readibility
 	static ACE: number = 1;
@@ -31,7 +40,7 @@ export class Card {
 
 	constructor(
 		private domHelper: CardGameDomHelper,
-		private parent: CardGamePlayer | Deck,
+		public parent: CardParent,
 		public number: number,
 		public suit: "club" | "diamond" | "heart" | "spade",
 		public index: number,
@@ -50,10 +59,6 @@ export class Card {
 		const positionInfo = this.parent.getCardPosition(this.index);
 
 		this.domHelper.updateEl(this.$card, positionInfo);
-	}
-
-	setParent(parent: CardGamePlayer | Deck) {
-		this.parent = parent;
 	}
 
 	setVisible(visible: boolean) {

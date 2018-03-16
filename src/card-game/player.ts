@@ -1,17 +1,17 @@
-import { Card } from "./card";
+import { Card, CardParent } from "./card";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGame } from ".";
 import { CardUtils } from "./utils";
 
-export class CardGamePlayer {
+export class CardGamePlayer implements CardParent {
 	cards: Card[] = [];
 	selectedCards: Card[] = [];
 
 	constructor(
 		protected domHelper: CardGameDomHelper,
 		protected game: CardGame,
-		protected name: string,
-		protected position: "top" | "left" | "right" | "bottom",
+		public name: string,
+		public position: "top" | "left" | "right" | "bottom",
 		protected hideCards: boolean,
 		/**
 		 * If true, this player is playing on the computer right now.
@@ -72,7 +72,7 @@ export class CardGamePlayer {
 
 		this.cards.forEach((card, i) => {
 			card.index = i;
-			card.setParent(this);
+			card.parent = this;
 			card.setVisible(true);
 		});
 	}

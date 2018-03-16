@@ -1,9 +1,9 @@
-import { Card } from "./card";
+import { Card, CardParent } from "./card";
 import Utils from "../util";
 import { CardGame } from ".";
 import { CardGameDomHelper } from "./dom-helper";
 
-export class Deck {
+export class Deck implements CardParent {
 	protected _cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
 	private _actionable: boolean = false;
