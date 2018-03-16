@@ -20,7 +20,7 @@ export class Tabletop {
 	) {}
 
 	resize() {
-		this.width = this.$container.width(),
-		this.height = this.$container.height()
+		this.width = this.$container.width();
+		this.height = this.$container.height();
 	}
 }

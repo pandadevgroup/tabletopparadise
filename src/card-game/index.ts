@@ -133,6 +133,7 @@ export abstract class CardGame {
 	protected playSelectedCards() {
 		this.playCards(this.players[0], this.players[0].selectedCards);
 		this.players[0].clearSelectedCards();
+		this.onSelectedCardsChange(this.players[0].selectedCards);
 	}
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
@@ -149,8 +150,14 @@ export abstract class CardGame {
 		return cards[0];
 	}
 
+	onCardClick(player: CardGamePlayer, cardIndex: number, selectedCards: Card[]) {
+		if (player.isLocal) {
+			this.onSelectedCardsChange(selectedCards);
+		}
+	}
+
 	onDeckClick() {}
-	abstract onCardClick(player: CardGamePlayer, cardIndex: number, selectedCards: Card[]);
+	abstract onSelectedCardsChange(selectedCards: Card[]);
 	abstract onPlayBtnClick();
 	protected abstract startGame();
 }
