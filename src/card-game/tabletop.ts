@@ -14,7 +14,7 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected opts: TabletopOptions,
+		public opts: TabletopOptions,
 		protected domHelper: CardGameDomHelper,
 		protected game: CardGame
 	) {
@@ -48,10 +48,19 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 		const opts = this.game.layoutOpts;
 		const selected = this.cards[index].selected;
 		const numCards = this.numCards[card.position];
+		let deckOffsetTop = 0;
+		let deckOffsetLeft = 0;
+		if (this.game.opts.showDeck && card.position == "left" || card.position == "right") {
+			deckOffsetTop = opts.cardWidth / 2;
+			deckOffsetLeft = opts.cardWidth / 2;
+		} else if (this.game.opts.showDeck) {
+			deckOffsetTop = opts.cardHeight / 2;
+			deckOffsetLeft = opts.cardWidth / 2;
+		}
 
 		if (card.position === "bottom") {
-			let top = Math.round(this.height / 2 + opts.cardHeight / 2 + 20);
-			let left = Math.round(this.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * (numCards - 1)) / 2);
+			let top = Math.round(this.height / 2 + deckOffsetTop + 20);
+			let left = Math.round(this.width / 2 - deckOffsetLeft - (opts.cardSpacing * (numCards - 1)) / 2);
 
 			return {
 				x: left + opts.cardSpacing * index,
@@ -60,8 +69,8 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 				zIndex: index
 			};
 		} else if (card.position === "left") {
-			let top = Math.round(this.height / 2 - opts.cardWidth / 2 - (opts.cardHeight - opts.cardWidth) / 2 - (opts.cardSpacing * (numCards - 1)) / 2);
-			let left = Math.round(this.width / 2 - 20 - opts.cardWidth / 2 - opts.cardHeight + (opts.cardHeight - opts.cardWidth) / 2);
+			let top = Math.round(this.height / 2 - deckOffsetTop - (opts.cardHeight - opts.cardWidth) / 2 - (opts.cardSpacing * (numCards - 1)) / 2);
+			let left = Math.round(this.width / 2 - 20 - deckOffsetLeft - opts.cardHeight + (opts.cardHeight - opts.cardWidth) / 2);
 
 			return {
 				x: left,
@@ -71,8 +80,8 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 				zIndex: index
 			};
 		} else if (card.position === "right") {
-			let top = Math.round(this.height / 2 - opts.cardWidth / 2 - (opts.cardHeight - opts.cardWidth) / 2 - (opts.cardSpacing * (numCards - 1)) / 2);
-			let left = Math.round(this.width / 2 + 20 + opts.cardWidth / 2 + (opts.cardHeight - opts.cardWidth) / 2);
+			let top = Math.round(this.height / 2 - deckOffsetTop - (opts.cardHeight - opts.cardWidth) / 2 - (opts.cardSpacing * (numCards - 1)) / 2);
+			let left = Math.round(this.width / 2 + 20 + deckOffsetLeft + (opts.cardHeight - opts.cardWidth) / 2);
 
 			return {
 				x: left,
@@ -82,8 +91,8 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 				zIndex: index
 			};
 		} else if (card.position === "top") {
-			let top = Math.round(this.height / 2 - opts.cardHeight / 2 - 20 - opts.cardHeight);
-			let left = Math.round(this.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * (numCards - 1)) / 2);
+			let top = Math.round(this.height / 2 - deckOffsetTop - 20 - opts.cardHeight);
+			let left = Math.round(this.width / 2 - deckOffsetLeft - (opts.cardSpacing * (numCards - 1)) / 2);
 
 			return {
 				x: left + opts.cardSpacing * index,

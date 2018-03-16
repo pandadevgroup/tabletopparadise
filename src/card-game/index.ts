@@ -53,7 +53,7 @@ export abstract class CardGame {
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected opts: CardGameOptions
+		public opts: CardGameOptions
 	) {
 		this.domHelper = new CardGameDomHelper(this.$container);
 		this.tabletop = new CardGameTabletop($container, {
