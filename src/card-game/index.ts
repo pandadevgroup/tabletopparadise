@@ -53,7 +53,7 @@ export abstract class CardGame {
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected opts: CardGameOptions
+		public opts: CardGameOptions
 	) {
 		this.domHelper = new CardGameDomHelper(this.$container);
 		this.tabletop = new CardGameTabletop($container, {
@@ -103,6 +103,15 @@ export abstract class CardGame {
 
 	protected resize() {
 		this.tabletop.resize();
+
+		if (this.tabletop.height <= 1000) {
+			this.layoutOpts.cardWidth = 100;
+			this.layoutOpts.cardHeight = 140;
+		} else {
+			this.layoutOpts.cardWidth = 125;
+			this.layoutOpts.cardHeight = 175;
+		}
+
 		if (this.opts.showDeck) this.deck.resize();
 		this.players.forEach(player => player.resize());
 	}

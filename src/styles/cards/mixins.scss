@@ -1,6 +1,10 @@
 @mixin card-size {
-	width: 125px;
-	height: 175px;
+	width: 100px;
+	height: 140px;
+	@media(min-height: 1000px) {
+		width: 125px;
+		height: 175px;
+	}
 }
 
 @mixin actionable {

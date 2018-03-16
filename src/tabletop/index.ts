@@ -15,7 +15,7 @@ export class Tabletop {
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected opts: TabletopOptions,
+		public opts: TabletopOptions,
 		protected domHelper: DomHelper
 	) {}
 

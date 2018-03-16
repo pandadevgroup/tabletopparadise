@@ -82,7 +82,6 @@ export class CardGamePlayer implements CardParent {
 		this.cards = this.cards.filter(card => !cardIds.has(card.index));
 
 		this.cards.forEach((card, i) => {
-			console.log(i);
 			card.index = i;
 		});
 	}
