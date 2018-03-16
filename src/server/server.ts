@@ -1,7 +1,7 @@
 import { Action } from "./action";
 
 export class Server {
-	private listeners: Function[] = [];
+	private listeners: { type: string, callback: Function }[] = [];
 
 	constructor(
 		private gameId: string
@@ -22,12 +22,17 @@ export class Server {
 
 	startWatch() {
 		firebase.database().ref(`/game/${this.gameId}/actions`).on("child_added", (snapshot) => {
-			this.listeners.forEach(listener => listener(snapshot.val()));
+			let action = snapshot.val();
+			this.listeners.forEach(listener => {
+				if (listener.type === action.type) {
+					listener.callback();
+				}
+			});
 		});
 	}
 
-	listen(callback: Function) {
-		this.listeners.push(callback);
+	listen(type: string, callback: Function) {
+		this.listeners.push({ type, callback });
 	}
 
     push(action: Action) {

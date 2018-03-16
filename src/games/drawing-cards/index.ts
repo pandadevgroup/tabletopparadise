@@ -13,7 +13,7 @@ export class DrawingCardsGame extends CardGame {
 		});
 
 		this.server = new Server("test");
-		this.server.listen((action: Action) => {
+		this.server.listen("card_dealt", (action: Action) => {
 			console.log(action);
 		});
 	}
