@@ -85,8 +85,11 @@ export abstract class CardGame {
 	protected initializeDom() {
 		this.$playButton = this.domHelper.createPlayButtonFrag();
 		this.$playButton.click(() => this.onPlayBtnClick());
+
+		let debounce;
 		$(window).resize(() => {
-			this.resize();
+			clearTimeout(debounce);
+			debounce = setTimeout(() => this.resize(), 200);
 		});
 	}
 
