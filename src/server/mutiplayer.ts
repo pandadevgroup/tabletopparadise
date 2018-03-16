@@ -69,11 +69,15 @@ export class Mutiplayer {
 
                 } = snapshot.val();
                 console.log(snapshot.val());
-                if (!(watching.hasOwnProperty(data.name))) {
+                console.log(1);
+                console.log(watching);
+                console.log(data.name)
+                if (watching[data.name] == undefined) {
+                    console.log(2);
                     return;
                 }
                 //otherwise run callback
-                
+               
                 watching[data.name].callback(new Event(new Action(data.name, data.action), data.name));
             });
         }
@@ -96,6 +100,7 @@ export class Mutiplayer {
     }
 
     public push(action: Action) {
+        console.log(action.name)
         return firebase.database().ref("/game/" + this._gameid + "/actions/").push({
             name:action.name,
             action:action.val()
