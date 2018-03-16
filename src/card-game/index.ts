@@ -38,6 +38,7 @@ export interface CardGameOptions extends TabletopOptions {
 
 export abstract class CardGame {
 	protected players: CardGamePlayer[];
+	protected player: CardGamePlayer;
 	protected deck: Deck;
 	protected domHelper: CardGameDomHelper;
 	protected $playButton: JQuery<HTMLElement>;
@@ -99,7 +100,7 @@ export abstract class CardGame {
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
 		this.dealInitialCards();
-		if (this.opts.showDeck) this.deck.actionable = true;
+		if (this.opts.showDeck) this.deck.setAcitonable(true);
 	}
 
 	protected resize() {
@@ -152,12 +153,14 @@ export abstract class CardGame {
 				i === 0
 			));
 		}
+
+		this.player = this.players[0];
 	}
 
 	protected playSelectedCards() {
-		this.playCards(this.players[0], this.players[0].selectedCards);
-		this.players[0].clearSelectedCards();
-		this.onSelectedCardsChange(this.players[0].selectedCards);
+		this.playCards(this.player, this.player.selectedCards);
+		this.player.clearSelectedCards();
+		this.onSelectedCardsChange(this.player.selectedCards);
 	}
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
@@ -166,11 +169,11 @@ export abstract class CardGame {
 		player.resize();
 	}
 
-	protected drawCard(player: CardGamePlayer) {
+	protected drawCard() {
 		let cards = this.deck.get(1);
-		player.addCards(cards);
-		if (this.deck.cards.length === 0) this.deck.actionable = false;
-		requestAnimationFrame(() => player.resize());
+		this.player.addCards(cards);
+		if (this.deck.cards.length === 0) this.deck.setAcitonable(false);
+		this.player.resize();
 		return cards[0];
 	}
 

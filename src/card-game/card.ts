@@ -9,7 +9,7 @@ export interface CardParent {
 
 export class Card {
 	private $card: JQuery<HTMLElement>;
-	private _actionable: boolean = false;
+	actionable: boolean = false;
 	selected = false;
 	/**
 	 * Used by CardGameTabletop. Represents which player played the card.
@@ -28,15 +28,6 @@ export class Card {
 	static HEART: String = "heart";
 	static SPADE: String = "spade";
 	static suits: String[] = [Card.CLUB, Card.DIAMOND, Card.HEART, Card.SPADE];
-
-	get actionable() {
-		return this._actionable;
-	}
-	set actionable(actionable: boolean) {
-		this._actionable = actionable;
-		if (actionable) this.$card.addClass("actionable");
-		else this.$card.removeClass("actionable");
-	}
 
 	constructor(
 		private domHelper: CardGameDomHelper,
@@ -66,6 +57,8 @@ export class Card {
 
 		if (this.visible) this.$card.addClass("card--visible");
 		else this.$card.removeClass("card--visible");
+		if (this.actionable) this.$card.addClass("actionable");
+		else this.$card.removeClass("actionable");
 	}
 
 	setVisible(visible: boolean) {
@@ -73,6 +66,13 @@ export class Card {
 
 		if (this.visible) this.$card.addClass("card--visible");
 		else this.$card.removeClass("card--visible");
+	}
+
+	setActionable(actionable: boolean) {
+		this.actionable = actionable;
+
+		if (actionable) this.$card.addClass("actionable");
+		else this.$card.removeClass("actionable");
 	}
 
 	getImgName() {

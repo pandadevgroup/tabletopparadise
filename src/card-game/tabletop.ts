@@ -30,7 +30,7 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 			card.index = i + startIndex;
 			card.position = position;
 			card.parent = this;
-			card.actionable = false;
+			card.setActionable(false);
 		});
 
 		this.numCards[position] += cards.length;

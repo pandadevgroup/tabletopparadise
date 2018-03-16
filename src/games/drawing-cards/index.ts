@@ -2,7 +2,6 @@ import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
 
 export class DrawingCardsGame extends CardGame {
-	private playerIndex = 0;
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -13,10 +12,8 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onDeckClick() {
-		let card = this.drawCard(this.players[this.playerIndex++]);
-		card.actionable = this.playerIndex === 1;
-
-		if (this.playerIndex >= 4) this.playerIndex = 0;
+		let card = this.drawCard();
+		card.setActionable(true);
 	}
 
 	onSelectedCardsChange(selectedCards: Card[]) {
@@ -29,7 +26,7 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	startGame() {
-		this.deck.actionable = true;
-		this.players[0].cards.forEach(card => card.actionable = true);
+		this.deck.setAcitonable(true);
+		this.players[0].cards.forEach(card => card.setActionable(true));
 	}
 }
