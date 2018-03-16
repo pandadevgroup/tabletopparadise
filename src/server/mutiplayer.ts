@@ -61,7 +61,7 @@ export class Mutiplayer {
         }
         if (this.isEmpty(this._watching)) {
             let watching = this._watching;
-            
+
             firebase.database().ref("/game/" + this._gameid + "/actions/").on("value", function (snapshot) {
                 var data: {
                     name: string,
@@ -77,7 +77,6 @@ export class Mutiplayer {
                     return;
                 }
                 //otherwise run callback
-               
                 watching[data.name].callback(new Event(new Action(data.name, data.action), data.name));
             });
         }
