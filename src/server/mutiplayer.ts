@@ -62,7 +62,7 @@ export class Mutiplayer {
         if (this.isEmpty(this._watching)) {
             let watching = this._watching;
 
-            firebase.database().ref("/game/" + this._gameid + "/actions/").on("value", function (snapshot) {
+            firebase.database().ref("/game/" + this._gameid + "/actions/").on("child_added", function (snapshot) {
                 var data: {
                     name: string,
                     action: object
