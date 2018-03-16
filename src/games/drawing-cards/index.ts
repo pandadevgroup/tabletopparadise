@@ -1,9 +1,9 @@
 import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
-import { Mutiplayer, Action } from "../../server";
+import { ServerConnection, Action } from "../../server";
 
 export class DrawingCardsGame extends CardGame {
-	server: Mutiplayer;
+	server: ServerConnection;
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -12,7 +12,7 @@ export class DrawingCardsGame extends CardGame {
 			showDeck: true
 		});
 
-		this.server = new Mutiplayer("test");
+		this.server = new ServerConnection("test");
 		this.server.on("card_dealt", (action: Action) => {
 			console.log(action);
 			console.log("Drew card");
