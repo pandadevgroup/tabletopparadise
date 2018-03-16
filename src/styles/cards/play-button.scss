@@ -1,7 +1,10 @@
 .play-button {
 	position: absolute;
+	transform: translate(100vw, 100vh);
+	transition: transform 0.2s;
+	will-change: transform;
 
 	&--show {
-
+		transform: translate(calc(100vw - 200px), calc(100vh - 80px));
 	}
 }

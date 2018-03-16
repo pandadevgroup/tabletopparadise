@@ -12,7 +12,13 @@ export class CardGamePlayer {
 		protected game: CardGame,
 		protected name: string,
 		protected position: "top" | "left" | "right" | "bottom",
-		protected hideCards: boolean
+		protected hideCards: boolean,
+		/**
+		 * If true, this player is playing on the computer right now.
+		 *
+		 * If false, this player is playing remotely.
+		 */
+		public isLocal: boolean
 	) {}
 
 	resize() {
@@ -78,6 +84,6 @@ export class CardGamePlayer {
 		if (card.selected) this.selectedCards.push(card);
 		else this.selectedCards.splice(this.selectedCards.indexOf(card), 1);
 
-		this.game.onCardClick(index);
+		this.game.onCardClick(this, index, this.selectedCards);
 	}
 }

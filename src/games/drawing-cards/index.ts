@@ -1,4 +1,4 @@
-import { CardGame } from "../../card-game";
+import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
 
 export class DrawingCardsGame extends CardGame {
@@ -19,8 +19,10 @@ export class DrawingCardsGame extends CardGame {
 		if (this.playerIndex >= 4) this.playerIndex = 0;
 	}
 
-	onCardClick() {
-		this.showPlayButton = true;
+	onCardClick(player: CardGamePlayer, index: number, selectedCards: Card[]) {
+		if (!player.isLocal) return;
+		if (selectedCards.length !== 0) this.showPlayButton = true;
+		else this.showPlayButton = false;
 	}
 
 	startGame() {

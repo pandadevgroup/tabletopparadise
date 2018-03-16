@@ -5,12 +5,8 @@ body {
 }
 
 body {
-    margin: 0;
-}
-
-.hidden {
-    /*keep space for debugging. In production, use display:none; */
-    visibility: hidden;
+	margin: 0;
+	overflow: hidden;
 }
 
 #info-tray {

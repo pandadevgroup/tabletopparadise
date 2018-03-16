@@ -122,7 +122,8 @@ export abstract class CardGame {
 				this,
 				`Player ${i + 1}`,
 				playerPositions[i],
-				i !== 0
+				i !== 0,
+				i === 0
 			));
 		}
 	}
@@ -136,7 +137,7 @@ export abstract class CardGame {
 	}
 
 	onDeckClick() {}
-	abstract onCardClick(cardIndex: number);
+	abstract onCardClick(player: CardGamePlayer, cardIndex: number, selectedCards: Card[]);
 	protected abstract startGame();
 }
 
