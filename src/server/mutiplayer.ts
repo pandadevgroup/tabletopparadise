@@ -67,16 +67,17 @@ export class Mutiplayer {
             
             firebase.database().ref("/game/" + this._gameid + "/actions/").on("value", function (snapshot) {
                 var data: {
-                    event: string,
+                    name: string,
                     action: object
 
                 } = snapshot.val();
-                if (!(watching.hasOwnProperty(data.event))) {
+                console.log(snapshot.val());
+                if (!(watching.hasOwnProperty(data.name))) {
                     return;
                 }
                 //otherwise run callback
                 
-                watching[data.event].callback(new Event(new Action(data.event, data.action), data.event));
+                watching[data.name].callback(new Event(new Action(data.name, data.action), data.name));
             });
         }
         this._watching[event] = options;

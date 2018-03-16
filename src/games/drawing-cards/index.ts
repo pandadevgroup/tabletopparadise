@@ -24,7 +24,8 @@ export class DrawingCardsGame extends CardGame {
 		card.setActionable(true);
 		this.mp.push(new Action("card_dealt", {
 			parent:"deck",//this.deck
-			target:"Jeffrey"
+			target:"Jeffrey",
+			
 		}));
 
 	}
