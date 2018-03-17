@@ -21,7 +21,9 @@ export class Deck implements CardParent {
 	}
 
 
-
+	getCardIDs() {
+		return this.cards.map(card => card.id);
+	}
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
 

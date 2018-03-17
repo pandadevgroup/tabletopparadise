@@ -15,7 +15,8 @@ export class DrawCards extends CardGame {
 				
 				//if this player is host sync the cards.
 				this.server.dispatch(new Action("deck_sync", {
-					deck:this.deck
+					deck:this.deck.getCardIDs(),
+					hands:[this.players[0].getCardIDs(), this.players[1].getCardIDs(), this.players[2].getCardIDs(), this.players[3].getCardIDs()]
 				}));
 			}
 		});
