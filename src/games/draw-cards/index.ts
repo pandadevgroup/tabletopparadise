@@ -12,10 +12,10 @@ export class DrawCards extends CardGame {
 		});
 
 		this.server.getHost().then(function(snapshot) {
-			if (snapshot.val() == this.player.id) {
-				//if this player is host sync the cards.
-				this.server()
-			}
+			// if (snapshot.val() == this.player.id) {
+			// 	//if this player is host sync the cards.
+			// 	this.server()
+			// }
 		});
 
 		this.server.on("draw_card", (action: Action) => {
@@ -28,6 +28,14 @@ export class DrawCards extends CardGame {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
 			this.playCards(player, player.getCards(action.payload.cardIds));
+		});
+	}
+
+
+	playPrevActions(actions: Action[]) {
+		return new Promise((resolve, reject) => {
+			console.log(actions);
+			resolve();
 		});
 	}
 

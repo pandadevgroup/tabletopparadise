@@ -3,6 +3,12 @@ import "firebase";
 
 export class ServerConnection {
 	private listeners: { type: string, callback: Function }[] = [];
+	/**
+	 * If active is false, no events will be emitted.
+	 *
+	 * Set this to false when running initial actions, then set to true when the game starts.
+	 */
+	public active = false;
 
 	constructor(
 		private gameId: string
@@ -25,8 +31,16 @@ export class ServerConnection {
 		return firebase.database().ref(`/game/${this.gameId}/host`).once("value");
 	}
 
+	getAllActions() {
+		return firebase.database()
+			.ref(`/game/${this.gameId}/actions`)
+			.once("value")
+			.then(snap => Object.values(snap.val()) as Action[]);
+	}
+
 	start() {
-		firebase.database().ref(`/game/${this.gameId}/actions`).on("child_added", (snapshot) => {
+		firebase.database().ref(`/game/${this.gameId}/actions`).limitToLast(1).on("child_added", (snapshot) => {
+			if (!this.active) return;
 			let action = snapshot.val();
 			this.listeners.forEach(listener => {
 				if (listener.type === action.type) {

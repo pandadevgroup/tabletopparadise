@@ -6,7 +6,7 @@ import Utils from "../util";
 import "../styles/cards/index.scss";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGameTabletop } from "./tabletop";
-import { ServerConnection } from "../server";
+import { ServerConnection, Action } from "../server";
 
 export interface CardGameOptions extends TabletopOptions {
 	/**
@@ -70,8 +70,13 @@ export abstract class CardGame {
 		this.initializePlayers();
 		this.initializeDeck();
 
-		this.render();
-		this.startGame();
+		this.server.getAllActions().then(actions => {
+			return this.playPrevActions(actions);
+		}).then(() => {
+			this.server.active = true;
+			this.render();
+			this.startGame();
+		});
 	}
 
 	get showPlayButton() {
@@ -188,6 +193,7 @@ export abstract class CardGame {
 	onDeckClick() {}
 	abstract onSelectedCardsChange(selectedCards: Card[]);
 	abstract onPlayBtnClick();
+	protected abstract playPrevActions(actions: Action[]): Promise<any>;
 	protected abstract startGame();
 }
 

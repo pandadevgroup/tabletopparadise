@@ -20,8 +20,6 @@ export class Deck implements CardParent {
 		}
 	}
 
-
-
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
 
