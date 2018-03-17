@@ -72,7 +72,7 @@ export class CardGamePlayer implements CardParent {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		CardUtils.sortCards(this.cards);
+		if (this.isLocal) CardUtils.sortCards(this.cards);
 
 		this.cards.forEach((card, i) => {
 			card.index = i;
