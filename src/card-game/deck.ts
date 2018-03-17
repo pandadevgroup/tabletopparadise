@@ -30,12 +30,19 @@ export class Deck implements CardParent {
 		return this.cards.splice(0, numCards);
 	}
 
-	setCardOrder(cardIds: number[]) {
+	setCardOrder(cardIds: string[]) {
+		let i = 0;
+		let order = cardIds.reduce((acc, cur) => ({ ...acc, [cur]: i++ }), {});
+		let newArray = [];
 
+		this.cards.forEach(card => newArray[order[card.id]] = card);
+
+		this.cards = newArray;
 	}
 
-	getCardsFromIds(cardIds: number[]): Card[] {
-		return [];
+	getCardsFromIds(cardIds: string[]): Card[] {
+		let set = new Set(cardIds);
+		return this.cards.filter(card => set.has(card.id));
 	}
 
 	getCardPosition(index?) {

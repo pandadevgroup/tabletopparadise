@@ -70,8 +70,11 @@ export abstract class CardGame {
 		this.initializePlayers();
 		this.initializeDeck();
 
-		this.render();
-		this.startGame();
+		setTimeout(() => {
+			// Replace this setTimeout with listening for Firebase to finish
+			this.render();
+			this.startGame();
+		}, 1000);
 	}
 
 	get showPlayButton() {
@@ -104,7 +107,7 @@ export abstract class CardGame {
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
-		this.dealInitialCards();
+		// this.dealInitialCards();
 		if (this.opts.showDeck) this.deck.setActionable(true);
 	}
 

@@ -141,7 +141,8 @@ export class CardGamePlayer implements CardParent {
 	}
 
 	setCards(cards: Card[]) {
-		this.cards = cards;
+		this.cards = [];
+		this.addCards(cards);
 	}
 
 	clearSelectedCards() {

@@ -30,8 +30,8 @@ export class DrawCards extends CardGame {
 			const { deck, hands } = action.payload;
 			this.deck.setCardOrder(action.payload.deck);
 			hands.forEach(hand => {
-				const cards = deck.getCardsFromIds(hand.cardIds);
-				this.players[hand.playerId].setCards(cards)
+				const cards = this.deck.getCardsFromIds(hand.cardIds);
+				this.players[hand.playerId].setCards(cards);
 			});
 		});
 
