@@ -3,7 +3,6 @@ import { Deck } from "../../card-game";
 import { ServerConnection, Action } from "../../server";
 
 export class HostGame extends CardGame {
-	server: ServerConnection;
 	uid: string;
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -16,7 +15,6 @@ export class HostGame extends CardGame {
 		if (this.uid == "host") {//first host
 			$("#host-btn").text("Host");
 		}
-		this.server = new ServerConnection("test");
 		this.server.on("card_dealt", (action: Action) => {
 			console.log(action);
 			console.log("Drew card");

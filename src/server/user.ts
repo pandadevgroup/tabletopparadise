@@ -6,5 +6,9 @@ export class User {
 
 	}
 
+	// public onAuthStateChanged((Use) => void) {
+	// 	
+	// }
+
 	
 }

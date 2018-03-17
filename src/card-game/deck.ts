@@ -11,13 +11,21 @@ export class Deck implements CardParent {
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private game: CardGame,
-		private visible: boolean
+		private visible: boolean,
+		cards? :Card[]
 	) {
 		this.initialize();
+		if (cards) {
+			this._cards = cards;
+		}
 	}
 
 	get cards() {
 		return this._cards;
+	}
+
+	setCards(cards: Card[]) {
+		this._cards = cards;
 	}
 
 	get(numCards: number): Card[] {
