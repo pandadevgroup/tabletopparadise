@@ -27,7 +27,7 @@ export class HostGame extends CardGame {
 			$("#host-btn").text("Switch to host");
 			$("#host-btn").click(function () {
 				console.log(1);
-				parent.server.push(new Action("host_switch", {
+				parent.server.disaptch(new Action("host_switch", {
 					parent: parent.uid
 				}));
 				$("#host-btn").text("Host");
@@ -39,7 +39,7 @@ export class HostGame extends CardGame {
 		if (this.uid !== "host") {
 			$("#host-btn").click(function () {
 				console.log(1);
-				parent.server.push(new Action("host_switch", {
+				parent.server.dispatch(new Action("host_switch", {
 					parent: parent.uid
 				}));
 				$("#host-btn").text("Host");

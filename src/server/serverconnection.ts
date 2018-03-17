@@ -36,7 +36,7 @@ export class ServerConnection {
 		this.listeners.push({ type, callback });
 	}
 
-    dispach(action: Action) {
+    dispatch(action: Action) {
         return firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
     }
 }
