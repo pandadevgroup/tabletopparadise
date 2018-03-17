@@ -3,7 +3,6 @@ import { Deck } from "../../card-game";
 import { Action } from "../../server";
 
 export class DrawCards extends CardGame {
-
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
 			players: 4,
@@ -28,14 +27,6 @@ export class DrawCards extends CardGame {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
 			this.playCards(player, player.getCards(action.payload.cardIds));
-		});
-	}
-
-
-	playPrevActions(actions: Action[]) {
-		return new Promise((resolve, reject) => {
-			console.log(actions);
-			resolve();
 		});
 	}
 

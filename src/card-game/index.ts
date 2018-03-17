@@ -70,13 +70,8 @@ export abstract class CardGame {
 		this.initializePlayers();
 		this.initializeDeck();
 
-		this.server.getAllActions().then(actions => {
-			return this.playPrevActions(actions);
-		}).then(() => {
-			this.server.active = true;
-			this.render();
-			this.startGame();
-		});
+		this.render();
+		this.startGame();
 	}
 
 	get showPlayButton() {
@@ -193,7 +188,6 @@ export abstract class CardGame {
 	onDeckClick() {}
 	abstract onSelectedCardsChange(selectedCards: Card[]);
 	abstract onPlayBtnClick();
-	protected abstract playPrevActions(actions: Action[]): Promise<any>;
 	protected abstract startGame();
 }
 
