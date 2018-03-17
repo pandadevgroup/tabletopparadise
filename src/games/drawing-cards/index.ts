@@ -23,7 +23,7 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onDeckClick() {
-		this.server.dispach(new Action("draw_card", {
+		this.server.dispatch(new Action("draw_card", {
 			playerId: this.player.id
 		}));
 	}
