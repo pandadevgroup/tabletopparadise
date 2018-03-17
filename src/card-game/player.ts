@@ -26,7 +26,7 @@ export class CardGamePlayer implements CardParent {
 	getCardIDs() {
 		return this.cards.map(card => card.id);
 	}
-	
+
 	resize() {
 		let playerPos = this.getPlayerPosition();
 		this.domHelper.updateEl(this.player$, playerPos);
@@ -138,6 +138,10 @@ export class CardGamePlayer implements CardParent {
 	getCards(cardIds: string[]) {
 		const set = new Set(cardIds);
 		return this.cards.filter(card => set.has(card.id));
+	}
+
+	setCards(cards: Card[]) {
+		this.cards = cards;
 	}
 
 	clearSelectedCards() {

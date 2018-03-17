@@ -30,6 +30,14 @@ export class Deck implements CardParent {
 		return this.cards.splice(0, numCards);
 	}
 
+	setCardOrder(cardIds: number[]) {
+
+	}
+
+	getCardsFromIds(cardIds: number[]): Card[] {
+		return [];
+	}
+
 	getCardPosition(index?) {
 		return {
 			x: Math.round(this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2),

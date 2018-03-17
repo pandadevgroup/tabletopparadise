@@ -28,9 +28,10 @@ export class DrawCards extends CardGame {
 
 		this.server.on("deck_sync", (action: Action) => {
 			const { deck, hands } = action.payload;
-			this.deck.setCards(action.payload.deck);
+			this.deck.setCardOrder(action.payload.deck);
 			hands.forEach(hand => {
-				this.players[hand.playerId].setCards(hand.cardIds)
+				const cards = deck.getCardsFromIds(hand.cardIds);
+				this.players[hand.playerId].setCards(cards)
 			});
 		});
 
