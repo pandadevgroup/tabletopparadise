@@ -6,7 +6,7 @@ import Utils from "../util";
 import "../styles/cards/index.scss";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGameTabletop } from "./tabletop";
-import { ServerConnection } from "../server";
+import { ServerConnection, Action } from "../server";
 
 export interface CardGameOptions extends TabletopOptions {
 	/**

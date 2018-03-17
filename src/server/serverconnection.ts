@@ -25,6 +25,13 @@ export class ServerConnection {
 		return firebase.database().ref(`/game/${this.gameId}/host`).once("value");
 	}
 
+	getAllActions() {
+		return firebase.database()
+			.ref(`/game/${this.gameId}/actions`)
+			.once("value")
+			.then(snap => Object.values(snap.val()) as Action[]);
+	}
+
 	start() {
 		firebase.database().ref(`/game/${this.gameId}/actions`).on("child_added", (snapshot) => {
 			let action = snapshot.val();

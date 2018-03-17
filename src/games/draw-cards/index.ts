@@ -3,7 +3,6 @@ import { Deck } from "../../card-game";
 import { Action } from "../../server";
 
 export class DrawCards extends CardGame {
-
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
 			players: 4,
@@ -12,7 +11,7 @@ export class DrawCards extends CardGame {
 		});
 		this.server.getHost().then((snapshot) => {
 			if (snapshot.val() == this.player.id) {
-				
+
 				//if this player is host sync the cards.
 				this.server.dispatch(new Action("deck_sync", {
 					deck:this.deck.getCardIDs(),
