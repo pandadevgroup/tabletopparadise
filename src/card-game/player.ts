@@ -31,6 +31,8 @@ export class CardGamePlayer implements CardParent {
 
 	render() {
 		this.player$ = this.domHelper.createPlayerFrag(this.name);
+		let playerPos = this.getPlayerPosition();
+		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.render());
 	}
 
