@@ -9,21 +9,26 @@ export class DrawCards extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
-		this.server.on("deck_sync", (action:Action) => {
-			this.deck.cards = action.payload.deck;
-			for (let i = 0; i < action.payload.hands.length; i ++) {
-				this.players[i].cards = action.payload.hands;
-			}
-		});
-		this.server.get("deckSynced").then((snapshot) => {
 
-			if (!snapshot.val()) {
-				this.server.get("host").then((snapshot) => {
-					if (snapshot.val() == this.player.id) {
+		this.server.get("deckSynced").then(synced => {
+			if (synced) return;
+			this.server.get("hostId").then(hostId => {
+				if (hostId == this.player.id) {
+					// if this player is host sync the cards.
+					this.server.dispatch(new Action("deck_sync", {
+						deck: this.deck.getCardIDs(),
+						hands: Object.values(this.players).map(player => ({
+							playerId: player.id,
+							cardIds: player.getCardIDs()
+						}))
+					}));
+				}
+			})
+		});
 
 		this.server.on("deck_sync", (action: Action) => {
 			const { deck, hands } = action.payload;
-			this.deck.setCards(action.payload.deck);
+			this.deck.set(action.payload.deck);
 			hands.forEach(hand => {
 				this.players[hand.playerId].setCards(hand.cardIds)
 			});
