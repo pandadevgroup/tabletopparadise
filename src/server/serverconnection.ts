@@ -1,5 +1,5 @@
 import { Action } from "./action";
-import  Utils  from "../util";
+import Utils from "../util";
 
 import * as firebase from 'firebase';
 import * as action from "./action";
@@ -25,7 +25,7 @@ export class ServerConnection {
             messagingSenderId: "941646063027"
         };
         firebase.initializeApp(config);
-        
+
         this._gameid = gameid;
         this._watching = {};
     }

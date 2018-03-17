@@ -40,5 +40,8 @@ export class DrawingCardsGame extends CardGame {
 	startGame() {
 		this.deck.setAcitonable(true);
 		this.players[0].cards.forEach(card => card.setActionable(true));
+
+		$("#loading").addClass("hidden");
+		$("#game").removeClass("hidden");
 	}
 }
