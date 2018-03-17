@@ -13,8 +13,11 @@ export class TestGame extends CardGame {
 		
 		this.server.getHost().then(function(snapshot) {
 			if (snapshot.val() == this.player.id) {
+				
 				//if this player is host sync the cards.
-				this.server()
+				this.server().dispatch("deck_sync", {
+					deck:this.player.deck
+				});
 			}
 		});
 
