@@ -34,22 +34,23 @@ export class ServerConnection {
 			.set(value);
 	}
 
-	getAllActions() {
+	runPrevActions() {
 		return firebase.database()
 			.ref(`/game/${this.gameId}/actions`)
 			.once("value")
-			.then(snap => Object.values(snap.val()) as Action[]);
+			.then(snap => Object.values(snap.val()) as Action[])
+			.then(actions => actions.forEach(action => this.handleAction(action)));
 	}
 
 	start() {
-		firebase.database().ref(`/game/${this.gameId}/actions`).on("child_added", (snapshot) => {
-			let action = snapshot.val();
-			this.listeners.forEach(listener => {
-				if (listener.type === action.type) {
-					listener.callback(action);
-				}
+		firebase.database()
+			.ref(`/game/${this.gameId}/actions`)
+			.orderByChild("meta/timestamp")
+			.startAt(Date.now())
+			.on("child_added", (snapshot) => {
+				let action = snapshot.val();
+				this.handleAction(action);
 			});
-		});
 	}
 
 	on(type: string, callback: Function) {
@@ -59,5 +60,13 @@ export class ServerConnection {
 	dispatch(action: Action) {
 		action.meta = { timestamp: Date.now(), timestampString: new Date().toString() };
 		return firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
+	}
+
+	private handleAction(action: Action) {
+		this.listeners.forEach(listener => {
+			if (listener.type === action.type) {
+				listener.callback(action);
+			}
+		});
 	}
 }
