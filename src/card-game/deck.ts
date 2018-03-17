@@ -42,7 +42,9 @@ export class Deck implements CardParent {
 
 	getCardsFromIds(cardIds: string[]): Card[] {
 		let set = new Set(cardIds);
-		return this.cards.filter(card => set.has(card.id));
+		let selectedCards = this.cards.filter(card => set.has(card.id));
+		this.cards = this.cards.filter(card => !set.has(card.id));
+		return selectedCards;
 	}
 
 	getCardPosition(index?) {
