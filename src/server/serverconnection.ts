@@ -28,6 +28,12 @@ export class ServerConnection {
 			.then(snap => snap.val());
 	}
 
+	set(name: string, value: any) {
+		return firebase.database()
+			.ref(`/game/${this.gameId}/${name}`)
+			.set(value);
+	}
+
 	getAllActions() {
 		return firebase.database()
 			.ref(`/game/${this.gameId}/actions`)

@@ -22,6 +22,7 @@ export class DrawCards extends CardGame {
 							cardIds: player.getCardIDs()
 						}))
 					}));
+					this.server.set("deckSynced", true);
 				}
 			});
 		});
