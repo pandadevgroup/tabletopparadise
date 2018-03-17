@@ -1,7 +1,7 @@
 import { Action } from "./action";
 import "firebase";
 
-export class ServerConnection {
+export class Server {
 	private listeners: { type: string, callback: Function }[] = [];
 
 	constructor(

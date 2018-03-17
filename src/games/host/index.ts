@@ -31,7 +31,7 @@ export class HostGame extends CardGame {
 					parent: parent.uid
 				}));
 				$("#host-btn").text("Host");
-	
+
 			});
 		});
 		let parent = this;
@@ -47,37 +47,52 @@ export class HostGame extends CardGame {
 			});
 		}
 
-
-	}
-
-	onDeckClick() {
-		let card = this.drawCard();
-		card.setActionable(true);
-		this.server.push(new Action("card_dealt", {
-			parent: "deck",
-			target: this.uid
-		}));
-	}
-
-	onSelectedCardsChange(selectedCards: Card[]) {
-		if (selectedCards.length !== 0) this.showPlayButton = true;
-		else this.showPlayButton = false;
-	}
-
-	onPlayBtnClick() {
-		this.playSelectedCards();
-	}
-
-	startGame() {
-		this.deck.setAcitonable(true);
-		this.players[0].cards.forEach(card => card.setActionable(true));
+// 			});
+// 		});
+// 		let parent = this;
+// 		console.log($("#host-btn"));
+// 		if (this.uid !== "host") {
+// 			$("#host-btn").click(function () {
+// 				console.log(1);
+// 				parent.server.push(new Action("host_switch", {
+// 					parent: parent.uid
+// 				}));
+// 				$("#host-btn").text("Host");
+// 				$("body").off("#host-btn", "click");
+// 			});
+// 		}
 
 
+// 	}
 
-		$("#loading").addClass("hidden");
-		$("#game").removeClass("hidden");
+// 	onDeckClick() {
+// 		let card = this.drawCard();
+// 		card.setActionable(true);
+// 		this.server.push(new Action("card_dealt", {
+// 			parent: "deck",
+// 			target: this.uid
+// 		}));
+// 	}
+
+// 	onSelectedCardsChange(selectedCards: Card[]) {
+// 		if (selectedCards.length !== 0) this.showPlayButton = true;
+// 		else this.showPlayButton = false;
+// 	}
+
+// 	onPlayBtnClick() {
+// 		this.playSelectedCards();
+// 	}
+
+// 	startGame() {
+// 		this.deck.setAcitonable(true);
+// 		this.players[0].cards.forEach(card => card.setActionable(true));
 
 
 
-	}
-}
+// 		$("#loading").addClass("hidden");
+// 		$("#game").removeClass("hidden");
+
+
+
+// 	}
+// }
