@@ -47,52 +47,39 @@ export class HostGame extends CardGame {
 			});
 		}
 
-// 			});
-// 		});
-// 		let parent = this;
-// 		console.log($("#host-btn"));
-// 		if (this.uid !== "host") {
-// 			$("#host-btn").click(function () {
-// 				console.log(1);
-// 				parent.server.push(new Action("host_switch", {
-// 					parent: parent.uid
-// 				}));
-// 				$("#host-btn").text("Host");
-// 				$("body").off("#host-btn", "click");
-// 			});
-// 		}
+		
 
 
-// 	}
+	}
 
-// 	onDeckClick() {
-// 		let card = this.drawCard();
-// 		card.setActionable(true);
-// 		this.server.push(new Action("card_dealt", {
-// 			parent: "deck",
-// 			target: this.uid
-// 		}));
-// 	}
+	onDeckClick() {
+		let card = this.drawCard();
+		card.setActionable(true);
+		this.server.dispatch(new Action("card_dealt", {
+			parent: "deck",
+			target: this.uid
+		}));
+	}
 
-// 	onSelectedCardsChange(selectedCards: Card[]) {
-// 		if (selectedCards.length !== 0) this.showPlayButton = true;
-// 		else this.showPlayButton = false;
-// 	}
+	onSelectedCardsChange(selectedCards: Card[]) {
+		if (selectedCards.length !== 0) this.showPlayButton = true;
+		else this.showPlayButton = false;
+	}
 
-// 	onPlayBtnClick() {
-// 		this.playSelectedCards();
-// 	}
+	onPlayBtnClick() {
+		//this.playSelectedCards();
+	}
 
-// 	startGame() {
-// 		this.deck.setAcitonable(true);
-// 		this.players[0].cards.forEach(card => card.setActionable(true));
+	startGame() {
+		this.deck.setAcitonable(true);
+		this.players[0].cards.forEach(card => card.setActionable(true));
 
 
 
-// 		$("#loading").addClass("hidden");
-// 		$("#game").removeClass("hidden");
+		$("#loading").addClass("hidden");
+		$("#game").removeClass("hidden");
 
 
 
-// 	}
-// }
+	}
+}
