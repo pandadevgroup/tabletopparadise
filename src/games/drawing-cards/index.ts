@@ -1,13 +1,13 @@
 import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
-import { Server, Action } from "../../server";
+import { Action } from "../../server";
 
 export class DrawingCardsGame extends CardGame {
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
-			players: 4,
-			initialHandSize: 5,
+			players: 2,
+			initialHandSize: 13,
 			showDeck: true
 		});
 
@@ -35,5 +35,8 @@ export class DrawingCardsGame extends CardGame {
 	startGame() {
 		this.deck.setAcitonable(true);
 		this.players[0].cards.forEach(card => card.setActionable(true));
+
+		$("#loading").addClass("hidden");
+		$("#game").removeClass("hidden");
 	}
 }

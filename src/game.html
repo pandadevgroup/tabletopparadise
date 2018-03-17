@@ -8,23 +8,35 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-	<!-- <script defer src="/assets/fontawesome/js/fa-brands.js"></script> -->
-	<!-- <script defer src="/assets/fontawesome/js/fa-light.js"></script> -->
-	<!-- <script defer src="/assets/fontawesome/js/fa-regular.js"></script> -->
-	<script defer src="/assets/fontawesome/js/fa-solid.js"></script>
-	<script src="/assets/fontawesome/js/fontawesome.js"></script>
+	<!-- <script defer src="/assets/fontawesome/js/fa-brands.min.js"></script> -->
+	<!-- <script defer src="/assets/fontawesome/js/fa-light.min.js"></script> -->
+	<!-- <script defer src="/assets/fontawesome/js/fa-regular.min.js"></script> -->
+	<script defer src="/assets/fontawesome/js/fa-solid.min.js"></script>
+	<script src="/assets/fontawesome/js/fontawesome.min.js"></script>
 
 </head>
 
 <body>
-	<div id="game" class="gameboard">
+	<div id="loading">
+		<div class="spinner-box">
+			<div class="spinner">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+
+	</div>
+	<div id="game" class="gameboard hidden">
 		<div id="info-tray">
 			<div id="info-tray-body">
 				<a>jeffkmeng</a>
 				<a id="settings-icon" class="icon-link" data-toggle="modal" data-target="#options-modal">
 					<i class="fas fa-cog"></i>
 				</a>
-				<a id="close-icon" class="icon-link"data-toggle="modal" data-target="#leave-modal">
+				<a id="close-icon" class="icon-link" data-toggle="modal" data-target="#leave-modal">
 					<i class="fas fa-sign-out"></i>
 				</a>
 
