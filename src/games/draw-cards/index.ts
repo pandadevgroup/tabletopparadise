@@ -9,14 +9,25 @@ export class DrawCards extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
-		this.server.getHost().then((snapshot) => {
-			if (snapshot.val() == this.player.id) {
+		this.server.on("deck_sync", function(snapshot) {
+			this.deck.set(snapshot.val().deck);
+			for (let i = 0; i < snapshot.val().hands.length; i ++) {
+				this.players[i].set(snapshot.val().hands)
+			}
+		});
+		this.server.get("deckSynced").then((snapshot) => {
 
-				//if this player is host sync the cards.
-				this.server.dispatch(new Action("deck_sync", {
-					deck:this.deck.getCardIDs(),
-					hands:[this.players[0].getCardIDs(), this.players[1].getCardIDs(), this.players[2].getCardIDs(), this.players[3].getCardIDs()]
-				}));
+			if (!snapshot.val()) {
+				this.server.get("host").then((snapshot) => {
+					if (snapshot.val() == this.player.id) {
+
+						//if this player is host sync the cards.
+						this.server.dispatch(new Action("deck_sync", {
+							deck: this.deck.getCardIDs(),
+							hands: [this.players[0].getCardIDs(), this.players[1].getCardIDs(), this.players[2].getCardIDs(), this.players[3].getCardIDs()]
+						}));
+					}
+				})
 			}
 		});
 

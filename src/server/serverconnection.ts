@@ -21,8 +21,8 @@ export class ServerConnection {
 		this.start();
 	}
 
-	getHost() {
-		return firebase.database().ref(`/game/${this.gameId}/host`).once("value");
+	get(name: string) {
+		return firebase.database().ref(`/game/${this.gameId}/${name}`).once("value");
 	}
 
 	getAllActions() {
