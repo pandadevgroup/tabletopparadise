@@ -13,7 +13,8 @@ export class DrawingCardsGame extends CardGame {
 
 		this.server.on("draw_card", (action: Action) => {
 			let playerId = action.payload.playerId;
-			this.drawCard(this.players[playerId]);
+			let card = this.drawCard(this.players[playerId]);
+			if (this.players[playerId] === this.player) card.setActionable(true);
 		});
 
 		this.server.on("play_cards", (action: Action) => {
@@ -23,7 +24,7 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onDeckClick() {
-		this.server.dispach(new Action("draw_card", {
+		this.server.dispatch(new Action("draw_card", {
 			playerId: this.player.id
 		}));
 	}
@@ -34,7 +35,7 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onPlayBtnClick() {
-		this.server.dispach(new Action("play_cards", {
+		this.server.dispatch(new Action("play_cards", {
 			playerId: this.player.id,
 			cards: this.player.selectedCards
 		}));
