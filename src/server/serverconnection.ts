@@ -51,7 +51,7 @@ export class ServerConnection {
 	}
 
 	dispatch(action: Action) {
-		action.meta = { timestamp: Date() ,utc: Date.now() };
+		action.meta = { timestamp: Date.now() };
 		return firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
 	}
 }

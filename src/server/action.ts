@@ -1,7 +1,6 @@
 export class Action {
-    meta:{
-        timestamp:string;
-        utc:number;
+    meta: {
+        timestamp: number;
     };
     constructor(public type: string, public payload: any) {}
 }
