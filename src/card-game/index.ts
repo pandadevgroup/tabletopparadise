@@ -71,6 +71,7 @@ export abstract class CardGame {
 		this.initializeDeck();
 
 		setTimeout(() => {
+			this.domHelper.ready();
 			// Replace this setTimeout with listening for Firebase to finish
 			this.render();
 			this.startGame();
