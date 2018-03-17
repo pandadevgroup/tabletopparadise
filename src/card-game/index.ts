@@ -50,7 +50,9 @@ export abstract class CardGame {
 		cardHeight: 175,
 		playerPadding: 20,
 		cardSpacing: 30,
-		cardShift: 20
+		cardShift: 20,
+		playerWidth: 140,
+		playerHeight: 40
 	};
 	server: ServerConnection;
 

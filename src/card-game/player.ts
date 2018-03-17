@@ -4,6 +4,7 @@ import { CardGame } from ".";
 import { CardUtils } from "./utils";
 
 export class CardGamePlayer implements CardParent {
+	protected player$: JQuery<HTMLElement>;
 	cards: Card[] = [];
 	selectedCards: Card[] = [];
 
@@ -23,10 +24,15 @@ export class CardGamePlayer implements CardParent {
 	) {}
 
 	resize() {
+		let playerPos = this.getPlayerPosition();
+		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.resize());
 	}
 
 	render() {
+		this.player$ = this.domHelper.createPlayerFrag(this.name);
+		let playerPos = this.getPlayerPosition();
+		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.render());
 	}
 
@@ -69,6 +75,40 @@ export class CardGamePlayer implements CardParent {
 				zIndex: index
 			};
 		}
+	}
+
+	getPlayerPosition() {
+		const opts = this.game.layoutOpts;
+		const tbl = this.game.tabletop;
+		const cardSize = opts.cardHeight + opts.playerPadding;
+
+		switch (this.position) {
+			case "left": {
+				return {
+					x: tbl.width - cardSize - opts.playerPadding - opts.playerWidth,
+					y: Math.round(tbl.height / 2 + opts.playerHeight / 2)
+				};
+			}
+			case "right": {
+				return {
+					x: cardSize + opts.playerPadding,
+					y: Math.round(tbl.height / 2 + opts.playerHeight / 2)
+				};
+			}
+			case "top": {
+				return {
+					x: Math.round(tbl.width / 2 - opts.playerWidth / 2),
+					y: cardSize + opts.playerPadding
+				};
+			}
+			case "bottom": {
+				return {
+					x: Math.round(tbl.width / 2 - opts.playerWidth / 2),
+					y: tbl.height - opts.playerHeight - cardSize - opts.playerPadding
+				};
+			}
+		}
+		throw "Position unknown";
 	}
 
 	addCards(cards: Card[]) {
