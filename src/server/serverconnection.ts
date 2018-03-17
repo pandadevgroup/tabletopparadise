@@ -18,10 +18,14 @@ export class ServerConnection {
         };
 		firebase.initializeApp(config);
 
-		this.startWatch();
+		this.start();
 	}
 
-	startWatch() {
+	getHost() {
+		return firebase.database().ref(`/game/${this.gameId}/host`).once("value");
+	}
+
+	start() {
 		firebase.database().ref(`/game/${this.gameId}/actions`).on("child_added", (snapshot) => {
 			let action = snapshot.val();
 			this.listeners.forEach(listener => {

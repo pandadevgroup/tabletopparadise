@@ -2,6 +2,6 @@
 
 // const tabletop = new HostGame($("#game"));
 
-import { DrawingCardsGame } from "./games/drawing-cards";
+import { TestGame } from "./games/test";
 
-const game = new DrawingCardsGame($("#game"));
+const game = new TestGame($("#game"));
