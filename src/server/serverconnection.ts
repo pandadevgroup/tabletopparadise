@@ -22,7 +22,10 @@ export class ServerConnection {
 	}
 
 	get(name: string) {
-		return firebase.database().ref(`/game/${this.gameId}/${name}`).once("value");
+		return firebase.database()
+			.ref(`/game/${this.gameId}/${name}`)
+			.once("value")
+			.then(snap => snap.val());
 	}
 
 	getAllActions() {
