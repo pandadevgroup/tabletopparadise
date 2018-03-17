@@ -57,14 +57,13 @@ export class Deck implements CardParent {
 		this.domHelper.updateEl(this.$deck, this.getCardPosition(-1));
 		this.cards.forEach(card => card.render());
 
-		if (this.actionable && this.$deck) this.$deck.addClass("actionable");
-		else if (this.$deck) this.$deck.removeClass("actionable");
+		this.setActionable(this.actionable);
 	}
 
 	setActionable(actionable: boolean) {
 		this.actionable = actionable;
-		if (actionable && this.$deck) this.$deck.addClass("actionable");
-		else if (this.$deck) this.$deck.removeClass("actionable");
+		if (this.actionable && this.$deck) this.domHelper.addClass(this.$deck, "actionable");
+		else if (this.$deck) this.domHelper.removeClass(this.$deck, "actionable");
 	}
 
 	protected initialize() {
