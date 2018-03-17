@@ -103,7 +103,7 @@ export abstract class CardGame {
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
 		this.dealInitialCards();
-		if (this.opts.showDeck) this.deck.setAcitonable(true);
+		if (this.opts.showDeck) this.deck.setActionable(true);
 	}
 
 	protected resize() {
@@ -172,7 +172,7 @@ export abstract class CardGame {
 	protected drawCard(player: CardGamePlayer = this.player) {
 		let cards = this.deck.get(1);
 		player.addCards(cards);
-		if (this.deck.cards.length === 0) this.deck.setAcitonable(false);
+		if (this.deck.cards.length === 0) this.deck.setActionable(false);
 		player.resize();
 		return cards[0];
 	}

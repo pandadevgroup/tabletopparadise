@@ -84,7 +84,7 @@ export class HostGame extends CardGame {
 // 	}
 
 // 	startGame() {
-// 		this.deck.setAcitonable(true);
+// 		this.deck.setActionable(true);
 // 		this.players[0].cards.forEach(card => card.setActionable(true));
 
 

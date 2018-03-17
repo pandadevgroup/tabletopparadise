@@ -57,7 +57,7 @@ export class Deck implements CardParent {
 		else if (this.$deck) this.$deck.removeClass("actionable");
 	}
 
-	setAcitonable(actionable: boolean) {
+	setActionable(actionable: boolean) {
 		this.actionable = actionable;
 		if (actionable && this.$deck) this.$deck.addClass("actionable");
 		else if (this.$deck) this.$deck.removeClass("actionable");
@@ -66,10 +66,10 @@ export class Deck implements CardParent {
 	protected initialize() {
 		this._cards = [];
 		for (let i = 0; i < 13; i++) {
-			this._cards.push(new Card(this.domHelper, this, i + 1, "club", this._cards.length, false));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "diamond", this._cards.length, false));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "heart", this._cards.length, false));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "spade", this._cards.length, false));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "club", this._cards.length, false, (i+1)+"c"));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "diamond", this._cards.length, false, (i+1)+"d"));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "heart", this._cards.length, false, (i+1)+"h"));
+			this._cards.push(new Card(this.domHelper, this, i + 1, "spade", this._cards.length, false, (i+1)+"s"));
 		}
 
 		if (this.visible) {

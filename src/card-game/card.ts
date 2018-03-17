@@ -35,7 +35,8 @@ export class Card {
 		public number: number,
 		public suit: "club" | "diamond" | "heart" | "spade",
 		public index: number,
-		public visible: boolean = true
+		public visible: boolean = true,
+		public id: string
 	) {
 		this.$card = domHelper.createCardFrag(this.getImgName(), visible);
 		this.$card.click(() => {

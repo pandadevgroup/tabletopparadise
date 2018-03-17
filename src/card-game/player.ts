@@ -91,6 +91,11 @@ export class CardGamePlayer implements CardParent {
 		});
 	}
 
+	getCards(cardIds: string[]) {
+		const set = new Set(cardIds);
+		return this.cards.filter(card => set.has(card.id));
+	}
+
 	clearSelectedCards() {
 		this.selectedCards = [];
 	}
