@@ -6,7 +6,7 @@ import Utils from "../util";
 import "../styles/cards/index.scss";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGameTabletop } from "./tabletop";
-import { Server } from "../server";
+import { ServerConnection } from "../server";
 
 export interface CardGameOptions extends TabletopOptions {
 	/**
@@ -52,7 +52,7 @@ export abstract class CardGame {
 		cardSpacing: 30,
 		cardShift: 20
 	};
-	server: Server;
+	server: ServerConnection;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
