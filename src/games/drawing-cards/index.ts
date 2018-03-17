@@ -18,8 +18,9 @@ export class DrawingCardsGame extends CardGame {
 		});
 
 		this.server.on("play_cards", (action: Action) => {
-			let playerId = action.payload.playerId;
-			this.playCards(this.players[playerId], action.payload.cards);
+			const playerId = action.payload.playerId;
+			const player = this.players[playerId];
+			this.playCards(player, player.getCards(action.payload.cardIds));
 		});
 	}
 
@@ -37,13 +38,13 @@ export class DrawingCardsGame extends CardGame {
 	onPlayBtnClick() {
 		this.server.dispatch(new Action("play_cards", {
 			playerId: this.player.id,
-			cards: this.player.selectedCards
+			cardIds: this.player.selectedCards.map(card => card.id)
 		}));
 		this.player.clearSelectedCards();
 	}
 
 	startGame() {
-		this.deck.setAcitonable(true);
+		this.deck.setActionable(true);
 		this.players[0].cards.forEach(card => card.setActionable(true));
 
 		$("#loading").addClass("hidden");
