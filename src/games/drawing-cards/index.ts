@@ -11,14 +11,19 @@ export class DrawingCardsGame extends CardGame {
 			showDeck: true
 		});
 
-		this.server.listen("draw_card", (action: Action) => {
+		this.server.on("draw_card", (action: Action) => {
 			let playerId = action.payload.playerId;
 			this.drawCard(this.players[playerId]);
+		});
+
+		this.server.on("play_cards", (action: Action) => {
+			let playerId = action.payload.playerId;
+			this.playCards(this.players[playerId], action.payload.cards);
 		});
 	}
 
 	onDeckClick() {
-		this.server.push(new Action("draw_card", {
+		this.server.dispach(new Action("draw_card", {
 			playerId: this.player.id
 		}));
 	}
@@ -29,7 +34,11 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onPlayBtnClick() {
-		this.playSelectedCards();
+		this.server.dispach(new Action("play_cards", {
+			playerId: this.player.id,
+			cards: this.player.selectedCards
+		}));
+		this.player.clearSelectedCards();
 	}
 
 	startGame() {

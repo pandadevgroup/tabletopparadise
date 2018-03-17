@@ -163,12 +163,6 @@ export abstract class CardGame {
 		this.player = this.players[0];
 	}
 
-	protected playSelectedCards() {
-		this.playCards(this.player, this.player.selectedCards);
-		this.player.clearSelectedCards();
-		this.onSelectedCardsChange(this.player.selectedCards);
-	}
-
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
 		player.removeCards(cards);
 		this.tabletop.playCards(player.position, cards);
