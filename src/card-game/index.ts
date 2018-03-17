@@ -140,7 +140,8 @@ export abstract class CardGame {
 		this.players = [];
 
 		let playerPositions;
-		if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
+		if (this.opts.players === 2) playerPositions = ["bottom", "top"];
+		else if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
 		else playerPositions = ["bottom", "left", "top", "right"];
 
 		for (let i = 0; i < this.opts.players; i++) {

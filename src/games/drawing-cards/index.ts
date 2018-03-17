@@ -7,8 +7,8 @@ export class DrawingCardsGame extends CardGame {
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
-			players: 4,
-			initialHandSize: 5,
+			players: 2,
+			initialHandSize: 13,
 			showDeck: true
 		});
 
