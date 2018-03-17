@@ -85,13 +85,13 @@ export class CardGamePlayer implements CardParent {
 		switch (this.position) {
 			case "left": {
 				return {
-					x: tbl.width - cardSize - opts.playerPadding - opts.playerWidth,
+					x: cardSize + opts.playerPadding,
 					y: Math.round(tbl.height / 2 + opts.playerHeight / 2)
 				};
 			}
 			case "right": {
 				return {
-					x: cardSize + opts.playerPadding,
+					x: tbl.width - cardSize - opts.playerPadding - opts.playerWidth,
 					y: Math.round(tbl.height / 2 + opts.playerHeight / 2)
 				};
 			}
