@@ -148,6 +148,7 @@ export abstract class CardGame {
 
 		for (let i = 0; i < this.opts.players; i++) {
 			this.players.push(new CardGamePlayer(
+				i+"",
 				this.domHelper,
 				this,
 				`Player ${i + 1}`,

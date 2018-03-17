@@ -8,6 +8,7 @@ export class CardGamePlayer implements CardParent {
 	selectedCards: Card[] = [];
 
 	constructor(
+		public id: string,
 		protected domHelper: CardGameDomHelper,
 		protected game: CardGame,
 		public name: string,

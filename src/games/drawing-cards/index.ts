@@ -11,14 +11,19 @@ export class DrawingCardsGame extends CardGame {
 			showDeck: true
 		});
 
-		this.server.listen("card_dealt", (action: Action) => {
-			let card = this.drawCard();
-			card.setActionable(true);
+		this.server.listen("draw_card", (action: Action) => {
+			let playerId = action.payload.playerId;
+			if (playerId === "0") {
+				let card = this.drawCard();
+				card.setActionable(true);
+			}
 		});
 	}
 
 	onDeckClick() {
-		this.server.push(new Action("card_dealt", "testMsg"));
+		this.server.push(new Action("draw_card", {
+			playerId: this.player.id
+		}));
 	}
 
 	onSelectedCardsChange(selectedCards: Card[]) {
