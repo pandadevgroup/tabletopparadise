@@ -21,6 +21,14 @@ export class DomHelper {
 		);
 	}
 
+	addClass($el: JQuery<HTMLElement>, className: string) {
+		$el.addClass(className);
+	}
+
+	removeClass($el: JQuery<HTMLElement>, className: string) {
+		$el.removeClass(className);
+	}
+
 	renderFrag() {
 		this.$container.append(this.$frag);
 	}

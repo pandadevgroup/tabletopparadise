@@ -56,24 +56,22 @@ export class Card {
 	render() {
 		this.resize();
 
-		if (this.visible) this.$card.addClass("card--visible");
-		else this.$card.removeClass("card--visible");
-		if (this.actionable) this.$card.addClass("actionable");
-		else this.$card.removeClass("actionable");
+		if (this.visible) this.domHelper.addClass(this.$card, "card--visible");
+		this.setActionable(this.actionable);
 	}
 
 	setVisible(visible: boolean) {
 		this.visible = visible;
 
-		if (this.visible) this.$card.addClass("card--visible");
-		else this.$card.removeClass("card--visible");
+		if (this.visible) this.domHelper.addClass(this.$card, "card--visible");
+		else this.domHelper.removeClass(this.$card, "card--visible");
 	}
 
 	setActionable(actionable: boolean) {
 		this.actionable = actionable;
 
-		if (actionable) this.$card.addClass("actionable");
-		else this.$card.removeClass("actionable");
+		if (actionable) this.domHelper.addClass(this.$card, "actionable");
+		else this.domHelper.removeClass(this.$card, "actionable")
 	}
 
 	getImgName() {
