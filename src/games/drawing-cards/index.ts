@@ -3,7 +3,6 @@ import { Deck } from "../../card-game";
 import { Server, Action } from "../../server";
 
 export class DrawingCardsGame extends CardGame {
-	server: Server;
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -12,15 +11,13 @@ export class DrawingCardsGame extends CardGame {
 			showDeck: true
 		});
 
-		this.server = new Server("nathansversion");
 		this.server.listen("card_dealt", (action: Action) => {
-			console.log(action);
+			let card = this.drawCard();
+			card.setActionable(true);
 		});
 	}
 
 	onDeckClick() {
-		let card = this.drawCard();
-		card.setActionable(true);
 		this.server.push(new Action("card_dealt", "testMsg"));
 	}
 
