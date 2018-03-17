@@ -7,15 +7,15 @@ export class ServerConnection {
 	constructor(
 		private gameId: string
 	) {
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAulUtZj74h98YWLWJ9uZPn1nI0N_480HQ",
-            authDomain: "tabletop-paradise.firebaseapp.com",
-            databaseURL: "https://tabletop-paradise.firebaseio.com",
-            projectId: "tabletop-paradise",
-            storageBucket: "tabletop-paradise.appspot.com",
-            messagingSenderId: "941646063027"
-        };
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyAulUtZj74h98YWLWJ9uZPn1nI0N_480HQ",
+			authDomain: "tabletop-paradise.firebaseapp.com",
+			databaseURL: "https://tabletop-paradise.firebaseio.com",
+			projectId: "tabletop-paradise",
+			storageBucket: "tabletop-paradise.appspot.com",
+			messagingSenderId: "941646063027"
+		};
 		firebase.initializeApp(config);
 
 		this.start();
@@ -50,7 +50,8 @@ export class ServerConnection {
 		this.listeners.push({ type, callback });
 	}
 
-    dispatch(action: Action) {
-        return firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
-    }
+	dispatch(action: Action) {
+		action.meta = { timestamp: Date() ,utc: Date.now() };
+		return firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
+	}
 }
