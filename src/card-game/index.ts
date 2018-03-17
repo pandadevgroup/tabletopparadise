@@ -58,7 +58,7 @@ export abstract class CardGame {
 		protected $container: JQuery<HTMLElement>,
 		public opts: CardGameOptions
 	) {
-		this.server = new ServerConnection("nathansversion");
+		this.server = new ServerConnection("test");
 		this.domHelper = new CardGameDomHelper(this.$container);
 		this.tabletop = new CardGameTabletop($container, {
 			players: opts.players
