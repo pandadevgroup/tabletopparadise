@@ -9,12 +9,14 @@ export class DrawCards extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
+		this.server.getHost().then((snapshot) => {
+			if (snapshot.val() == this.player.id) {
 
-		this.server.getHost().then(function(snapshot) {
-			// if (snapshot.val() == this.player.id) {
-			// 	//if this player is host sync the cards.
-			// 	this.server()
-			// }
+				//if this player is host sync the cards.
+				this.server.dispatch(new Action("deck_sync", {
+					deck:this.deck
+				}));
+			}
 		});
 
 		this.server.on("draw_card", (action: Action) => {
