@@ -1,7 +1,7 @@
 import { Action } from "./action";
 import "firebase";
 
-export class Server {
+export class ServerConnection {
 	private listeners: { type: string, callback: Function }[] = [];
 
 	constructor(
@@ -32,11 +32,11 @@ export class Server {
 		});
 	}
 
-	listen(type: string, callback: Function) {
+	on(type: string, callback: Function) {
 		this.listeners.push({ type, callback });
 	}
 
-    push(action: Action) {
+    dispach(action: Action) {
         return firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
     }
 }
