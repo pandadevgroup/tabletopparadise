@@ -1,9 +1,8 @@
 import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
-import { ServerConnection, Action } from "../../server";
+import { Action } from "../../server";
 
 export class DrawingCardsGame extends CardGame {
-	server: ServerConnection;
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -12,19 +11,15 @@ export class DrawingCardsGame extends CardGame {
 			showDeck: true
 		});
 
-		this.server = new ServerConnection("test");
-		this.server.on("card_dealt", (action: Action) => {
-			console.log(action);
-			console.log("Drew card");
+		this.server.listen("draw_card", (action: Action) => {
+			let playerId = action.payload.playerId;
+			this.drawCard(this.players[playerId]);
 		});
 	}
 
 	onDeckClick() {
-		let card = this.drawCard();
-		card.setActionable(true);
-		this.server.push(new Action("card_dealt", {
-			parent:"deck",
-			target:"Jeffrey"
+		this.server.push(new Action("draw_card", {
+			playerId: this.player.id
 		}));
 	}
 

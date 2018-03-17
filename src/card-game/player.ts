@@ -8,6 +8,7 @@ export class CardGamePlayer implements CardParent {
 	selectedCards: Card[] = [];
 
 	constructor(
+		public id: string,
 		protected domHelper: CardGameDomHelper,
 		protected game: CardGame,
 		public name: string,
@@ -72,7 +73,7 @@ export class CardGamePlayer implements CardParent {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		CardUtils.sortCards(this.cards);
+		if (this.isLocal) CardUtils.sortCards(this.cards);
 
 		this.cards.forEach((card, i) => {
 			card.index = i;
