@@ -2,7 +2,7 @@ import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
 import { Action } from "../../server";
 
-export class TestGame extends CardGame {
+export class DrawCards extends CardGame {
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -10,7 +10,7 @@ export class TestGame extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
-		
+
 		this.server.getHost().then(function(snapshot) {
 			if (snapshot.val() == this.player.id) {
 				

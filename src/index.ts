@@ -1,7 +1,3 @@
-// import { HostGame } from "./games/host";
+import { DrawCards } from "./games/draw-cards";
 
-// const tabletop = new HostGame($("#game"));
-
-import { TestGame } from "./games/test";
-
-const game = new TestGame($("#game"));
+const game = new DrawCards($("#game"));
