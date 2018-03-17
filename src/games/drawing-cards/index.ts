@@ -12,20 +12,16 @@ export class DrawingCardsGame extends CardGame {
 			showDeck: true
 		});
 
-		this.server = new Server("test");
+		this.server = new Server("nathansversion");
 		this.server.listen("card_dealt", (action: Action) => {
 			console.log(action);
-			alert("Drew card");
 		});
 	}
 
 	onDeckClick() {
 		let card = this.drawCard();
 		card.setActionable(true);
-		this.server.push(new Action("card_dealt", {
-			parent:"deck",
-			target:"Jeffrey"
-		}));
+		this.server.push(new Action("card_dealt", "testMsg"));
 	}
 
 	onSelectedCardsChange(selectedCards: Card[]) {

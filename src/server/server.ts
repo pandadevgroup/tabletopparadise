@@ -26,7 +26,7 @@ export class Server {
 			let action = snapshot.val();
 			this.listeners.forEach(listener => {
 				if (listener.type === action.type) {
-					listener.callback();
+					listener.callback(action);
 				}
 			});
 		});
