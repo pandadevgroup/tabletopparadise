@@ -38,7 +38,7 @@ export interface CardGameOptions extends TabletopOptions {
 }
 
 export abstract class CardGame {
-	protected players: CardGamePlayer[];
+	protected players: { [id: string]: CardGamePlayer };
 	protected player: CardGamePlayer;
 	protected deck: Deck;
 	protected domHelper: CardGameDomHelper;
@@ -111,7 +111,7 @@ export abstract class CardGame {
 		this.tabletop.resize();
 
 		if (this.opts.showDeck) this.deck.resize();
-		this.players.forEach(player => player.resize());
+		Object.values(this.players).forEach(player => player.resize());
 	}
 
 	protected resizeLayout() {
@@ -129,33 +129,34 @@ export abstract class CardGame {
 	protected render() {
 		this.resizeLayout();
 		if (this.opts.showDeck) this.deck.render();
-		this.players.forEach(player => player.render());
+		Object.values(this.players).forEach(player => player.render());
 		this.tabletop.render();
 
 		this.domHelper.renderFrag();
 	}
 
 	protected dealInitialCards() {
-		this.players.forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
+		Object.values(this.players).forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
 	}
 
 	protected initializePlayers() {
-		this.players = [];
+		this.players = {};
 
 		let playerPositions;
 		if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
 		else playerPositions = ["bottom", "left", "top", "right"];
 
 		for (let i = 0; i < this.opts.players; i++) {
-			this.players.push(new CardGamePlayer(
-				i+"",
+			let id = i+"";
+			this.players[id] = new CardGamePlayer(
+				id,
 				this.domHelper,
 				this,
 				`Player ${i + 1}`,
 				playerPositions[i],
 				i !== 0,
 				i === 0
-			));
+			);
 		}
 
 		this.player = this.players[0];
@@ -173,11 +174,11 @@ export abstract class CardGame {
 		player.resize();
 	}
 
-	protected drawCard() {
+	protected drawCard(player: CardGamePlayer = this.player) {
 		let cards = this.deck.get(1);
-		this.player.addCards(cards);
+		player.addCards(cards);
 		if (this.deck.cards.length === 0) this.deck.setAcitonable(false);
-		this.player.resize();
+		player.resize();
 		return cards[0];
 	}
 

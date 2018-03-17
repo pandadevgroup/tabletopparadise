@@ -13,10 +13,7 @@ export class DrawingCardsGame extends CardGame {
 
 		this.server.listen("draw_card", (action: Action) => {
 			let playerId = action.payload.playerId;
-			if (playerId === "0") {
-				let card = this.drawCard();
-				card.setActionable(true);
-			}
+			this.drawCard(this.players[playerId]);
 		});
 	}
 
