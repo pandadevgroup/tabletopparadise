@@ -12,10 +12,12 @@ export class CardGameDomHelper extends DomHelper {
 	}
 
 	showPlayButton($btn: JQuery<HTMLElement>) {
+		if (!this._ready) return;
 		$btn.addClass("play-button--show");
 	}
 
 	hidePlayButton($btn: JQuery<HTMLElement>) {
+		if (!this._ready) return;
 		$btn.removeClass("play-button--show");
 	}
 
