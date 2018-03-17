@@ -1,0 +1,8 @@
+@import "mixins";
+
+.player {
+	@include will-transform;
+	width: 140px;
+	height: 40px;
+	background-color: blue;
+}

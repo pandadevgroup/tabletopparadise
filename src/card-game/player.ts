@@ -4,6 +4,7 @@ import { CardGame } from ".";
 import { CardUtils } from "./utils";
 
 export class CardGamePlayer implements CardParent {
+	protected player$: JQuery<HTMLElement>;
 	cards: Card[] = [];
 	selectedCards: Card[] = [];
 
@@ -23,10 +24,13 @@ export class CardGamePlayer implements CardParent {
 	) {}
 
 	resize() {
+		let playerPos = this.getPlayerPosition();
+		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.resize());
 	}
 
 	render() {
+		this.player$ = this.domHelper.createPlayerFrag(this.name);
 		this.cards.forEach(card => card.render());
 	}
 
@@ -69,6 +73,31 @@ export class CardGamePlayer implements CardParent {
 				zIndex: index
 			};
 		}
+	}
+
+	getPlayerPosition() {
+		const opts = this.game.layoutOpts;
+		const tbl = this.game.tabletop;
+		const cardSize = opts.cardHeight + opts.playerPadding;
+
+		switch (this.position) {
+			case "left": {
+
+			}
+			case "right": {
+
+			}
+			case "top": {
+
+			}
+			case "bottom": {
+				return {
+					x: tbl.width / 2 - opts.playerWidth / 2,
+					y: tbl.height - opts.playerHeight - cardSize - opts.playerPadding
+				};
+			}
+		}
+		throw "Position unknown";
 	}
 
 	addCards(cards: Card[]) {

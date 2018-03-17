@@ -2,11 +2,9 @@
 
 .card {
 	@include card-size;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
-	position: absolute;
-	transition: transform 0.2s;
+	@include will-transform;
 	transform-style: preserve-3d;
-	will-change: transform;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 	visibility: hidden;
 	pointer-events: none;
 	transform: rotateX(180deg);

@@ -29,6 +29,18 @@ export class CardGameDomHelper extends DomHelper {
 		return $btn;
 	}
 
+	createPlayerFrag(name: string) {
+		let $player = $(`
+			<div class="player">
+				<span class="player__name">${name}</span>
+			</div>
+		`);
+
+		this.$frag.append($player);
+
+		return $player;
+	}
+
 	createCardFrag(cardImgUrl: string, visible: boolean) {
 		let $card = $(`
 			<div class="card ${visible ? "card--visible" : ""}">
