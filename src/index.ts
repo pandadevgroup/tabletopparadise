@@ -1,3 +1,3 @@
-import { DrawingCardsGame } from "./games/drawing-cards";
+import { HostGame } from "./games/host";
 
-const tabletop = new DrawingCardsGame($("#game"));
+const tabletop = new HostGame($("#game"));
