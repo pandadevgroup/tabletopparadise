@@ -34,7 +34,7 @@ export class DrawingCardsGame extends CardGame {
 	}
 
 	onPlayBtnClick() {
-		this.server.dispach(new Action("play_cards", {
+		this.server.dispatch(new Action("play_cards", {
 			playerId: this.player.id,
 			cards: this.player.selectedCards
 		}));
