@@ -2,13 +2,20 @@ import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
 import { Action } from "../../server";
 
-export class DrawingCardsGame extends CardGame {
+export class TestGame extends CardGame {
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
 			players: 4,
 			initialHandSize: 5,
 			showDeck: true
+		});
+		
+		this.server.getHost().then(function(snapshot) {
+			if (snapshot.val() == this.player.id) {
+				//if this player is host sync the cards.
+				this.server()
+			}
 		});
 
 		this.server.on("draw_card", (action: Action) => {
