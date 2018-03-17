@@ -9,10 +9,10 @@ export class DrawCards extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
-		this.server.on("deck_sync", function(snapshot) {
-			this.deck.set(snapshot.val().deck);
-			for (let i = 0; i < snapshot.val().hands.length; i ++) {
-				this.players[i].set(snapshot.val().hands)
+		this.server.on("deck_sync", (action:Action) => {
+			this.deck.cards = action.payload.deck;
+			for (let i = 0; i < action.payload.hands.length; i ++) {
+				this.players[i].cards = action.payload.hands;
 			}
 		});
 		this.server.get("deckSynced").then((snapshot) => {
