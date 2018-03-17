@@ -4,26 +4,28 @@ import { CardGame } from ".";
 import { CardGameDomHelper } from "./dom-helper";
 
 export class Deck implements CardParent {
-	protected _cards: Card[];
+	public cards: Card[];
 	protected $deck: JQuery<HTMLElement>;
 	public actionable: boolean = false;
 
 	constructor(
 		private domHelper: CardGameDomHelper,
 		private game: CardGame,
-		private visible: boolean
+		private visible: boolean,
+		cards? :Card[]
 	) {
 		this.initialize();
+		if (cards) {
+			this.cards = cards;
+		}
 	}
 
-	get cards() {
-		return this._cards;
-	}
+
 
 	get(numCards: number): Card[] {
 		if (numCards > this.cards.length) throw "Not enough cards in deck";
 
-		return this._cards.splice(0, numCards);
+		return this.cards.splice(0, numCards);
 	}
 
 	getCardPosition(index?) {
@@ -40,18 +42,18 @@ export class Deck implements CardParent {
 		for (var t, i, m = array.length; m;) (i = Math.floor(Math.random() * m--)), (t = array[m]), (array[m] = array[i]), (array[i] = t);
 		return array;
 	}) {
-		this._cards = algorithm(this._cards);
+		this.cards = algorithm(this.cards);
 		return this;
 	}
 
 	resize() {
 		this.domHelper.updateEl(this.$deck, this.getCardPosition(-1));
-		this._cards.forEach(card => card.resize());
+		this.cards.forEach(card => card.resize());
 	}
 
 	render() {
 		this.domHelper.updateEl(this.$deck, this.getCardPosition(-1));
-		this._cards.forEach(card => card.render());
+		this.cards.forEach(card => card.render());
 
 		if (this.actionable && this.$deck) this.$deck.addClass("actionable");
 		else if (this.$deck) this.$deck.removeClass("actionable");
@@ -64,12 +66,12 @@ export class Deck implements CardParent {
 	}
 
 	protected initialize() {
-		this._cards = [];
+		this.cards = [];
 		for (let i = 0; i < 13; i++) {
-			this._cards.push(new Card(this.domHelper, this, i + 1, "club", this._cards.length, false, (i+1)+"c"));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "diamond", this._cards.length, false, (i+1)+"d"));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "heart", this._cards.length, false, (i+1)+"h"));
-			this._cards.push(new Card(this.domHelper, this, i + 1, "spade", this._cards.length, false, (i+1)+"s"));
+			this.cards.push(new Card(this.domHelper, this, i + 1, "club", this.cards.length, false, (i+1)+"c"));
+			this.cards.push(new Card(this.domHelper, this, i + 1, "diamond", this.cards.length, false, (i+1)+"d"));
+			this.cards.push(new Card(this.domHelper, this, i + 1, "heart", this.cards.length, false, (i+1)+"h"));
+			this.cards.push(new Card(this.domHelper, this, i + 1, "spade", this.cards.length, false, (i+1)+"s"));
 		}
 
 		if (this.visible) {
