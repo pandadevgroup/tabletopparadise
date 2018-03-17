@@ -9,12 +9,7 @@ export class DrawCards extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
-		this.server.on("deck_sync", function(snapshot) {
-			this.deck.set(snapshot.val().deck);
-			for (let i = 0; i < snapshot.val().hands.length; i ++) {
-				this.players[i].set(snapshot.val().hands)
-			}
-		});
+
 		this.server.get("deckSynced").then(synced => {
 			if (synced) return;
 			this.server.get("hostId").then(hostId => {
@@ -22,10 +17,21 @@ export class DrawCards extends CardGame {
 					// if this player is host sync the cards.
 					this.server.dispatch(new Action("deck_sync", {
 						deck: this.deck.getCardIDs(),
-						hands: Object.values(this.players).map(player => player.getCardIDs())
+						hands: Object.values(this.players).map(player => ({
+							playerId: player.id,
+							cardIds: player.getCardIDs()
+						}))
 					}));
 				}
 			})
+		});
+
+		this.server.on("deck_sync", (action: Action) => {
+			const { deck, hands } = action.payload;
+			this.deck.set(action.payload.deck);
+			hands.forEach(hand => {
+				this.players[hand.playerId].setCards(hand.cardIds)
+			});
 		});
 
 		this.server.on("draw_card", (action: Action) => {
