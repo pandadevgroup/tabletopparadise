@@ -34,7 +34,7 @@ export interface CardGameOptions extends TabletopOptions {
 	 * @type {((cards: Card[]) => Card[]) | boolean} [shuffle=true]
 	 * @memberof CardGameOptions
 	 */
-	shuffle? : ((cards: Card[]) => Card[]) | boolean;
+	shuffle?: ((cards: Card[]) => Card[]) | boolean;
 }
 
 export abstract class CardGame {
@@ -144,6 +144,8 @@ export abstract class CardGame {
 		Object.values(this.players).forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
 	}
 
+
+
 	protected initializePlayers() {
 		this.players = {};
 
@@ -152,20 +154,59 @@ export abstract class CardGame {
 		else if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
 		else playerPositions = ["bottom", "left", "top", "right"];
 
-		for (let i = 0; i < this.opts.players; i++) {
-			let id = i+"";
-			this.players[id] = new CardGamePlayer(
-				id,
-				this.domHelper,
-				this,
-				`Player ${i + 1}`,
-				playerPositions[i],
-				i !== 0,
-				i === 0
-			);
+		var user = this.server.auth().currentUser;
+		//It's recommended to use an auth observer, but we can't re-generate an id each time auth state changes.
+
+		let uid: string;
+		console.log(this.server.auth());
+		console.log(this.server.auth().currentUser);
+		console.log(this.server.auth());
+		if (user) {
+			uid = user.uid;
+			for (let i = 0; i < this.opts.players; i++) {
+				let id = (i > 0 ? (uid + "--localplayermirror" + i) : (uid));
+				this.players[id] = new CardGamePlayer(
+					id,
+					this.domHelper,
+					this,
+					`Player ${i + 1}`,
+					playerPositions[i],
+					i !== 0,
+					i === 0
+				);
+			}
+
+
+			this.player = this.players[0];
+		} else {
+			this.server.auth().signInAnonymously().catch((error) => {
+				// Handle Errors here.
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				// ...
+				console.log(error);
+			}).then(() => {
+				uid = this.server.auth().currentUser.uid;
+				console.log(uid);
+				console.log(12773);
+				for (let i = 0; i < this.opts.players; i++) {
+					let id = (i > 0 ? (uid + "--localplayermirror" + i) : (uid));
+					this.players[id] = new CardGamePlayer(
+						id,
+						this.domHelper,
+						this,
+						`Player ${i + 1}`,
+						playerPositions[i],
+						i !== 0,
+						i === 0
+					);
+				}
+
+
+				this.player = this.players[0];
+			});
 		}
 
-		this.player = this.players[0];
 	}
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
@@ -188,7 +229,7 @@ export abstract class CardGame {
 		}
 	}
 
-	onDeckClick() {}
+	onDeckClick() { }
 	abstract onSelectedCardsChange(selectedCards: Card[]);
 	abstract onPlayBtnClick();
 	protected abstract startGame();
