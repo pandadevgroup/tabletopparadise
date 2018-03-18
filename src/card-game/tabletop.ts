@@ -27,7 +27,7 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 		this.cards = [...this.cards, ...cards];
 
 		cards.forEach((card, i) => {
-			card.index = ++this.numCards[position];
+			card.index = this.numCards[position]++;
 			card.position = position;
 			card.parent = this;
 			card.setActionable(false);
