@@ -34,7 +34,7 @@ export interface CardGameOptions extends TabletopOptions {
 	 * @type {((cards: Card[]) => Card[]) | boolean} [shuffle=true]
 	 * @memberof CardGameOptions
 	 */
-	shuffle? : ((cards: Card[]) => Card[]) | boolean;
+	shuffle?: ((cards: Card[]) => Card[]) | boolean;
 }
 
 export abstract class CardGame {
@@ -151,21 +151,55 @@ export abstract class CardGame {
 		if (this.opts.players === 2) playerPositions = ["bottom", "top"];
 		else if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
 		else playerPositions = ["bottom", "left", "top", "right"];
+		let uid: string | number = localStorage.getItem("uid");
+		if (uid == null) {
 
-		for (let i = 0; i < this.opts.players; i++) {
-			let id = i+"";
-			this.players[id] = new CardGamePlayer(
+			try {
+				let newUid = (parseInt(prompt("Select your user ID(number 1-4)")) - 1) + "";
+				while (parseInt(newUid) < 0 || parseInt(newUid) > 3) {
+					newUid = (parseInt(prompt("Select your user ID(it must be a number 1-4)")) - 1) + "";
+				}
+				localStorage.setItem("uid",newUid);
+			}
+			catch (error) {
+				alert("Error: could not parse number.");
+				window.location.href = window.location.href;
+			}
+
+		}
+		//console.log(uid);
+		//console.log(parseInt(uid));
+		uid = parseInt(uid);
+		//console.log(uid);
+		for (let i = uid; i < this.opts.players + uid; i++) {
+			//console.log("loop @ index " + i);
+			let index = i;
+			
+			//console.log(uid);
+			//console.log(index);
+			//console.log(this.opts.players);
+			//console.log(index >= this.opts.players);
+			//console.log(index - this.opts.players);
+			if (index >= this.opts.players) {
+
+				index = index - this.opts.players;
+
+			}
+			let id = index + "";
+			//console.log(index);
+			this.players[index] = new CardGamePlayer(
 				id,
 				this.domHelper,
 				this,
-				`Player ${i + 1}`,
-				playerPositions[i],
-				i !== 0,
-				i === 0
+				`Player ${index + 1}`,
+				playerPositions[index],
+				index !== uid,
+				index === uid
 			);
+			//console.log(this.players);
 		}
 
-		this.player = this.players[0];
+		this.player = this.players[uid];
 	}
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
@@ -188,7 +222,7 @@ export abstract class CardGame {
 		}
 	}
 
-	onDeckClick() {}
+	onDeckClick() { }
 	abstract onSelectedCardsChange(selectedCards: Card[]);
 	abstract onPlayBtnClick();
 	protected abstract startGame();
