@@ -20,7 +20,9 @@ export class ServerConnection {
 
 		this.start();
 	}
-
+	auth() {
+		return firebase.auth();
+	}
 	get(name: string) {
 		return firebase.database()
 			.ref(`/game/${this.gameId}/${name}`)

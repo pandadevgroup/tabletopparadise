@@ -1,14 +1,14 @@
-import "firebase";
+// import "firebase";
 
-export class User {
+// export class User {
 
-	constructor() {
+// 	constructor() {
 
-	}
+// 	}
 
-	// public onAuthStateChanged((Use) => void) {
-	// 	
-	// }
+// 	// public onAuthStateChanged((Use) => void) {
+// 	// 	
+// 	// }
 
 	
-}
+// }
