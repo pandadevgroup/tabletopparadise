@@ -192,7 +192,7 @@ export abstract class CardGame {
 				this.domHelper,
 				this,
 				`Player ${index + 1}`,
-				playerPositions[index],
+				playerPositions[i - uid],
 				index !== uid,
 				index === uid
 			);
