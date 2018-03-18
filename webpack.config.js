@@ -36,6 +36,8 @@ module.exports = {
 			{ from: "src/assets", to: "assets"},
 			{ from: "src/index.html", to: "."},
 			{ from: "src/game.html", to: "./game/index.html"},
+			{ from: "src/account", to: "./account"},
+			{ from: "src/lobby.html", to: "./lobby/index.html"},
 			{ from: "CNAME", to: "."}
 		])
 	],
