@@ -27,13 +27,11 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 		this.cards = [...this.cards, ...cards];
 
 		cards.forEach((card, i) => {
-			card.index = i + startIndex;
+			card.index = ++this.numCards[position];
 			card.position = position;
 			card.parent = this;
 			card.setActionable(false);
 		});
-
-		this.numCards[position] += cards.length;
 
 		this.resize();
 	}
@@ -46,10 +44,10 @@ export class CardGameTabletop extends Tabletop implements CardParent {
 		this.cards.forEach(card => card.render());
 	}
 
-	getCardPosition(index: number) {
-		const card = this.cards[index];
+	getCardPosition(card: Card) {
+		const index = card.index;
 		const opts = this.game.layoutOpts;
-		const selected = this.cards[index].selected;
+		const selected = card.selected;
 		const numCards = this.numCards[card.position];
 		let deckOffsetTop = 0;
 		let deckOffsetLeft = 0;

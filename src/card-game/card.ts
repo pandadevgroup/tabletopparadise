@@ -4,7 +4,7 @@ import { CardGameDomHelper } from "./dom-helper";
 import { CardGameTabletop } from "./tabletop";
 
 export interface CardParent {
-	getCardPosition(index?: number): any;
+	getCardPosition(card?: Card): any;
 }
 
 export class Card {
@@ -48,7 +48,7 @@ export class Card {
 	}
 
 	resize() {
-		const positionInfo = this.parent.getCardPosition(this.index);
+		const positionInfo = this.parent.getCardPosition(this);
 
 		this.domHelper.updateEl(this.$card, positionInfo);
 	}

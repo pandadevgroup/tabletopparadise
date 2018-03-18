@@ -47,11 +47,11 @@ export class Deck implements CardParent {
 		return selectedCards;
 	}
 
-	getCardPosition(index?) {
+	getCardPosition(card?: Card | number) {
 		return {
 			x: Math.round(this.game.tabletop.width / 2 - this.game.layoutOpts.cardWidth / 2),
 			y: Math.round(this.game.tabletop.height / 2 - this.game.layoutOpts.cardHeight / 2),
-			rotateX: index === -1 ? 0 : 180
+			rotateX: card === -1 ? 0 : 180
 		};
 	}
 

@@ -40,7 +40,8 @@ export class CardGamePlayer implements CardParent {
 		this.cards.forEach(card => card.render());
 	}
 
-	getCardPosition(index) {
+	getCardPosition(card: Card) {
+		const index = card.index;
 		const tbl = this.game.tabletop;
 		const opts = this.game.layoutOpts;
 		const selected = this.cards[index].selected;
