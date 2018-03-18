@@ -21,7 +21,7 @@ export class CardGamePlayer implements CardParent {
 		 * If false, this player is playing remotely.
 		 */
 		public isLocal: boolean
-	) { }
+	) {}
 
 	getCardIDs() {
 		return this.cards.map(card => card.id);

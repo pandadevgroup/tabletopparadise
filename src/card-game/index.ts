@@ -174,7 +174,7 @@ export abstract class CardGame {
 		for (let i = uid; i < this.opts.players + uid; i++) {
 			//console.log("loop @ index " + i);
 			let index = i;
-			
+
 			//console.log(uid);
 			//console.log(index);
 			//console.log(this.opts.players);

@@ -32,7 +32,7 @@ export class DrawCards extends CardGame {
 			this.deck.setCardOrder(action.payload.deck);
 			hands.forEach(hand => {
 				const cards = this.deck.getCardsFromIds(hand.cardIds);
-				
+
 				this.players[hand.playerId].setCards(cards);
 			});
 		});
@@ -40,7 +40,7 @@ export class DrawCards extends CardGame {
 		this.server.on("draw_card", (action: Action) => {
 			let playerId = action.payload.playerId;
 			let card = this.drawCard(this.players[playerId]);
-			if (this.players[playerId] === this.player) card.setActionable(true);
+			if (playerId === this.player.id) card.setActionable(true);
 		});
 
 		this.server.on("play_cards", (action: Action) => {
@@ -71,7 +71,6 @@ export class DrawCards extends CardGame {
 
 	startGame() {
 		this.deck.setActionable(true);
-		this.players[0].cards.forEach(card => card.setActionable(true));
 
 		$("#loading").addClass("hidden");
 		$("#game").removeClass("hidden");
