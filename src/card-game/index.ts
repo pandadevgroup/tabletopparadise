@@ -70,12 +70,11 @@ export abstract class CardGame {
 		this.initializePlayers();
 		this.initializeDeck();
 
-		setTimeout(() => {
+		this.server.runPrevActions().then(() => {
 			this.domHelper.ready();
-			// Replace this setTimeout with listening for Firebase to finish
 			this.render();
 			this.startGame();
-		}, 1000);
+		});
 	}
 
 	get showPlayButton() {
