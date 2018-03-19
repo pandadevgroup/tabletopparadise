@@ -42,8 +42,18 @@ export class ServerConnection {
 		return firebase.database()
 			.ref(`/game/${this.gameId}/actions`)
 			.once("value")
-			.then(snap => Object.values(snap.val()) as Action[])
-			.then(actions => actions.forEach(action => this.handleAction(action)));
+			.then((snap) => {
+				if (snap.val() == null) {
+					return snap.val();
+				} else {
+					return Object.values(snap.val()) as Action[]
+				}
+			})
+			.then((actions) => {
+				if (actions != null) {
+					actions.forEach(action => this.handleAction(action))
+				}
+			});
 	}
 
 	start() {
