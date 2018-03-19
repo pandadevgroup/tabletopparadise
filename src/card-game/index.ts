@@ -231,3 +231,4 @@ export abstract class CardGame {
 export * from "./card";
 export * from "./deck";
 export * from "./player";
+export * from "./options";

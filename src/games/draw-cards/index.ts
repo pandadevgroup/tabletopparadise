@@ -1,5 +1,7 @@
 import { CardGame, CardGamePlayer, Card } from "../../card-game";
 import { Deck } from "../../card-game";
+import { Options } from "../../card-game";
+
 import { Action } from "../../server";
 
 export class DrawCards extends CardGame {

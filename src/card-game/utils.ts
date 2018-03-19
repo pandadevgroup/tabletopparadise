@@ -28,7 +28,7 @@ export class CardUtils {
 				}
 			});
 		} else {
-			// Sort cards based on numbers, then suit
+			// Sort cards based on value, then suit
 			cards.sort(function (a, b) {
 				if (a.number == b.number) {
 					return suitValueSystem.indexOf(a.suit) - suitValueSystem.indexOf(b.suit);
