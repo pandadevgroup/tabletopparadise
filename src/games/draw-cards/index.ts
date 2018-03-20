@@ -13,7 +13,13 @@ export class DrawCards extends CardGame {
 		});
 
 		this.server.get("deckSynced").then(synced => {
-			if (synced) return;
+			if (synced) { 
+				// Since this is only called once we dont need it since it can't be shown.
+				// If this is done in an listener in the future, uncomment this line.
+				//this.domHelper.hideWaitingMsg(); 
+
+				return; 
+			}
 			this.server.get("hostId").then(hostId => {
 				if (hostId == this.player.id) {
 					// if this player is host sync the cards.
@@ -25,6 +31,8 @@ export class DrawCards extends CardGame {
 						}))
 					}));
 					this.server.set("deckSynced", true);
+				} else {
+					this.domHelper.showWaitingMsg();
 				}
 			});
 		});

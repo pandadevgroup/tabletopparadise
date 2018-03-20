@@ -20,7 +20,33 @@ export class CardGameDomHelper extends DomHelper {
 		if (!this._ready) return;
 		$btn.removeClass("play-button--show");
 	}
+	showWaitingMsg() {
+		if (!this._ready) return;
+		$("#waiting-message").addClass("waiting-message--show");
+	}
 
+	hideWaitingMsg() {
+		if (!this._ready) return;
+		$("#waiting-message").removeClass("waiting-message--show");
+		
+	}
+	/* todo: add styling, test to make sure this actually works
+	addCallout($inner: JQuery<HTMLElement>) {
+		if (!this._ready) return;
+		let calloutHTML = `
+		<div class="callout">
+
+		</div>
+		`
+		$("#callouts").prepend($(calloutHTML).prepend($inner));
+		return $(calloutHTML);
+	}
+
+	removeCallout($callout: JQuery<HTMLElement>) {
+		if (!this._ready) return;
+		$callout.remove();
+	}
+	*/
 	createPlayButtonFrag() {
 		let $btn = $(`
 			<button class="play-button btn btn-dark btn-lg">Play!</button>
