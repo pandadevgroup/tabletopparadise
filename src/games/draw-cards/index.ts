@@ -12,15 +12,16 @@ export class DrawCards extends CardGame {
 			showDeck: true
 		});
 
-		this.server.get("deckSynced").then(synced => {
-			if (synced) { 
+		this.server.get("deckSynced").then(snapshot => {
+			if (snapshot.val()) { 
 				// Since this is only called once we dont need it since it can't be shown.
 				// If this is done in an listener in the future, uncomment this line.
 				//this.domHelper.hideWaitingMsg(); 
 
 				return; 
 			}
-			this.server.get("hostId").then(hostId => {
+			this.server.get("hostId").then(snapshot => {
+				let hostId = snapshot.val();
 				if (hostId == this.player.id) {
 					// if this player is host sync the cards.
 					this.server.dispatch(new Action("deck_sync", {
@@ -42,7 +43,6 @@ export class DrawCards extends CardGame {
 			this.deck.setCardOrder(action.payload.deck);
 			hands.forEach(hand => {
 				const cards = this.deck.getCardsFromIds(hand.cardIds);
-
 				this.players[hand.playerId].setCards(cards);
 			});
 		});

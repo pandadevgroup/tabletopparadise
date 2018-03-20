@@ -29,7 +29,6 @@ export class ServerConnection {
 		return firebase.database()
 			.ref(`/game/${this.gameId}/${name}`)
 			.once("value")
-			.then(snap => snap.val());
 	}
 
 	set(name: string, value: any) {

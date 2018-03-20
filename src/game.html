@@ -83,10 +83,14 @@
 					<p>
 						Are you sure you would like to leave the game? You will not be able to rejoin.
 					</p>
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="leave-logout">
+						<label class="custom-control-label" for="leave-logout">Also log me out</label>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<a role="button" class="btn btn-danger" href="/">Leave</a>
+					<a role="button" class="btn btn-danger" href="/" id="leave">Leave</a>
 				</div>
 			</div>
 		</div>
@@ -98,6 +102,21 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 	<script src="/bundle.js"></script>
+	<script>
+		$("#leave").click(function () {
+			if ($("#leave-logout").prop('checked')) {
+				$("#game").addClass("hidden");
+				$("#loading").removeClass("hidden");
+				firebase.auth().signOut().then(function () {
+					window.location.href = "/";
+				}).catch(function (error) {
+					console.log(error);
+				});
+			} else {
+				window.location.href = "/";
+			}
+		})
+	</script>
 
 </body>
 

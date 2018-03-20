@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- <script defer src="/assets/fontawesome/js/fa-brands.min.js"></script> -->
-	<!-- <script defer src="/assets/fontawesome/js/fa-light.min.js"></script> -->
-	<!-- <script defer src="/assets/fontawesome/js/fa-regular.min.js"></script> -->
-	<script defer src="/assets/fontawesome/js/fa-solid.min.js"></script>
-	<script src="/assets/fontawesome/js/fontawesome.min.js"></script>
+    <!-- <script defer src="/assets/fontawesome/js/fa-light.min.js"></script> -->
+    <!-- <script defer src="/assets/fontawesome/js/fa-regular.min.js"></script> -->
+    <script defer src="/assets/fontawesome/js/fa-solid.min.js"></script>
+    <script src="/assets/fontawesome/js/fontawesome.min.js"></script>
 
 </head>
 
@@ -20,7 +20,11 @@
     <div class="container">
         <div class="col-lg-12">
             <h1>Tabletop Paradise</h1>
-           
+            <b>Take slot(0-3 specifies the player slot you take over. The current player will be kicked out. In a real game
+                this would be done in lobby):</b>
+            <input type="number" class="form-control" placeholder="1" id="slot">
+            <br>
+            <button class="btn btn-primary btn-block" id="login">Login anonymously</button>
         </div>
     </div>
 
@@ -29,7 +33,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAulUtZj74h98YWLWJ9uZPn1nI0N_480HQ",
+            authDomain: "tabletop-paradise.firebaseapp.com",
+            databaseURL: "https://tabletop-paradise.firebaseio.com",
+            projectId: "tabletop-paradise",
+            storageBucket: "tabletop-paradise.appspot.com",
+            messagingSenderId: "941646063027"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        $("#login").click(function () {
+            firebase.auth().signInAnonymously().catch(function (error) {
+                // Handle Errors here.
+                console.log(error);
 
+            }).then(function (user) {
+                firebase.database().ref("/game/test/players/").once("value").then(function (snapshot) {
+                    var newdata = snapshot.val();
+                    for (var key in newdata) {
+                        if (newdata.hasOwnProperty(key) && newdata[key].playerNumber == parseInt($("#slot").val(), 10)) {
+                            delete newdata[key];
+                            newdata[user.uid] = {
+                                playerNumber: parseInt($("#slot").val(), 10)
+                            };
+                            break;
+                        }
+                    }
+                    firebase.database().ref("/game/test/players/").set(newdata).then(() => {
+                        //console.log("done");
+                        //console.log(user.uid);
+                        window.location.href = "/";
+                    });
+
+
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

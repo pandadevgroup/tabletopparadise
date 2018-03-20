@@ -67,14 +67,16 @@ export abstract class CardGame {
 		}, this.domHelper, this);
 
 		this.initializeDom();
-		this.initializePlayers();
-		this.initializeDeck();
+		this.initializePlayers(() => {
+			this.initializeDeck();
 
-		this.server.runPrevActions().then(() => {
-			this.domHelper.ready();
-			this.render();
-			this.startGame();
+			this.server.runPrevActions().then(() => {
+				this.domHelper.ready();
+				this.render();
+				this.startGame();
+			});
 		});
+		
 	}
 
 	get showPlayButton() {
@@ -144,7 +146,7 @@ export abstract class CardGame {
 		Object.values(this.players).forEach(player => player.addCards(this.deck.get(this.opts.initialHandSize)));
 	}
 
-	protected initializePlayers() {
+	protected initializePlayers(callback) {
 		this.players = {};
 
 		let playerPositions;
@@ -156,17 +158,19 @@ export abstract class CardGame {
 		this.server.get("players").then((snapshot) => {
 
 			let user: firebase.User = this.server.auth().currentUser;
+			
+			console.log(user);
+			console.log(user == null);
+			if (user == null) {
+				//this should never happen because we will get the game id from the user and make them authenticate then
+				window.location.href = "/account/login/";
+				return;
+			}
 			let uid: string = user.uid;
 
-			if (uid == null) {
-				//this should never happen because we will get the game id from the user and make them authenticate then
-				window.location.href = "/account/login/"
-
-			}
-			//console.log(uid);
-			//console.log(parseInt(uid));
-			let playerNumber = parseInt(snapshot.val()[uid].playerNumber);
-			//console.log(uid);
+			let data = snapshot.val();
+			let playerNumber = parseInt(data[uid].playerNumber);
+			//console.log(playerNumber);
 			for (let i = playerNumber; i < this.opts.players + playerNumber; i++) {
 				//console.log("loop @ index " + i);
 				let index = i;
@@ -195,6 +199,7 @@ export abstract class CardGame {
 			}
 
 			this.player = this.players[playerNumber];
+			callback();
 		});
 
 
