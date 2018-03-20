@@ -151,55 +151,53 @@ export abstract class CardGame {
 		if (this.opts.players === 2) playerPositions = ["bottom", "top"];
 		else if (this.opts.players === 3) playerPositions = ["bottom", "left", "right"];
 		else playerPositions = ["bottom", "left", "top", "right"];
-		let uid: string | number = localStorage.getItem("uid");
-		if (uid == null) {
 
-			try {
-				let newUid = (parseInt(prompt("Select your user ID(number 1-4)")) - 1) + "";
-				while (parseInt(newUid) < 0 || parseInt(newUid) > 3) {
-					newUid = (parseInt(prompt("Select your user ID(it must be a number 1-4)")) - 1) + "";
-				}
-				localStorage.setItem("uid",newUid);
+
+		this.server.get("players").then((snapshot) => {
+
+			let user: firebase.User = this.server.auth().currentUser;
+			let uid: string = user.uid;
+
+			if (uid == null) {
+				//this should never happen because we will get the game id from the user and make them authenticate then
+				window.location.href = "/account/login/"
+
 			}
-			catch (error) {
-				alert("Error: could not parse number.");
-				window.location.href = window.location.href;
-			}
-
-		}
-		//console.log(uid);
-		//console.log(parseInt(uid));
-		uid = parseInt(uid);
-		//console.log(uid);
-		for (let i = uid; i < this.opts.players + uid; i++) {
-			//console.log("loop @ index " + i);
-			let index = i;
-
 			//console.log(uid);
-			//console.log(index);
-			//console.log(this.opts.players);
-			//console.log(index >= this.opts.players);
-			//console.log(index - this.opts.players);
-			if (index >= this.opts.players) {
+			//console.log(parseInt(uid));
+			let playerNumber = parseInt(snapshot.val()[uid].playerNumber);
+			//console.log(uid);
+			for (let i = playerNumber; i < this.opts.players + playerNumber; i++) {
+				//console.log("loop @ index " + i);
+				let index = i;
 
-				index = index - this.opts.players;
+				//console.log(uid);
+				//console.log(index);
+				//console.log(this.opts.players);
+				//console.log(index >= this.opts.players);
+				//console.log(index - this.opts.players);
+				if (index >= this.opts.players) {
 
+					index = index - this.opts.players;
+
+				}
+				//console.log(index);
+				this.players[index] = new CardGamePlayer(
+					index + "",
+					this.domHelper,
+					this,
+					`Player ${index + 1}`,
+					playerPositions[i - playerNumber],
+					index !== playerNumber,
+					index === playerNumber
+				);
+				//console.log(this.players);
 			}
-			let id = index + "";
-			//console.log(index);
-			this.players[index] = new CardGamePlayer(
-				id,
-				this.domHelper,
-				this,
-				`Player ${index + 1}`,
-				playerPositions[i - uid],
-				index !== uid,
-				index === uid
-			);
-			//console.log(this.players);
-		}
 
-		this.player = this.players[uid];
+			this.player = this.players[playerNumber];
+		});
+
+
 	}
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
