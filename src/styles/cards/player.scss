@@ -1,14 +1,35 @@
 @import "mixins";
-
 .player {
-	@include will-transform;
-	width: 140px;
-	height: 40px;
-	background-color: rgba(0, 0, 255, 0.7);
-	color:#d3d3d3;
+    @include will-transform;
+    width: 140px;
+    height: 40px;
+    background-color: rgba(0, 0, 255, 0.7);
+    color: #d3d3d3;
 	z-index: 1000;
 
-	&__name {
+	//background color speed
+	$bcspeed:500ms;
+    -webkit-transition: background-color  $bcspeed linear;
+    -moz-transition: background-color $bcspeed linear;
+    -o-transition: background-color $bcspeed linear;
+    -ms-transition: background-color $bcspeed linear;
+	transition: background-color $bcspeed linear;
 
-	}
+	//color speed
+	$cspeed:$bcspeed*0.4;
+	-webkit-transition: color  $cspeed linear;
+    -moz-transition: color $cspeed linear;
+    -o-transition: color $cspeed linear;
+    -ms-transition: color $cspeed linear;
+    transition: color $cspeed linear;
+    &:hover {
+		background-color: rgba(0, 0, 255, 0.2);
+		color:#333333;
+
+		//dosen't work. TODO
+		//z-index:-1;
+    }
+    // &__name {
+
+	// }
 }
