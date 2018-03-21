@@ -21,7 +21,7 @@ export class DrawCards extends CardGame {
 			if (snapshot.val()) {
 				// Since this is only called once we dont need it since it can't be shown.
 				// If this is done in an listener in the future, uncomment this line.
-				//this.domHelper.hideWaitingMsg(); 
+				//this.domHelper.hideWaitingMsg();
 
 				return;
 			}
@@ -84,6 +84,7 @@ export class DrawCards extends CardGame {
 			cardIds: this.player.selectedCards.map(card => card.id)
 		}));
 		this.player.clearSelectedCards();
+		this.onSelectedCardsChange(this.player.selectedCards);
 	}
 
 	startGame() {
