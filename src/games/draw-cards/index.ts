@@ -62,6 +62,10 @@ export class DrawCards extends CardGame {
 		this.server.on("play_cards", (action: Action) => {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
+			
+			if (action.payload.cardIds.substring(1) != "s" && action.payload.cardIds.substring(1) != "h") {
+				return;//only allow spades or hearts
+			}
 			this.playCards(player, player.getCards(action.payload.cardIds));
 		});
 	}
