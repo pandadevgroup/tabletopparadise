@@ -20,7 +20,10 @@ export class CardGamePlayer implements CardParent {
 		 *
 		 * If false, this player is playing remotely.
 		 */
-		public isLocal: boolean
+		public isLocal: boolean,
+		public auth: {
+			uid:string;
+		} | firebase.User
 	) {}
 
 	getCardIDs() {

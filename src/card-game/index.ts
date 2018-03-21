@@ -76,7 +76,7 @@ export abstract class CardGame {
 				this.startGame();
 			});
 		});
-		
+
 	}
 
 	get showPlayButton() {
@@ -158,7 +158,7 @@ export abstract class CardGame {
 		this.server.get("players").then((snapshot) => {
 
 			let user: firebase.User = this.server.auth().currentUser;
-			
+
 			console.log(user);
 			console.log(user == null);
 			if (user == null) {
@@ -166,9 +166,15 @@ export abstract class CardGame {
 				window.location.href = "/account/login/";
 				return;
 			}
+
 			let uid: string = user.uid;
 
 			let data = snapshot.val();
+
+			if (data[uid] == null) {
+				alert("not part of game");
+				window.location.href = "/account/login/";
+			}
 			let playerNumber = parseInt(data[uid].playerNumber);
 			//console.log(playerNumber);
 			for (let i = playerNumber; i < this.opts.players + playerNumber; i++) {
@@ -193,7 +199,8 @@ export abstract class CardGame {
 					`Player ${index + 1}`,
 					playerPositions[i - playerNumber],
 					index !== playerNumber,
-					index === playerNumber
+					index === playerNumber,
+					user
 				);
 				//console.log(this.players);
 			}

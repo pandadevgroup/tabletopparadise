@@ -11,7 +11,12 @@ export class DrawCards extends CardGame {
 			initialHandSize: 5,
 			showDeck: true
 		});
-
+		Options.init();
+		
+		this.server.on("reload", (action: Action) => {
+			window.location.href = window.location.href;
+		});
+		
 		this.server.get("deckSynced").then(snapshot => {
 			if (snapshot.val()) { 
 				// Since this is only called once we dont need it since it can't be shown.
@@ -22,7 +27,7 @@ export class DrawCards extends CardGame {
 			}
 			this.server.get("hostId").then(snapshot => {
 				let hostId = snapshot.val();
-				if (hostId == this.player.id) {
+				if (hostId == this.player.auth.uid) {
 					// if this player is host sync the cards.
 					this.server.dispatch(new Action("deck_sync", {
 						deck: this.deck.getCardIDs(),
@@ -34,10 +39,11 @@ export class DrawCards extends CardGame {
 					this.server.set("deckSynced", true);
 				} else {
 					this.domHelper.showWaitingMsg();
+					this.deck.setActionable(false);
 				}
 			});
 		});
-
+		
 		this.server.on("deck_sync", (action: Action) => {
 			const { deck, hands } = action.payload;
 			this.deck.setCardOrder(action.payload.deck);

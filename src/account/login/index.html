@@ -22,7 +22,11 @@
             <h1>Tabletop Paradise</h1>
             <b>Take slot(0-3 specifies the player slot you take over. The current player will be kicked out. In a real game
                 this would be done in lobby):</b>
-            <input type="number" class="form-control" placeholder="1" id="slot">
+            <input type="number" class="form-control" placeholder="Enter a number..." id="slot">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="host">
+                <label class="custom-control-label" for="host">Also become host</label>
+            </div>
             <br>
             <button class="btn btn-primary btn-block" id="login">Login anonymously</button>
         </div>
@@ -47,7 +51,18 @@
         firebase.initializeApp(config);
     </script>
     <script>
+        if (firebase.auth().currentUser != null) {
+            firebase.auth().signOut().then(function () {
+                // Sign-out successful.
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
         $("#login").click(function () {
+            if (parseInt($("#slot").val(), 10) < 0 || parseInt($("#slot").val(), 10) > 3) {
+                alert("invalid number");
+                return;
+            }
             firebase.auth().signInAnonymously().catch(function (error) {
                 // Handle Errors here.
                 console.log(error);
@@ -55,7 +70,10 @@
             }).then(function (user) {
                 firebase.database().ref("/game/test/players/").once("value").then(function (snapshot) {
                     var newdata = snapshot.val();
+                    //console.log(snapshot.val());
                     for (var key in newdata) {
+                        //console.log(newdata[key].playerNumber);
+                        //console.log(parseInt($("#slot").val(), 10));
                         if (newdata.hasOwnProperty(key) && newdata[key].playerNumber == parseInt($("#slot").val(), 10)) {
                             delete newdata[key];
                             newdata[user.uid] = {
@@ -64,11 +82,26 @@
                             break;
                         }
                     }
-                    firebase.database().ref("/game/test/players/").set(newdata).then(() => {
-                        //console.log("done");
-                        //console.log(user.uid);
-                        window.location.href = "/";
-                    });
+                    console.log(newdata);
+                    if ($("#host").prop('checked')) {
+                        console.log("checked");
+
+                        firebase.database().ref("/game/test/hostId/").set(user.uid).then(() => {
+                            firebase.database().ref("/game/test/players/").set(newdata).then(() => {
+                                //console.log("done");
+                                //console.log(user.uid);
+                                window.location.href = "/";
+                            });
+                        });
+                    } else {
+                        firebase.database().ref("/game/test/players/").set(newdata).then(() => {
+                            //console.log("done");
+                            //console.log(user.uid);
+                            window.location.href = "/";
+                        });
+                    }
+
+
 
 
                 });
