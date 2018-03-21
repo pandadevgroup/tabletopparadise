@@ -12,18 +12,18 @@ export class DrawCards extends CardGame {
 			showDeck: true
 		});
 		Options.init();
-		
+
 		this.server.on("reload", (action: Action) => {
 			window.location.href = window.location.href;
 		});
-		
+
 		this.server.get("deckSynced").then(snapshot => {
-			if (snapshot.val()) { 
+			if (snapshot.val()) {
 				// Since this is only called once we dont need it since it can't be shown.
 				// If this is done in an listener in the future, uncomment this line.
 				//this.domHelper.hideWaitingMsg(); 
 
-				return; 
+				return;
 			}
 			this.server.get("hostId").then(snapshot => {
 				let hostId = snapshot.val();
@@ -43,7 +43,7 @@ export class DrawCards extends CardGame {
 				}
 			});
 		});
-		
+
 		this.server.on("deck_sync", (action: Action) => {
 			const { deck, hands } = action.payload;
 			this.deck.setCardOrder(action.payload.deck);
@@ -63,9 +63,6 @@ export class DrawCards extends CardGame {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
 			
-			if (action.payload.cardIds.substring(1) != "s" && action.payload.cardIds.substring(1) != "h") {
-				return;//only allow spades or hearts
-			}
 			this.playCards(player, player.getCards(action.payload.cardIds));
 		});
 	}
