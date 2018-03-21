@@ -159,8 +159,7 @@ export abstract class CardGame {
 
 			let user: firebase.User = this.server.auth().currentUser;
 
-			console.log(user);
-			console.log(user == null);
+
 			if (user == null) {
 				//this should never happen because we will get the game id from the user and make them authenticate then
 				window.location.href = "/account/login/";
@@ -176,22 +175,15 @@ export abstract class CardGame {
 				window.location.href = "/account/login/";
 			}
 			let playerNumber = parseInt(data[uid].playerNumber);
-			//console.log(playerNumber);
 			for (let i = playerNumber; i < this.opts.players + playerNumber; i++) {
-				//console.log("loop @ index " + i);
 				let index = i;
 
-				//console.log(uid);
-				//console.log(index);
-				//console.log(this.opts.players);
-				//console.log(index >= this.opts.players);
-				//console.log(index - this.opts.players);
+
 				if (index >= this.opts.players) {
 
 					index = index - this.opts.players;
 
 				}
-				//console.log(index);
 				this.players[index] = new CardGamePlayer(
 					index + "",
 					this.domHelper,
@@ -202,7 +194,6 @@ export abstract class CardGame {
 					index === playerNumber,
 					user
 				);
-				//console.log(this.players);
 			}
 
 			this.player = this.players[playerNumber];

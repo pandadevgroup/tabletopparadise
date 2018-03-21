@@ -76,8 +76,7 @@ export class ServerConnection {
 		action.meta.timestamp = Date.now();
 		action.meta.timestampString = new Date().toString();
 		action.meta.key = firebase.database().ref(`/game/${this.gameId}/actions`).push().key;
-		console.log(action);
-		console.log(action.meta.key);
+
 
 		return this.set(`actions/${action.meta.key}`, action);
 	}
@@ -85,8 +84,10 @@ export class ServerConnection {
 	private handleAction(action: Action) {
 		this.listeners.forEach(listener => {
 			if (listener.event === action.event) {
+
 				if (action.meta.type === Action.ONE_TIME_REQUEST) {
-					if (!action.meta.expired && (action.meta.fufilledBy ? action.meta.fufilledBy.indexOf(this.auth().currentUser.uid) == -1 : true)) {
+
+					if (!action.meta.expired && (action.meta.fufilledBy != undefined ? action.meta.fufilledBy.indexOf(this.auth().currentUser.uid) == -1 : true)) {
 						if (action.meta.expireDate > Date.now()) {
 							//expired
 							this.set(`actions/${action.meta.key}/meta/expired`, true);
