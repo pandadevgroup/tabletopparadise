@@ -79,6 +79,11 @@ export class DrawCards extends CardGame {
 	}
 
 	onPlayBtnClick() {
+		for (var i = 0; i < this.player.selectedCards.length; i ++) {
+			if (this.player.selectedCards[i].suit != Card.SPADE) {
+				return;
+			}
+		}
 		this.server.dispatch(new Action("play_cards", {
 			playerId: this.player.id,
 			cardIds: this.player.selectedCards.map(card => card.id)
