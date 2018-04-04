@@ -5,6 +5,7 @@ import { Options } from "../../card-game";
 import { Action } from "../../server";
 
 export class DrawCards extends CardGame {
+	public stage = 0;//this game lets you play suits in order, one suit per 'play'
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
 			players: 4,
@@ -71,10 +72,11 @@ export class DrawCards extends CardGame {
 
 	validateCards(cards) {
 		for (var i = 0; i < cards.length; i ++) {
-			if (cards[i].suit != Card.SPADE) {
+			if (cards[i].suit != Card.suits[this.stage]) {
 				return false;
 			}
 		}
+		this.stage = this.stage > Card.suits.length - 1 ? 0 : this.stage + 1;
 		return true;
 	}
 
