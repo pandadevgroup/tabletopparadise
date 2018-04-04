@@ -29,13 +29,15 @@ export class DrawCards extends CardGame {
 				let hostId = snapshot.val();
 				if (hostId == this.player.auth.uid) {
 					// if this player is host sync the cards.
-					this.server.dispatch(new Action("deck_sync", {
-						deck: this.deck.getCardIDs(),
-						hands: Object.values(this.players).map(player => ({
-							playerId: player.id,
-							cardIds: player.getCardIDs()
-						}))
-					}));
+					this.server.dispatch(
+						new Action("deck_sync", {
+							deck: this.deck.getCardIDs(),
+							hands: Object.values(this.players).map(player => ({
+								playerId: player.id,
+								cardIds: player.getCardIDs()
+							}))
+						})
+					);
 					this.server.set("deckSynced", true);
 				} else {
 					this.domHelper.showWaitingMsg();
@@ -62,15 +64,26 @@ export class DrawCards extends CardGame {
 		this.server.on("play_cards", (action: Action) => {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
-			
+
 			this.playCards(player, player.getCards(action.payload.cardIds));
 		});
 	}
 
+	validateCards(cards) {
+		for (var i = 0; i < cards.length; i ++) {
+			if (cards[i].suit != Card.SPADE) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	onDeckClick() {
-		this.server.dispatch(new Action("draw_card", {
-			playerId: this.player.id
-		}));
+		this.server.dispatch(
+			new Action("draw_card", {
+				playerId: this.player.id
+			})
+		);
 	}
 
 	onSelectedCardsChange(selectedCards: Card[]) {
@@ -79,15 +92,15 @@ export class DrawCards extends CardGame {
 	}
 
 	onPlayBtnClick() {
-		for (var i = 0; i < this.player.selectedCards.length; i ++) {
-			if (this.player.selectedCards[i].suit != Card.SPADE) {
-				return;
-			}
+		if (!validateCards(this.player.selectedCards)) {
+			return;
 		}
-		this.server.dispatch(new Action("play_cards", {
-			playerId: this.player.id,
-			cardIds: this.player.selectedCards.map(card => card.id)
-		}));
+		this.server.dispatch(
+			new Action("play_cards", {
+				playerId: this.player.id,
+				cardIds: this.player.selectedCards.map(card => card.id)
+			})
+		);
 		this.player.clearSelectedCards();
 		this.onSelectedCardsChange(this.player.selectedCards);
 	}
