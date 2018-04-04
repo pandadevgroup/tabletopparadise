@@ -1,3 +1,4 @@
-import { DrawCards } from "./games/draw-cards";
-
-const game = new DrawCards($("#game"));
+//import { BasicGame } from "./games/basic";
+import {BridgeGame} from "./games/bridge"
+//const game = new BasicGame($("#game"));
+const game = new BridgeGame($("#game"));

@@ -4,7 +4,7 @@ import { Options } from "../../card-game";
 
 import { Action } from "../../server";
 
-export class DrawCards extends CardGame {
+export class BasicGame extends CardGame {
 	public stage = 0;//this game lets you play suits in order, one suit per 'play'
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -94,7 +94,7 @@ export class DrawCards extends CardGame {
 	}
 
 	onPlayBtnClick() {
-		if (!validateCards(this.player.selectedCards)) {
+		if (!this.validateCards(this.player.selectedCards)) {
 			return;
 		}
 		this.server.dispatch(
