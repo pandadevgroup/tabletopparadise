@@ -5,8 +5,8 @@ import { Options } from "../../card-game";
 import { Action } from "../../server";
 
 export class BridgeGame extends CardGame {
-	public suit = 0;//based on Card.SUITS
-	public localPlayersTurn = true;// is it the turn of the player running this instance
+	public suit = 0; //based on Card.SUITS
+	public localPlayersTurn = true; // is it the turn of the player running this instance
 
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
@@ -72,30 +72,31 @@ export class BridgeGame extends CardGame {
 		});
 		this.server.on("turnSwitch", (action: Action) => {
 			this.player.setCardsActionable(action.payload.nextTurn !== this.player.id);
-			if (action.payload.nextTurn !== this.player.id)
-				console.log("My Turn!")
+			if (action.payload.nextTurn !== this.player.id) {
+				console.log("My Turn!");
+			}
 		});
-		
-		
 	}
-	
+
 	validateCards(cards) {
 		if (!this.localPlayersTurn) {
 			return;
 		}
-		for (var i = 0; i < cards.length; i ++) {
+		for (var i = 0; i < cards.length; i++) {
 			if (cards[i].suit != Card.suits[this.suit]) {
 				return false;
 			}
 		}
 		this.server.dispatch(
 			new Action("turn_switch", {
-				parent:this.player.id,
-				nextTurn:this.players[this.player.id].playerNumber + 1 >= Object.keys(this.players).length ? this.players[0].id : this.players[
-					this.getPlayerIdByNumber(this.players[this.player.id].playerNumber + 1)].id
+				parent: this.player.id,
+				nextTurn:
+					this.players[this.player.id].playerNumber + 1 >= Object.keys(this.players).length
+						? this.players[0].id
+						: this.players[this.getPlayerIdByNumber(this.players[this.player.id].playerNumber + 1)].id
 			})
-		)
-		
+		);
+
 		this.suit = this.suit > Card.suits.length - 1 ? 0 : this.suit + 1;
 		return true;
 	}
