@@ -23,7 +23,8 @@ export class CardGamePlayer implements CardParent {
 		public isLocal: boolean,
 		public auth: {
 			uid:string;
-		} | firebase.User
+		} | firebase.User,
+		public playerNumber: number
 	) {}
 
 	getCardIDs() {
@@ -128,6 +129,7 @@ export class CardGamePlayer implements CardParent {
 			card.parent = this;
 			card.setVisible(true);
 		});
+
 	}
 
 	removeCards(cards: Card[]) {
@@ -137,6 +139,7 @@ export class CardGamePlayer implements CardParent {
 		this.cards.forEach((card, i) => {
 			card.index = i;
 		});
+		
 	}
 
 	getCards(cardIds: string[]) {
@@ -148,7 +151,12 @@ export class CardGamePlayer implements CardParent {
 		this.cards = [];
 		this.addCards(cards);
 	}
-
+	setCardsActionable(actionable: boolean) {
+		for (var i = 0; i < this.cards.length; i ++) {
+			this.cards[i].setActionable(actionable);
+		}
+		
+	}
 	clearSelectedCards() {
 		this.selectedCards = [];
 	}
@@ -162,4 +170,5 @@ export class CardGamePlayer implements CardParent {
 
 		this.game.onCardClick(this, index, this.selectedCards);
 	}
+
 }
