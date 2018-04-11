@@ -71,8 +71,9 @@ export class BridgeGame extends CardGame {
 			this.playCards(player, player.getCards(action.payload.cardIds));
 		});
 		this.server.on("turnSwitch", (action: Action) => {
-			this.player.cards.= (action.payload.nextTurn !== this.player.id);
-			
+			this.player.setCardsActionable(action.payload.nextTurn !== this.player.id);
+			if (action.payload.nextTurn !== this.player.id)
+				console.log("My Turn!")
 		});
 		
 		
