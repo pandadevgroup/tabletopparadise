@@ -5,7 +5,9 @@ import { Options } from "../../card-game";
 import { Action } from "../../server";
 
 export class BridgeGame extends CardGame {
-	public stage = 0;//this game lets you play suits in order, one suit per 'play'
+	public suit = 0;//based on Card.SUITS
+	public localPlayersTurn = true;// is it the turn of the player running this instance
+
 	constructor(protected container: JQuery<HTMLElement>) {
 		super(container, {
 			players: 4,
@@ -68,17 +70,32 @@ export class BridgeGame extends CardGame {
 
 			this.playCards(player, player.getCards(action.payload.cardIds));
 		});
+		this.server.on("turnSwitch", (action: Action) => {
+			this.player.cards.= (action.payload.nextTurn !== this.player.id);
+			
+		});
 		
 		
 	}
-
+	
 	validateCards(cards) {
+		if (!this.localPlayersTurn) {
+			return;
+		}
 		for (var i = 0; i < cards.length; i ++) {
-			if (cards[i].suit != Card.suits[this.stage]) {
+			if (cards[i].suit != Card.suits[this.suit]) {
 				return false;
 			}
 		}
-		this.stage = this.stage > Card.suits.length - 1 ? 0 : this.stage + 1;
+		this.server.dispatch(
+			new Action("turn_switch", {
+				parent:this.player.id,
+				nextTurn:this.players[this.player.id].playerNumber + 1 >= Object.keys(this.players).length ? this.players[0].id : this.players[
+					this.getPlayerIdByNumber(this.players[this.player.id].playerNumber + 1)].id
+			})
+		)
+		
+		this.suit = this.suit > Card.suits.length - 1 ? 0 : this.suit + 1;
 		return true;
 	}
 

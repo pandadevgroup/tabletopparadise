@@ -92,7 +92,14 @@ export abstract class CardGame {
 		}
 		this._showPlayButton = show;
 	}
-
+	public getPlayerIdByNumber(id: number) {
+		for (var key in this.players) {
+			if (this.players.hasOwnProperty(key) && this.players[key].playerNumber === id) {
+				return key;
+			}
+		}
+		return "";
+	}
 	protected initializeDom() {
 		this.$playButton = this.domHelper.createPlayButtonFrag();
 		this.$playButton.click(() => this.onPlayBtnClick());
@@ -192,7 +199,8 @@ export abstract class CardGame {
 					playerPositions[i - playerNumber],
 					index !== playerNumber,
 					index === playerNumber,
-					user
+					user,
+					snapshot.playerNumber
 				);
 			}
 
