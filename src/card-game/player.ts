@@ -150,6 +150,7 @@ export class CardGamePlayer implements CardParent {
 	setCards(cards: Card[]) {
 		this.cards = [];
 		this.addCards(cards);
+		return this;//supports chaining
 
 	}
 	setCardsActionable(actionable: boolean) {
