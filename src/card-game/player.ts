@@ -35,6 +35,9 @@ export class CardGamePlayer implements CardParent {
 		let playerPos = this.getPlayerPosition();
 		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.resize());
+
+		return this;//supports chaining
+
 	}
 
 	render() {
@@ -42,6 +45,9 @@ export class CardGamePlayer implements CardParent {
 		let playerPos = this.getPlayerPosition();
 		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.render());
+
+		return this;//supports chaining
+
 	}
 
 	getCardPosition(card: Card) {
