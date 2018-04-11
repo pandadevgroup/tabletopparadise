@@ -129,7 +129,7 @@ export class CardGamePlayer implements CardParent {
 			card.parent = this;
 			card.setVisible(true);
 		});
-
+		return this;//supports chaining
 	}
 
 	removeCards(cards: Card[]) {
@@ -139,7 +139,7 @@ export class CardGamePlayer implements CardParent {
 		this.cards.forEach((card, i) => {
 			card.index = i;
 		});
-		
+		return this;//supports chaining
 	}
 
 	getCards(cardIds: string[]) {
@@ -150,15 +150,17 @@ export class CardGamePlayer implements CardParent {
 	setCards(cards: Card[]) {
 		this.cards = [];
 		this.addCards(cards);
+
 	}
 	setCardsActionable(actionable: boolean) {
 		for (var i = 0; i < this.cards.length; i ++) {
 			this.cards[i].setActionable(actionable);
 		}
-		
+		return this;//supports chaining
 	}
 	clearSelectedCards() {
 		this.selectedCards = [];
+		return this;//supports chaining
 	}
 
 	handleCardClick(index: number) {
@@ -169,6 +171,7 @@ export class CardGamePlayer implements CardParent {
 		else this.selectedCards.splice(this.selectedCards.indexOf(card), 1);
 
 		this.game.onCardClick(this, index, this.selectedCards);
+		return this;//supports chaining
 	}
 
 }
