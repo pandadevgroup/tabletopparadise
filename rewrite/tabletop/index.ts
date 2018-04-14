@@ -7,3 +7,4 @@
 
 export * from "./tabletop";
 export * from "./dom-helper";
+export * from "./dom-element";
