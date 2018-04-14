@@ -2361,6 +2361,12 @@ esdoc-type-inference-plugin@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/esdoc-type-inference-plugin/-/esdoc-type-inference-plugin-1.0.1.tgz#aabca78641f99bd1ece6f302f045bbd631be72f5"
 
+esdoc-typescript-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/esdoc-typescript-plugin/-/esdoc-typescript-plugin-1.0.0.tgz#9d721f649e7678538c0378fcfb8a31a62cdd4f79"
+  dependencies:
+    typescript "2.3.4"
+
 esdoc-undocumented-identifier-plugin@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/esdoc-undocumented-identifier-plugin/-/esdoc-undocumented-identifier-plugin-1.0.0.tgz#82e05d371c32d12871140f1d5c81ec99fd9cc2c8"
@@ -6670,6 +6676,10 @@ type-is@~1.6.15:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typescript@2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.4.tgz#3d38321828231e434f287514959c37a82b629f42"
 
 typescript@^2.7.2:
   version "2.7.2"

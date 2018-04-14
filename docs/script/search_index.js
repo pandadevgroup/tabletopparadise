@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "tabletopparadise/rewrite/tabletop/index.ts~tabletop",
+    "class/rewrite/tabletop/index.ts~Tabletop.html",
+    "<span>Tabletop</span> <span class=\"search-result-import-path\">tabletopparadise/rewrite/tabletop/index.ts</span>",
+    "class"
+  ],
+  [
     "rewrite/.external-ecmascript.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "rewrite/.external-ecmascript.js~Array",
@@ -280,5 +286,11 @@ window.esdocSearchIndex = [
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
     "rewrite/.external-ecmascript.js~undefined",
     "external"
+  ],
+  [
+    "rewrite/tabletop/index.ts",
+    "file/rewrite/tabletop/index.ts.html",
+    "rewrite/tabletop/index.ts",
+    "file"
   ]
 ]

@@ -1,5 +1,8 @@
 {
   "source": "./rewrite",
   "destination": "./docs",
-  "plugins": [{"name": "esdoc-standard-plugin"}]
+  "plugins": [
+	{"name": "esdoc-typescript-plugin"},
+    {"name": "esdoc-standard-plugin"}
+  ]
 }

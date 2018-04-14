@@ -564,6 +564,32 @@
     "builtinExternal": true
   },
   {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "rewrite/tabletop/index.ts",
+    "content": "\r\n/**\r\n * Tabletop is a layout helper that provides the width and height of the play area.\r\n */\r\nexport class Tabletop {\r\n\r\n}\r\n",
+    "static": true,
+    "longname": "D:/Code/tabletopparadise/rewrite/tabletop/index.ts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Tabletop",
+    "memberof": "rewrite/tabletop/index.ts",
+    "static": true,
+    "longname": "rewrite/tabletop/index.ts~Tabletop",
+    "access": "public",
+    "export": true,
+    "importPath": "tabletopparadise/rewrite/tabletop/index.ts",
+    "importStyle": "{Tabletop}",
+    "description": "Tabletop is a layout helper that provides the width and height of the play area.",
+    "lineNumber": 5,
+    "interface": false
+  },
+  {
     "kind": "index",
     "content": "# Tabletop Paradise\r\n\r\n### Public Game APIs\r\n- initialize(): Initialize custom server listeners\r\n- updateActionableCards(player): Set actionable cards for player\r\n- validateCards(): Return `null` if given cards are able to be played. Otherwise, return an error message.\r\n- onCardPlay(): Called when player plays a card\r\n- onCardDraw(): Called when player draws a card\r\n\r\n### View\r\nhttps://tabletopparadise.pandadevgroup.com/\r\n",
     "longname": "D:\\Code\\tabletopparadise\\README.md",
@@ -573,7 +599,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\r\n  \"name\": \"tabletopparadise\",\r\n  \"version\": \"1.0.0\",\r\n  \"scripts\": {\r\n    \"start\": \"webpack-dev-server\",\r\n\t\"build\": \"webpack -p\",\r\n\t\"docs\": \"esdoc\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/pandadevgroup/tabletopparadise.git\"\r\n  },\r\n  \"author\": \"Nathan Wang and Jeffrey Meng\",\r\n  \"license\": \"MIT\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/pandadevgroup/tabletopparadise/issues\"\r\n  },\r\n  \"homepage\": \"https://github.com/pandadevgroup/tabletopparadise#readme\",\r\n  \"devDependencies\": {\r\n    \"@types/jquery\": \"^3.3.1\",\r\n    \"copy-webpack-plugin\": \"^4.5.1\",\r\n    \"css-loader\": \"^0.28.10\",\r\n    \"file-loader\": \"^1.1.11\",\r\n    \"firebase\": \"^4.11.0\",\r\n    \"node-sass\": \"^4.7.2\",\r\n    \"sass-loader\": \"^6.0.7\",\r\n    \"style-loader\": \"^0.20.3\",\r\n    \"ts-loader\": \"^4.0.1\",\r\n    \"typescript\": \"^2.7.2\",\r\n    \"webpack\": \"^4.1.1\",\r\n    \"webpack-cli\": \"^2.0.11\",\r\n    \"webpack-dev-server\": \"^3.1.1\"\r\n  },\r\n  \"dependencies\": {\r\n    \"esdoc\": \"^1.0.4\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"jquery\": \"^3.3.1\"\r\n  }\r\n}\r\n",
+    "content": "{\r\n  \"name\": \"tabletopparadise\",\r\n  \"version\": \"1.0.0\",\r\n  \"scripts\": {\r\n    \"start\": \"webpack-dev-server\",\r\n    \"build\": \"webpack -p\",\r\n    \"docs\": \"esdoc\"\r\n  },\r\n  \"repository\": {\r\n    \"type\": \"git\",\r\n    \"url\": \"git+https://github.com/pandadevgroup/tabletopparadise.git\"\r\n  },\r\n  \"author\": \"Nathan Wang and Jeffrey Meng\",\r\n  \"license\": \"MIT\",\r\n  \"bugs\": {\r\n    \"url\": \"https://github.com/pandadevgroup/tabletopparadise/issues\"\r\n  },\r\n  \"homepage\": \"https://github.com/pandadevgroup/tabletopparadise#readme\",\r\n  \"devDependencies\": {\r\n    \"@types/jquery\": \"^3.3.1\",\r\n    \"copy-webpack-plugin\": \"^4.5.1\",\r\n    \"css-loader\": \"^0.28.10\",\r\n    \"file-loader\": \"^1.1.11\",\r\n    \"firebase\": \"^4.11.0\",\r\n    \"node-sass\": \"^4.7.2\",\r\n    \"sass-loader\": \"^6.0.7\",\r\n    \"style-loader\": \"^0.20.3\",\r\n    \"ts-loader\": \"^4.0.1\",\r\n    \"typescript\": \"^2.7.2\",\r\n    \"webpack\": \"^4.1.1\",\r\n    \"webpack-cli\": \"^2.0.11\",\r\n    \"webpack-dev-server\": \"^3.1.1\"\r\n  },\r\n  \"dependencies\": {\r\n    \"esdoc\": \"^1.0.4\",\r\n    \"esdoc-standard-plugin\": \"^1.0.0\",\r\n    \"esdoc-typescript-plugin\": \"^1.0.0\",\r\n    \"jquery\": \"^3.3.1\"\r\n  }\r\n}\r\n",
     "longname": "D:\\Code\\tabletopparadise\\package.json",
     "name": "package.json",
     "static": true,
