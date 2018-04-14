@@ -10,7 +10,7 @@ import { DomHelper } from "./dom-helper";
  * class would implement `DomElement` so that it will be rendered
  * into the game area.
  *
- * There are two main methods to implement: render` and `resize`.
+ * There are two main methods to implement: `render` and `resize`.
  * - `render` is called once, and is where you create the element to
  *   be rendered. You attach any event listeners at this step. However,
  *   do not resize your element during this function. `resize` will be
