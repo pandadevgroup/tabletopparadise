@@ -292,5 +292,35 @@ window.esdocSearchIndex = [
     "file/rewrite/tabletop/index.ts.html",
     "rewrite/tabletop/index.ts",
     "file"
+  ],
+  [
+    "rewrite/tabletop/index.ts~tabletop#$container",
+    "class/rewrite/tabletop/index.ts~Tabletop.html#instance-member-$container",
+    "rewrite/tabletop/index.ts~Tabletop#$container",
+    "member"
+  ],
+  [
+    "rewrite/tabletop/index.ts~tabletop#constructor",
+    "class/rewrite/tabletop/index.ts~Tabletop.html#instance-constructor-constructor",
+    "rewrite/tabletop/index.ts~Tabletop#constructor",
+    "method"
+  ],
+  [
+    "rewrite/tabletop/index.ts~tabletop#height",
+    "class/rewrite/tabletop/index.ts~Tabletop.html#instance-member-height",
+    "rewrite/tabletop/index.ts~Tabletop#height",
+    "member"
+  ],
+  [
+    "rewrite/tabletop/index.ts~tabletop#resize",
+    "class/rewrite/tabletop/index.ts~Tabletop.html#instance-method-resize",
+    "rewrite/tabletop/index.ts~Tabletop#resize",
+    "method"
+  ],
+  [
+    "rewrite/tabletop/index.ts~tabletop#width",
+    "class/rewrite/tabletop/index.ts~Tabletop.html#instance-member-width",
+    "rewrite/tabletop/index.ts~Tabletop#width",
+    "member"
   ]
 ]

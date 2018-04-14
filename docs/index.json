@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "rewrite/tabletop/index.ts",
-    "content": "\r\n/**\r\n * Tabletop is a layout helper that provides the width and height of the play area.\r\n */\r\nexport class Tabletop {\r\n\r\n}\r\n",
+    "content": "\r\n/**\r\n * Tabletop is a layout helper that provides the width and height of the play area.\r\n *\r\n * You may extend this class for your own custom games to:\r\n * 1. Add layout options that depend on game size (eg. dynamically-sized playing cards)\r\n * 2. Add methods to calculate location of game objects (eg. a function that calculates the location of a player's playing hand)\r\n */\r\nexport class Tabletop {\r\n\t/**\r\n\t * The width (in px) of the play area.\r\n\t *\r\n\t * Recalculated in resize()\r\n\t */\r\n\tpublic width = 1080;\r\n\r\n\t/**\r\n\t * The height (in px) of the play area.\r\n\t *\r\n\t * Recalculated in resize()\r\n\t */\r\n\tpublic height = 720;\r\n\r\n\tconstructor(\r\n\t\t/**\r\n\t\t * The jQuery container where the game will be rendered.\r\n\t\t *\r\n\t\t * @access protected\r\n\t\t * @type {JQuery<HTMLElement>}\r\n\t\t */\r\n\t\tprotected $container: JQuery<HTMLElement>\r\n\t) {}\r\n\r\n\t/**\r\n\t * Updates width and height properties. Called on `$(window).resize()`.\r\n\t *\r\n\t * Extend this method to update any layout options that depend on game size\r\n\t * (eg. dynamically sized playing cards)\r\n\t *\r\n\t * Always remember to call `super()`!\r\n\t */\r\n\tresize() {\r\n\t\tthis.width = this.$container.width();\r\n\t\tthis.height = this.$container.height();\r\n\t}\r\n}\r\n",
     "static": true,
     "longname": "D:/Code/tabletopparadise/rewrite/tabletop/index.ts",
     "access": "public",
@@ -585,9 +585,87 @@
     "export": true,
     "importPath": "tabletopparadise/rewrite/tabletop/index.ts",
     "importStyle": "{Tabletop}",
-    "description": "Tabletop is a layout helper that provides the width and height of the play area.",
-    "lineNumber": 5,
+    "description": "Tabletop is a layout helper that provides the width and height of the play area.\n\nYou may extend this class for your own custom games to:\n1. Add layout options that depend on game size (eg. dynamically-sized playing cards)\n2. Add methods to calculate location of game objects (eg. a function that calculates the location of a player's playing hand)",
+    "lineNumber": 9,
     "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "rewrite/tabletop/index.ts~Tabletop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "rewrite/tabletop/index.ts~Tabletop#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "$container",
+    "memberof": "rewrite/tabletop/index.ts~Tabletop",
+    "static": false,
+    "longname": "rewrite/tabletop/index.ts~Tabletop#$container",
+    "access": "public",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "width",
+    "memberof": "rewrite/tabletop/index.ts~Tabletop",
+    "static": false,
+    "longname": "rewrite/tabletop/index.ts~Tabletop#width",
+    "access": "public",
+    "description": "The width (in px) of the play area.\n\nRecalculated in resize()",
+    "lineNumber": 15,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "height",
+    "memberof": "rewrite/tabletop/index.ts~Tabletop",
+    "static": false,
+    "longname": "rewrite/tabletop/index.ts~Tabletop#height",
+    "access": "public",
+    "description": "The height (in px) of the play area.\n\nRecalculated in resize()",
+    "lineNumber": 22,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "method",
+    "name": "resize",
+    "memberof": "rewrite/tabletop/index.ts~Tabletop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "rewrite/tabletop/index.ts~Tabletop#resize",
+    "access": "public",
+    "description": "Updates width and height properties. Called on `$(window).resize()`.\n\nExtend this method to update any layout options that depend on game size\n(eg. dynamically sized playing cards)\n\nAlways remember to call `super()`!",
+    "lineNumber": 42,
+    "params": [],
+    "return": null
   },
   {
     "kind": "index",
