@@ -6,3 +6,4 @@
  */
 
 export * from "./base-game";
+export * from "./player";

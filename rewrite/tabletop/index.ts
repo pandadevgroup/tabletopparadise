@@ -22,8 +22,7 @@
  *     cards = [];
  *
  *     constructor(
- *         protected $container: JQuery<HTMLElement>,
- *         protected domHelper: DomHelper
+ *         protected $container: JQuery<HTMLElement>
  *     ) {
  *         super($container);
  *     }
