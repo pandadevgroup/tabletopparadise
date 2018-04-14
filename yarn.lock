@@ -6349,10 +6349,6 @@ typedoc-plugin-external-module-name@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/typedoc-plugin-external-module-name/-/typedoc-plugin-external-module-name-1.1.1.tgz#0ef2d6a760b42c703519c474258b6f062983aa83"
 
-typedoc-plugin-single-line-tags@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-single-line-tags/-/typedoc-plugin-single-line-tags-1.0.0.tgz#4210b4fbd18d9b8f753e151047965195b4081261"
-
 typedoc@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.11.1.tgz#9f033887fd2218c769e1045feb88a1efed9f12c9"

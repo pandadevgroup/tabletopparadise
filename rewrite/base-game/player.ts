@@ -13,7 +13,7 @@ import { BaseGame } from "./base-game";
  * An example extension for a card game:
  *
  * ```javascript
- * export class CardGamePlayer {
+ * export class CardGamePlayer extends Player {
  *     cards = [];
  *     selectedCards = [];
  *
@@ -25,7 +25,7 @@ import { BaseGame } from "./base-game";
  *         protected game: CardGame,
  *         protected hideCards: boolean
  *     ) {
- *         super(id, name, osition, domHelper, game);
+ *         super(id, name, position, domHelper, game);
  *     }
  *
  *     resize() {
@@ -77,12 +77,12 @@ export abstract class Player {
 		/**
 		 * The position of the player to be rendered onto the screen.
 		 *
-		 * For a four-player game, typicall "top" | "left" | "right" | "bottom".
+		 * For a four-player game, typically `"top" | "left" | "right" | "bottom"`.
 		 */
 		public position: any,
 		// protected domHelper: DomHelper,
 		/**
-		 * The game objet that the player belongs to.
+		 * The game object that the player belongs to.
 		 *
 		 * The player object will utilize the game object to get the layout options,
 		 * and also call the game object's methods to notify it of any player actions (eg. a card was played).

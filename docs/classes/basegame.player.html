@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tabletop | tabletopparadise</title>
+	<title>Player | tabletopparadise</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/tabletop.html">Tabletop</a>
+					<a href="../modules/basegame.html">BaseGame</a>
 				</li>
 				<li>
-					<a href="tabletop.tabletop-1.html">Tabletop</a>
+					<a href="basegame.player.html">Player</a>
 				</li>
 			</ul>
-			<h1>Class Tabletop</h1>
+			<h1>Class Player</h1>
 		</div>
 	</div>
 </header>
@@ -72,47 +72,50 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Tabletop controls the layout of the game.</p>
+						<p>A Player object represents a &quot;player&quot; in the tabletop game. It is responsible for
+						rendering the player and communicating with the Game object if an action is done (eg. a card was played)</p>
 					</div>
-					<p>By default, it only provides the width and height of the game area.
-					Extend this class for your own custom games to:</p>
-					<ol>
-						<li>Add layout options that depend on game size (eg. dynamically-sized playing cards)</li>
-						<li>Add methods to calculate location of game objects (eg. a function that calculates the location of a player&#39;s playing hand)</li>
-					</ol>
-					<p>Example extension of Tabletop:</p>
-					<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomTabletop</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Tabletop</span> </span>{
-    layoutOpts = {
-        <span class="hljs-attr">cardHeight</span>: <span class="hljs-number">120</span>
-    };
+					<p>Extend this class to add render logic and game logic relating to the player.</p>
+					<p>An example extension for a card game:</p>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardGamePlayer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Player</span> </span>{
     cards = [];
+    selectedCards = [];
 
     <span class="hljs-keyword">constructor</span>(
-        protected $container: JQuery&lt;HTMLElement&gt;
+        public id: string,
+        public name: string,
+        public position: "top" | "left" | "right" | "bottom",
+        protected domHelper: CardGameDomHelper,
+        protected game: CardGame,
+        protected hideCards: boolean
     ) {
-        <span class="hljs-keyword">super</span>($container);
-    }
-
-    playCard(card) {
-        <span class="hljs-keyword">let</span> cardPos = <span class="hljs-keyword">this</span>.getCardPosition(card);
-        card.setPosition(cardPos);
-
-        <span class="hljs-keyword">this</span>.cards.push(card);
-    }
-
-    getCardPosition(card) {
-        <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> generate card position</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">super</span>(id, name, position, domHelper, game);
     }
 
     resize() {
-        <span class="hljs-keyword">super</span>();
+        <span class="hljs-keyword">let</span> playerPos = <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> get player position</span>
+        <span class="hljs-keyword">this</span>.domHelper.updateElPos(<span class="hljs-keyword">this</span>.player$, playerPos);
+        <span class="hljs-keyword">this</span>.cards.forEach(<span class="hljs-function"><span class="hljs-params">card</span> =&gt;</span> card.resize());
+    }
 
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.height &lt;= <span class="hljs-number">1000</span>) {
-            <span class="hljs-keyword">this</span>.layoutOpts.cardHeight = <span class="hljs-number">100</span>;
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">this</span>.layoutOpts.cardHeight = <span class="hljs-number">120</span>;
-        }
+    render() {
+        <span class="hljs-keyword">this</span>.player$ = <span class="hljs-keyword">this</span>.domHelper.createPlayerFrag(<span class="hljs-keyword">this</span>.name);
+        <span class="hljs-keyword">let</span> playerPos = <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> get player position</span>
+        <span class="hljs-keyword">this</span>.domHelper.updateEl(<span class="hljs-keyword">this</span>.player, playerPos);
+        <span class="hljs-keyword">this</span>.cards.forEach(<span class="hljs-function"><span class="hljs-params">card</span> =&gt;</span> card.render());
+    }
+
+    addCards(cards) {
+        <span class="hljs-comment">// TODO</span>
+    }
+
+    removeCards(cards) {
+        <span class="hljs-comment">// TODO</span>
+    }
+
+    handleCardClick(card) {
+        <span class="hljs-comment">// TODO</span>
+        <span class="hljs-keyword">this</span>.game.onCardClick(<span class="hljs-keyword">this</span>, card);
     }
 }
 </code></pre>
@@ -122,7 +125,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Tabletop</span>
+						<span class="target">Player</span>
 					</li>
 				</ul>
 			</section>
@@ -133,21 +136,17 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="basegame.player.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tabletop.tabletop-1.html#_container" class="tsd-kind-icon">$container</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#width" class="tsd-kind-icon">width</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#resize" class="tsd-kind-icon">resize</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.player.html#game" class="tsd-kind-icon">game</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="basegame.player.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="basegame.player.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.player.html#player_" class="tsd-kind-icon">player$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="basegame.player.html#position" class="tsd-kind-icon">position</a></li>
 							</ul>
 						</section>
 					</div>
@@ -159,22 +158,31 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tabletop<span class="tsd-signature-symbol">(</span>$container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tabletop.tabletop-1.html" class="tsd-signature-type">Tabletop</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Player<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, game<span class="tsd-signature-symbol">: </span><a href="basegame.basegame-1.html" class="tsd-signature-type">BaseGame</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="basegame.player.html" class="tsd-signature-type">Player</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/tabletop/index.ts#L67">tabletop/index.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/base-game/player.ts#L66">base-game/player.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>$container: <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>position: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>game: <a href="basegame.basegame-1.html" class="tsd-signature-type">BaseGame</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="tabletop.tabletop-1.html" class="tsd-signature-type">Tabletop</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="basegame.player.html" class="tsd-signature-type">Player</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -182,73 +190,84 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="_container" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> $container</h3>
-					<div class="tsd-signature tsd-kind-icon">$container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="game" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> game</h3>
+					<div class="tsd-signature tsd-kind-icon">game<span class="tsd-signature-symbol">:</span> <a href="basegame.basegame-1.html" class="tsd-signature-type">BaseGame</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/tabletop/index.ts#L70">tabletop/index.ts:70</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="height" class="tsd-anchor"></a>
-					<h3>height</h3>
-					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;720</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/tabletop/index.ts#L67">tabletop/index.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/base-game/player.ts#L90">base-game/player.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The height (in px) of the play area.</p>
+							<p>The game object that the player belongs to.</p>
 						</div>
-						<p>Recalculated in resize()</p>
+						<p>The player object will utilize the game object to get the layout options,
+						and also call the game object&#39;s methods to notify it of any player actions (eg. a card was played).</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="width" class="tsd-anchor"></a>
-					<h3>width</h3>
-					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1080</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/tabletop/index.ts#L60">tabletop/index.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/base-game/player.ts#L72">base-game/player.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The width (in px) of the play area.</p>
+							<p>A unique ID to identify the player. Can be as simple as an auto-incrementing number.</p>
 						</div>
-						<p>Recalculated in resize()</p>
 					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="resize" class="tsd-anchor"></a>
-					<h3>resize</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">resize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/tabletop/index.ts#L79">tabletop/index.ts:79</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Updates width and height properties. Called on <code>$(window).resize()</code>.</p>
-								</div>
-								<p>Extend this method to update any layout options that depend on game size
-								(eg. dynamically sized playing cards)</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/base-game/player.ts#L76">base-game/player.ts:76</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The given player name, to be rendered.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="player_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> player$</h3>
+					<div class="tsd-signature tsd-kind-icon">player$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/base-game/player.ts#L66">base-game/player.ts:66</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The jQuery element that contains all Player-related DOM code.</p>
+						</div>
+						<p>Anything that needs to be rendered that belongs to the
+						player should be appended to player$.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="position" class="tsd-anchor"></a>
+					<h3>position</h3>
+					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8e5ffb6/rewrite/base-game/player.ts#L82">base-game/player.ts:82</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The position of the player to be rendered onto the screen.</p>
+						</div>
+						<p>For a four-player game, typically <code>&quot;top&quot; | &quot;left&quot; | &quot;right&quot; | &quot;bottom&quot;</code>.</p>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -258,35 +277,41 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/basegame.html">Base<wbr>Game</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/tabletop.html">Tabletop</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="basegame.basegame-1.html" class="tsd-kind-icon">Base<wbr>Game</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="tabletop.tabletop-1.html" class="tsd-kind-icon">Tabletop</a>
+						<a href="basegame.player.html" class="tsd-kind-icon">Player</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="tabletop.tabletop-1.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="basegame.player.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tabletop.tabletop-1.html#_container" class="tsd-kind-icon">$container</a>
+								<a href="basegame.player.html#game" class="tsd-kind-icon">game</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="tabletop.tabletop-1.html#height" class="tsd-kind-icon">height</a>
+								<a href="basegame.player.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="tabletop.tabletop-1.html#width" class="tsd-kind-icon">width</a>
+								<a href="basegame.player.html#name" class="tsd-kind-icon">name</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.tabletop-1.html#resize" class="tsd-kind-icon">resize</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basegame.player.html#player_" class="tsd-kind-icon">player$</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="basegame.player.html#position" class="tsd-kind-icon">position</a>
 							</li>
 						</ul>
 					</li>

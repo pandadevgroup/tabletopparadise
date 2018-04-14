@@ -1,8 +1,8 @@
 /**
+ * The Tabletop module provides the necessary classes to handle the layout of the game and make DOM manipulations.
+ *
  * @module Tabletop
  * @preferred
- *
- * The Tabletop module provides the necessary classes to handle the layout of the game and make DOM manipulations.
  */
 
 /**
