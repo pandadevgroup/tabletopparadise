@@ -4,7 +4,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p",
-    "docs": "esdoc"
+    "docs": "typedoc --out docs rewrite --module commonjs"
   },
   "repository": {
     "type": "git",
@@ -26,15 +26,13 @@
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "ts-loader": "^4.0.1",
+    "typedoc": "^0.11.1",
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
-    "esdoc": "^1.0.4",
-    "esdoc-standard-plugin": "^1.0.0",
-    "esdoc-typescript-plugin": "^1.0.0",
     "jquery": "^3.3.1"
   }
 }
