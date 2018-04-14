@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_index_.html">&quot;index&quot;</a>
+					<a href="../modules/tabletop.html">Tabletop</a>
 				</li>
 				<li>
-					<a href="_index_.tabletop.html">Tabletop</a>
+					<a href="tabletop.tabletop-1.html">Tabletop</a>
 				</li>
 			</ul>
 			<h1>Class Tabletop</h1>
@@ -75,12 +75,12 @@
 						<p>Tabletop controls the layout of the game.</p>
 					</div>
 					<p>By default, it only provides the width and height of the game area.
-					However, you will extend this class for your own custom games to:</p>
+					Extend this class for your own custom games to:</p>
 					<ol>
 						<li>Add layout options that depend on game size (eg. dynamically-sized playing cards)</li>
 						<li>Add methods to calculate location of game objects (eg. a function that calculates the location of a player&#39;s playing hand)</li>
 					</ol>
-					<p>Example extension of Tabletop</p>
+					<p>Example extension of Tabletop:</p>
 					<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomTabletop</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Tabletop</span> </span>{
     layoutOpts = {
         <span class="hljs-attr">cardHeight</span>: <span class="hljs-number">120</span>
@@ -116,7 +116,6 @@
         }
     }
 }
-}
 </code></pre>
 				</div>
 			</section>
@@ -135,21 +134,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_index_.tabletop.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_index_.tabletop.html#_container" class="tsd-kind-icon">$container</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_index_.tabletop.html#height" class="tsd-kind-icon">height</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_index_.tabletop.html#width" class="tsd-kind-icon">width</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tabletop.tabletop-1.html#_container" class="tsd-kind-icon">$container</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#height" class="tsd-kind-icon">height</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#width" class="tsd-kind-icon">width</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_index_.tabletop.html#resize" class="tsd-kind-icon">resize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.tabletop-1.html#resize" class="tsd-kind-icon">resize</a></li>
 							</ul>
 						</section>
 					</div>
@@ -161,22 +160,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tabletop<span class="tsd-signature-symbol">(</span>$container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_index_.tabletop.html" class="tsd-signature-type">Tabletop</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tabletop<span class="tsd-signature-symbol">(</span>$container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ry&lt;HTML</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">lement&gt;)</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tabletop.tabletop-1.html" class="tsd-signature-type">Tabletop</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fa1d0bb/rewrite/tabletop/index.ts#L63">index.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/6d0f1fc/rewrite/tabletop/index.ts#L70">tabletop/index.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>$container: <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>$container: <span class="tsd-signature-type">ry&lt;HTML</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">lement&gt;)</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_index_.tabletop.html" class="tsd-signature-type">Tabletop</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="tabletop.tabletop-1.html" class="tsd-signature-type">Tabletop</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -186,10 +185,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="_container" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> $container</h3>
-					<div class="tsd-signature tsd-kind-icon">$container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">$container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ry&lt;HTML</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">lement&gt;)</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fa1d0bb/rewrite/tabletop/index.ts#L66">index.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/6d0f1fc/rewrite/tabletop/index.ts#L71">tabletop/index.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,15 +198,9 @@
 					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;720</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fa1d0bb/rewrite/tabletop/index.ts#L63">index.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/6d0f1fc/rewrite/tabletop/index.ts#L68">tabletop/index.ts:68</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The height (in px) of the play area.</p>
-						</div>
-						<p>Recalculated in resize()</p>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="width" class="tsd-anchor"></a>
@@ -215,15 +208,9 @@
 					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1080</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fa1d0bb/rewrite/tabletop/index.ts#L56">index.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/6d0f1fc/rewrite/tabletop/index.ts#L61">tabletop/index.ts:61</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The width (in px) of the play area.</p>
-						</div>
-						<p>Recalculated in resize()</p>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -238,16 +225,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fa1d0bb/rewrite/tabletop/index.ts#L75">index.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/6d0f1fc/rewrite/tabletop/index.ts#L80">tabletop/index.ts:80</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Updates width and height properties. Called on <code>$(window).resize()</code>.</p>
-								</div>
-								<p>Extend this method to update any layout options that depend on game size
-								(eg. dynamically sized playing cards)</p>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -260,8 +240,11 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/basegame.html">Base<wbr>Game</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+						<a href="../modules/tabletop.html">Tabletop</a>
 					</li>
 				</ul>
 			</nav>
@@ -270,22 +253,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_index_.tabletop.html" class="tsd-kind-icon">Tabletop</a>
+						<a href="tabletop.tabletop-1.html" class="tsd-kind-icon">Tabletop</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_index_.tabletop.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="tabletop.tabletop-1.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="_index_.tabletop.html#_container" class="tsd-kind-icon">$container</a>
+								<a href="tabletop.tabletop-1.html#_container" class="tsd-kind-icon">$container</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_index_.tabletop.html#height" class="tsd-kind-icon">height</a>
+								<a href="tabletop.tabletop-1.html#height" class="tsd-kind-icon">height</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_index_.tabletop.html#width" class="tsd-kind-icon">width</a>
+								<a href="tabletop.tabletop-1.html#width" class="tsd-kind-icon">width</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_index_.tabletop.html#resize" class="tsd-kind-icon">resize</a>
+								<a href="tabletop.tabletop-1.html#resize" class="tsd-kind-icon">resize</a>
 							</li>
 						</ul>
 					</li>

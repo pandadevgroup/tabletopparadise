@@ -1,9 +1,15 @@
+/**
+ * @module Tabletop
+ * @preferred
+ *
+ * The Tabletop module provides the necessary classes to handle the layout of the game and make DOM manipulations.
+ */
 
 /**
  * Tabletop controls the layout of the game.
  *
  * By default, it only provides the width and height of the game area.
- * However, you will extend this class for your own custom games to:
+ * Extend this class for your own custom games to:
  * 1. Add layout options that depend on game size (eg. dynamically-sized playing cards)
  * 2. Add methods to calculate location of game objects (eg. a function that calculates the location of a player's playing hand)
  *
