@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack -p",
-    "docs": "typedoc --out docs src --module commonjs"
+    "build": "webpack -p && npm run docs",
+    "docs": "typedoc --out docs/docs src --module commonjs"
   },
   "repository": {
     "type": "git",
