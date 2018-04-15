@@ -4,7 +4,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p && npm run docs",
-    "docs": "typedoc --out docs/docs src --module commonjs"
+	"docs": "typedoc --out docs/docs src --module commonjs",
+	"clean": "rm -r docs"
   },
   "repository": {
     "type": "git",
