@@ -4,7 +4,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p",
-    "docs": "typedoc --out docs rewrite --module commonjs"
+    "docs": "typedoc --out docs src --module commonjs"
   },
   "repository": {
     "type": "git",

@@ -1,31 +1,10 @@
-import "../styles/index.scss";
-import Utils from "../util";
-import { DomHelper } from "./dom-helper";
+/**
+ * The Tabletop module provides the necessary classes to handle the layout of the game and make DOM manipulations.
+ *
+ * @module Tabletop
+ * @preferred
+ */
 
-export abstract class TabletopOptions {
-	/**
-	 * Number of players (1 - 4)
-	*/
-	abstract players: number;
-}
-
-export class Tabletop {
-	width = 1080;
-	height = 720;
-
-	constructor(
-		protected $container: JQuery<HTMLElement>,
-		public opts: TabletopOptions,
-		protected domHelper: DomHelper
-	) {}
-
-	resize() {}
-	render() {
-		this.resize();
-	}
-
-	layoutResize() {
-		this.width = this.$container.width();
-		this.height = this.$container.height();
-	}
-}
+export * from "./tabletop";
+export * from "./dom-helper";
+export * from "./dom-element";

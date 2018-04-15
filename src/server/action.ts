@@ -1,32 +1,51 @@
-export class Action {
-	meta: {
-		timestamp: number,
-		timestampString: string,
-		type: string,
-		fufilledBy?: string[],
-		expireDate?: number,
-		expireDateString?: string,
-		expires: boolean,
-		expired?: boolean,
-		key: string
-	};
-	static ONE_TIME_REQUEST = "one_time_request";//one time action, like reloading
-	static GAME_ACTION = "game_action";//required to build the game
-	constructor(public event: string, public payload: any, expireDate?: number | null, type?: string) {
-		this.meta = {
-			expires: false,
-			timestamp: Date.now(),//timestamps will be overwritten at time of push
-			timestampString: Date(),
-			key: "[UNPUSHED]",
-			type: Action.GAME_ACTION//defualt
-		}
-		if (expireDate) {
-			this.meta.expires = true;
-			this.meta.expireDate = expireDate;
-			this.meta.expireDateString = new Date(expireDate).toDateString();
-		}
-		if (type)
-			this.meta.type = type;
-	}
+/**
+ * @module Server
+ */
 
+/**
+ * Represents an Action in the tabletop game.
+ *
+ * In a card game, examples of actions include:
+ * - Drawing a card
+ * - Playing a card
+ * - Placing a bid (Bridge)
+ *
+ * It is recommended to extend this class to create your own Action classes.
+ *
+ * Example (For action of Draw Card):
+ *
+ * ```javascript
+ * // actions.ts
+ *
+ * export const DRAW_CARD = "Draw Card";
+ *
+ * export class DrawCardAction extends Action {
+ *     constructor(cardNumber: number) {
+ *         super(DRAW_CARD, cardNumber);
+ *     }
+ * }
+ * ```
+ */
+export class Action {
+	/**
+	 * Timestamp of when Action is submitted.
+	 *
+	 * Set by ServerConnection when the Action is submitted to Firebase.
+	 */
+	public timestamp: number;
+
+	constructor(
+		/**
+		 * An identifier for the type of event.
+		 *
+		 * Examples: `"Draw Card"`, `"Shuffle Deck"`, etc.
+		 */
+		public event: string,
+		/**
+		 * Any data associated with the action.
+		 *
+		 * Example: Action is `"Set Deck"`, payload is an array representing the deck.
+		 */
+		public payload?: any
+	) {}
 }
