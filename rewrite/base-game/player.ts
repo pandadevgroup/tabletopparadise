@@ -3,6 +3,7 @@
  */
 
 import { BaseGame } from "./base-game";
+import { DomElement } from "../tabletop";
 
 /**
  * A Player object represents a "player" in the tabletop game. It is responsible for
@@ -56,7 +57,7 @@ import { BaseGame } from "./base-game";
  * }
  * ```
  */
-export abstract class Player {
+export abstract class Player implements DomElement {
 	/**
 	 * The jQuery element that contains all Player-related DOM code.
 	 *
@@ -89,4 +90,7 @@ export abstract class Player {
 		 */
 		protected game: BaseGame
 	) {}
+
+	render() {}
+	resize() {}
 }
