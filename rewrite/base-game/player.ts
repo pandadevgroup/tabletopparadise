@@ -3,7 +3,7 @@
  */
 
 import { BaseGame } from "./base-game";
-import { DomElement } from "../tabletop";
+import { DomElement, DomHelper } from "../tabletop";
 
 /**
  * A Player object represents a "player" in the tabletop game. It is responsible for
@@ -81,7 +81,10 @@ export abstract class Player implements DomElement {
 		 * For a four-player game, typically `"top" | "left" | "right" | "bottom"`.
 		 */
 		public position: any,
-		// protected domHelper: DomHelper,
+		/**
+		 * An instance of a Dom Helper, typically supplied by BaseGame.
+		 */
+		protected domHelper: DomHelper,
 		/**
 		 * The game object that the player belongs to.
 		 *
