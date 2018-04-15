@@ -14,7 +14,7 @@ import { Player } from "./player";
  * Extend this class to create functionality for a custom game.
  * You may override any public/protected method provided you call `super()`.
  */
-export class BaseGame implements DomElement {
+export abstract class BaseGame implements DomElement {
 	/**
 	 * A singleton Dom Helper.
 	 *
@@ -69,7 +69,7 @@ export class BaseGame implements DomElement {
 	 * Do not call `super()`.
 	 */
 	initializeDomHelper() {
-
+		this.domHelper = new DomHelper(this.$container);
 	}
 
 	/**
@@ -96,24 +96,17 @@ export class BaseGame implements DomElement {
 	 * Do not call `super()`.
 	 */
 	initializeServer() {
-
+		// TODO: Generate Game ID
+		this.server = new ServerConnection("TODO");
 	}
 
 	/**
 	 * Initializes `this.player` and `this.players`.
 	 *
-	 * Override this method to use your own custom implementation of Player.
-	 * Do not call `super()`.
+	 * When overriding, initialize `this.player` and `this.players`.
 	 */
-	initializePlayers() {
+	abstract initializePlayers();
 
-	}
-
-	render() {
-
-	}
-
-	resize() {
-
-	}
+	abstract render();
+	abstract resize();
 }
