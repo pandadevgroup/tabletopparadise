@@ -14,7 +14,7 @@ import { Player } from "./player";
  * Extend this class to create functionality for a custom game.
  * You may override any public/protected method provided you call `super()`.
  */
-export abstract class BaseGame implements DomElement {
+export class BaseGame implements DomElement {
 	/**
 	 * The DomHelper class to use. Override with your custom DomHelper class.
 	 */
@@ -121,6 +121,6 @@ export abstract class BaseGame implements DomElement {
 		this.player = this.players.find(player => player.id === localPlayerId);
 	}
 
-	abstract render();
-	abstract resize();
+	render() {}
+	resize() {}
 }
