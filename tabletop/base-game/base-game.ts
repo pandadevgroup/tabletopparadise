@@ -99,7 +99,7 @@ export abstract class BaseGame implements DomElement {
 	 */
 	initializeServer() {
 		// TODO: Get Game ID
-		this.server = new this.ServerConnection("TODO");
+		this.server = new this.ServerConnection();
 	}
 
 	/**

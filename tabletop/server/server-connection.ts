@@ -20,7 +20,7 @@ export class ServerConnection {
 	 * Constructs a new instance of ServerConnection and starts listening for events.
 	 * @param gameId a unique game id used to identify the game.
 	 */
-	constructor(protected gameId: string) {
+	constructor(protected gameId?: string) {
 		if (!firebase.apps.length) {
 			// Initialize Firebase
 			var config = {
@@ -33,6 +33,7 @@ export class ServerConnection {
 			};
 			firebase.initializeApp(config);
 		}
+		if (!gameId) this.gameId = this.getGameId();
 		this.start();
 	}
 
@@ -49,6 +50,20 @@ export class ServerConnection {
 				let action = snapshot.val();
 				this.handleAction(action);
 			});
+	}
+
+	/**
+	 * Returns the current game id.
+	 *
+	 * Game id = /game/?game=gameId
+	 */
+	getGameId() {
+		let paramName = "game";
+		var regex = new RegExp("[?&]" + paramName + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(window.location.href);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
 	}
 
 	/**
