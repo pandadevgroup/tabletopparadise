@@ -20,9 +20,6 @@ export const firebaseUIConfig = {
 	signInFlow: "popup",
 	callbacks: {
 		'signInSuccessWithAuthResult': function(authResult, redirectUrl) {
-		  	if (authResult.user) {
-				console.log(authResult.user);
-			}
 			// Do not redirect.
 			return false;
 		}

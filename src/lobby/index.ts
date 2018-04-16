@@ -19,12 +19,15 @@ firebase.auth().onAuthStateChanged(function(user) {
 	if (user) {
 		// User is signed in.
 		hideFirebaseUI();
-		var isAnonymous = user.isAnonymous;
-		var uid = user.uid;
-		console.log(user);
-		firebase.auth().signOut();
+		console.log(user.uid);
 	} else {
 		console.log("Signed out");
 		showFirebaseUI();
 	}
 });
+
+$(document).ready(() => {
+	$("#logout").click(() => {
+		firebase.auth().signOut();
+	});
+})
