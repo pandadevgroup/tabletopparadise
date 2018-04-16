@@ -13,20 +13,165 @@
     <!-- <script defer src="/assets/fontawesome/js/fa-regular.min.js"></script> -->
     <script defer src="/assets/fontawesome/js/fa-solid.min.js"></script>
     <script src="/assets/fontawesome/js/fontawesome.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
+    <style>
+        #rules-box {
+            overflow-y: auto;
+
+        }
+
+        #rules-box {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+
+        #rules-box .row {
+            border: 1px dotted grey;
+        }
+
+        #rules-boxbox .title {
+            flex: 0 1 auto;
+            /* The above is shorthand for:
+                flex-grow: 0,
+                flex-shrink: 1,
+                flex-basis: auto
+            */
+        }
+
+        #rules-box .content {
+            flex: 1 1 auto;
+        }
+
+        #rules-box .footer {
+            flex: 0 1 40px;
+        }
+    </style>
 </head>
 
 <body>
+
     <div class="container">
-		<h1>Lobby</h1>
+        <div class="col-lg-12">
+            <h1 class="mt-4">Tabletop Paradise - Lobby</h1>
+            <p>
+                <b>Hearts</b>#a7bj</p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Invite Players:</span>
+                </div>
+                <input type="text" class="form-control" value="https://tabletopparadise.pandadevgroup.com/join/a7bj" readonly id="invite-url">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary clip" data-clipboard-target="#invite-url">
+                        <img height="25" src="https://cdn.jeffkmeng.com/clipboardjs/2.0.0/clippy.svg" alt="copy to clipboard" title="copy to clipboard">
+                    </button>
+                </div>
+                <div class="input-group-append">
+                    <a class="btn btn-outline-secondary" href="mailto:?subject=Join my Tabletop Paradise game!&body=https">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <p id="action-tray">
+                <a href="#">Leave Game</a>
+            </p>
+            <hr>
 
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <h4>Players(2/4)</h4>
+                <ul id="players-list">
+                    <li>
+                        <b>jeffkmeng</b>
+                        <span class="badge badge-primary">host</span>
+                    </li>
+                    <li>
+                        <b>user2</b>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h4>Chat</h4>
+
+                <hr>
+                <div id="chat-box">
+                    <p class="message">
+                        <b class="author">jeffkmeng:</b>
+                        <span class="content">Hi!</span>
+                    </p>
+                    <p class="message">
+                        <b class="author">player2:</b>
+                        <span class="content">Hey!</span>
+                    </p>
+                </div>
+                <hr>
+                <div class="input-group mb-3">
+
+                    <input type="text" class="form-control" placeholder="Chat...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">
+                            Send
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-6" id="rules-box">
+                <div class="title">
+                    <h4>How to play Hearts</h4>
+                </div>
+                <div class="content">
+                    <h5>Intro</h5>
+                    Many trick-taking games are not directly related to Bridge or Whist. Perhaps the foremost one is Hearts, which is truly one
+                    of the greatest card games ever devised for four players, each playing individually.
+
+                    <h5>The Deck</h5>
+                    <p>The standard 52-card deck is used.</p>
+                    <h5>Object of the game</h5>
+                    <p>To be the player with the lowest score at the end of the game. When one player hits the agreed-upon score
+                        or higher, the game ends; and the player with the lowest score wins.
+                    </p>
+                    <h5>Scoring</h5>
+                    <p>
+                        At the end of each hand, players count the number of hearts they have taken as well as the queen of spades, if applicable.
+                        Hearts count as one point each and the queen counts 13 points.
+                        <br>Each heart - 1 point
+                        <br>The Queen of spades - 13 points
+                        <br>The aggregate total of all scores for each hand must be a multiple of 26.
+                        <br>The game is usually played to 100 points (some play to 50).
+                        <br>When a player takes all 13 hearts and the queen of spades in one hand, instead of losing 26 points,
+                        that player scores zero and each of his opponents score an additional 26 points.
+                    </p>
+                    <h5>Dealing</h5>
+                    Deal the cards one at a time, face down, clockwise. In a four-player game, each is dealt 13 cards; in a three-player game,
+                    the 2 of diamonds should be removed, and each player gets 17 cards; in a five-player game, the 2 of diamonds
+                    and 2 of clubs should be removed so that each player will get 10 cards.
+
+                    <h5>Play</h5>
+                    <p>
+                        The player holding the 2 of clubs after the pass makes the opening lead. If the 2 has been removed for the three handed game,
+                        then the 3 of clubs is led.
+                        <br> Each player must follow suit if possible. If a player is void of the suit led, a card of any other
+                        suit may be discarded. However, if a player has no clubs when the first trick is led, a heart or
+                        the queen of spades cannot be discarded. The highest card of the suit led wins a trick and the winner
+                        of that trick leads next. There is no trump suit.
+                        <br> The winner of the trick collects it and places it face down. Hearts may not be led until a heart
+                        or the queen of spades has been discarded. The queen does not have to be discarded at the first opportunity.
+                        <br> The queen can be led at any time.</p>
+                </div>
+            </div>
+        </div>
     </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="/lobby.js"></script>
+    <script src="https://cdn.jeffkmeng.com/clipboardjs/2.0.0/clipboard.min.js"></script>
+    <script>
+        var clip = new ClipboardJS(".clip");
+    </script>
+    <script src="/lobby.js"></script>
 
 </body>
 
