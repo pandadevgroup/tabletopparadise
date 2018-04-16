@@ -1,8 +1,0 @@
-#waiting-message {
-    &:not(.waiting-message--show) {
-        display: none;
-    }
-    .waiting-message--show {
-        display: block;
-    }
-}

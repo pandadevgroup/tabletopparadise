@@ -2,7 +2,7 @@
  * @module Server
  */
 
-import "firebase";
+import * as firebase from "firebase";
 import { Action } from "./action";
 
 /**

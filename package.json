@@ -4,8 +4,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p && npm run docs",
-	"docs": "typedoc --out docs/docs src --module commonjs",
-	"clean": "rm -r docs"
+    "docs": "typedoc --out docs/docs tabletop --module commonjs",
+    "clean": "rm -r docs"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.10",
     "file-loader": "^1.1.11",
-    "firebase": "^4.11.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
@@ -34,6 +33,8 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
+    "firebase": "^4.12.1",
+    "firebaseui": "^2.7.0",
     "jquery": "^3.3.1",
     "typedoc-plugin-external-module-name": "^1.1.1"
   }

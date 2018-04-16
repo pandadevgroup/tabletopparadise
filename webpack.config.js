@@ -18,7 +18,7 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: "ts-loader",
-				exclude: /node_modules/
+				exclude: /node_modules|old/
 			},
 			{
 				test: /\.scss$/,
@@ -26,11 +26,13 @@ module.exports = {
 					"style-loader",
 					"css-loader",
 					"sass-loader"
-				]
+				],
+				exclude: /old/
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
-				use: "file-loader"
+				use: "file-loader",
+				exclude: /old/
 			}
 		]
 	},
