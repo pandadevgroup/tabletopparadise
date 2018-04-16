@@ -52,27 +52,35 @@ export class ServerConnection {
 	}
 
 	/**
+	 * Gets all players in game
+	 */
+	async getAllPlayers() {
+		let snap = await firebase.database().ref(`/game/${this.gameId}/players`).once("value");
+		return snap.val();
+	}
+
+	/**
+	 * Get the player ID of the player currently playing on the computer.
+	 *
+	 * Will be null if the player has not logged in.
+	 */
+	getLocalPlayerId() {
+		return sessionStorage.getItem("playerId");
+	}
+
+	/**
 	 * Runs through all previous actions.
 	 *
 	 * Useful when a user disconnects and reconnects.
 	 * Attach all listeners, then call this function.
 	 */
-	runPrevActions() {
-		return firebase.database()
+	async runPrevActions() {
+		let snap = await firebase.database()
 			.ref(`/game/${this.gameId}/actions`)
-			.once("value")
-			.then(snap => {
-				if (snap.val() == null) {
-					return null;
-				} else {
-					return Object.values(snap.val()) as Action[]
-				}
-			})
-			.then(actions => {
-				if (actions != null) {
-					actions.forEach(action => this.handleAction(action))
-				}
-			});
+			.once("value");
+		if (snap.val() == null) return null;
+		return (Object.values(snap.val()) as Action[])
+			.forEach(action => this.handleAction(action));
 	}
 
 	/**
