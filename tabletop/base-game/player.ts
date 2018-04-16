@@ -57,7 +57,7 @@ import { DomElement, DomHelper } from "../tabletop";
  * }
  * ```
  */
-export abstract class Player implements DomElement {
+export class Player implements DomElement {
 	/**
 	 * The jQuery element that contains all Player-related DOM code.
 	 *

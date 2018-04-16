@@ -56,7 +56,17 @@ export class ServerConnection {
 	 */
 	async getAllPlayers() {
 		let snap = await firebase.database().ref(`/game/${this.gameId}/players`).once("value");
-		return snap.val();
+		let data = snap.val();
+
+		let players = [];
+		for (let playerId in data) {
+			players.push({
+				id: playerId,
+				username: data[playerId]
+			});
+		}
+
+		return players;
 	}
 
 	/**

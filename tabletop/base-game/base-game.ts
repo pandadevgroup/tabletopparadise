@@ -16,6 +16,18 @@ import { Player } from "./player";
  */
 export abstract class BaseGame implements DomElement {
 	/**
+	 * The DomHelper class to use. Override with your custom DomHelper class.
+	 */
+	protected DomHelper = DomHelper;
+	/**
+	 * The Player class to use. Override with your custom Player class.
+	 */
+	protected Player = Player;
+	/**
+	 * The ServerConnection class to use. Override with your custom ServerConnection class.
+	 */
+	protected ServerConnection = ServerConnection;
+	/**
 	 * A singleton Dom Helper.
 	 *
 	 * Override this property to use your own custom DomHelper.
@@ -45,41 +57,31 @@ export abstract class BaseGame implements DomElement {
 	 *
 	 * You may override this constructor to do additional work.
 	 * Remember to call `super`. If you are using your own implementation
-	 * of DomHelper, ServerConnection, or Player, override the functions
-	 * [[initializeDomHelper]], [[initializeServer]], and [[initializePlayers]]
-	 * to instantiate your custom classes.
+	 * of DomHelper, ServerConnection, or Player, override properties
+	 * DomHelper, ServerConnection, and Player with your custom classes.
 	 *
 	 * @param {JQuery<HTMLElement}
 	 */
 	constructor(
 		protected $container: JQuery<HTMLElement>
 	) {
-		this.initializeDomHelper();
 		this.initializeDom();
 		this.initializeServer();
 		this.initializePlayers();
 	}
 
 	/**
-	 * Creates an instance of a DomHelper.
+	 * Initializes `this.domHelper` and any event listeners related to the dom,
+	 * primarily `$(window).resize()`.
 	 *
-	 * Initializes `this.domHelper`.
+	 * You may extend this method to add additional event listeners
+	 * or do any additional dom setup.
 	 *
-	 * Override this method to use your custom implementation of DomHelper.
-	 * Do not call `super()`.
-	 */
-	initializeDomHelper() {
-		this.domHelper = new DomHelper(this.$container);
-	}
-
-	/**
-	 * Initializes any event listeners related to the dom, primarily `$(window).resize()`.
-	 * Called immediately after [[initializeDomHelper]].
-	 *
-	 * You may extend this method to add additional event listeners.
-	 * Call `super()` to set up the window resize listener.
+	 * To use your own custom implementation of DomHelper, override property DomHelper.
 	 */
 	initializeDom() {
+		this.domHelper = new this.DomHelper(this.$container);
+
 		let debounce;
 		$(window).resize(() => {
 			clearTimeout(debounce);
@@ -96,8 +98,8 @@ export abstract class BaseGame implements DomElement {
 	 * Do not call `super()`.
 	 */
 	initializeServer() {
-		// TODO: Generate Game ID
-		this.server = new ServerConnection("TODO");
+		// TODO: Get Game ID
+		this.server = new this.ServerConnection("TODO");
 	}
 
 	/**
@@ -105,7 +107,19 @@ export abstract class BaseGame implements DomElement {
 	 *
 	 * When overriding, initialize `this.player` and `this.players`.
 	 */
-	abstract initializePlayers();
+	async initializePlayers() {
+		let players = await this.server.getAllPlayers();
+		let localPlayerId = this.server.getLocalPlayerId();
+
+		this.players = players.map(playerInfo => new this.Player(
+			playerInfo.id,
+			playerInfo.username,
+			"position",
+			this.domHelper,
+			this
+		));
+		this.player = this.players.find(player => player.id === localPlayerId);
+	}
 
 	abstract render();
 	abstract resize();
