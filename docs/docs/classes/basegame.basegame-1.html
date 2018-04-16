@@ -107,8 +107,11 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#_container" class="tsd-kind-icon">$container</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#player" class="tsd-kind-icon">player</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#domhelper" class="tsd-kind-icon">Dom<wbr>Helper</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#player" class="tsd-kind-icon">Player</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#serverconnection" class="tsd-kind-icon">Server<wbr>Connection</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#domhelper-1" class="tsd-kind-icon">dom<wbr>Helper</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#player-1" class="tsd-kind-icon">player</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#players" class="tsd-kind-icon">players</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basegame.basegame-1.html#server" class="tsd-kind-icon">server</a></li>
 							</ul>
@@ -117,7 +120,6 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basegame.basegame-1.html#initializedom" class="tsd-kind-icon">initialize<wbr>Dom</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basegame.basegame-1.html#initializedomhelper" class="tsd-kind-icon">initialize<wbr>Dom<wbr>Helper</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basegame.basegame-1.html#initializeplayers" class="tsd-kind-icon">initialize<wbr>Players</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basegame.basegame-1.html#initializeserver" class="tsd-kind-icon">initialize<wbr>Server</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basegame.basegame-1.html#render" class="tsd-kind-icon">render</a></li>
@@ -139,7 +141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L41">base-game/base-game.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L53">base-game/base-game.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -148,9 +150,8 @@
 								</div>
 								<p>You may override this constructor to do additional work.
 									Remember to call <code>super</code>. If you are using your own implementation
-									of DomHelper, ServerConnection, or Player, override the functions
-									<a href="basegame.basegame-1.html#initializedomhelper">initializeDomHelper</a>, <a href="basegame.basegame-1.html#initializeserver">initializeServer</a>, and <a href="basegame.basegame-1.html#initializeplayers">initializePlayers</a>
-								to instantiate your custom classes.</p>
+									of DomHelper, ServerConnection, or Player, override properties
+								DomHelper, ServerConnection, and Player with your custom classes.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -171,17 +172,62 @@
 					<div class="tsd-signature tsd-kind-icon">$container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L55">base-game/base-game.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L66">base-game/base-game.ts:66</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="domhelper" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> Dom<wbr>Helper</h3>
+					<div class="tsd-signature tsd-kind-icon">Dom<wbr>Helper<span class="tsd-signature-symbol">:</span> <a href="tabletop.domhelper.html" class="tsd-signature-type">DomHelper</a><span class="tsd-signature-symbol"> =&nbsp;DomHelper</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L21">base-game/base-game.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The DomHelper class to use. Override with your custom DomHelper class.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="player" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> Player</h3>
+					<div class="tsd-signature tsd-kind-icon">Player<span class="tsd-signature-symbol">:</span> <a href="basegame.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol"> =&nbsp;Player</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L25">base-game/base-game.ts:25</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The Player class to use. Override with your custom Player class.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="serverconnection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> Server<wbr>Connection</h3>
+					<div class="tsd-signature tsd-kind-icon">Server<wbr>Connection<span class="tsd-signature-symbol">:</span> <a href="server.serverconnection.html" class="tsd-signature-type">ServerConnection</a><span class="tsd-signature-symbol"> =&nbsp;ServerConnection</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L29">base-game/base-game.ts:29</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The ServerConnection class to use. Override with your custom ServerConnection class.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="domhelper-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> dom<wbr>Helper</h3>
 					<div class="tsd-signature tsd-kind-icon">dom<wbr>Helper<span class="tsd-signature-symbol">:</span> <a href="tabletop.domhelper.html" class="tsd-signature-type">DomHelper</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L23">base-game/base-game.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L35">base-game/base-game.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,12 +238,12 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="player" class="tsd-anchor"></a>
+					<a name="player-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> player</h3>
 					<div class="tsd-signature tsd-kind-icon">player<span class="tsd-signature-symbol">:</span> <a href="basegame.player.html" class="tsd-signature-type">Player</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L41">base-game/base-game.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L53">base-game/base-game.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -213,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">players<span class="tsd-signature-symbol">:</span> <a href="basegame.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L35">base-game/base-game.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L47">base-game/base-game.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,7 +275,7 @@
 					<div class="tsd-signature tsd-kind-icon">server<span class="tsd-signature-symbol">:</span> <a href="server.serverconnection.html" class="tsd-signature-type">ServerConnection</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L29">base-game/base-game.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L41">base-game/base-game.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -252,41 +298,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L82">base-game/base-game.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L82">base-game/base-game.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes any event listeners related to the dom, primarily <code>$(window).resize()</code>.
-									Called immediately after <a href="basegame.basegame-1.html#initializedomhelper">initializeDomHelper</a>.</p>
+									<p>Initializes <code>this.domHelper</code> and any event listeners related to the dom,
+									primarily <code>$(window).resize()</code>.</p>
 								</div>
-								<p>You may extend this method to add additional event listeners.
-								Call <code>super()</code> to set up the window resize listener.</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="initializedomhelper" class="tsd-anchor"></a>
-					<h3>initialize<wbr>Dom<wbr>Helper</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Dom<wbr>Helper<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L71">base-game/base-game.ts:71</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates an instance of a DomHelper.</p>
-								</div>
-								<p>Initializes <code>this.domHelper</code>.</p>
-								<p>Override this method to use your custom implementation of DomHelper.
-								Do not call <code>super()</code>.</p>
+								<p>You may extend this method to add additional event listeners
+								or do any additional dom setup.</p>
+								<p>To use your own custom implementation of DomHelper, override property DomHelper.</p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -294,15 +316,15 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="initializeplayers" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> initialize<wbr>Players</h3>
+					<h3>initialize<wbr>Players</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Players<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Players<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L108">base-game/base-game.ts:108</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L110">base-game/base-game.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -311,7 +333,7 @@
 								</div>
 								<p>When overriding, initialize <code>this.player</code> and <code>this.players</code>.</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -325,7 +347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L98">base-game/base-game.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L100">base-game/base-game.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +373,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#render">render</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L110">base-game/base-game.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L124">base-game/base-game.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -369,7 +391,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#resize">resize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/base-game/base-game.ts#L111">base-game/base-game.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/66f7af6/tabletop/base-game/base-game.ts#L125">base-game/base-game.ts:125</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -409,10 +431,19 @@
 								<a href="basegame.basegame-1.html#_container" class="tsd-kind-icon">$container</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="basegame.basegame-1.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a>
+								<a href="basegame.basegame-1.html#domhelper" class="tsd-kind-icon">Dom<wbr>Helper</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="basegame.basegame-1.html#player" class="tsd-kind-icon">player</a>
+								<a href="basegame.basegame-1.html#player" class="tsd-kind-icon">Player</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basegame.basegame-1.html#serverconnection" class="tsd-kind-icon">Server<wbr>Connection</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basegame.basegame-1.html#domhelper-1" class="tsd-kind-icon">dom<wbr>Helper</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basegame.basegame-1.html#player-1" class="tsd-kind-icon">player</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="basegame.basegame-1.html#players" class="tsd-kind-icon">players</a>
@@ -422,9 +453,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="basegame.basegame-1.html#initializedom" class="tsd-kind-icon">initialize<wbr>Dom</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="basegame.basegame-1.html#initializedomhelper" class="tsd-kind-icon">initialize<wbr>Dom<wbr>Helper</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="basegame.basegame-1.html#initializeplayers" class="tsd-kind-icon">initialize<wbr>Players</a>
