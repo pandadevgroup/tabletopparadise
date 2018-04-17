@@ -104,6 +104,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="cardgame.cardgameplayer.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="cardgame.cardgameplayer.html#game" class="tsd-kind-icon">game</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.cardgameplayer.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.cardgameplayer.html#ishost" class="tsd-kind-icon">is<wbr>Host</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.cardgameplayer.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="cardgame.cardgameplayer.html#player_" class="tsd-kind-icon">player$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.cardgameplayer.html#position" class="tsd-kind-icon">position</a></li>
@@ -125,14 +126,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Card<wbr>Game<wbr>Player<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, domHelper<span class="tsd-signature-symbol">: </span><a href="tabletop.domhelper.html" class="tsd-signature-type">DomHelper</a>, game<span class="tsd-signature-symbol">: </span><a href="basegame.basegame-1.html" class="tsd-signature-type">BaseGame</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cardgame.cardgameplayer.html" class="tsd-signature-type">CardGamePlayer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Card<wbr>Game<wbr>Player<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, isHost<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, domHelper<span class="tsd-signature-symbol">: </span><a href="tabletop.domhelper.html" class="tsd-signature-type">DomHelper</a>, game<span class="tsd-signature-symbol">: </span><a href="basegame.basegame-1.html" class="tsd-signature-type">BaseGame</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cardgame.cardgameplayer.html" class="tsd-signature-type">CardGamePlayer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L67">base-game/player.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L67">base-game/player.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -142,6 +143,9 @@
 								</li>
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>isHost: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 								<li>
 									<h5>position: <span class="tsd-signature-type">any</span></h5>
@@ -167,7 +171,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#domhelper">domHelper</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L87">base-game/player.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L94">base-game/player.ts:94</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -183,15 +187,15 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#game">game</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L94">base-game/player.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L101">base-game/player.ts:101</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The game object that the player belongs to.</p>
 						</div>
-						<p>The player object will utilize the game object to get the layout options,
-						and also call the game object&#39;s methods to notify it of any player actions (eg. a card was played).</p>
+						<p>The player object will utilize the game object to notify it of
+						any player actions (eg. a card was played).</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
@@ -201,7 +205,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#id">id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L73">base-game/player.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L73">base-game/player.ts:73</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -211,13 +215,31 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="ishost" class="tsd-anchor"></a>
+					<h3>is<wbr>Host</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#ishost">isHost</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L84">base-game/player.ts:84</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true, the player is hosting the game.</p>
+						</div>
+						<p>This can be useful for determining who does one-time initializations,
+						such as (in a card game) sorting the deck.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L77">base-game/player.ts:77</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L77">base-game/player.ts:77</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,7 +255,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#player_">player$</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L67">base-game/player.ts:67</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L67">base-game/player.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -251,7 +273,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#position">position</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L83">base-game/player.ts:83</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L90">base-game/player.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -276,7 +298,7 @@
 								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#render">render</a></p>
 								<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#render">render</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L97">base-game/player.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L104">base-game/player.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -295,7 +317,7 @@
 								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#resize">resize</a></p>
 								<p>Inherited from <a href="basegame.player.html">Player</a>.<a href="basegame.player.html#resize">resize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/base-game/player.ts#L98">base-game/player.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/888a548/tabletop/base-game/player.ts#L105">base-game/player.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -351,6 +373,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="cardgame.cardgameplayer.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="cardgame.cardgameplayer.html#ishost" class="tsd-kind-icon">is<wbr>Host</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="cardgame.cardgameplayer.html#name" class="tsd-kind-icon">name</a>

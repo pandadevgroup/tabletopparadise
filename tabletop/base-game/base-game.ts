@@ -80,6 +80,9 @@ export class BaseGame implements DomElement {
 		this.initializeServer();
 		this.initializeListeners();
 		this.initializePlayers();
+		if (this.player.isHost) {
+			this.runHostSetup();
+		}
 	}
 
 	/**
@@ -146,6 +149,15 @@ export class BaseGame implements DomElement {
 		));
 		this.player = this.players.find(player => player.id === localPlayerId);
 	}
+
+	/**
+	 * This function will be called if the current local player is host.
+	 *
+	 * In this function, do any one-time initialization tasks.
+	 *
+	 * Eg. for a card game, sort the card deck.
+	 */
+	runHostSetup() {}
 
 	render() {}
 
