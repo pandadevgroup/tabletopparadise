@@ -57,6 +57,16 @@ export class Deck implements DomElement {
 		return this.cards.map(card => card.id);
 	}
 
+	setDeckOrder(cardIds: string[]) {
+		let i = 0;
+		let order = cardIds.reduce((acc, cur) => ({ ...acc, [cur]: i++ }), {});
+		let newArray = [];
+
+		this.cards.forEach(card => newArray[order[card.id]] = card);
+
+		this.cards = newArray;
+	}
+
 	render() {
 		if (!this.visible) return;
 

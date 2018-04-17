@@ -51,14 +51,15 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 	initializeListeners() {
 		this.server.on(actions.DECK_SYNC, action => {
-			console.log(action);
+			let deck = action.payload.deck;
+			this.deck.setDeckOrder(deck);
 		});
 	}
 
 	runHostSetup() {
-		if (this.opts.shuffle !== false) this.deck.shuffle(
-			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
-		);
+		// if (this.opts.shuffle !== false) this.deck.shuffle(
+		// 	typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
+		// );
 		// this.server.dispatch(
 		// 	new actions.DeckSync({
 		// 		deck: this.deck.getCardIds()
