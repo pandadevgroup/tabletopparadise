@@ -14,66 +14,59 @@ import { Player } from "./player";
  * Extend this class to create functionality for a custom game.
  * You may override any public/protected method provided you call `super()`.
  */
-export class BaseGame implements DomElement {
-	/**
-	 * The DomHelper class to use. Override with your custom DomHelper class.
-	 */
-	protected DomHelper = DomHelper;
-	/**
-	 * The Player class to use. Override with your custom Player class.
-	 */
-	protected Player = Player;
-	/**
-	 * The ServerConnection class to use. Override with your custom ServerConnection class.
-	 */
-	protected ServerConnection = ServerConnection;
-	/**
-	 * The Tabletop class to use. Override with your custom Tabletop class.
-	 */
-	protected Tabletop = Tabletop;
+export class BaseGame<
+	DomHelperType extends DomHelper = DomHelper,
+	PlayerType extends Player = Player,
+	TabletopType extends Tabletop = Tabletop,
+	ServerConnectionType extends ServerConnection = ServerConnection
+> implements DomElement {
 	/**
 	 * A singleton Dom Helper.
 	 *
 	 * Override this property to use your own custom DomHelper.
 	 */
-	protected domHelper: DomHelper;
+	protected domHelper: DomHelperType;
 	/**
 	 * A singleton Server Connection.
 	 *
 	 * Override this property if you are using a custom server connection.
 	 */
-	protected server: ServerConnection;
+	protected server: ServerConnectionType;
 	/**
 	 * An array of players currently playing the tabletop game.
 	 *
 	 * Override this property to use your own custom Player class.
 	 */
-	protected players: Player[];
+	protected players: PlayerType[];
 	/**
 	 * The local player playing on the computer.
 	 *
 	 * Override this property to use your own custom Player class.
 	 */
-	protected player: Player;
+	protected player: PlayerType;
 	/**
 	 * A singleton Tabletop.
 	 *
 	 * Override this property to use your own Tabletop clss.
 	 */
-	protected tabletop: Tabletop;
+	protected tabletop: TabletopType;
 
 	/**
 	 * Creates an instance of a BaseGame.
 	 *
 	 * You may override this constructor to do additional work.
 	 * Remember to call `super`. If you are using your own implementation
-	 * of DomHelper, ServerConnection, or Player, override properties
-	 * DomHelper, ServerConnection, and Player with your custom classes.
+	 * of DomHelper, ServerConnection, or Player, pass in the appropriate
+	 * classes to the constructor.
 	 *
 	 * @param {JQuery<HTMLElement}
 	 */
 	constructor(
-		protected $container: JQuery<HTMLElement>
+		protected $container: JQuery<HTMLElement>,
+		protected DomHelperClass = DomHelper,
+		protected PlayerClass = Player,
+		protected TabletopClass = Tabletop,
+		protected ServerConnectionClass = ServerConnection
 	) {
 		this.initializeDom();
 		this.initializeTabletop();
@@ -89,6 +82,8 @@ export class BaseGame implements DomElement {
 			.then(() => {
 				this.render();
 				this.resize();
+				// TODO: run previous actions?
+				this.domHelper.renderFrag();
 			});
 	}
 
@@ -102,7 +97,7 @@ export class BaseGame implements DomElement {
 	 * To use your own custom implementation of DomHelper, override property DomHelper.
 	 */
 	initializeDom() {
-		this.domHelper = new this.DomHelper(this.$container);
+		this.domHelper = new this.DomHelperClass(this.$container) as DomHelperType;
 
 		let debounce;
 		$(window).resize(() => {
@@ -120,7 +115,7 @@ export class BaseGame implements DomElement {
 	 * you may override this method.
 	 */
 	initializeTabletop() {
-		this.tabletop = new this.Tabletop(this.$container);
+		this.tabletop = new this.TabletopClass(this.$container) as TabletopType;
 	}
 
 	/**
@@ -129,7 +124,7 @@ export class BaseGame implements DomElement {
 	 * Initializes `this.server`.
 	 */
 	initializeServer() {
-		this.server = new this.ServerConnection();
+		this.server = new this.ServerConnectionClass() as ServerConnectionType;
 	}
 
 	/**
@@ -146,14 +141,17 @@ export class BaseGame implements DomElement {
 		let players = await this.server.getAllPlayers();
 		let localPlayerId = this.server.getLocalPlayerId();
 
-		this.players = players.map(playerInfo => new this.Player(
-			playerInfo.id,
-			playerInfo.username,
-			playerInfo.isHost,
-			"position",
-			this.domHelper,
-			this
-		));
+		this.players = players.map(
+			playerInfo =>
+				new this.PlayerClass(
+					playerInfo.id,
+					playerInfo.username,
+					playerInfo.isHost,
+					"position",
+					this.domHelper,
+					this
+				)
+		) as PlayerType[];
 		this.player = this.players.find(player => player.id === localPlayerId);
 	}
 

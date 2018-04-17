@@ -6,6 +6,8 @@ import { CardGameDomHelper } from "./dom-helper";
 import { Card } from "./card";
 import { DomElement } from "../tabletop";
 
+import "./styles/deck.scss";
+
 export class Deck implements DomElement {
 	protected $deck: JQuery<HTMLElement>;
 	protected cards: Card[];
@@ -38,7 +40,10 @@ export class Deck implements DomElement {
 	}
 
 	render() {
-		console.log(this.cards);
+		if (!this.visible) return;
+		this.$deck = this.domHelper.createDeckFrag();
 	}
-	resize() {}
+	resize() {
+		if (!this.visible) return;
+	}
 }

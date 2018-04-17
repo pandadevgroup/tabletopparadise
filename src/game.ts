@@ -1,3 +1,3 @@
 import { CardGame } from "../tabletop";
 
-let game = new CardGame($("#game"));
+let game = new CardGame($("#game"), { showDeck: true });

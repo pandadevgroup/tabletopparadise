@@ -4,6 +4,8 @@
 import { BaseGame } from "../base-game";
 import { Card } from "./card";
 import { Deck } from "./deck";
+import { CardGameDomHelper } from "./dom-helper";
+import { CardGamePlayer } from "./player";
 
 export interface CardGameOptions {
 	/**
@@ -30,18 +32,16 @@ export interface CardGameOptions {
 	shuffle?: ((cards: Card[]) => Card[]) | boolean;
 }
 
-export class CardGame extends BaseGame {
+export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	protected deck: Deck;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		public opts: CardGameOptions = {
-			initialHandSize: 13,
-			showDeck: false,
-			shuffle: true
-		}
+		public opts: CardGameOptions = {}
 	) {
-		super($container);
+		super($container, CardGameDomHelper, CardGamePlayer);
+		opts.showDeck = opts.showDeck || false;
+		opts.initialHandSize = opts.initialHandSize || 13;
 	}
 
 	async initialize() {
