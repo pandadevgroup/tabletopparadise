@@ -22,7 +22,7 @@ export class Deck implements DomElement {
 		this.initializeCards();
 	}
 
-	initializeCards() {
+	protected initializeCards() {
 		this.cards = [];
 		for (let i = 0; i < 13; i++) {
 			this.cards.push(new Card(this.domHelper, i + 1, "club", this.cards.length, false, (i+1)+"c"));
@@ -52,15 +52,17 @@ export class Deck implements DomElement {
 		if (!this.visible) return;
 
 		this.$deck = this.domHelper.createDeckFrag();
-		this.$deck.click(() => this.actionable
-			? this.game.onDeckClick()
-			: undefined
-		);
+		this.$deck.click(() => this.onDeckClick());
 
 		this.cards.forEach(card => card.render());
 	}
+
 	resize() {
 		if (!this.visible) return;
 		this.cards.forEach(card => card.resize());
+	}
+
+	protected onDeckClick() {
+		if (this.actionable) this.game.onDeckClick();
 	}
 }
