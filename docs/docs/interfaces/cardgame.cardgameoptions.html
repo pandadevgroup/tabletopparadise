@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CardGame | tabletopparadise</title>
+	<title>CardGameOptions | tabletopparadise</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,35 +56,107 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="cardgame.html">CardGame</a>
+					<a href="../modules/cardgame.html">CardGame</a>
+				</li>
+				<li>
+					<a href="cardgame.cardgameoptions.html">CardGameOptions</a>
 				</li>
 			</ul>
-			<h1>External module CardGame</h1>
+			<h1>Interface CardGameOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">CardGameOptions</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.card.html" class="tsd-kind-icon">Card</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.cardgame-1.html" class="tsd-kind-icon">Card<wbr>Game</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.cardgamedomhelper.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Dom<wbr>Helper</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cardgame.cardgameoptions.html#initialhandsize" class="tsd-kind-icon">initial<wbr>Hand<wbr>Size</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cardgame.cardgameoptions.html#showdeck" class="tsd-kind-icon">show<wbr>Deck</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="cardgame.cardgameoptions.html#shuffle" class="tsd-kind-icon">shuffle</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a></li>
-							</ul>
-						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="initialhandsize" class="tsd-anchor"></a>
+					<h3>initial<wbr>Hand<wbr>Size</h3>
+					<div class="tsd-signature tsd-kind-icon">initial<wbr>Hand<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/card-game/card-game.ts#L14">card-game/card-game.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Number of cards to deal to each player in the beginning of the game.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>example</dt>
+							<dd><p>13 (Bridge)</p>
+							</dd>
+							<dt>type</dt>
+							<dd><p>{number} initialHandSize</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="showdeck" class="tsd-anchor"></a>
+					<h3>show<wbr>Deck</h3>
+					<div class="tsd-signature tsd-kind-icon">show<wbr>Deck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/card-game/card-game.ts#L21">card-game/card-game.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true, render a deck of cards.
+							Override CardGame.onDeckClick() to add handler when deck is clicked.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{boolean} showDeck</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="shuffle" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> shuffle</h3>
+					<div class="tsd-signature tsd-kind-icon">shuffle<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/card-game/card-game.ts#L29">card-game/card-game.ts:29</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true or omitted, or if a shuffle function is provided, shuffle the deck before dealing.
+							Otherwise deal without shuffling (defualt deck is AofClubs, AofDiamonds, AofHearts, AofSpades, 2OfClubs...KofSpades)</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{((cards: Card[]) =&gt; Card[]) | boolean} [shuffle=true]</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -96,16 +168,16 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="basegame.html">Base<wbr>Game</a>
+						<a href="../modules/basegame.html">Base<wbr>Game</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="cardgame.html">Card<wbr>Game</a>
+						<a href="../modules/cardgame.html">Card<wbr>Game</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="server.html">Server</a>
+						<a href="../modules/server.html">Server</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="tabletop.html">Tabletop</a>
+						<a href="../modules/tabletop.html">Tabletop</a>
 					</li>
 				</ul>
 			</nav>
@@ -123,9 +195,24 @@
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="../classes/cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="cardgame.cardgameoptions.html#initialhandsize" class="tsd-kind-icon">initial<wbr>Hand<wbr>Size</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="cardgame.cardgameoptions.html#showdeck" class="tsd-kind-icon">show<wbr>Deck</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="cardgame.cardgameoptions.html#shuffle" class="tsd-kind-icon">shuffle</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>

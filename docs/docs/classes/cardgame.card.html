@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CardGame | tabletopparadise</title>
+	<title>Card | tabletopparadise</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,36 +56,84 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="cardgame.html">CardGame</a>
+					<a href="../modules/cardgame.html">CardGame</a>
+				</li>
+				<li>
+					<a href="cardgame.card.html">Card</a>
 				</li>
 			</ul>
-			<h1>External module CardGame</h1>
+			<h1>Class Card</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Card</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/tabletop.domelement.html" class="tsd-signature-type">DomElement</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.card.html" class="tsd-kind-icon">Card</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.cardgame-1.html" class="tsd-kind-icon">Card<wbr>Game</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.cardgamedomhelper.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Dom<wbr>Helper</a></li>
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.card.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.card.html#resize" class="tsd-kind-icon">resize</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="render" class="tsd-anchor"></a>
+					<h3>render</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#render">render</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/card-game/card.ts#L7">card-game/card.ts:7</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="resize" class="tsd-anchor"></a>
+					<h3>resize</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">resize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#resize">resize</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/360cc24/tabletop/card-game/card.ts#L8">card-game/card.ts:8</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -96,32 +144,44 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="basegame.html">Base<wbr>Game</a>
+						<a href="../modules/basegame.html">Base<wbr>Game</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="cardgame.html">Card<wbr>Game</a>
+						<a href="../modules/cardgame.html">Card<wbr>Game</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="server.html">Server</a>
+						<a href="../modules/server.html">Server</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="tabletop.html">Tabletop</a>
+						<a href="../modules/tabletop.html">Tabletop</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="cardgame.card.html" class="tsd-kind-icon">Card</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cardgame.card.html#render" class="tsd-kind-icon">render</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cardgame.card.html#resize" class="tsd-kind-icon">resize</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/cardgame.card.html" class="tsd-kind-icon">Card</a>
+						<a href="cardgame.cardgame-1.html" class="tsd-kind-icon">Card<wbr>Game</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/cardgame.cardgame-1.html" class="tsd-kind-icon">Card<wbr>Game</a>
+						<a href="cardgame.cardgamedomhelper.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Dom<wbr>Helper</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/cardgame.cardgamedomhelper.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Dom<wbr>Helper</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a>
+						<a href="cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a>

@@ -2,7 +2,7 @@
  * @module BaseGame
  */
 
-import { DomHelper, DomElement } from "../tabletop";
+import { DomHelper, DomElement, Tabletop } from "../tabletop";
 import { ServerConnection } from "../server";
 import { Player } from "./player";
 
@@ -28,6 +28,10 @@ export class BaseGame implements DomElement {
 	 */
 	protected ServerConnection = ServerConnection;
 	/**
+	 * The Tabletop class to use. Override with your custom Tabletop class.
+	 */
+	protected Tabletop = Tabletop;
+	/**
 	 * A singleton Dom Helper.
 	 *
 	 * Override this property to use your own custom DomHelper.
@@ -51,6 +55,12 @@ export class BaseGame implements DomElement {
 	 * Override this property to use your own custom Player class.
 	 */
 	protected player: Player;
+	/**
+	 * A singleton Tabletop.
+	 *
+	 * Override this property to use your own Tabletop clss.
+	 */
+	protected tabletop: Tabletop;
 
 	/**
 	 * Creates an instance of a BaseGame.
@@ -66,6 +76,7 @@ export class BaseGame implements DomElement {
 		protected $container: JQuery<HTMLElement>
 	) {
 		this.initializeDom();
+		this.initializeTabletop();
 		this.initializeServer();
 		this.initializePlayers();
 	}
@@ -90,6 +101,18 @@ export class BaseGame implements DomElement {
 	}
 
 	/**
+	 * Initializes `this.tabletop`.
+	 *
+	 * To use your own custom implementation of Tabletop, override property Tabletop.
+	 *
+	 * If your custom implementation of Tabletop requires additional arguments,
+	 * you may override this method.
+	 */
+	initializeTabletop() {
+		this.tabletop = new this.Tabletop(this.$container);
+	}
+
+	/**
 	 * Creates an instance of a ServerConnection.
 	 *
 	 * Initializes `this.server`.
@@ -98,7 +121,6 @@ export class BaseGame implements DomElement {
 	 * Do not call `super()`.
 	 */
 	initializeServer() {
-		// TODO: Get Game ID
 		this.server = new this.ServerConnection();
 	}
 
@@ -122,5 +144,8 @@ export class BaseGame implements DomElement {
 	}
 
 	render() {}
-	resize() {}
+
+	resize() {
+		this.tabletop.resize();
+	}
 }
