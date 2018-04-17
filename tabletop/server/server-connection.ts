@@ -77,7 +77,8 @@ export class ServerConnection {
 		for (let playerId in data) {
 			players.push({
 				id: playerId,
-				username: data[playerId]
+				username: data[playerId].username,
+				isHost: data[playerId].isHost
 			});
 		}
 
