@@ -139,6 +139,7 @@ export class BaseGame implements DomElement {
 		this.players = players.map(playerInfo => new this.Player(
 			playerInfo.id,
 			playerInfo.username,
+			playerInfo.isHost,
 			"position",
 			this.domHelper,
 			this

@@ -76,6 +76,13 @@ export class Player implements DomElement {
 		 */
 		public name: string,
 		/**
+		 * If true, the player is hosting the game.
+		 *
+		 * This can be useful for determining who does one-time initializations,
+		 * such as (in a card game) sorting the deck.
+		 */
+		public isHost: boolean,
+		/**
 		 * The position of the player to be rendered onto the screen.
 		 *
 		 * For a four-player game, typically `"top" | "left" | "right" | "bottom"`.
