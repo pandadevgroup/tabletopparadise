@@ -79,10 +79,13 @@ export class BaseGame implements DomElement {
 		this.initializeTabletop();
 		this.initializeServer();
 		this.initializeListeners();
-		this.initializePlayers();
-		if (this.player.isHost) {
-			this.runHostSetup();
-		}
+		this.initializePlayers()
+			.then(() => this.initialize())
+			.then(() => {
+				if (this.player.isHost) {
+					this.runHostSetup();
+				}
+			});
 	}
 
 	/**
@@ -149,6 +152,16 @@ export class BaseGame implements DomElement {
 		));
 		this.player = this.players.find(player => player.id === localPlayerId);
 	}
+
+	/**
+	 * Called after players are initialized and all initialization is done,
+	 * but before runHostSetup() is called.
+	 *
+	 * Do any further initialization for your custom game here.
+	 *
+	 * @returns {Promise<void>}
+	 */
+	async initialize() {}
 
 	/**
 	 * This function will be called if the current local player is host.

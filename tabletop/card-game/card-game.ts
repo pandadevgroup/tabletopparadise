@@ -3,6 +3,7 @@
  */
 import { BaseGame } from "../base-game";
 import { Card } from "./card";
+import { Deck } from "./deck";
 
 export interface CardGameOptions {
 	/**
@@ -30,10 +31,22 @@ export interface CardGameOptions {
 }
 
 export class CardGame extends BaseGame {
+	protected deck: Deck;
+
 	constructor(
 		protected $container: JQuery<HTMLElement>,
 		public opts: CardGameOptions
 	) {
 		super($container);
+	}
+
+	async initialize() {
+		this.deck = new Deck(this.domHelper, this.opts.showDeck);
+	}
+
+	runHostSetup() {
+		if (this.opts.shuffle !== false) this.deck.shuffle(
+			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
+		);
 	}
 }

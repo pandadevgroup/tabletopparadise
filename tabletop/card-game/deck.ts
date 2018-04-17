@@ -27,6 +27,16 @@ export class Deck implements DomElement {
 		}
 	}
 
+	shuffle(algorithm = function(array: Card[]) {
+		// Fisher-yates shuffle
+		// based on algorithm (then minified) from: https://bost.ocks.org/mike/shuffle/
+		// Web archive: https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/
+		for (var t, i, m = array.length; m;) (i = Math.floor(Math.random() * m--)), (t = array[m]), (array[m] = array[i]), (array[i] = t);
+		return array;
+	}) {
+		this.cards = algorithm(this.cards);
+	}
+
 	render() {}
 	resize() {}
 }
