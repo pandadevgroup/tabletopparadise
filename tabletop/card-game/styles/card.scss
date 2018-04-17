@@ -1,0 +1,38 @@
+@import "mixins";
+
+.card {
+	@include card-size;
+	@include will-transform;
+	transform-style: preserve-3d;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	visibility: hidden;
+	pointer-events: none;
+	transform: rotateX(180deg);
+
+	&.actionable {
+		@include actionable;
+	}
+
+	.card__front {
+		position: absolute;
+		@include card-size;
+		user-select: none;
+		-webkit-user-drag: none;
+		backface-visibility: hidden;
+	}
+
+	.card__back {
+		position: absolute;
+		@include card-size;
+		transform: rotateX(180deg);
+		user-select: none;
+		-webkit-user-drag: none;
+		backface-visibility: hidden;
+	}
+
+	&--visible {
+		visibility: visible;
+		pointer-events: all;
+	}
+}
+

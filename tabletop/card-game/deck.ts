@@ -42,8 +42,10 @@ export class Deck implements DomElement {
 	render() {
 		if (!this.visible) return;
 		this.$deck = this.domHelper.createDeckFrag();
+		this.cards.forEach(card => card.render());
 	}
 	resize() {
 		if (!this.visible) return;
+		this.cards.forEach(card => card.resize());
 	}
 }
