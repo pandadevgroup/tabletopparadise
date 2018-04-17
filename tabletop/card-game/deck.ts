@@ -37,6 +37,8 @@ export class Deck implements DomElement {
 		this.cards = algorithm(this.cards);
 	}
 
-	render() {}
+	render() {
+		console.log(this.cards);
+	}
 	resize() {}
 }

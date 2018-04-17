@@ -12,14 +12,14 @@ export interface CardGameOptions {
 	 * @example 13 (Bridge)
 	 * @type {number} initialHandSize
 	 */
-	initialHandSize: number;
+	initialHandSize?: number;
 	/**
 	 * If true, render a deck of cards.
 	 * Override CardGame.onDeckClick() to add handler when deck is clicked.
 	 *
 	 * @type {boolean} showDeck
 	 */
-	showDeck: boolean;
+	showDeck?: boolean;
 
 	/**
 	 * If true or omitted, or if a shuffle function is provided, shuffle the deck before dealing.
@@ -35,7 +35,11 @@ export class CardGame extends BaseGame {
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		public opts: CardGameOptions
+		public opts: CardGameOptions = {
+			initialHandSize: 13,
+			showDeck: false,
+			shuffle: true
+		}
 	) {
 		super($container);
 	}
@@ -48,5 +52,13 @@ export class CardGame extends BaseGame {
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
+	}
+
+	render() {
+		this.deck.render();
+	}
+
+	resize() {
+		this.deck.resize();
 	}
 }

@@ -85,6 +85,10 @@ export class BaseGame implements DomElement {
 				if (this.player.isHost) {
 					this.runHostSetup();
 				}
+			})
+			.then(() => {
+				this.render();
+				this.resize();
 			});
 	}
 

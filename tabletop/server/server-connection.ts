@@ -34,6 +34,7 @@ export class ServerConnection {
 			firebase.initializeApp(config);
 		}
 		if (!gameId) this.gameId = this.getGameId();
+		if (!this.gameId) throw "Game ID is null; Perhaps game url parameter is not set?";
 		this.start();
 	}
 
