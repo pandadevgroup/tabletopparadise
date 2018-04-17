@@ -106,6 +106,9 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#dispatch" class="tsd-kind-icon">dispatch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#getallplayers" class="tsd-kind-icon">get<wbr>All<wbr>Players</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#getgameid" class="tsd-kind-icon">get<wbr>Game<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#getlocalplayerid" class="tsd-kind-icon">get<wbr>Local<wbr>Player<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="server.serverconnection.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#on" class="tsd-kind-icon">on</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#runprevactions" class="tsd-kind-icon">run<wbr>Prev<wbr>Actions</a></li>
@@ -121,13 +124,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Server<wbr>Connection<span class="tsd-signature-symbol">(</span>gameId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="server.serverconnection.html" class="tsd-signature-type">ServerConnection</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Server<wbr>Connection<span class="tsd-signature-symbol">(</span>gameId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="server.serverconnection.html" class="tsd-signature-type">ServerConnection</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -138,7 +141,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>gameId: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> gameId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>a unique game id used to identify the game.</p>
@@ -155,11 +158,11 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="gameid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> game<wbr>Id</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> game<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">game<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L23">server/server-connection.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L23">server/server-connection.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">listeners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -196,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L91">server/server-connection.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L126">server/server-connection.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -217,6 +220,74 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getallplayers" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Players</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Players<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L73">server/server-connection.ts:73</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all players in game</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getgameid" class="tsd-anchor"></a>
+					<h3>get<wbr>Game<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Game<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L61">server/server-connection.ts:61</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the current game id.</p>
+								</div>
+								<p>Game id = /game/?game=gameId</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getlocalplayerid" class="tsd-anchor"></a>
+					<h3>get<wbr>Local<wbr>Player<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Local<wbr>Player<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L94">server/server-connection.ts:94</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the player ID of the player currently playing on the computer.</p>
+								</div>
+								<p>Will be null if the player has not logged in.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="handleaction" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Action</h3>
@@ -227,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L100">server/server-connection.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L135">server/server-connection.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +329,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L83">server/server-connection.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L118">server/server-connection.ts:118</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +366,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L60">server/server-connection.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L104">server/server-connection.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -319,7 +390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b391e34/tabletop/server/server-connection.ts#L43">server/server-connection.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/8d98d04/tabletop/server/server-connection.ts#L45">server/server-connection.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,6 +413,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/basegame.html">Base<wbr>Game</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/cardgame.html">Card<wbr>Game</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/server.html">Server</a>
@@ -372,6 +446,15 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="server.serverconnection.html#dispatch" class="tsd-kind-icon">dispatch</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="server.serverconnection.html#getallplayers" class="tsd-kind-icon">get<wbr>All<wbr>Players</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="server.serverconnection.html#getgameid" class="tsd-kind-icon">get<wbr>Game<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="server.serverconnection.html#getlocalplayerid" class="tsd-kind-icon">get<wbr>Local<wbr>Player<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="server.serverconnection.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a>

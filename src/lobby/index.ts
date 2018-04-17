@@ -14,7 +14,10 @@ playersRef.on('value', (snapshot) => {
 let playerId = sessionStorage.getItem("playerId");
 if (!playerId) {
 	let username = prompt("Enter Your Username");
-	playerId = playersRef.push(username).key;
+	playerId = playersRef.push({
+		username,
+		isHost: false
+	}).key;
 	sessionStorage.setItem("playerId", playerId);
 } else {
 	console.log("Player ID is", playerId);

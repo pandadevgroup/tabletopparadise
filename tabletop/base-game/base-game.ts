@@ -2,9 +2,11 @@
  * @module BaseGame
  */
 
-import { DomHelper, DomElement } from "../tabletop";
+import { DomHelper, DomElement, Tabletop } from "../tabletop";
 import { ServerConnection } from "../server";
 import { Player } from "./player";
+
+import "./styles/game.scss";
 
 /**
  * BaseGame provides the necessary utilities for a game.
@@ -14,72 +16,92 @@ import { Player } from "./player";
  * Extend this class to create functionality for a custom game.
  * You may override any public/protected method provided you call `super()`.
  */
-export abstract class BaseGame implements DomElement {
+export class BaseGame<
+	DomHelperType extends DomHelper = DomHelper,
+	PlayerType extends Player = Player,
+	TabletopType extends Tabletop = Tabletop,
+	ServerConnectionType extends ServerConnection = ServerConnection
+> implements DomElement {
 	/**
 	 * A singleton Dom Helper.
 	 *
 	 * Override this property to use your own custom DomHelper.
 	 */
-	protected domHelper: DomHelper;
+	protected domHelper: DomHelperType;
 	/**
 	 * A singleton Server Connection.
 	 *
 	 * Override this property if you are using a custom server connection.
 	 */
-	protected server: ServerConnection;
+	protected server: ServerConnectionType;
 	/**
 	 * An array of players currently playing the tabletop game.
 	 *
 	 * Override this property to use your own custom Player class.
 	 */
-	protected players: Player[];
+	protected players: PlayerType[];
 	/**
 	 * The local player playing on the computer.
 	 *
 	 * Override this property to use your own custom Player class.
 	 */
-	protected player: Player;
+	protected player: PlayerType;
+	/**
+	 * A singleton Tabletop.
+	 *
+	 * Override this property to use your own Tabletop clss.
+	 */
+	protected tabletop: TabletopType;
 
 	/**
 	 * Creates an instance of a BaseGame.
 	 *
 	 * You may override this constructor to do additional work.
 	 * Remember to call `super`. If you are using your own implementation
-	 * of DomHelper, ServerConnection, or Player, override the functions
-	 * [[initializeDomHelper]], [[initializeServer]], and [[initializePlayers]]
-	 * to instantiate your custom classes.
+	 * of DomHelper, ServerConnection, or Player, pass in the appropriate
+	 * classes to the constructor.
 	 *
 	 * @param {JQuery<HTMLElement}
 	 */
 	constructor(
-		protected $container: JQuery<HTMLElement>
+		protected $container: JQuery<HTMLElement>,
+		protected DomHelperClass = DomHelper,
+		protected PlayerClass = Player,
+		protected TabletopClass = Tabletop,
+		protected ServerConnectionClass = ServerConnection
 	) {
-		this.initializeDomHelper();
 		this.initializeDom();
+		this.initializeTabletop();
 		this.initializeServer();
-		this.initializePlayers();
+		this.initializeListeners();
+		this.initializePlayers()
+			.then(() => this.initialize())
+			.then(() => {
+				if (this.player.isHost) {
+					this.runHostSetup();
+				}
+			})
+			.then(() => {
+				// TODO: run previous actions?
+				this.domHelper.ready();
+				this.render();
+				this.resize();
+				this.domHelper.renderFrag();
+			});
 	}
 
 	/**
-	 * Creates an instance of a DomHelper.
+	 * Initializes `this.domHelper` and any event listeners related to the dom,
+	 * primarily `$(window).resize()`.
 	 *
-	 * Initializes `this.domHelper`.
+	 * You may extend this method to add additional event listeners
+	 * or do any additional dom setup.
 	 *
-	 * Override this method to use your custom implementation of DomHelper.
-	 * Do not call `super()`.
-	 */
-	initializeDomHelper() {
-		this.domHelper = new DomHelper(this.$container);
-	}
-
-	/**
-	 * Initializes any event listeners related to the dom, primarily `$(window).resize()`.
-	 * Called immediately after [[initializeDomHelper]].
-	 *
-	 * You may extend this method to add additional event listeners.
-	 * Call `super()` to set up the window resize listener.
+	 * To use your own custom implementation of DomHelper, override property DomHelper.
 	 */
 	initializeDom() {
+		this.domHelper = new this.DomHelperClass(this.$container) as DomHelperType;
+
 		let debounce;
 		$(window).resize(() => {
 			clearTimeout(debounce);
@@ -88,25 +110,76 @@ export abstract class BaseGame implements DomElement {
 	}
 
 	/**
+	 * Initializes `this.tabletop`.
+	 *
+	 * To use your own custom implementation of Tabletop, override property Tabletop.
+	 *
+	 * If your custom implementation of Tabletop requires additional arguments,
+	 * you may override this method.
+	 */
+	initializeTabletop() {
+		this.tabletop = new this.TabletopClass(this.$container) as TabletopType;
+	}
+
+	/**
 	 * Creates an instance of a ServerConnection.
 	 *
 	 * Initializes `this.server`.
-	 *
-	 * Override this method to use your own custom implementation of ServerConnection.
-	 * Do not call `super()`.
 	 */
 	initializeServer() {
-		// TODO: Generate Game ID
-		this.server = new ServerConnection("TODO");
+		this.server = new this.ServerConnectionClass() as ServerConnectionType;
 	}
+
+	/**
+	 * Initialize any listeners (card draw, etc).
+	 */
+	initializeListeners() {}
 
 	/**
 	 * Initializes `this.player` and `this.players`.
 	 *
 	 * When overriding, initialize `this.player` and `this.players`.
 	 */
-	abstract initializePlayers();
+	async initializePlayers() {
+		let players = await this.server.getAllPlayers();
+		let localPlayerId = this.server.getLocalPlayerId();
 
-	abstract render();
-	abstract resize();
+		this.players = players.map(
+			playerInfo =>
+				new this.PlayerClass(
+					playerInfo.id,
+					playerInfo.username,
+					playerInfo.isHost,
+					"position",
+					this.domHelper,
+					this
+				)
+		) as PlayerType[];
+		this.player = this.players.find(player => player.id === localPlayerId);
+	}
+
+	/**
+	 * Called after players are initialized and all initialization is done,
+	 * but before runHostSetup() is called.
+	 *
+	 * Do any further initialization for your custom game here.
+	 *
+	 * @returns {Promise<void>}
+	 */
+	async initialize() {}
+
+	/**
+	 * This function will be called if the current local player is host.
+	 *
+	 * In this function, do any one-time initialization tasks.
+	 *
+	 * Eg. for a card game, sort the card deck.
+	 */
+	runHostSetup() {}
+
+	render() {}
+
+	resize() {
+		this.tabletop.resize();
+	}
 }

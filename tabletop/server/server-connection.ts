@@ -20,7 +20,7 @@ export class ServerConnection {
 	 * Constructs a new instance of ServerConnection and starts listening for events.
 	 * @param gameId a unique game id used to identify the game.
 	 */
-	constructor(protected gameId: string) {
+	constructor(protected gameId?: string) {
 		if (!firebase.apps.length) {
 			// Initialize Firebase
 			var config = {
@@ -33,6 +33,8 @@ export class ServerConnection {
 			};
 			firebase.initializeApp(config);
 		}
+		if (!gameId) this.gameId = this.getGameId();
+		if (!this.gameId) throw "Game ID is null; Perhaps game url parameter is not set?";
 		this.start();
 	}
 
@@ -52,27 +54,60 @@ export class ServerConnection {
 	}
 
 	/**
+	 * Returns the current game id.
+	 *
+	 * Game id = /game/?game=gameId
+	 */
+	getGameId() {
+		let paramName = "game";
+		var regex = new RegExp("[?&]" + paramName + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(window.location.href);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+
+	/**
+	 * Gets all players in game
+	 */
+	async getAllPlayers() {
+		let snap = await firebase.database().ref(`/game/${this.gameId}/players`).once("value");
+		let data = snap.val();
+
+		let players = [];
+		for (let playerId in data) {
+			players.push({
+				id: playerId,
+				username: data[playerId].username,
+				isHost: data[playerId].isHost
+			});
+		}
+
+		return players;
+	}
+
+	/**
+	 * Get the player ID of the player currently playing on the computer.
+	 *
+	 * Will be null if the player has not logged in.
+	 */
+	getLocalPlayerId() {
+		return sessionStorage.getItem("playerId");
+	}
+
+	/**
 	 * Runs through all previous actions.
 	 *
 	 * Useful when a user disconnects and reconnects.
 	 * Attach all listeners, then call this function.
 	 */
-	runPrevActions() {
-		return firebase.database()
+	async runPrevActions() {
+		let snap = await firebase.database()
 			.ref(`/game/${this.gameId}/actions`)
-			.once("value")
-			.then(snap => {
-				if (snap.val() == null) {
-					return null;
-				} else {
-					return Object.values(snap.val()) as Action[]
-				}
-			})
-			.then(actions => {
-				if (actions != null) {
-					actions.forEach(action => this.handleAction(action))
-				}
-			});
+			.once("value");
+		if (snap.val() == null) return null;
+		return (Object.values(snap.val()) as Action[])
+			.forEach(action => this.handleAction(action));
 	}
 
 	/**

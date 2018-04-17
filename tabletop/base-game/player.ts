@@ -57,7 +57,7 @@ import { DomElement, DomHelper } from "../tabletop";
  * }
  * ```
  */
-export abstract class Player implements DomElement {
+export class Player implements DomElement {
 	/**
 	 * The jQuery element that contains all Player-related DOM code.
 	 *
@@ -76,6 +76,13 @@ export abstract class Player implements DomElement {
 		 */
 		public name: string,
 		/**
+		 * If true, the player is hosting the game.
+		 *
+		 * This can be useful for determining who does one-time initializations,
+		 * such as (in a card game) sorting the deck.
+		 */
+		public isHost: boolean,
+		/**
 		 * The position of the player to be rendered onto the screen.
 		 *
 		 * For a four-player game, typically `"top" | "left" | "right" | "bottom"`.
@@ -88,8 +95,8 @@ export abstract class Player implements DomElement {
 		/**
 		 * The game object that the player belongs to.
 		 *
-		 * The player object will utilize the game object to get the layout options,
-		 * and also call the game object's methods to notify it of any player actions (eg. a card was played).
+		 * The player object will utilize the game object to notify it of
+		 * any player actions (eg. a card was played).
 		 */
 		protected game: BaseGame
 	) {}
