@@ -4,6 +4,7 @@
 
 import { CardGameDomHelper } from "./dom-helper";
 import { Card } from "./card";
+import { CardGame } from "./card-game";
 import { DomElement } from "../tabletop";
 
 import "./styles/deck.scss";
@@ -11,9 +12,11 @@ import "./styles/deck.scss";
 export class Deck implements DomElement {
 	protected $deck: JQuery<HTMLElement>;
 	protected cards: Card[];
+	protected actionable: boolean = false;
 
 	constructor(
 		protected domHelper: CardGameDomHelper,
+		protected game: CardGame,
 		protected visible: boolean
 	) {
 		this.initializeCards();
@@ -39,9 +42,21 @@ export class Deck implements DomElement {
 		this.cards = algorithm(this.cards);
 	}
 
+	setActionable(actionable: boolean) {
+		this.actionable = actionable;
+		if (this.actionable && this.$deck) this.domHelper.addClass(this.$deck, "actionable");
+		else if (this.$deck) this.domHelper.removeClass(this.$deck, "actionable");
+	}
+
 	render() {
 		if (!this.visible) return;
+
 		this.$deck = this.domHelper.createDeckFrag();
+		this.$deck.click(() => this.actionable
+			? this.game.onDeckClick()
+			: undefined
+		);
+
 		this.cards.forEach(card => card.render());
 	}
 	resize() {

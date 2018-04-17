@@ -45,7 +45,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	}
 
 	async initialize() {
-		this.deck = new Deck(this.domHelper, this.opts.showDeck);
+		this.deck = new Deck(this.domHelper, this, this.opts.showDeck);
 	}
 
 	runHostSetup() {
@@ -54,8 +54,13 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		);
 	}
 
+	onDeckClick() {
+		console.log("Deck clicked");
+	}
+
 	render() {
 		this.deck.render();
+		this.deck.setActionable(true);
 	}
 
 	resize() {
