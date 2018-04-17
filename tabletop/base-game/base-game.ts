@@ -81,8 +81,8 @@ export class BaseGame<
 					this.runHostSetup();
 				}
 			})
+			.then(() => this.server.runPrevActions())
 			.then(() => {
-				// TODO: run previous actions?
 				this.domHelper.ready();
 				this.render();
 				this.resize();
