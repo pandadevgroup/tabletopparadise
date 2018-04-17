@@ -35,6 +35,7 @@ export interface CardGameOptions {
 
 export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	protected deck: Deck;
+	protected deckSynced = false;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
@@ -51,20 +52,24 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 	initializeListeners() {
 		this.server.on(actions.DECK_SYNC, action => {
+			this.deckSynced = true;
+
 			let deck = action.payload.deck;
 			this.deck.setDeckOrder(deck);
 		});
 	}
 
 	runHostSetup() {
-		// if (this.opts.shuffle !== false) this.deck.shuffle(
-		// 	typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
-		// );
-		// this.server.dispatch(
-		// 	new actions.DeckSync({
-		// 		deck: this.deck.getCardIds()
-		// 	})
-		// );
+		if (!this.deckSynced) {
+			if (this.opts.shuffle !== false) this.deck.shuffle(
+				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
+			);
+			this.server.dispatch(
+				new actions.DeckSync({
+					deck: this.deck.getCardIds()
+				})
+			);
+		}
 	}
 
 	onDeckClick() {

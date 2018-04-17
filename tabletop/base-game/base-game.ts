@@ -76,12 +76,12 @@ export class BaseGame<
 		this.initializeListeners();
 		this.initializePlayers()
 			.then(() => this.initialize())
+			.then(() => this.server.runPrevActions())
 			.then(() => {
 				if (this.player.isHost) {
 					this.runHostSetup();
 				}
 			})
-			.then(() => this.server.runPrevActions())
 			.then(() => {
 				this.domHelper.ready();
 				this.render();
