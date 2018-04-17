@@ -40,7 +40,7 @@ export class Action {
 		 *
 		 * Examples: `"Draw Card"`, `"Shuffle Deck"`, etc.
 		 */
-		public event: string,
+		public readonly event: string,
 		/**
 		 * Any data associated with the action.
 		 *

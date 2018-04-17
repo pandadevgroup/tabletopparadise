@@ -53,6 +53,10 @@ export class Deck implements DomElement {
 		else if (this.$deck) this.domHelper.removeClass(this.$deck, "actionable");
 	}
 
+	getCardIds() {
+		return this.cards.map(card => card.id);
+	}
+
 	render() {
 		if (!this.visible) return;
 

@@ -6,6 +6,7 @@ import { Card } from "./card";
 import { Deck } from "./deck";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGamePlayer } from "./player";
+import * as actions from "./actions";
 
 export interface CardGameOptions {
 	/**
@@ -48,10 +49,21 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		this.deck = new Deck(this.domHelper, this.tabletop, this.opts.showDeck, this);
 	}
 
+	initializeListeners() {
+		this.server.on(actions.DECK_SYNC, action => {
+			console.log(action);
+		});
+	}
+
 	runHostSetup() {
 		if (this.opts.shuffle !== false) this.deck.shuffle(
 			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 		);
+		// this.server.dispatch(
+		// 	new actions.DeckSync({
+		// 		deck: this.deck.getCardIds()
+		// 	})
+		// );
 	}
 
 	onDeckClick() {
