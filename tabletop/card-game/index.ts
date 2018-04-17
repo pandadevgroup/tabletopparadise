@@ -9,3 +9,4 @@ export * from "./card-game";
 export * from "./dom-helper";
 export * from "./player";
 export * from "./card";
+export * from "./deck";
