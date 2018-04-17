@@ -12,7 +12,7 @@ Planned to include the following premade games:
 
 
 ### Documentation
-https://www.pandadevgroup.com/tabletopparadise/
+https://tabletopparadise.pandadevgroup.com/docs
 
-### View (Currently not working)
+### View
 https://tabletopparadise.pandadevgroup.com/
