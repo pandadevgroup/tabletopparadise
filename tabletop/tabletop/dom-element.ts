@@ -88,5 +88,5 @@ export interface DomElement {
 	 * If your element has any sub-elements, call `resize()` on the sub-elements
 	 * in this function.
 	 */
-	resize();
+	resize(positionInfo?);
 }

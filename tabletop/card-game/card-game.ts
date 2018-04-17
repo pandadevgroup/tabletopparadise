@@ -45,7 +45,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	}
 
 	async initialize() {
-		this.deck = new Deck(this.domHelper, this, this.opts.showDeck);
+		this.deck = new Deck(this.domHelper, this.tabletop, this.opts.showDeck, this);
 	}
 
 	runHostSetup() {
@@ -64,6 +64,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	}
 
 	resize() {
+		super.resize();
 		this.deck.resize();
 	}
 }

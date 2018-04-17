@@ -5,7 +5,7 @@
 import { CardGameDomHelper } from "./dom-helper";
 import { Card } from "./card";
 import { CardGame } from "./card-game";
-import { DomElement } from "../tabletop";
+import { DomElement, Tabletop } from "../tabletop";
 
 import "./styles/deck.scss";
 
@@ -13,11 +13,16 @@ export class Deck implements DomElement {
 	protected $deck: JQuery<HTMLElement>;
 	protected cards: Card[];
 	protected actionable: boolean = false;
+	protected layoutOpts = {
+		cardWidth: 125,
+		cardHeight: 175
+	};
 
 	constructor(
 		protected domHelper: CardGameDomHelper,
-		protected game: CardGame,
-		protected visible: boolean
+		protected tabletop: Tabletop,
+		protected visible: boolean,
+		protected game: CardGame
 	) {
 		this.initializeCards();
 	}
@@ -59,7 +64,25 @@ export class Deck implements DomElement {
 
 	resize() {
 		if (!this.visible) return;
-		this.cards.forEach(card => card.resize());
+
+		if (this.tabletop.height <= 1000) {
+			this.layoutOpts.cardWidth = 100;
+			this.layoutOpts.cardHeight = 140;
+		} else {
+			this.layoutOpts.cardWidth = 125;
+			this.layoutOpts.cardHeight = 175;
+		}
+
+		this.domHelper.updateEl(this.$deck, this.getCardPosition());
+		this.cards.forEach(card => card.resize(this.getCardPosition(card)));
+	}
+
+	protected getCardPosition(card?: Card) {
+		return {
+			x: Math.round(this.tabletop.width / 2 - this.layoutOpts.cardWidth / 2),
+			y: Math.round(this.tabletop.height / 2 - this.layoutOpts.cardHeight / 2),
+			rotateX: card === undefined ? 0 : 180
+		};
 	}
 
 	protected onDeckClick() {

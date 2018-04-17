@@ -21,7 +21,9 @@ export class Card implements DomElement {
 		this.$card = this.domHelper.createCardFrag(this.getImgName(), this.visible);
 	}
 
-	resize() {}
+	resize(positionInfo) {
+		this.domHelper.updateEl(this.$card, positionInfo);
+	}
 
 	getImgName() {
 		if (this.number <= 10) {

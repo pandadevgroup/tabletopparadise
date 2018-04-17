@@ -6,6 +6,8 @@ import { DomHelper, DomElement, Tabletop } from "../tabletop";
 import { ServerConnection } from "../server";
 import { Player } from "./player";
 
+import "./styles/game.scss";
+
 /**
  * BaseGame provides the necessary utilities for a game.
  *
@@ -80,9 +82,10 @@ export class BaseGame<
 				}
 			})
 			.then(() => {
+				// TODO: run previous actions?
+				this.domHelper.ready();
 				this.render();
 				this.resize();
-				// TODO: run previous actions?
 				this.domHelper.renderFrag();
 			});
 	}
