@@ -78,6 +78,7 @@ export class BaseGame implements DomElement {
 		this.initializeDom();
 		this.initializeTabletop();
 		this.initializeServer();
+		this.initializeListeners();
 		this.initializePlayers();
 	}
 
@@ -116,13 +117,15 @@ export class BaseGame implements DomElement {
 	 * Creates an instance of a ServerConnection.
 	 *
 	 * Initializes `this.server`.
-	 *
-	 * Override this method to use your own custom implementation of ServerConnection.
-	 * Do not call `super()`.
 	 */
 	initializeServer() {
 		this.server = new this.ServerConnection();
 	}
+
+	/**
+	 * Initialize any listeners (card draw, etc).
+	 */
+	initializeListeners() {}
 
 	/**
 	 * Initializes `this.player` and `this.players`.
