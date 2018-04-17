@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Card | tabletopparadise</title>
+	<title>Deck | tabletopparadise</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/cardgame.html">CardGame</a>
 				</li>
 				<li>
-					<a href="cardgame.card.html">Card</a>
+					<a href="cardgame.deck.html">Deck</a>
 				</li>
 			</ul>
-			<h1>Class Card</h1>
+			<h1>Class Deck</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Card</span>
+						<span class="target">Deck</span>
 					</li>
 				</ul>
 			</section>
@@ -90,25 +90,25 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="cardgame.card.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="cardgame.deck.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="cardgame.card.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cardgame.card.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cardgame.card.html#index" class="tsd-kind-icon">index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cardgame.card.html#number" class="tsd-kind-icon">number</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cardgame.card.html#suit" class="tsd-kind-icon">suit</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="cardgame.card.html#visible" class="tsd-kind-icon">visible</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="cardgame.deck.html#_deck" class="tsd-kind-icon">$deck</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="cardgame.deck.html#cards" class="tsd-kind-icon">cards</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="cardgame.deck.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="cardgame.deck.html#visible" class="tsd-kind-icon">visible</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.card.html#render" class="tsd-kind-icon">render</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.card.html#resize" class="tsd-kind-icon">resize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.deck.html#initializecards" class="tsd-kind-icon">initialize<wbr>Cards</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.deck.html#render" class="tsd-kind-icon">render</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.deck.html#resize" class="tsd-kind-icon">resize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="cardgame.deck.html#shuffle" class="tsd-kind-icon">shuffle</a></li>
 							</ul>
 						</section>
 					</div>
@@ -120,13 +120,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Card<span class="tsd-signature-symbol">(</span>domHelper<span class="tsd-signature-symbol">: </span><a href="cardgame.cardgamedomhelper.html" class="tsd-signature-type">CardGameDomHelper</a>, number<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, suit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"club"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"diamond"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"heart"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"spade"</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, visible<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cardgame.card.html" class="tsd-signature-type">Card</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Deck<span class="tsd-signature-symbol">(</span>domHelper<span class="tsd-signature-symbol">: </span><a href="cardgame.cardgamedomhelper.html" class="tsd-signature-type">CardGameDomHelper</a>, visible<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cardgame.deck.html" class="tsd-signature-type">Deck</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L7">card-game/card.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L11">card-game/deck.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -135,91 +135,76 @@
 									<h5>domHelper: <a href="cardgame.cardgamedomhelper.html" class="tsd-signature-type">CardGameDomHelper</a></h5>
 								</li>
 								<li>
-									<h5>number: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>suit: <span class="tsd-signature-type">"club"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"diamond"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"heart"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"spade"</span></h5>
-								</li>
-								<li>
-									<h5>index: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> visible: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
-								</li>
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<h5>visible: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="cardgame.card.html" class="tsd-signature-type">Card</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="cardgame.deck.html" class="tsd-signature-type">Deck</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_deck" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> $deck</h3>
+					<div class="tsd-signature tsd-kind-icon">$deck<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L10">card-game/deck.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="cards" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> cards</h3>
+					<div class="tsd-signature tsd-kind-icon">cards<span class="tsd-signature-symbol">:</span> <a href="cardgame.card.html" class="tsd-signature-type">Card</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L11">card-game/deck.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="domhelper" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> dom<wbr>Helper</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> dom<wbr>Helper</h3>
 					<div class="tsd-signature tsd-kind-icon">dom<wbr>Helper<span class="tsd-signature-symbol">:</span> <a href="cardgame.cardgamedomhelper.html" class="tsd-signature-type">CardGameDomHelper</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L9">card-game/card.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L14">card-game/deck.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L14">card-game/card.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="index" class="tsd-anchor"></a>
-					<h3>index</h3>
-					<div class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L12">card-game/card.ts:12</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="number" class="tsd-anchor"></a>
-					<h3>number</h3>
-					<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L10">card-game/card.ts:10</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="suit" class="tsd-anchor"></a>
-					<h3>suit</h3>
-					<div class="tsd-signature tsd-kind-icon">suit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"club"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"diamond"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"heart"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"spade"</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L11">card-game/card.ts:11</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="visible" class="tsd-anchor"></a>
-					<h3>visible</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> visible</h3>
 					<div class="tsd-signature tsd-kind-icon">visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L13">card-game/card.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L15">card-game/deck.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="initializecards" class="tsd-anchor"></a>
+					<h3>initialize<wbr>Cards</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Cards<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L20">card-game/deck.ts:20</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="render" class="tsd-anchor"></a>
 					<h3>render</h3>
@@ -231,7 +216,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#render">render</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L17">card-game/card.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L40">card-game/deck.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -249,9 +234,32 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/tabletop.domelement.html">DomElement</a>.<a href="../interfaces/tabletop.domelement.html#resize">resize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/card.ts#L18">card-game/card.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L43">card-game/deck.ts:43</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="shuffle" class="tsd-anchor"></a>
+					<h3>shuffle</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">shuffle<span class="tsd-signature-symbol">(</span>algorithm<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/80498d1/tabletop/card-game/deck.ts#L30">card-game/deck.ts:30</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> algorithm: <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;function(array: Card[]) {// Fisher-yates shuffle// based on algorithm (then minified) from: https://bost.ocks.org/mike/shuffle/// Web archive: https://web.archive.org/web/20180311033149/https://bost.ocks.org/mike/shuffle/for (var t, i, m &#x3D; array.length; m;) (i &#x3D; Math.floor(Math.random() * m--)), (t &#x3D; array[m]), (array[m] &#x3D; array[i]), (array[i] &#x3D; t);return array;}</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -280,42 +288,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="cardgame.card.html" class="tsd-kind-icon">Card</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="cardgame.card.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="cardgame.card.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cardgame.card.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cardgame.card.html#index" class="tsd-kind-icon">index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cardgame.card.html#number" class="tsd-kind-icon">number</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cardgame.card.html#suit" class="tsd-kind-icon">suit</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="cardgame.card.html#visible" class="tsd-kind-icon">visible</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="cardgame.card.html#render" class="tsd-kind-icon">render</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="cardgame.card.html#resize" class="tsd-kind-icon">resize</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="cardgame.cardgame-1.html" class="tsd-kind-icon">Card<wbr>Game</a>
 					</li>
@@ -325,9 +300,42 @@
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="cardgame.deck.html" class="tsd-kind-icon">Deck</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="cardgame.deck.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="cardgame.deck.html#_deck" class="tsd-kind-icon">$deck</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="cardgame.deck.html#cards" class="tsd-kind-icon">cards</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="cardgame.deck.html#domhelper" class="tsd-kind-icon">dom<wbr>Helper</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="cardgame.deck.html#visible" class="tsd-kind-icon">visible</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cardgame.deck.html#initializecards" class="tsd-kind-icon">initialize<wbr>Cards</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cardgame.deck.html#render" class="tsd-kind-icon">render</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cardgame.deck.html#resize" class="tsd-kind-icon">resize</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="cardgame.deck.html#shuffle" class="tsd-kind-icon">shuffle</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a>
 					</li>
