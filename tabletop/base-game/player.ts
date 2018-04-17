@@ -88,8 +88,8 @@ export class Player implements DomElement {
 		/**
 		 * The game object that the player belongs to.
 		 *
-		 * The player object will utilize the game object to get the layout options,
-		 * and also call the game object's methods to notify it of any player actions (eg. a card was played).
+		 * The player object will utilize the game object to notify it of
+		 * any player actions (eg. a card was played).
 		 */
 		protected game: BaseGame
 	) {}

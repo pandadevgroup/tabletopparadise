@@ -36,7 +36,4 @@ export class CardGame extends BaseGame {
 	) {
 		super($container);
 	}
-
-	render() {}
-	resize() {}
 }
