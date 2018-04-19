@@ -55,10 +55,10 @@ export class BaseGame<
 	 */
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected DomHelperClass = DomHelper,
-		protected PlayerClass = Player,
-		protected TabletopClass = Tabletop,
-		protected ServerConnectionClass = ServerConnection
+		protected DomHelperClass: any = DomHelper,
+		protected PlayerClass: any = Player,
+		protected TabletopClass: any = Tabletop,
+		protected ServerConnectionClass: any = ServerConnection
 	) {
 		this.initializeDom();
 		this.initializeTabletop();
@@ -168,9 +168,12 @@ export class BaseGame<
 	 */
 	runHostSetup() {}
 
-	render() {}
+	render() {
+		Object.values(this.players).map(player => player.render());
+	}
 
 	resize() {
 		this.tabletop.resize();
+		Object.values(this.players).map(player => player.resize());
 	}
 }

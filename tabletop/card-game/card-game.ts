@@ -86,6 +86,32 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		}
 	}
 
+	async initializePlayers() {
+		let players = await this.server.getAllPlayers();
+		let localPlayerId = this.server.getLocalPlayerId();
+
+		let playerPositions;
+		if (players.length === 2) playerPositions = ["bottom", "top"];
+		else if (players.length === 3) playerPositions = ["bottom", "left", "right"];
+		else playerPositions = ["bottom", "left", "top", "right"];
+
+		this.players = {};
+		players.map((playerInfo, i) => {
+			this.players[playerInfo.id] = new CardGamePlayer(
+				playerInfo.id,
+				playerInfo.username,
+				playerInfo.isHost,
+				playerInfo.id === localPlayerId,
+				playerPositions[i],
+				playerInfo.isLocal,
+				this.domHelper,
+				this.tabletop,
+				this
+			);
+		});
+		this.player = this.players[localPlayerId];
+	}
+
 	protected dealInitialCards(numOfCards) {
 		Object.values(this.players).forEach(player => player.addCards(this.deck.get(numOfCards)));
 	}
@@ -95,6 +121,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	}
 
 	render() {
+		super.render();
 		this.deck.render();
 		this.deck.setActionable(true);
 	}

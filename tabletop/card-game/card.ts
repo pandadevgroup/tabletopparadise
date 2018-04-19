@@ -7,6 +7,7 @@ import "./styles/card.scss";
 
 export class Card implements DomElement {
 	private $card: JQuery<HTMLElement>;
+	selected = false;
 
 	constructor(
 		private domHelper: CardGameDomHelper,
@@ -23,6 +24,7 @@ export class Card implements DomElement {
 
 	resize(positionInfo) {
 		this.domHelper.updateEl(this.$card, positionInfo);
+		console.log("card resize");
 	}
 
 	setVisible(visible: boolean) {
