@@ -51,7 +51,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	}
 
 	initializeListeners() {
-		this.server.on(actions.DECK_SYNC, action => {
+		this.server.on(actions.DECK_SYNC_ACTION, action => {
 			this.deckSynced = true;
 
 			let deck = action.payload.deck;
@@ -65,7 +65,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 			);
 			this.server.dispatch(
-				new actions.DeckSync({
+				new actions.DeckSyncAction({
 					deck: this.deck.getCardIds()
 				})
 			);
