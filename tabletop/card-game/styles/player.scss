@@ -10,19 +10,10 @@
 
 	// background color speed
 	$bcspeed: 500ms;
-    -webkit-transition: background-color  $bcspeed linear;
-    -moz-transition: background-color $bcspeed linear;
-    -o-transition: background-color $bcspeed linear;
-    -ms-transition: background-color $bcspeed linear;
-	transition: background-color $bcspeed linear;
-
 	// color speed
 	$cspeed: $bcspeed*0.4;
-	-webkit-transition: color  $cspeed linear;
-    -moz-transition: color $cspeed linear;
-    -o-transition: color $cspeed linear;
-    -ms-transition: color $cspeed linear;
-    transition: color $cspeed linear;
+	transition: color $cspeed linear, background-color $bcspeed linear, transform 0.2s;
+
     &:hover {
 		background-color: rgba(0, 0, 255, 0.2);
 		color:#333333;

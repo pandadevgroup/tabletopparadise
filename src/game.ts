@@ -1,6 +1,6 @@
-import { CardGame } from "../tabletop";
+import { DrawCardsGame } from "../tabletop";
 
-let game = new CardGame($("#game"), {
+let game = new DrawCardsGame($("#game"), {
 	showDeck: true,
 	initialHandSize: 5
 });

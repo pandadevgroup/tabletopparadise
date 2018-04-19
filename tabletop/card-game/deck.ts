@@ -11,8 +11,8 @@ import "./styles/deck.scss";
 
 export class Deck implements DomElement {
 	protected $deck: JQuery<HTMLElement>;
-	protected cards: Card[];
-	protected actionable: boolean = false;
+	cards: Card[];
+	actionable: boolean = false;
 	protected layoutOpts = {
 		cardWidth: 125,
 		cardHeight: 175

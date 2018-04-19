@@ -8,6 +8,7 @@ import "./styles/card.scss";
 export class Card implements DomElement {
 	private $card: JQuery<HTMLElement>;
 	selected = false;
+	actionable = false;
 
 	constructor(
 		private domHelper: CardGameDomHelper,
@@ -31,6 +32,13 @@ export class Card implements DomElement {
 
 		if (this.visible) this.domHelper.addClass(this.$card, "card--visible");
 		else this.domHelper.removeClass(this.$card, "card--visible");
+	}
+
+	setActionable(actionable: boolean) {
+		this.actionable = actionable;
+
+		if (actionable) this.domHelper.addClass(this.$card, "actionable");
+		else this.domHelper.removeClass(this.$card, "actionable")
 	}
 
 	getImgName() {

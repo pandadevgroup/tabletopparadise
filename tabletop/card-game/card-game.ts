@@ -116,13 +116,19 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		});
 	}
 
+	protected drawCard(player: CardGamePlayer = this.player) {
+		let cards = this.deck.get(1);
+		player.addCards(cards);
+		if (this.deck.cards.length === 0) this.deck.setActionable(false);
+		player.resize();
+		return cards[0];
+	}
+
 	protected dealInitialCards(numOfCards) {
 		Object.values(this.players).forEach(player => player.addCards(this.deck.get(numOfCards)));
 	}
 
-	onDeckClick() {
-		console.log("Deck clicked");
-	}
+	onDeckClick() {}
 
 	render() {
 		super.render();
