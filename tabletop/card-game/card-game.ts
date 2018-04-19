@@ -63,8 +63,6 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 			let deck = action.payload.deck;
 			this.deck.setDeckOrder(deck);
-
-			console.log(this.deck, this.players);
 		});
 	}
 
@@ -114,7 +112,6 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		else playerPositions = ["bottom", "left", "top", "right"];
 
 		Object.values(this.players).map((player, i) => {
-			console.log(localPlayerPosition, i);
 			player.position = playerPositions[Math.abs(localPlayerPosition - i)]
 		});
 	}

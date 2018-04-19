@@ -24,7 +24,6 @@ export class Card implements DomElement {
 
 	resize(positionInfo) {
 		this.domHelper.updateEl(this.$card, positionInfo);
-		console.log("card resize");
 	}
 
 	setVisible(visible: boolean) {
