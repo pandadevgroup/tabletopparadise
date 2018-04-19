@@ -3,6 +3,8 @@
  */
 
 import * as firebase from "firebase";
+import { Subject } from "rxjs";
+import { distinctUntilChanged,filter } from "rxjs/operators";
 import { Action } from "./action";
 
 /**
@@ -11,10 +13,12 @@ import { Action } from "./action";
  * You may extend this class for your custom game.
  */
 export class ServerConnection {
-	/**
-	 * Array of listeners for events.
-	 */
-	protected listeners: { event: string, callback: Function }[] = [];
+	private actionsSubject: Subject<Action> = new Subject<Action>();
+	get actions() {
+		return this.actionsSubject.pipe(
+			distinctUntilChanged((x, y) => x.timestamp === y.timestamp)
+		);
+	}
 
 	/**
 	 * Constructs a new instance of ServerConnection and starts listening for events.
@@ -49,8 +53,12 @@ export class ServerConnection {
 			.startAt(Date.now())
 			.on("child_added", (snapshot) => {
 				let action = snapshot.val();
-				this.handleAction(action);
+				this.actionsSubject.next(action);
 			});
+	}
+
+	on(type: string, callback: (value: Action) => void) {
+		this.actions.pipe(filter(action => action.type === type)).subscribe(callback);
 	}
 
 	/**
@@ -107,16 +115,7 @@ export class ServerConnection {
 			.once("value");
 		if (snap.val() == null) return null;
 		return (Object.values(snap.val()) as Action[])
-			.forEach(action => this.handleAction(action));
-	}
-
-	/**
-	 * Listen to an event
-	 * @param event The event name to listen to
-	 * @param callback A function to call when an action with the given event occurs
-	 */
-	on(event: string, callback: Function) {
-		this.listeners.push({ event, callback });
+			.forEach(action => this.actionsSubject.next(action));
 	}
 
 	/**
@@ -126,17 +125,5 @@ export class ServerConnection {
 	dispatch(action: Action) {
 		action.timestamp = Date.now();
 		firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
-	}
-
-	/**
-	 * Calls all listeners listening for the action
-	 * @param action The action that occurred
-	 */
-	protected handleAction(action: Action) {
-		this.listeners.forEach(listener => {
-			if (listener.event === action.event) {
-				listener.callback(action);
-			}
-		});
 	}
 }

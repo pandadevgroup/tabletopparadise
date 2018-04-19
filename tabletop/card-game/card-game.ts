@@ -16,6 +16,7 @@ export interface CardGameOptions {
 	 * @type {number} initialHandSize
 	 */
 	initialHandSize?: number;
+
 	/**
 	 * If true, render a deck of cards.
 	 * Override CardGame.onDeckClick() to add handler when deck is clicked.
