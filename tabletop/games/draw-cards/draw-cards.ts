@@ -16,6 +16,10 @@ export class DrawCardsGame extends CardGame {
 		});
 	}
 
+	runGameSetup() {
+		this.player.cards.forEach(card => card.setActionable(true));
+	}
+
 	onDeckClick() {
 		super.onDeckClick();
 		this.server.dispatch(

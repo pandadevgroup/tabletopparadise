@@ -72,6 +72,7 @@ export class BaseGame<
 					this.runHostSetup();
 				}
 			})
+			.then(() => this.runGameSetup())
 			.then(() => {
 				this.domHelper.ready();
 				this.render();
@@ -124,6 +125,13 @@ export class BaseGame<
 	 * Initialize any listeners (card draw, etc).
 	 */
 	initializeListeners() {}
+
+	/**
+	 * Called after host setup is done and all previous actions are run.
+	 *
+	 * Do any final initializations for the game here.
+	 */
+	runGameSetup() {}
 
 	/**
 	 * Initializes `this.player` and `this.players`.
