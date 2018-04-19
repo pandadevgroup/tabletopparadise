@@ -53,6 +53,7 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 	initializeListeners() {
 		this.server.on(actions.DECK_SYNC_ACTION, action => {
+			console.log(action);
 			this.deckSynced = true;
 
 			let deck = action.payload.deck;
