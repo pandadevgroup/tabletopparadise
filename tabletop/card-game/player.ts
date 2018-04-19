@@ -12,6 +12,7 @@ import "./styles/player.scss"
 
 export class CardGamePlayer extends Player {
 	cards: Card[] = [];
+	selectedCards: Card[] = [];
 	layoutOpts = {
 		cardWidth: 125,
 		cardHeight: 175,
@@ -43,6 +44,7 @@ export class CardGamePlayer extends Player {
 		this.cards.forEach((card, i) => {
 			card.index = i;
 			card.setVisible(true);
+			card.onClick = this.onCardClick.bind(this);
 		});
 	}
 
@@ -53,6 +55,15 @@ export class CardGamePlayer extends Player {
 	setCards(cards: Card[]) {
 		this.cards = [];
 		this.addCards(cards);
+	}
+
+	onCardClick(card: Card) {
+		card.resize(this.getCardPosition(card));
+
+		if (card.selected) this.selectedCards.push(card);
+		else this.selectedCards.splice(this.selectedCards.indexOf(card), 1);
+
+		if (this.isLocal) this.game.onSelectedCardsChange(this.selectedCards);
 	}
 
 	render() {

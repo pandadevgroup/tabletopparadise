@@ -9,6 +9,7 @@ export class Card implements DomElement {
 	private $card: JQuery<HTMLElement>;
 	selected = false;
 	actionable = false;
+	onClick: Function = null;
 
 	constructor(
 		private domHelper: CardGameDomHelper,
@@ -21,6 +22,12 @@ export class Card implements DomElement {
 
 	render() {
 		this.$card = this.domHelper.createCardFrag(this.getImgName(), this.visible);
+		this.$card.click(() => {
+			if (this.actionable) {
+				this.selected = !this.selected;
+				if (this.onClick) this.onClick(this);
+			}
+		});
 	}
 
 	resize(positionInfo) {

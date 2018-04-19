@@ -130,6 +130,13 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 	onDeckClick() {}
 
+	/**
+	 * Called when the local player's selected cards changes.
+	 *
+	 * This is typically due to the player selecting a card.
+	 */
+	onSelectedCardsChange(selectedCards: Card[]) {}
+
 	render() {
 		super.render();
 		this.deck.render();

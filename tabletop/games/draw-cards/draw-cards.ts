@@ -2,7 +2,7 @@
  * @module Games
  */
 
-import { CardGame } from "../../card-game";
+import { CardGame, Card } from "../../card-game";
 import * as actions from "./actions";
 
 export class DrawCardsGame extends CardGame {
@@ -18,6 +18,12 @@ export class DrawCardsGame extends CardGame {
 
 	runGameSetup() {
 		this.player.cards.forEach(card => card.setActionable(true));
+	}
+
+	onSelectedCardsChange(selectedCards: Card[]) {
+		console.log("Selected Cards:", selectedCards);
+		// if (selectedCards.length !== 0) this.showPlayButton = true;
+		// else this.showPlayButton = false;
 	}
 
 	onDeckClick() {
