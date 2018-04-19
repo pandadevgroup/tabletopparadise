@@ -98,8 +98,14 @@
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="server.serverconnection.html#actionssubject" class="tsd-kind-icon">actions<wbr>Subject</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.serverconnection.html#gameid" class="tsd-kind-icon">game<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.serverconnection.html#listeners" class="tsd-kind-icon">listeners</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="server.serverconnection.html#actions" class="tsd-kind-icon">actions</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -109,7 +115,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#getallplayers" class="tsd-kind-icon">get<wbr>All<wbr>Players</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#getgameid" class="tsd-kind-icon">get<wbr>Game<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#getlocalplayerid" class="tsd-kind-icon">get<wbr>Local<wbr>Player<wbr>Id</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="server.serverconnection.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#on" class="tsd-kind-icon">on</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#runprevactions" class="tsd-kind-icon">run<wbr>Prev<wbr>Actions</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.serverconnection.html#start" class="tsd-kind-icon">start</a></li>
@@ -130,7 +135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L19">server/server-connection.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,13 +161,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="actionssubject" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> actions<wbr>Subject</h3>
+					<div class="tsd-signature tsd-kind-icon">actions<wbr>Subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Subject</span><span class="tsd-signature-symbol">&lt;</span><a href="server.action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;new Subject&lt;Action&gt;()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L16">server/server-connection.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="gameid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> game<wbr>Id</h3>
 					<div class="tsd-signature tsd-kind-icon">game<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L23">server/server-connection.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L25">server/server-connection.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -171,20 +186,25 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="listeners" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> listeners</h3>
-					<div class="tsd-signature tsd-kind-icon">listeners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Array of listeners for events.</p>
-						</div>
-					</div>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="actions" class="tsd-anchor"></a>
+					<h3>actions</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> actions<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="server.action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L17">server/server-connection.ts:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="server.action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -199,7 +219,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L126">server/server-connection.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L123">server/server-connection.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -230,7 +250,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L73">server/server-connection.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L79">server/server-connection.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -252,7 +272,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L61">server/server-connection.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L67">server/server-connection.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L94">server/server-connection.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L100">server/server-connection.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,68 +308,44 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="handleaction" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Action</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">handle<wbr>Action<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><a href="server.action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L135">server/server-connection.ts:135</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calls all listeners listening for the action</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>action: <a href="server.action.html" class="tsd-signature-type">Action</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The action that occurred</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L118">server/server-connection.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L58">server/server-connection.ts:58</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Listen to an event</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>event: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The event name to listen to</p>
-									</div>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>callback: <span class="tsd-signature-type">Function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A function to call when an action with the given event occurs</p>
-									</div>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="server.action.html" class="tsd-signature-type">Action</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>value: <a href="server.action.html" class="tsd-signature-type">Action</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -366,7 +362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L104">server/server-connection.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L110">server/server-connection.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/b1cf423/tabletop/server/server-connection.ts#L45">server/server-connection.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/2234d00/tabletop/server/server-connection.ts#L47">server/server-connection.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -410,6 +406,9 @@
 				<ul>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_card_game_utils_.html">"card-<wbr>game/utils"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/basegame.html">Base<wbr>Game</a>
@@ -438,11 +437,14 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="server.serverconnection.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="server.serverconnection.html#actionssubject" class="tsd-kind-icon">actions<wbr>Subject</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="server.serverconnection.html#gameid" class="tsd-kind-icon">game<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="server.serverconnection.html#listeners" class="tsd-kind-icon">listeners</a>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="server.serverconnection.html#actions" class="tsd-kind-icon">actions</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="server.serverconnection.html#dispatch" class="tsd-kind-icon">dispatch</a>
@@ -455,9 +457,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="server.serverconnection.html#getlocalplayerid" class="tsd-kind-icon">get<wbr>Local<wbr>Player<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="server.serverconnection.html#handleaction" class="tsd-kind-icon">handle<wbr>Action</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="server.serverconnection.html#on" class="tsd-kind-icon">on</a>

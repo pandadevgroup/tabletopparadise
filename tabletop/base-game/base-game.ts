@@ -24,32 +24,22 @@ export class BaseGame<
 > implements DomElement {
 	/**
 	 * A singleton Dom Helper.
-	 *
-	 * Override this property to use your own custom DomHelper.
 	 */
 	protected domHelper: DomHelperType;
 	/**
 	 * A singleton Server Connection.
-	 *
-	 * Override this property if you are using a custom server connection.
 	 */
 	protected server: ServerConnectionType;
 	/**
-	 * An array of players currently playing the tabletop game.
-	 *
-	 * Override this property to use your own custom Player class.
+	 * An object mapping player ids to player objects.
 	 */
-	protected players: PlayerType[];
+	protected players: { [id: string]: PlayerType };
 	/**
 	 * The local player playing on the computer.
-	 *
-	 * Override this property to use your own custom Player class.
 	 */
 	protected player: PlayerType;
 	/**
 	 * A singleton Tabletop.
-	 *
-	 * Override this property to use your own Tabletop clss.
 	 */
 	protected tabletop: TabletopType;
 
@@ -144,18 +134,19 @@ export class BaseGame<
 		let players = await this.server.getAllPlayers();
 		let localPlayerId = this.server.getLocalPlayerId();
 
-		this.players = players.map(
-			playerInfo =>
-				new this.PlayerClass(
-					playerInfo.id,
-					playerInfo.username,
-					playerInfo.isHost,
-					"position",
-					this.domHelper,
-					this
-				)
-		) as PlayerType[];
-		this.player = this.players.find(player => player.id === localPlayerId);
+		this.players = {};
+		players.map(playerInfo => {
+			this.players[playerInfo.id] = new this.PlayerClass(
+				playerInfo.id,
+				playerInfo.username,
+				playerInfo.isHost,
+				playerInfo.id === localPlayerId,
+				"position",
+				this.domHelper,
+				this
+			) as PlayerType;
+		});
+		this.player = this.players[localPlayerId];
 	}
 
 	/**

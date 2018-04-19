@@ -67,6 +67,19 @@ export class Deck implements DomElement {
 		this.cards = newArray;
 	}
 
+	getCardsFromIds(cardIds: string[]): Card[] {
+		let set = new Set(cardIds);
+		let selectedCards = this.cards.filter(card => set.has(card.id));
+		this.cards = this.cards.filter(card => !set.has(card.id));
+		return selectedCards;
+	}
+
+	get(numCards: number): Card[] {
+		if (numCards > this.cards.length) throw "Not enough cards in deck";
+
+		return this.cards.splice(0, numCards);
+	}
+
 	render() {
 		if (!this.visible) return;
 

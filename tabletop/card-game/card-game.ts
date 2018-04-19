@@ -53,11 +53,18 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 	initializeListeners() {
 		this.server.on(actions.DECK_SYNC_ACTION, action => {
-			console.log(action);
 			this.deckSynced = true;
+
+			let hands = action.payload.hands;
+			hands.forEach(hand => {
+				const cards = this.deck.getCardsFromIds(hand.cardIds);
+				this.players[hand.playerId].setCards(cards);
+			});
 
 			let deck = action.payload.deck;
 			this.deck.setDeckOrder(deck);
+
+			console.log(this.deck, this.players);
 		});
 	}
 
@@ -66,12 +73,21 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 			if (this.opts.shuffle !== false) this.deck.shuffle(
 				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 			);
+			this.dealInitialCards(this.opts.initialHandSize);
 			this.server.dispatch(
 				new actions.DeckSyncAction({
-					deck: this.deck.getCardIds()
+					deck: this.deck.getCardIds(),
+					hands: Object.values(this.players).map(player => ({
+						playerId: player.id,
+						cardIds: player.getCardIDs()
+					}))
 				})
 			);
 		}
+	}
+
+	protected dealInitialCards(numOfCards) {
+		Object.values(this.players).forEach(player => player.addCards(this.deck.get(numOfCards)));
 	}
 
 	onDeckClick() {

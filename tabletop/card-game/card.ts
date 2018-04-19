@@ -25,6 +25,13 @@ export class Card implements DomElement {
 		this.domHelper.updateEl(this.$card, positionInfo);
 	}
 
+	setVisible(visible: boolean) {
+		this.visible = visible;
+
+		if (this.visible) this.domHelper.addClass(this.$card, "card--visible");
+		else this.domHelper.removeClass(this.$card, "card--visible");
+	}
+
 	getImgName() {
 		if (this.number <= 10) {
 			return `${this.suit}s/${this.number}${this.suit[0]}`;
