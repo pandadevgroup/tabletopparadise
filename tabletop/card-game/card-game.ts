@@ -99,6 +99,8 @@ export class CardGame<
 
 	initializeListeners() {
 		this.server.on(actions.DECK_SYNC_ACTION, action => {
+			if (this.deckSynced) return;
+
 			this.deckSynced = true;
 
 			let hands = action.payload.hands;
@@ -114,6 +116,8 @@ export class CardGame<
 
 	runHostSetup() {
 		if (!this.deckSynced) {
+			this.deckSynced = true;
+
 			if (this.opts.shuffle !== false) this.deck.shuffle(
 				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 			);
