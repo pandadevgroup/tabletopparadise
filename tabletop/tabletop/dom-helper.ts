@@ -55,7 +55,9 @@ export class DomHelper {
 		 * Typically `$("#game")`, where `#game` is a `<div>`.
 		 */
 		protected $container: JQuery<HTMLElement>
-	) {}
+	) {
+		$("#loading").show();
+	}
 
 	/**
 	 * Updates the given element with the given properties.
@@ -163,5 +165,7 @@ export class DomHelper {
 	 */
 	ready(ready = true) {
 		this._ready = ready;
+		if (ready) $("#loading").hide();
+		else $("#loading").show();
 	}
 }
