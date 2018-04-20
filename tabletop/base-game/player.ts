@@ -65,6 +65,10 @@ export class Player implements DomElement {
 	 * player should be appended to player$.
 	 */
 	protected player$: JQuery<HTMLElement>;
+	/**
+	 * Whether or not it is the player's turn right now.
+	 */
+	isTurn = false;
 
 	constructor(
 		/**
@@ -106,6 +110,10 @@ export class Player implements DomElement {
 		 */
 		protected game: BaseGame
 	) {}
+
+	setTurn(turn: boolean) {
+		this.isTurn = turn;
+	}
 
 	render() {}
 	resize() {}

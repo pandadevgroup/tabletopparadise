@@ -21,18 +21,17 @@ export class BridgeGame extends CardGame {
 	initializeListeners() {
 		super.initializeListeners();
 
-		this.server.on(actions.DRAW_CARD_ACTION, action => {
-			let playerId = action.payload.playerId;
-
-			let card = this.drawCard(this.players[playerId]);
-			if (playerId === this.player.id) card.setActionable(true);
-		});
-
 		this.server.on(actions.PLAY_CARDS_ACTION, action => {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
 
 			this.playCards(player, player.getCardsFromIDs(action.payload.cardIds));
+		});
+
+		this.server.on(actions.TURN_SWITCH_ACTION, action => {
+			this.players[action.payload.prevTurn].setTurn(false);
+			this.players[action.payload.nextTurn].setTurn(true);
+			this.updateCardActionable();
 		});
 	}
 
@@ -56,17 +55,10 @@ export class BridgeGame extends CardGame {
 		);
 	}
 
-	onDeckClick() {
-		super.onDeckClick();
-		this.server.dispatch(
-			new actions.DrawCardAction({
-				playerId: this.player.id
-			})
-		);
-	}
-
 	protected updateCardActionable() {
-		if (this.player.selectedCards.length !== 0) {
+		if (!this.player.isTurn) {
+			this.player.cards.forEach(card => card.setActionable(false));
+		} else if (this.player.selectedCards.length !== 0) {
 			this.player.cards.forEach(card => card.setActionable(false));
 			this.player.selectedCards.forEach(card => card.setActionable(true));
 		} else {
