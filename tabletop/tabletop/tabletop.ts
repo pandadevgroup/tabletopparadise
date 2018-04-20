@@ -1,6 +1,7 @@
 /**
  * @module Tabletop
  */
+import { DomElement } from "./dom-element";
 
 /**
  * Tabletop controls the layout of the game.
@@ -48,7 +49,7 @@
  * }
  * ```
  */
-export class Tabletop {
+export class Tabletop implements DomElement {
 	/**
 	 * The width (in px) of the play area.
 	 *
@@ -73,8 +74,11 @@ export class Tabletop {
 	 * Extend this method to update any layout options that depend on game size
 	 * (eg. dynamically sized playing cards)
 	 */
-	resize() {
+	resizeDimensions() {
 		this.width = this.$container.width();
 		this.height = this.$container.height();
 	}
+
+	render() {}
+	resize() {}
 }

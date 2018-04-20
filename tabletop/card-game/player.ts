@@ -13,15 +13,6 @@ import "./styles/player.scss"
 export class CardGamePlayer extends Player {
 	cards: Card[] = [];
 	selectedCards: Card[] = [];
-	layoutOpts = {
-		cardWidth: 125,
-		cardHeight: 175,
-		playerPadding: 20,
-		cardSpacing: 30,
-		cardShift: 20,
-		playerWidth: 140,
-		playerHeight: 40
-	};
 
 	constructor(
 		public id: string,
@@ -52,6 +43,24 @@ export class CardGamePlayer extends Player {
 		return this.cards.map(card => card.id);
 	}
 
+	getSelectedCardIDs() {
+		return this.selectedCards.map(card => card.id);
+	}
+
+	getCardsFromIDs(cardIds: string[]) {
+		const set = new Set(cardIds);
+		return this.cards.filter(card => set.has(card.id));
+	}
+
+	removeCards(cards: Card[]) {
+		const cardIds = new Set(cards.map(card => card.index));
+		this.cards = this.cards.filter(card => !cardIds.has(card.index));
+
+		this.cards.forEach((card, i) => {
+			card.index = i;
+		});
+	}
+
 	setCards(cards: Card[]) {
 		this.cards = [];
 		this.addCards(cards);
@@ -80,7 +89,7 @@ export class CardGamePlayer extends Player {
 	protected getCardPosition(card: Card) {
 		const index = card.index;
 		const tbl = this.tabletop;
-		const opts = this.layoutOpts;
+		const opts = this.domHelper.layoutOpts;
 		const selected = this.cards[index].selected;
 
 		let left = Math.round(tbl.width / 2 - opts.cardWidth / 2 - (opts.cardSpacing * (this.cards.length - 1)) / 2);
@@ -120,7 +129,7 @@ export class CardGamePlayer extends Player {
 	}
 
 	protected getPlayerPosition() {
-		const opts = this.layoutOpts;
+		const opts = this.domHelper.layoutOpts;
 		const tbl = this.tabletop;
 		const cardSize = opts.cardHeight + opts.playerPadding;
 

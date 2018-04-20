@@ -10,6 +10,10 @@ export class Card implements DomElement {
 	selected = false;
 	actionable = false;
 	onClick: Function = null;
+	/**
+	 * Used by CardGameTabletop. Represents which player played the card.
+	 */
+	position: "left" | "right" | "top" | "bottom";
 
 	constructor(
 		private domHelper: CardGameDomHelper,

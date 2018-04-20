@@ -71,6 +71,7 @@ export class BaseGame<
 	) {
 		this.initializeDom();
 		this.initializeTabletop();
+		this.initializeLayoutOpts();
 		this.initializeServer();
 		this.initializeListeners();
 		this.initializePlayers()
@@ -195,12 +196,36 @@ export class BaseGame<
 	 */
 	runHostSetup() {}
 
+	/**
+	 * This button will be called when the play button is clicked.
+	 */
+	onPlayButtonClick() {}
+
+	/**
+	 * This will be called immediately after tabletop resizes.
+	 *
+	 * Use this function to update any layout options in DomHelper.
+	 */
+	updateLayoutOpts() {}
+
+	/**
+	 * Initialize any layout options in DomHelper here.
+	 *
+	 * Warning: the width and height of tabletop has not yet been updated
+	 * when this function is called. Do not use `tabletop.width` or `tabletop.height`.
+	 */
+	initializeLayoutOpts() {}
+
 	render() {
+		this.tabletop.render();
 		Object.values(this.players).map(player => player.render());
 		this.$playButton = this.domHelper.createPlayButtonFrag();
+		this.$playButton.click(() => this.onPlayButtonClick());
 	}
 
 	resize() {
+		this.tabletop.resizeDimensions();
+		this.updateLayoutOpts();
 		this.tabletop.resize();
 		Object.values(this.players).map(player => player.resize());
 		if (this.playButton) this.showPlayButton();

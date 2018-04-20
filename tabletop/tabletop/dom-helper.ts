@@ -44,6 +44,11 @@ export class DomHelper {
 	 */
 	protected $frag = $(document.createDocumentFragment());
 
+	/**
+	 * Layout options for the game.
+	 */
+	layoutOpts: any = {};
+
 	constructor(
 		/**
 		 * The jQuery element representing the game container.

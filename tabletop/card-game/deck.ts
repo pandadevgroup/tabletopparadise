@@ -13,10 +13,6 @@ export class Deck implements DomElement {
 	protected $deck: JQuery<HTMLElement>;
 	cards: Card[];
 	actionable: boolean = false;
-	protected layoutOpts = {
-		cardWidth: 125,
-		cardHeight: 175
-	};
 
 	constructor(
 		protected domHelper: CardGameDomHelper,
@@ -91,23 +87,14 @@ export class Deck implements DomElement {
 
 	resize() {
 		if (!this.visible) return;
-
-		if (this.tabletop.height <= 1000) {
-			this.layoutOpts.cardWidth = 100;
-			this.layoutOpts.cardHeight = 140;
-		} else {
-			this.layoutOpts.cardWidth = 125;
-			this.layoutOpts.cardHeight = 175;
-		}
-
 		this.domHelper.updateEl(this.$deck, this.getCardPosition());
 		this.cards.forEach(card => card.resize(this.getCardPosition(card)));
 	}
 
 	protected getCardPosition(card?: Card) {
 		return {
-			x: Math.round(this.tabletop.width / 2 - this.layoutOpts.cardWidth / 2),
-			y: Math.round(this.tabletop.height / 2 - this.layoutOpts.cardHeight / 2),
+			x: Math.round(this.tabletop.width / 2 - this.domHelper.layoutOpts.cardWidth / 2),
+			y: Math.round(this.tabletop.height / 2 - this.domHelper.layoutOpts.cardHeight / 2),
 			rotateX: card === undefined ? 0 : 180
 		};
 	}

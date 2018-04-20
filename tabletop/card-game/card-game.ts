@@ -7,6 +7,7 @@ import { Deck } from "./deck";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGamePlayer } from "./player";
 import * as actions from "./actions";
+import { CardGameTabletop } from "./tabletop";
 
 export interface CardGameOptions {
 	/**
@@ -34,7 +35,7 @@ export interface CardGameOptions {
 	shuffle?: ((cards: Card[]) => Card[]) | boolean;
 }
 
-export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
+export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer, CardGameTabletop> {
 	protected deck: Deck;
 	protected deckSynced = false;
 
@@ -42,13 +43,33 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		protected $container: JQuery<HTMLElement>,
 		public opts: CardGameOptions = {}
 	) {
-		super($container, CardGameDomHelper, CardGamePlayer);
+		super($container, CardGameDomHelper, CardGamePlayer, CardGameTabletop);
 		opts.showDeck = opts.showDeck || false;
 		opts.initialHandSize = opts.initialHandSize || 13;
 	}
 
 	async initialize() {
 		this.deck = new Deck(this.domHelper, this.tabletop, this.opts.showDeck, this);
+		this.tabletop.showDeck = this.opts.showDeck;
+	}
+
+	initializeTabletop() {
+		// Since this.opts is not initialized yet, default showDeck to false.
+		// showDeck will be set in the async initialize() function that is called
+		// after this.opts is initialized.
+		this.tabletop = new CardGameTabletop(this.$container, this.domHelper, false);
+	}
+
+	initializeLayoutOpts() {
+		this.domHelper.layoutOpts = {
+			cardWidth: 125,
+			cardHeight: 175,
+			playerPadding: 20,
+			cardSpacing: 30,
+			cardShift: 20,
+			playerWidth: 140,
+			playerHeight: 40
+		};
 	}
 
 	initializeListeners() {
@@ -126,6 +147,22 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 
 	protected dealInitialCards(numOfCards) {
 		Object.values(this.players).forEach(player => player.addCards(this.deck.get(numOfCards)));
+	}
+
+	protected playCards(player: CardGamePlayer, cards: Card[]) {
+		player.removeCards(cards);
+		this.tabletop.playCards(player.position, cards);
+		player.resize();
+	}
+
+	updateLayoutOpts() {
+		if (this.tabletop.height <= 1000) {
+			this.domHelper.layoutOpts.cardWidth = 100;
+			this.domHelper.layoutOpts.cardHeight = 140;
+		} else {
+			this.domHelper.layoutOpts.cardWidth = 125;
+			this.domHelper.layoutOpts.cardHeight = 175;
+		}
 	}
 
 	onDeckClick() {}

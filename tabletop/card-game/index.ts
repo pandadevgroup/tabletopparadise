@@ -12,3 +12,4 @@ export * from "./card";
 export * from "./deck";
 export * from "./actions";
 export * from "./utils";
+export * from "./tabletop";
