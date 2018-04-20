@@ -148,6 +148,7 @@ export class CardGame<
 				playerInfo.isHost,
 				playerInfo.id === localPlayerId,
 				null,
+				i,
 				playerInfo.id !== localPlayerId,
 				this.opts.sortMethod,
 				this.domHelper,
@@ -183,6 +184,10 @@ export class CardGame<
 		player.removeCards(cards);
 		this.tabletop.playCards(player.position, cards);
 		player.resize();
+	}
+
+	protected getPlayerWithNumber(playerNumber: number) {
+		return Object.values(this.players).find(player => player.playerNumber === playerNumber);
 	}
 
 	updateLayoutOpts() {

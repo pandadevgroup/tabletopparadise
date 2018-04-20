@@ -20,6 +20,7 @@ export class CardGamePlayer extends Player {
 		public isHost: boolean,
 		public isLocal: boolean,
 		public position: any,
+		public playerNumber: number,
 		protected hideCards: boolean,
 		protected sortMethod: any,
 		protected domHelper: CardGameDomHelper,
