@@ -36,11 +36,11 @@ export class Action {
 
 	constructor(
 		/**
-		 * An identifier for the type of event.
+		 * An identifier for the type of action.
 		 *
 		 * Examples: `"Draw Card"`, `"Shuffle Deck"`, etc.
 		 */
-		public event: string,
+		public readonly type: string,
 		/**
 		 * Any data associated with the action.
 		 *

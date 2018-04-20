@@ -83,6 +83,12 @@ export class Player implements DomElement {
 		 */
 		public isHost: boolean,
 		/**
+		 * If true, the player is the person on the computer playing the game.
+		 *
+		 * Otherwise, the player is a remote player.
+		 */
+		public isLocal: boolean,
+		/**
 		 * The position of the player to be rendered onto the screen.
 		 *
 		 * For a four-player game, typically `"top" | "left" | "right" | "bottom"`.

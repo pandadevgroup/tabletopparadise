@@ -6,6 +6,7 @@ import { Card } from "./card";
 import { Deck } from "./deck";
 import { CardGameDomHelper } from "./dom-helper";
 import { CardGamePlayer } from "./player";
+import * as actions from "./actions";
 
 export interface CardGameOptions {
 	/**
@@ -15,6 +16,7 @@ export interface CardGameOptions {
 	 * @type {number} initialHandSize
 	 */
 	initialHandSize?: number;
+
 	/**
 	 * If true, render a deck of cards.
 	 * Override CardGame.onDeckClick() to add handler when deck is clicked.
@@ -34,6 +36,7 @@ export interface CardGameOptions {
 
 export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 	protected deck: Deck;
+	protected deckSynced = false;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
@@ -48,17 +51,94 @@ export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer> {
 		this.deck = new Deck(this.domHelper, this.tabletop, this.opts.showDeck, this);
 	}
 
-	runHostSetup() {
-		if (this.opts.shuffle !== false) this.deck.shuffle(
-			typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
-		);
+	initializeListeners() {
+		this.server.on(actions.DECK_SYNC_ACTION, action => {
+			this.deckSynced = true;
+
+			let hands = action.payload.hands;
+			hands.forEach(hand => {
+				const cards = this.deck.getCardsFromIds(hand.cardIds);
+				this.players[hand.playerId].setCards(cards);
+			});
+
+			let deck = action.payload.deck;
+			this.deck.setDeckOrder(deck);
+		});
 	}
 
-	onDeckClick() {
-		console.log("Deck clicked");
+	runHostSetup() {
+		if (!this.deckSynced) {
+			if (this.opts.shuffle !== false) this.deck.shuffle(
+				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
+			);
+			this.dealInitialCards(this.opts.initialHandSize);
+			this.server.dispatch(
+				new actions.DeckSyncAction({
+					deck: this.deck.getCardIds(),
+					hands: Object.values(this.players).map(player => ({
+						playerId: player.id,
+						cardIds: player.getCardIDs()
+					}))
+				})
+			);
+		}
 	}
+
+	async initializePlayers() {
+		let players = await this.server.getAllPlayers();
+		let localPlayerId = this.server.getLocalPlayerId();
+
+		let localPlayerPosition = -1;
+		this.players = {};
+		players.map((playerInfo, i) => {
+			if (playerInfo.id === localPlayerId) localPlayerPosition = i;
+			this.players[playerInfo.id] = new CardGamePlayer(
+				playerInfo.id,
+				playerInfo.username,
+				playerInfo.isHost,
+				playerInfo.id === localPlayerId,
+				null,
+				playerInfo.id !== localPlayerId,
+				this.domHelper,
+				this.tabletop,
+				this
+			);
+		});
+		this.player = this.players[localPlayerId];
+
+		let playerPositions;
+		if (players.length === 2) playerPositions = ["bottom", "top"];
+		else if (players.length === 3) playerPositions = ["bottom", "left", "right"];
+		else playerPositions = ["bottom", "left", "top", "right"];
+
+		Object.values(this.players).map((player, i) => {
+			player.position = playerPositions[Math.abs(localPlayerPosition - i)]
+		});
+	}
+
+	protected drawCard(player: CardGamePlayer = this.player) {
+		let cards = this.deck.get(1);
+		player.addCards(cards);
+		if (this.deck.cards.length === 0) this.deck.setActionable(false);
+		player.resize();
+		return cards[0];
+	}
+
+	protected dealInitialCards(numOfCards) {
+		Object.values(this.players).forEach(player => player.addCards(this.deck.get(numOfCards)));
+	}
+
+	onDeckClick() {}
+
+	/**
+	 * Called when the local player's selected cards changes.
+	 *
+	 * This is typically due to the player selecting a card.
+	 */
+	onSelectedCardsChange(selectedCards: Card[]) {}
 
 	render() {
+		super.render();
 		this.deck.render();
 		this.deck.setActionable(true);
 	}

@@ -11,8 +11,8 @@ import "./styles/deck.scss";
 
 export class Deck implements DomElement {
 	protected $deck: JQuery<HTMLElement>;
-	protected cards: Card[];
-	protected actionable: boolean = false;
+	cards: Card[];
+	actionable: boolean = false;
 	protected layoutOpts = {
 		cardWidth: 125,
 		cardHeight: 175
@@ -51,6 +51,33 @@ export class Deck implements DomElement {
 		this.actionable = actionable;
 		if (this.actionable && this.$deck) this.domHelper.addClass(this.$deck, "actionable");
 		else if (this.$deck) this.domHelper.removeClass(this.$deck, "actionable");
+	}
+
+	getCardIds() {
+		return this.cards.map(card => card.id);
+	}
+
+	setDeckOrder(cardIds: string[]) {
+		let i = 0;
+		let order = cardIds.reduce((acc, cur) => ({ ...acc, [cur]: i++ }), {});
+		let newArray = [];
+
+		this.cards.forEach(card => newArray[order[card.id]] = card);
+
+		this.cards = newArray;
+	}
+
+	getCardsFromIds(cardIds: string[]): Card[] {
+		let set = new Set(cardIds);
+		let selectedCards = this.cards.filter(card => set.has(card.id));
+		this.cards = this.cards.filter(card => !set.has(card.id));
+		return selectedCards;
+	}
+
+	get(numCards: number): Card[] {
+		if (numCards > this.cards.length) throw "Not enough cards in deck";
+
+		return this.cards.splice(0, numCards);
 	}
 
 	render() {

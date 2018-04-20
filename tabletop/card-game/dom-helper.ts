@@ -27,4 +27,16 @@ export class CardGameDomHelper extends DomHelper {
 
 		return $card;
 	}
+
+	createPlayerFrag(name: string) {
+		let $player = $(`
+			<div class="player">
+				<span class="player__name">${name}</span>
+			</div>
+		`);
+
+		this.$frag.append($player);
+
+		return $player;
+	}
 }

@@ -24,32 +24,22 @@ export class BaseGame<
 > implements DomElement {
 	/**
 	 * A singleton Dom Helper.
-	 *
-	 * Override this property to use your own custom DomHelper.
 	 */
 	protected domHelper: DomHelperType;
 	/**
 	 * A singleton Server Connection.
-	 *
-	 * Override this property if you are using a custom server connection.
 	 */
 	protected server: ServerConnectionType;
 	/**
-	 * An array of players currently playing the tabletop game.
-	 *
-	 * Override this property to use your own custom Player class.
+	 * An object mapping player ids to player objects.
 	 */
-	protected players: PlayerType[];
+	protected players: { [id: string]: PlayerType };
 	/**
 	 * The local player playing on the computer.
-	 *
-	 * Override this property to use your own custom Player class.
 	 */
 	protected player: PlayerType;
 	/**
 	 * A singleton Tabletop.
-	 *
-	 * Override this property to use your own Tabletop clss.
 	 */
 	protected tabletop: TabletopType;
 
@@ -65,10 +55,10 @@ export class BaseGame<
 	 */
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		protected DomHelperClass = DomHelper,
-		protected PlayerClass = Player,
-		protected TabletopClass = Tabletop,
-		protected ServerConnectionClass = ServerConnection
+		protected DomHelperClass: any = DomHelper,
+		protected PlayerClass: any = Player,
+		protected TabletopClass: any = Tabletop,
+		protected ServerConnectionClass: any = ServerConnection
 	) {
 		this.initializeDom();
 		this.initializeTabletop();
@@ -76,13 +66,14 @@ export class BaseGame<
 		this.initializeListeners();
 		this.initializePlayers()
 			.then(() => this.initialize())
+			.then(() => this.server.runPrevActions())
 			.then(() => {
 				if (this.player.isHost) {
 					this.runHostSetup();
 				}
 			})
+			.then(() => this.runGameSetup())
 			.then(() => {
-				// TODO: run previous actions?
 				this.domHelper.ready();
 				this.render();
 				this.resize();
@@ -136,6 +127,13 @@ export class BaseGame<
 	initializeListeners() {}
 
 	/**
+	 * Called after host setup is done and all previous actions are run.
+	 *
+	 * Do any final initializations for the game here.
+	 */
+	runGameSetup() {}
+
+	/**
 	 * Initializes `this.player` and `this.players`.
 	 *
 	 * When overriding, initialize `this.player` and `this.players`.
@@ -144,18 +142,19 @@ export class BaseGame<
 		let players = await this.server.getAllPlayers();
 		let localPlayerId = this.server.getLocalPlayerId();
 
-		this.players = players.map(
-			playerInfo =>
-				new this.PlayerClass(
-					playerInfo.id,
-					playerInfo.username,
-					playerInfo.isHost,
-					"position",
-					this.domHelper,
-					this
-				)
-		) as PlayerType[];
-		this.player = this.players.find(player => player.id === localPlayerId);
+		this.players = {};
+		players.map(playerInfo => {
+			this.players[playerInfo.id] = new this.PlayerClass(
+				playerInfo.id,
+				playerInfo.username,
+				playerInfo.isHost,
+				playerInfo.id === localPlayerId,
+				"position",
+				this.domHelper,
+				this
+			) as PlayerType;
+		});
+		this.player = this.players[localPlayerId];
 	}
 
 	/**
@@ -177,9 +176,12 @@ export class BaseGame<
 	 */
 	runHostSetup() {}
 
-	render() {}
+	render() {
+		Object.values(this.players).map(player => player.render());
+	}
 
 	resize() {
 		this.tabletop.resize();
+		Object.values(this.players).map(player => player.resize());
 	}
 }
