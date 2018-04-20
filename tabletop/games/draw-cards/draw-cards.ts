@@ -21,9 +21,8 @@ export class DrawCardsGame extends CardGame {
 	}
 
 	onSelectedCardsChange(selectedCards: Card[]) {
-		console.log("Selected Cards:", selectedCards);
-		// if (selectedCards.length !== 0) this.showPlayButton = true;
-		// else this.showPlayButton = false;
+		if (selectedCards.length !== 0) this.showPlayButton();
+		else this.hidePlayButton();
 	}
 
 	onDeckClick() {

@@ -44,6 +44,15 @@ export class BaseGame<
 	protected tabletop: TabletopType;
 
 	/**
+	 * Whether or not the play button is shown.
+	 */
+	protected playButton: boolean = false;
+	/**
+	 * A jQuery object representing the play button.
+	 */
+	protected $playButton: JQuery<HTMLElement>;
+
+	/**
 	 * Creates an instance of a BaseGame.
 	 *
 	 * You may override this constructor to do additional work.
@@ -167,6 +176,16 @@ export class BaseGame<
 	 */
 	async initialize() {}
 
+	showPlayButton() {
+		this.playButton = true;
+		this.domHelper.showPlayButton(this.$playButton);
+	}
+
+	hidePlayButton() {
+		this.playButton = false;
+		this.domHelper.hidePlayButton(this.$playButton);
+	}
+
 	/**
 	 * This function will be called if the current local player is host.
 	 *
@@ -178,10 +197,13 @@ export class BaseGame<
 
 	render() {
 		Object.values(this.players).map(player => player.render());
+		this.$playButton = this.domHelper.createPlayButtonFrag();
 	}
 
 	resize() {
 		this.tabletop.resize();
 		Object.values(this.players).map(player => player.resize());
+		if (this.playButton) this.showPlayButton();
+		else this.hidePlayButton();
 	}
 }

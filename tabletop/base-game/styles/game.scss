@@ -7,6 +7,19 @@ body {
     overflow: hidden;
 }
 
+.play-button {
+	position: absolute;
+	transform: translate(calc(100vw - 200px), 100vh);
+	transition: transform 0.2s;
+	will-change: transform;
+
+	width: 150px;
+
+	&--show {
+		transform: translate(calc(100vw - 200px), calc(100vh - 100px));
+	}
+	z-index:99;
+}
 
 #loading {
     width: 100%;

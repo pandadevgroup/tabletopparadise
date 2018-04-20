@@ -112,6 +112,35 @@ export class DomHelper {
 	}
 
 	/**
+	 * Helper function to create a play button fragment.
+	 */
+	createPlayButtonFrag() {
+		let $btn = $(`
+			<button class="play-button btn btn-dark btn-lg">Play!</button>
+		`);
+
+		this.$frag.append($btn);
+
+		return $btn;
+	}
+
+	/**
+	 * Shows the given play button by adding the class play-button--show.
+	 */
+	showPlayButton($btn: JQuery<HTMLElement>) {
+		if (!this._ready) return;
+		$btn.addClass("play-button--show");
+	}
+
+	/**
+	 * Hides the given play button by removing the class play-button--show
+	 */
+	hidePlayButton($btn: JQuery<HTMLElement>) {
+		if (!this._ready) return;
+		$btn.removeClass("play-button--show");
+	}
+
+	/**
 	 * Appends `$frag` to `$container`. Call this after you have finished
 	 * adding all game objects to `$frag` and are ready to render them
 	 * onto the screen.
