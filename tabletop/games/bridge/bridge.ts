@@ -5,6 +5,9 @@ import { CardGame, Card, CardUtils } from "../../card-game";
 import * as actions from "../../card-game/actions";
 
 export class BridgeGame extends CardGame {
+	// TODO
+	protected currentSuit = CardUtils.SPADE;
+
 	constructor(
 		protected $container: JQuery<HTMLElement>
 	) {
@@ -34,12 +37,14 @@ export class BridgeGame extends CardGame {
 	}
 
 	runGameSetup() {
-		this.player.cards.forEach(card => card.setActionable(true));
+		this.updateCardActionable();
 	}
 
 	onSelectedCardsChange(selectedCards: Card[]) {
 		if (selectedCards.length !== 0) this.showPlayButton();
 		else this.hidePlayButton();
+
+		this.updateCardActionable();
 	}
 
 	onPlayButtonClick() {
@@ -58,5 +63,19 @@ export class BridgeGame extends CardGame {
 				playerId: this.player.id
 			})
 		);
+	}
+
+	protected updateCardActionable() {
+		if (this.player.selectedCards.length !== 0) {
+			this.player.cards.forEach(card => card.setActionable(false));
+			this.player.selectedCards.forEach(card => card.setActionable(true));
+		} else {
+			this.player.cards.forEach(card => (
+				card.suit === this.currentSuit
+					? card.setActionable(true)
+					: card.setActionable(false)
+				)
+			);
+		}
 	}
 }
