@@ -43,7 +43,7 @@ export class BridgeGame extends CardGame {
 		if (selectedCards.length !== 0) this.showPlayButton();
 		else this.hidePlayButton();
 
-		this.updateCardActionable();
+		if (selectedCards.length > 1) this.player.deselectCard(selectedCards[0]);
 	}
 
 	onPlayButtonClick() {
