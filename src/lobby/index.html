@@ -15,36 +15,34 @@
     <script src="/assets/fontawesome/js/fontawesome.min.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.7.0/firebaseui.css" />
     <style>
-        #rules-box {
-            overflow-y: auto;
-
-        }
-
-        #rules-box {
-            display: flex;
-            flex-flow: column;
+        html,
+        body {
             height: 100%;
+
         }
 
-        #rules-box .row {
-            border: 1px dotted grey;
+        html,
+        body,
+        #rules-box {
+            height: 100%;
+            width: 100%;
+            margin: 0;
         }
 
-        #rules-boxbox .title {
-            flex: 0 1 auto;
-            /* The above is shorthand for:
-                flex-grow: 0,
-                flex-shrink: 1,
-                flex-basis: auto
-            */
+        #rules-box {
+            display: table;
         }
 
-        #rules-box .content {
-            flex: 1 1 auto;
+        #rules-title {
+            height: 100px;
+
+
+            display: table-row;
         }
 
-        #rules-box .footer {
-            flex: 0 1 40px;
+        #rules-content {
+
+            display: table-row;
         }
     </style>
 </head>
@@ -118,16 +116,19 @@
 
             </div>
             <div class="col-lg-6" id="rules-box">
-                <div class="title">
+
+                <div class="" id="rules-title">
                     <h4>How to play Hearts</h4>
                 </div>
-                <div class="content">
+                <div class="" id="rules-content">
                     <h5>Intro</h5>
                     Many trick-taking games are not directly related to Bridge or Whist. Perhaps the foremost one is Hearts, which is truly one
                     of the greatest card games ever devised for four players, each playing individually.
 
                     <h5>The Deck</h5>
+
                     <p>The standard 52-card deck is used.</p>
+
                     <h5>Object of the game</h5>
                     <p>To be the player with the lowest score at the end of the game. When one player hits the agreed-upon score
                         or higher, the game ends; and the player with the lowest score wins.
