@@ -1,11 +1,20 @@
 /**
  * @module Games
  */
-
-import { CardGame, Card } from "../../card-game";
+import { CardGame, Card, CardUtils } from "../../card-game";
 import * as actions from "../../card-game/actions";
 
-export class DrawCardsGame extends CardGame {
+export class BridgeGame extends CardGame {
+	constructor(
+		protected $container: JQuery<HTMLElement>
+	) {
+		super($container, {
+			showDeck: false,
+			initialHandSize: 13,
+			sortMethod: CardUtils.COMPARE_BY_SUIT
+		});
+	}
+
 	initializeListeners() {
 		super.initializeListeners();
 

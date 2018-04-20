@@ -21,6 +21,7 @@ export class CardGamePlayer extends Player {
 		public isLocal: boolean,
 		public position: any,
 		protected hideCards: boolean,
+		protected sortMethod: any,
 		protected domHelper: CardGameDomHelper,
 		protected tabletop: Tabletop,
 		protected game: CardGame
@@ -30,13 +31,17 @@ export class CardGamePlayer extends Player {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		if (this.isLocal) CardUtils.sortCards(this.cards);
+		if (this.isLocal) this.sortCards();
 
 		this.cards.forEach((card, i) => {
 			card.index = i;
 			card.setVisible(true);
 			card.onClick = this.onCardClick.bind(this);
 		});
+	}
+
+	sortCards() {
+		CardUtils.sortCards(this.cards, this.sortMethod);
 	}
 
 	getCardIDs() {

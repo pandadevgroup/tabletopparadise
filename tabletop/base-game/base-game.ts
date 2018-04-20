@@ -101,7 +101,7 @@ export class BaseGame<
 	 * To use your own custom implementation of DomHelper, override property DomHelper.
 	 */
 	initializeDom() {
-		this.domHelper = new this.DomHelperClass(this.$container) as DomHelperType;
+		this.domHelper = new this.DomHelperClass(this.$container);
 
 		let debounce;
 		$(window).resize(() => {
@@ -119,7 +119,7 @@ export class BaseGame<
 	 * you may override this method.
 	 */
 	initializeTabletop() {
-		this.tabletop = new this.TabletopClass(this.$container) as TabletopType;
+		this.tabletop = new this.TabletopClass(this.$container);
 	}
 
 	/**
@@ -128,7 +128,7 @@ export class BaseGame<
 	 * Initializes `this.server`.
 	 */
 	initializeServer() {
-		this.server = new this.ServerConnectionClass() as ServerConnectionType;
+		this.server = new this.ServerConnectionClass();
 	}
 
 	/**
@@ -162,7 +162,7 @@ export class BaseGame<
 				"position",
 				this.domHelper,
 				this
-			) as PlayerType;
+			);
 		});
 		this.player = this.players[localPlayerId];
 	}
