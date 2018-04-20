@@ -1,3 +1,7 @@
+/**
+ * @module CardGame
+ */
+
 import { Card } from "./card";
 
 export class CardUtils {
