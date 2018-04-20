@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DeckSyncAction | tabletopparadise</title>
+	<title>PlayCardsAction | tabletopparadise</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/cardgame.html">CardGame</a>
+					<a href="../modules/games.html">Games</a>
 				</li>
 				<li>
-					<a href="cardgame.decksyncaction.html">DeckSyncAction</a>
+					<a href="games.playcardsaction.html">PlayCardsAction</a>
 				</li>
 			</ul>
-			<h1>Class DeckSyncAction</h1>
+			<h1>Class PlayCardsAction</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,7 @@
 						<a href="server.action.html" class="tsd-signature-type">Action</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">DeckSyncAction</span>
+								<span class="target">PlayCardsAction</span>
 							</li>
 						</ul>
 					</li>
@@ -89,15 +89,15 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="cardgame.decksyncaction.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="games.playcardsaction.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.decksyncaction.html#payload" class="tsd-kind-icon">payload</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.decksyncaction.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="cardgame.decksyncaction.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="games.playcardsaction.html#payload" class="tsd-kind-icon">payload</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="games.playcardsaction.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="games.playcardsaction.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,23 +109,31 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Deck<wbr>Sync<wbr>Action<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="cardgame.decksyncaction.html" class="tsd-signature-type">DeckSyncAction</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Play<wbr>Cards<wbr>Action<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="games.playcardsaction.html" class="tsd-signature-type">PlayCardsAction</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="server.action.html">Action</a>.<a href="server.action.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fe40279/tabletop/card-game/actions.ts#L9">card-game/actions.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/fe40279/tabletop/games/draw-cards/actions.ts#L16">games/draw-cards/actions.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>payload: <span class="tsd-signature-type">any</span></h5>
+									<h5>payload: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>card<wbr>Ids<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>player<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="cardgame.decksyncaction.html" class="tsd-signature-type">DeckSyncAction</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="games.playcardsaction.html" class="tsd-signature-type">PlayCardsAction</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -197,10 +205,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/basegame.html">Base<wbr>Game</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/cardgame.html">Card<wbr>Game</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/games.html">Games</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -214,49 +222,37 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="cardgame.card.html" class="tsd-kind-icon">Card</a>
+						<a href="games.drawcardaction.html" class="tsd-kind-icon">Draw<wbr>Card<wbr>Action</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="cardgame.cardgame-1.html" class="tsd-kind-icon">Card<wbr>Game</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="cardgame.cardgamedomhelper.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Dom<wbr>Helper</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="cardgame.cardgameplayer.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Player</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="cardgame.cardgametabletop.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Tabletop</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="cardgame.deck.html" class="tsd-kind-icon">Deck</a>
+						<a href="games.drawcardsgame.html" class="tsd-kind-icon">Draw<wbr>Cards<wbr>Game</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="cardgame.decksyncaction.html" class="tsd-kind-icon">Deck<wbr>Sync<wbr>Action</a>
+						<a href="games.playcardsaction.html" class="tsd-kind-icon">Play<wbr>Cards<wbr>Action</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="cardgame.decksyncaction.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="games.playcardsaction.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="cardgame.decksyncaction.html#payload" class="tsd-kind-icon">payload</a>
+								<a href="games.playcardsaction.html#payload" class="tsd-kind-icon">payload</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="cardgame.decksyncaction.html#timestamp" class="tsd-kind-icon">timestamp</a>
+								<a href="games.playcardsaction.html#timestamp" class="tsd-kind-icon">timestamp</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="cardgame.decksyncaction.html#type" class="tsd-kind-icon">type</a>
+								<a href="games.playcardsaction.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/cardgame.cardgameoptions.html" class="tsd-kind-icon">Card<wbr>Game<wbr>Options</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/games.html#draw_card_action" class="tsd-kind-icon">DRAW_<wbr>CARD_<wbr>ACTION</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="../modules/cardgame.html#deck_sync_action" class="tsd-kind-icon">DECK_<wbr>SYNC_<wbr>ACTION</a>
+						<a href="../modules/games.html#play_cards_action" class="tsd-kind-icon">PLAY_<wbr>CARDS_<wbr>ACTION</a>
 					</li>
 				</ul>
 			</nav>
