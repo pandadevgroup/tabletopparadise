@@ -59,6 +59,10 @@ export class CardGamePlayer extends Player {
 		card.resize(this.getCardPosition(card));
 	}
 
+	deselectAllCards() {
+		this.selectedCards = [];
+	}
+
 	getCardsFromIDs(cardIds: string[]) {
 		const set = new Set(cardIds);
 		return this.cards.filter(card => set.has(card.id));

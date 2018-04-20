@@ -26,6 +26,12 @@ export class BridgeGame extends CardGame {
 			const player = this.players[playerId];
 
 			this.playCards(player, player.getCardsFromIDs(action.payload.cardIds));
+
+			// Show/hide play button
+			if (player === this.player) {
+				this.player.deselectAllCards();
+				this.onSelectedCardsChange(this.player.selectedCards);
+			}
 		});
 
 		this.server.on(actions.TURN_SWITCH_ACTION, action => {
