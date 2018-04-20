@@ -57,7 +57,7 @@ export class BridgeGame extends CardGame {
 			new actions.TurnSwitchAction({
 				prevTurn: this.player.id,
 				nextTurn: this.player.playerNumber + 1 >= Object.keys(this.players).length
-					? this.players[0].id
+					? this.getPlayerWithNumber(0).id
 					: this.getPlayerWithNumber(this.player.playerNumber + 1).id
 			})
 		);
