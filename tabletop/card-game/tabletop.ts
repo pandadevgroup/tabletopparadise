@@ -37,6 +37,10 @@ export class CardGameTabletop extends Tabletop implements DomElement {
 		this.resize();
 	}
 
+	getPlayedCards() {
+		return this.cards;
+	}
+
 	resize() {
 		this.cards.forEach(card => card.resize(this.getCardPosition(card)));
 	}

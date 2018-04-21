@@ -8,7 +8,7 @@ import { BridgePlayer } from "./player";
 export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 	// TODO
 	protected currentSuit = CardUtils.SPADE;
-	protected currentTurn = null;
+	protected firstPlayer = null;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>
@@ -37,17 +37,29 @@ export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 		});
 
 		this.server.on(actions.TURN_SWITCH_ACTION, action => {
-			this.currentTurn = action.payload.nextTurn;
 			if (action.payload.prevTurn) this.players[action.payload.prevTurn].setTurn(false);
 			this.players[action.payload.nextTurn].setTurn(true);
 			this.updateCardActionable();
+
+			if (this.tabletop.getPlayedCards().length >= Object.values(this.players).length) {
+				// Everyone has played a card
+				this.handleRoundFinish();
+			} else if (this.tabletop.getPlayedCards().length === 0) {
+				// No cards are on the tabletop = new round
+				this.firstPlayer = action.payload.nextTurn;
+			}
 		});
+	}
+
+	handleRoundFinish() {
+		let cards = this.tabletop.getPlayedCards();
+		console.log(cards);
 	}
 
 	runHostSetup() {
 		super.runHostSetup();
 		// Default first player is host player
-		if (this.currentTurn === null) {
+		if (this.firstPlayer === null) {
 			this.server.dispatch(new actions.TurnSwitchAction({
 				prevTurn: null,
 				nextTurn: this.player.id
