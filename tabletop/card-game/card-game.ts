@@ -182,6 +182,7 @@ export class CardGame<
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
 		player.removeCards(cards);
+		cards.forEach(card => card.playedBy = player.id);
 		this.tabletop.playCards(player.position, cards);
 		player.resize();
 	}
