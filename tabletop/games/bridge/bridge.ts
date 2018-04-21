@@ -1,12 +1,14 @@
 /**
  * @module Games
  */
-import { CardGame, Card, CardUtils } from "../../card-game";
+import { CardGame, Card, CardUtils, CardGameDomHelper } from "../../card-game";
 import * as actions from "../../card-game/actions";
+import { BridgePlayer } from "./player";
 
-export class BridgeGame extends CardGame {
+export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 	// TODO
 	protected currentSuit = CardUtils.SPADE;
+	protected currentTurn = null;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>
@@ -15,7 +17,7 @@ export class BridgeGame extends CardGame {
 			showDeck: false,
 			initialHandSize: 13,
 			sortMethod: CardUtils.COMPARE_BY_SUIT
-		});
+		}, CardGameDomHelper, BridgePlayer);
 	}
 
 	initializeListeners() {
@@ -35,10 +37,22 @@ export class BridgeGame extends CardGame {
 		});
 
 		this.server.on(actions.TURN_SWITCH_ACTION, action => {
-			this.players[action.payload.prevTurn].setTurn(false);
+			this.currentTurn = action.payload.nextTurn;
+			if (action.payload.prevTurn) this.players[action.payload.prevTurn].setTurn(false);
 			this.players[action.payload.nextTurn].setTurn(true);
 			this.updateCardActionable();
 		});
+	}
+
+	runHostSetup() {
+		super.runHostSetup();
+		// Default first player is host player
+		if (this.currentTurn === null) {
+			this.server.dispatch(new actions.TurnSwitchAction({
+				prevTurn: null,
+				nextTurn: this.player.id
+			}));
+		}
 	}
 
 	runGameSetup() {
