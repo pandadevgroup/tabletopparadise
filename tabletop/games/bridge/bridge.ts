@@ -90,12 +90,19 @@ export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 			this.player.cards.forEach(card => card.setActionable(false));
 			this.player.selectedCards.forEach(card => card.setActionable(true));
 		} else {
-			this.player.cards.forEach(card => (
-				card.suit === this.currentSuit
-					? card.setActionable(true)
-					: card.setActionable(false)
-				)
-			);
+			let noCards = true;
+			this.player.cards.forEach(card => {
+				if (card.suit === this.currentSuit) {
+					noCards = false;
+					card.setActionable(true);
+				} else {
+					card.setActionable(false);
+				}
+			});
+
+			if (noCards)  {
+				this.player.cards.forEach(card => card.setActionable(true));
+			}
 		}
 	}
 }
