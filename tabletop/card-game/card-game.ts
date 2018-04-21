@@ -191,6 +191,10 @@ export class CardGame<
 		return Object.values(this.players).find(player => player.playerNumber === playerNumber);
 	}
 
+	protected getPlayerWithId(playerId: string) {
+		return Object.values(this.players).find(player => player.id === playerId);
+	}
+
 	updateLayoutOpts() {
 		if (this.tabletop.height <= 1000) {
 			this.domHelper.layoutOpts.cardWidth = 100;

@@ -1,13 +1,16 @@
 /**
  * @module Games
  */
-import { CardGame, Card, CardUtils, CardGameDomHelper } from "../../card-game";
+import { CardGame, Card, CardUtils } from "../../card-game";
 import * as actions from "../../card-game/actions";
 import { BridgePlayer } from "./player";
+import { BridgeDomHelper } from "./dom-helper";
 
-export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
+export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 	// TODO
 	protected currentSuit = CardUtils.SPADE;
+	// TODO
+	protected trump = CardUtils.HEART;
 	protected firstPlayer = null;
 
 	constructor(
@@ -17,7 +20,7 @@ export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 			showDeck: false,
 			initialHandSize: 13,
 			sortMethod: CardUtils.COMPARE_BY_SUIT
-		}, CardGameDomHelper, BridgePlayer);
+		}, BridgeDomHelper, BridgePlayer);
 	}
 
 	initializeListeners() {
@@ -53,7 +56,15 @@ export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 
 	handleRoundFinish() {
 		let cards = this.tabletop.getPlayedCards();
-		console.log(cards);
+		let winningCard = this.getWinningCard(cards, this.currentSuit, this.trump);
+
+		let player = this.getPlayerWithId(winningCard.playedBy);
+		player.tricks++;
+		if (player.partner) player.partner.tricks++;
+
+		this.tabletop.resize();
+		player.resize();
+		if (player.partner) player.partner.resize();
 	}
 
 	runHostSetup() {
@@ -116,5 +127,32 @@ export class BridgeGame extends CardGame<CardGameDomHelper, BridgePlayer> {
 				this.player.cards.forEach(card => card.setActionable(true));
 			}
 		}
+	}
+
+	protected getWinningCard(cards: Card[], currentSuit, trumpSuit): Card {
+		let winning = null;
+		let suitStrength = [CardUtils.CLUB, CardUtils.DIAMOND, CardUtils.HEART, CardUtils.SPADE];
+		let numStrength = CardUtils.DEFUALT_NUMBER_VALUE_SYSTEM;
+
+		suitStrength.push(currentSuit);
+		suitStrength.push(trumpSuit);
+
+		cards.forEach(card => {
+			if (winning === null) {
+				winning = card;
+				return;
+			}
+
+			if (suitStrength.lastIndexOf(card.suit) > suitStrength.lastIndexOf(winning.suit)) {
+				winning = card;
+			} else if (
+				suitStrength.lastIndexOf(card.suit) == suitStrength.lastIndexOf(winning.suit) &&
+				numStrength.indexOf(card.number) > numStrength.indexOf(winning.number)
+			) {
+				winning = card;
+			}
+		})
+
+		return winning;
 	}
 }
