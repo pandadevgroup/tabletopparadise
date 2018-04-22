@@ -16,4 +16,10 @@ export class BridgeDomHelper extends CardGameDomHelper {
 
 		return $player;
 	}
+
+	updateBridgePlayer($el, tricks) {
+		if (!this._ready) return;
+
+		$el.find(".bridge-player__tricks").text(`Tricks: ${tricks}`);
+	}
 }

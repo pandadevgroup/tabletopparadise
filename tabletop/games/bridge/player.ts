@@ -15,6 +15,7 @@ export class BridgePlayer extends CardGamePlayer {
 	}
 
 	resize() {
+		this.domHelper.updateBridgePlayer(this.player$, this.tricks);
 		let playerPos = this.getPlayerPosition();
 		this.domHelper.updateEl(this.player$, playerPos);
 		this.cards.forEach(card => card.resize(this.getCardPosition(card)));
