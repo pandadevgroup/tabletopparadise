@@ -62,6 +62,7 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 		player.tricks++;
 		if (player.partner) player.partner.tricks++;
 
+		this.tabletop.clearCards(player.position);
 		this.tabletop.resize();
 		player.resize();
 		if (player.partner) player.partner.resize();
