@@ -64,9 +64,7 @@ export class CardGameTabletop extends Tabletop implements DomElement {
 		if (position === "bottom") {
 			return {
 				x: Math.round(this.width / 2),
-				y: this.height + 30,
-				rotateX: 0,
-				zIndex: 1
+				y: this.height + 30
 			};
 		} else if (position === "left") {
 

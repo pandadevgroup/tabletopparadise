@@ -46,7 +46,8 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 
 			if (this.tabletop.getPlayedCards().length >= Object.values(this.players).length) {
 				// Everyone has played a card
-				this.handleRoundFinish();
+				if (this.playingBackActions) this.handleRoundFinish();
+				else setTimeout(() => this.handleRoundFinish(), 1500);
 			} else if (this.tabletop.getPlayedCards().length === 0) {
 				// No cards are on the tabletop = new round
 				this.firstPlayer = action.payload.nextTurn;

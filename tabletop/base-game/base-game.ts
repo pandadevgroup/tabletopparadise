@@ -53,6 +53,11 @@ export class BaseGame<
 	protected $playButton: JQuery<HTMLElement>;
 
 	/**
+	 * Whether or not the game is playing back actions.
+	 */
+	protected playingBackActions = true;
+
+	/**
 	 * Creates an instance of a BaseGame.
 	 *
 	 * You may override this constructor to do additional work.
@@ -78,6 +83,7 @@ export class BaseGame<
 			.then(() => this.initialize())
 			.then(() => this.server.runPrevActions())
 			.then(() => {
+				this.playingBackActions = false;
 				if (this.player.isHost) {
 					this.runHostSetup();
 				}

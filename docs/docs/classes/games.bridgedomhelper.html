@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DomHelper | tabletopparadise</title>
+	<title>BridgeDomHelper | tabletopparadise</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,53 +56,27 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/tabletop.html">Tabletop</a>
+					<a href="../modules/games.html">Games</a>
 				</li>
 				<li>
-					<a href="tabletop.domhelper.html">DomHelper</a>
+					<a href="games.bridgedomhelper.html">BridgeDomHelper</a>
 				</li>
 			</ul>
-			<h1>Class DomHelper</h1>
+			<h1>Class BridgeDomHelper</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>DomHelper is a utility class that handles interaction with the DOM.</p>
-					</div>
-					<p>It has three main jobs:</p>
-					<ol>
-						<li><strong>Provide a performant way to append a large number of elements
-							to the DOM at once.</strong> For example, in a card game, when the screen
-							is first loaded, 52 cards are appended into the game object. To
-							make this performant, DomHelper creates a document fragment and
-							appends all the elements into the document fragment before
-						then appending the document fragment into the DOM.</li>
-						<li><strong>Update the position/rotation/style properties of DOM elements</strong> (see the updateEl method)</li>
-						<li><strong>Do not update any DOM properties when actions are being &quot;played back&quot;.</strong>
-							If a user reconnects in the middle of the game, all the actions will
-							be played back sequentially in order to get the user up-to-date with
-							the current state of the game. During this time period, a large number
-							of <code>updateEl()</code>s will be called in a short amount of time. We don&#39;t
-							need to render all of these updates. Therefore, the DomHelper class
-							provides a ready() function. Until the ready() function is called,
-						no DOM changes will be made, with the exception of creating document fragments.</li>
-					</ol>
-					<p>You may extend this class to provide DOM manipulations that suit your game.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DomHelper</span>
+						<a href="cardgame.cardgamedomhelper.html" class="tsd-signature-type">CardGameDomHelper</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="cardgame.cardgamedomhelper.html" class="tsd-signature-type">CardGameDomHelper</a>
+								<span class="target">BridgeDomHelper</span>
 							</li>
 						</ul>
 					</li>
@@ -112,48 +86,54 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tabletop.domhelper.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tabletop.domhelper.html#_container" class="tsd-kind-icon">$container</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tabletop.domhelper.html#_frag" class="tsd-kind-icon">$frag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tabletop.domhelper.html#_ready" class="tsd-kind-icon">_ready</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="tabletop.domhelper.html#layoutopts" class="tsd-kind-icon">layout<wbr>Opts</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="games.bridgedomhelper.html#_container" class="tsd-kind-icon">$container</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="games.bridgedomhelper.html#_frag" class="tsd-kind-icon">$frag</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="games.bridgedomhelper.html#_ready" class="tsd-kind-icon">_ready</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#layoutopts" class="tsd-kind-icon">layout<wbr>Opts</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#addclass" class="tsd-kind-icon">add<wbr>Class</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#createplaybuttonfrag" class="tsd-kind-icon">create<wbr>Play<wbr>Button<wbr>Frag</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#hideplaybutton" class="tsd-kind-icon">hide<wbr>Play<wbr>Button</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#ready" class="tsd-kind-icon">ready</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#removeclass" class="tsd-kind-icon">remove<wbr>Class</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#renderfrag" class="tsd-kind-icon">render<wbr>Frag</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#showplaybutton" class="tsd-kind-icon">show<wbr>Play<wbr>Button</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tabletop.domhelper.html#updateel" class="tsd-kind-icon">update<wbr>El</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#addclass" class="tsd-kind-icon">add<wbr>Class</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="games.bridgedomhelper.html#createbridgeplayerfrag" class="tsd-kind-icon">create<wbr>Bridge<wbr>Player<wbr>Frag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#createcardfrag" class="tsd-kind-icon">create<wbr>Card<wbr>Frag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#createdeckfrag" class="tsd-kind-icon">create<wbr>Deck<wbr>Frag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#createplaybuttonfrag" class="tsd-kind-icon">create<wbr>Play<wbr>Button<wbr>Frag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#createplayerfrag" class="tsd-kind-icon">create<wbr>Player<wbr>Frag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#hideplaybutton" class="tsd-kind-icon">hide<wbr>Play<wbr>Button</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#ready" class="tsd-kind-icon">ready</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#removeclass" class="tsd-kind-icon">remove<wbr>Class</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#renderfrag" class="tsd-kind-icon">render<wbr>Frag</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#showplaybutton" class="tsd-kind-icon">show<wbr>Play<wbr>Button</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="games.bridgedomhelper.html#updatebridgeplayer" class="tsd-kind-icon">update<wbr>Bridge<wbr>Player</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="games.bridgedomhelper.html#updateel" class="tsd-kind-icon">update<wbr>El</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Dom<wbr>Helper<span class="tsd-signature-symbol">(</span>$container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tabletop.domhelper.html" class="tsd-signature-type">DomHelper</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Bridge<wbr>Dom<wbr>Helper<span class="tsd-signature-symbol">(</span>$container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="games.bridgedomhelper.html" class="tsd-signature-type">BridgeDomHelper</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#constructor">constructor</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L50">tabletop/dom-helper.ts:50</a></li>
 								</ul>
@@ -164,18 +144,19 @@
 									<h5>$container: <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="tabletop.domhelper.html" class="tsd-signature-type">DomHelper</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="games.bridgedomhelper.html" class="tsd-signature-type">BridgeDomHelper</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="_container" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> $container</h3>
 					<div class="tsd-signature tsd-kind-icon">$container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#_container">$container</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L57">tabletop/dom-helper.ts:57</a></li>
 						</ul>
@@ -187,11 +168,12 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="_frag" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> $frag</h3>
 					<div class="tsd-signature tsd-kind-icon">$frag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;$(document.createDocumentFragment())</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#_frag">$frag</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L45">tabletop/dom-helper.ts:45</a></li>
 						</ul>
@@ -205,11 +187,12 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="_ready" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _ready</h3>
 					<div class="tsd-signature tsd-kind-icon">_ready<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#_ready">_ready</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L38">tabletop/dom-helper.ts:38</a></li>
 						</ul>
@@ -225,11 +208,12 @@
 						by using the <code>ready</code> flag.</p>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="layoutopts" class="tsd-anchor"></a>
 					<h3>layout<wbr>Opts</h3>
 					<div class="tsd-signature tsd-kind-icon">layout<wbr>Opts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#layoutopts">layoutOpts</a></p>
 						<ul>
 							<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L50">tabletop/dom-helper.ts:50</a></li>
 						</ul>
@@ -243,15 +227,16 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="addclass" class="tsd-anchor"></a>
 					<h3>add<wbr>Class</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">add<wbr>Class<span class="tsd-signature-symbol">(</span>$el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span>, className<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#addclass">addClass</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L103">tabletop/dom-helper.ts:103</a></li>
 								</ul>
@@ -282,14 +267,86 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createbridgeplayerfrag" class="tsd-anchor"></a>
+					<h3>create<wbr>Bridge<wbr>Player<wbr>Frag</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Bridge<wbr>Player<wbr>Frag<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, tricks<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/games/bridge/dom-helper.ts#L7">games/bridge/dom-helper.ts:7</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>tricks: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="createcardfrag" class="tsd-anchor"></a>
+					<h3>create<wbr>Card<wbr>Frag</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Card<wbr>Frag<span class="tsd-signature-symbol">(</span>cardImgUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, visible<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="cardgame.cardgamedomhelper.html">CardGameDomHelper</a>.<a href="cardgame.cardgamedomhelper.html#createcardfrag">createCardFrag</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/card-game/dom-helper.ts#L18">card-game/dom-helper.ts:18</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cardImgUrl: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>visible: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="createdeckfrag" class="tsd-anchor"></a>
+					<h3>create<wbr>Deck<wbr>Frag</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Deck<wbr>Frag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="cardgame.cardgamedomhelper.html">CardGameDomHelper</a>.<a href="cardgame.cardgamedomhelper.html#createdeckfrag">createDeckFrag</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/card-game/dom-helper.ts#L8">card-game/dom-helper.ts:8</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="createplaybuttonfrag" class="tsd-anchor"></a>
 					<h3>create<wbr>Play<wbr>Button<wbr>Frag</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">create<wbr>Play<wbr>Button<wbr>Frag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#createplaybuttonfrag">createPlayButtonFrag</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L124">tabletop/dom-helper.ts:124</a></li>
 								</ul>
@@ -303,15 +360,40 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="createplayerfrag" class="tsd-anchor"></a>
+					<h3>create<wbr>Player<wbr>Frag</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Player<wbr>Frag<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="cardgame.cardgamedomhelper.html">CardGameDomHelper</a>.<a href="cardgame.cardgamedomhelper.html#createplayerfrag">createPlayerFrag</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/card-game/dom-helper.ts#L31">card-game/dom-helper.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="hideplaybutton" class="tsd-anchor"></a>
 					<h3>hide<wbr>Play<wbr>Button</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">hide<wbr>Play<wbr>Button<span class="tsd-signature-symbol">(</span>$btn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#hideplaybutton">hidePlayButton</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L145">tabletop/dom-helper.ts:145</a></li>
 								</ul>
@@ -331,15 +413,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="ready" class="tsd-anchor"></a>
 					<h3>ready</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">ready<span class="tsd-signature-symbol">(</span>ready<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#ready">ready</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L166">tabletop/dom-helper.ts:166</a></li>
 								</ul>
@@ -364,15 +447,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="removeclass" class="tsd-anchor"></a>
 					<h3>remove<wbr>Class</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">remove<wbr>Class<span class="tsd-signature-symbol">(</span>$el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span>, className<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#removeclass">removeClass</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L116">tabletop/dom-helper.ts:116</a></li>
 								</ul>
@@ -402,15 +486,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="renderfrag" class="tsd-anchor"></a>
 					<h3>render<wbr>Frag</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">render<wbr>Frag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#renderfrag">renderFrag</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L155">tabletop/dom-helper.ts:155</a></li>
 								</ul>
@@ -426,15 +511,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="showplaybutton" class="tsd-anchor"></a>
 					<h3>show<wbr>Play<wbr>Button</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">show<wbr>Play<wbr>Button<span class="tsd-signature-symbol">(</span>$btn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#showplaybutton">showPlayButton</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L137">tabletop/dom-helper.ts:137</a></li>
 								</ul>
@@ -455,14 +541,41 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="updatebridgeplayer" class="tsd-anchor"></a>
+					<h3>update<wbr>Bridge<wbr>Player</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Bridge<wbr>Player<span class="tsd-signature-symbol">(</span>$el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, tricks<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/games/bridge/dom-helper.ts#L20">games/bridge/dom-helper.ts:20</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>$el: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>tricks: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="updateel" class="tsd-anchor"></a>
 					<h3>update<wbr>El</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">update<wbr>El<span class="tsd-signature-symbol">(</span>$el<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">HTMLElement</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="tabletop.domhelper.html">DomHelper</a>.<a href="tabletop.domhelper.html#updateel">updateEl</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/pandadevgroup/tabletopparadise/blob/213045a/tabletop/tabletop/dom-helper.ts#L76">tabletop/dom-helper.ts:76</a></li>
 								</ul>
@@ -527,13 +640,13 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/cardgame.html">Card<wbr>Game</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/games.html">Games</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/server.html">Server</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/tabletop.html">Tabletop</a>
 					</li>
 				</ul>
@@ -543,56 +656,74 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="tabletop.domhelper.html" class="tsd-kind-icon">Dom<wbr>Helper</a>
+						<a href="games.bridgedomhelper.html" class="tsd-kind-icon">Bridge<wbr>Dom<wbr>Helper</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tabletop.domhelper.html#_container" class="tsd-kind-icon">$container</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="games.bridgedomhelper.html#_container" class="tsd-kind-icon">$container</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tabletop.domhelper.html#_frag" class="tsd-kind-icon">$frag</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="games.bridgedomhelper.html#_frag" class="tsd-kind-icon">$frag</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tabletop.domhelper.html#_ready" class="tsd-kind-icon">_ready</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="games.bridgedomhelper.html#_ready" class="tsd-kind-icon">_ready</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#layoutopts" class="tsd-kind-icon">layout<wbr>Opts</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#layoutopts" class="tsd-kind-icon">layout<wbr>Opts</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#addclass" class="tsd-kind-icon">add<wbr>Class</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#createplaybuttonfrag" class="tsd-kind-icon">create<wbr>Play<wbr>Button<wbr>Frag</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#addclass" class="tsd-kind-icon">add<wbr>Class</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#hideplaybutton" class="tsd-kind-icon">hide<wbr>Play<wbr>Button</a>
+								<a href="games.bridgedomhelper.html#createbridgeplayerfrag" class="tsd-kind-icon">create<wbr>Bridge<wbr>Player<wbr>Frag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#createcardfrag" class="tsd-kind-icon">create<wbr>Card<wbr>Frag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#createdeckfrag" class="tsd-kind-icon">create<wbr>Deck<wbr>Frag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#createplaybuttonfrag" class="tsd-kind-icon">create<wbr>Play<wbr>Button<wbr>Frag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#createplayerfrag" class="tsd-kind-icon">create<wbr>Player<wbr>Frag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#hideplaybutton" class="tsd-kind-icon">hide<wbr>Play<wbr>Button</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#ready" class="tsd-kind-icon">ready</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#removeclass" class="tsd-kind-icon">remove<wbr>Class</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#renderfrag" class="tsd-kind-icon">render<wbr>Frag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#showplaybutton" class="tsd-kind-icon">show<wbr>Play<wbr>Button</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#ready" class="tsd-kind-icon">ready</a>
+								<a href="games.bridgedomhelper.html#updatebridgeplayer" class="tsd-kind-icon">update<wbr>Bridge<wbr>Player</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#removeclass" class="tsd-kind-icon">remove<wbr>Class</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#renderfrag" class="tsd-kind-icon">render<wbr>Frag</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#showplaybutton" class="tsd-kind-icon">show<wbr>Play<wbr>Button</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tabletop.domhelper.html#updateel" class="tsd-kind-icon">update<wbr>El</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="games.bridgedomhelper.html#updateel" class="tsd-kind-icon">update<wbr>El</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="tabletop.tabletop-1.html" class="tsd-kind-icon">Tabletop</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="games.bridgegame.html" class="tsd-kind-icon">Bridge<wbr>Game</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/tabletop.domelement.html" class="tsd-kind-icon">Dom<wbr>Element</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="games.bridgeplayer.html" class="tsd-kind-icon">Bridge<wbr>Player</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="games.drawcardsgame.html" class="tsd-kind-icon">Draw<wbr>Cards<wbr>Game</a>
 					</li>
 				</ul>
 			</nav>
