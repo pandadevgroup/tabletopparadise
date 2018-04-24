@@ -9,7 +9,7 @@ import { BridgeDomHelper } from "./dom-helper";
 export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 	protected currentSuit = null;
 	// TODO
-	protected trump = CardUtils.HEART;
+	protected trumpSuit = CardUtils.HEART;
 	protected firstPlayer = null;
 
 	constructor(
@@ -61,11 +61,13 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 
 	handleRoundFinish() {
 		let cards = this.tabletop.getPlayedCards();
-		let winningCard = this.getWinningCard(cards, this.currentSuit, this.trump);
+		let winningCard = this.getWinningCard(cards, this.currentSuit, this.trumpSuit);
 
 		let player = this.getPlayerWithId(winningCard.playedBy);
 		player.tricks++;
 		if (player.partner) player.partner.tricks++;
+
+		this.currentSuit = null;
 
 		this.tabletop.clearCards(player.position);
 		this.tabletop.resize();
@@ -102,14 +104,24 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 				cardIds: this.player.getSelectedCardIDs()
 			})
 		);
-		this.server.dispatch(
-			new actions.TurnSwitchAction({
-				prevTurn: this.player.id,
-				nextTurn: this.player.playerNumber + 1 >= Object.keys(this.players).length
-					? this.getPlayerWithNumber(0).id
-					: this.getPlayerWithNumber(this.player.playerNumber + 1).id
-			})
-		);
+		let playedCards = this.tabletop.getPlayedCards();
+		if (playedCards.length >= Object.values(this.players).length) {
+			this.server.dispatch(
+				new actions.TurnSwitchAction({
+					prevTurn: this.player.id,
+					nextTurn: this.getWinningCard(playedCards, this.currentSuit, this.trumpSuit).playedBy
+				})
+			);
+		} else {
+			this.server.dispatch(
+				new actions.TurnSwitchAction({
+					prevTurn: this.player.id,
+					nextTurn: this.player.playerNumber + 1 >= Object.keys(this.players).length
+						? this.getPlayerWithNumber(0).id
+						: this.getPlayerWithNumber(this.player.playerNumber + 1).id
+				})
+			);
+		}
 	}
 
 	protected updateCardActionable() {

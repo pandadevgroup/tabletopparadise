@@ -4,7 +4,7 @@
 
 import * as firebase from "firebase";
 import { Subject } from "rxjs";
-import { filter } from "rxjs/operators";
+import { filter, distinctUntilChanged } from "rxjs/operators";
 import { Action } from "./action";
 
 /**
@@ -15,7 +15,9 @@ import { Action } from "./action";
 export class ServerConnection {
 	private actionsSubject: Subject<Action> = new Subject<Action>();
 	get actions() {
-		return this.actionsSubject.asObservable();
+		return this.actionsSubject.pipe(
+			distinctUntilChanged((x, y) => x.timestamp === y.timestamp)
+		);
 	}
 
 	/**
