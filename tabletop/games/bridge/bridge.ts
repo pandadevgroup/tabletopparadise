@@ -7,8 +7,7 @@ import { BridgePlayer } from "./player";
 import { BridgeDomHelper } from "./dom-helper";
 
 export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
-	// TODO
-	protected currentSuit = CardUtils.SPADE;
+	protected currentSuit = null;
 	// TODO
 	protected trump = CardUtils.HEART;
 	protected firstPlayer = null;
@@ -29,8 +28,13 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 		this.server.on(actions.PLAY_CARDS_ACTION, action => {
 			const playerId = action.payload.playerId;
 			const player = this.players[playerId];
+			const cards = player.getCardsFromIDs(action.payload.cardIds);
 
-			this.playCards(player, player.getCardsFromIDs(action.payload.cardIds));
+			if (!this.currentSuit) {
+				this.currentSuit = cards[0].suit;
+			}
+
+			this.playCards(player, cards);
 
 			// Show/hide play button
 			if (player === this.player) {
@@ -111,9 +115,6 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 	protected updateCardActionable() {
 		if (!this.player.isTurn) {
 			this.player.cards.forEach(card => card.setActionable(false));
-		} else if (this.player.selectedCards.length !== 0) {
-			this.player.cards.forEach(card => card.setActionable(false));
-			this.player.selectedCards.forEach(card => card.setActionable(true));
 		} else {
 			let noCards = true;
 			this.player.cards.forEach(card => {
