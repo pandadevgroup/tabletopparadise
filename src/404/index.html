@@ -1,19 +1,16 @@
 <script>
-    var path = window.location.href.substring(1).split("/");
+    var path = window.location.pathname.substring(1).split("/");
+    //console.log(path);
     if (path[0] == "join" && path[1] != null) {
         window.location.href = "/lobby?game=" + path[1];
     } else {
-        document.close();
-        document.open();
-        document.write(`
-        <!DOCTYPE html>
+        var html = `<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Jeffrey Meng">
     <link rel="stylesheet" type="text/css" href="https://cdn.jeffkmeng.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <title>Tabletop Paradise - 404 Error</title>
     <style>
@@ -79,7 +76,9 @@
     <script src="https://cdn.jeffkmeng.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </body>
 
-</html>
-        `)
+</html>`;
+        document.close();
+        document.open();
+        document.write(html);
     }
 </script>
