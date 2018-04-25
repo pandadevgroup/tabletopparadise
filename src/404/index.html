@@ -71,9 +71,12 @@
             Copyright &copy; 2018 Tabletop Paradise
         </div>
     </div>
-    <script src="https://cdn.jeffkmeng.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdn.jeffkmeng.com/popperjs/1.12.9/popper.min.js"></script>
-    <script src="https://cdn.jeffkmeng.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jeffkmeng.com/jquery/2.2.4/jquery.min.js"><\/script>`
+    //If a script closing tag is in a script element anywhere, even in a string, it ends the script tag, so we must escape it
+    // https://stackoverflow.com/a/36607971/5511561
+    + `
+    <script src="https://cdn.jeffkmeng.com/popperjs/1.12.9/popper.min.js"><\/script>
+    <script src="https://cdn.jeffkmeng.com/bootstrap/4.1.0/js/bootstrap.min.js"><\/script>
 </body>
 
 </html>`;
