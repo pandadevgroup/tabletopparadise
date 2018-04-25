@@ -75,11 +75,18 @@ export class BaseGame<
 		protected ServerConnectionClass: any = ServerConnection
 	) {
 		this.initializeDom();
+		if (!this.domHelper) throw "Error: `BaseGame.domHelper` is not initialized. Make sure to instantiate `BaseGame.domHelper` in `initializeDom()`.";
 		this.initializeTabletop();
+		if (!this.tabletop) throw "Error: `BaseGame.tabletop` is not initialized. Check `initializeTabletop()`."
 		this.initializeLayoutOpts();
 		this.initializeServer();
+		if (!this.server) throw "Error: `BaseGame.server` is not initialized.";
 		this.initializeListeners();
 		this.initializePlayers()
+			.then(() => {
+				if (!this.players) throw "Error: `BaseGame.players` is not initialized.";
+				if (!this.player) throw "Error: `BaseGame.player` is not initialized. Is the player signed in to the correct game?";
+			})
 			.then(() => this.initialize())
 			.then(() => this.server.runPrevActions())
 			.then(() => {
