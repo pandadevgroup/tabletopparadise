@@ -1,19 +1,16 @@
 <script>
-    var path = window.location.href.substring(1).split("/");
+    var path = window.location.pathname.substring(1).split("/");
+    //console.log(path);
     if (path[0] == "join" && path[1] != null) {
         window.location.href = "/lobby?game=" + path[1];
     } else {
-        document.close();
-        document.open();
-        document.write(`
-        <!DOCTYPE html>
+        var html = `<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Jeffrey Meng">
     <link rel="stylesheet" type="text/css" href="https://cdn.jeffkmeng.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <title>Tabletop Paradise - 404 Error</title>
     <style>
@@ -74,12 +71,17 @@
             Copyright &copy; 2018 Tabletop Paradise
         </div>
     </div>
-    <script src="https://cdn.jeffkmeng.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://cdn.jeffkmeng.com/popperjs/1.12.9/popper.min.js"></script>
-    <script src="https://cdn.jeffkmeng.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jeffkmeng.com/jquery/2.2.4/jquery.min.js"><\/script>`
+    //If a script closing tag is in a script element anywhere, even in a string, it ends the script tag, so we must escape it
+    // https://stackoverflow.com/a/36607971/5511561
+    + `
+    <script src="https://cdn.jeffkmeng.com/popperjs/1.12.9/popper.min.js"><\/script>
+    <script src="https://cdn.jeffkmeng.com/bootstrap/4.1.0/js/bootstrap.min.js"><\/script>
 </body>
 
-</html>
-        `)
+</html>`;
+        document.close();
+        document.open();
+        document.write(html);
     }
 </script>
