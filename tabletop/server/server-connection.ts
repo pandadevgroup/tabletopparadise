@@ -100,7 +100,7 @@ export class ServerConnection {
 	 * Will be null if the player has not logged in.
 	 */
 	getLocalPlayerId() {
-		return sessionStorage.getItem("playerId");
+		return localStorage.getItem("playerId");
 	}
 
 	/**
