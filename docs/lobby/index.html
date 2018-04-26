@@ -44,16 +44,60 @@
 
             display: table-row;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .dropdown-toggle.no-caret::after {
+            display: none
+        }
+
+        /*https://stackoverflow.com/a/34450587/5511561*/
+
+        .btn-group-justified {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+        }
+
+        .btn-group-justified .btn,
+        .btn-group-justified .btn-group {
+            float: none;
+            display: table-cell;
+            width: 1%;
+        }
+
+        .btn-group-justified .btn .btn,
+        .btn-group-justified .btn-group .btn {
+            width: 100%;
+        }
+
+        .btn-group-justified .btn .dropdown-menu,
+        .btn-group-justified .btn-group .dropdown-menu {
+            left: auto;
+        }
+
+        #chat-messages {
+            height: 200px;
+            overflow: auto;
+            box-shadow: inset 0px 11px 8px -10px #CCC,
+            inset 0px -11px 8px -10px #CCC;
+        }
     </style>
 </head>
 
 <body>
-
-    <div class="container">
+    <div id="loading">
+        <p>Loading...</p>
+    </div>
+    <div class="container hidden" id="main">
         <div class="col-lg-12">
-            <h1 class="mt-4">Tabletop Paradise - Lobby</h1>
+            <h1 class="pt-4">Tabletop Paradise - Lobby</h1>
             <p>
-                <b>Hearts</b>#<span class="game-id">a7bj</span></p>
+                <b>Hearts</b>#<span class="game-id">a7bj</span>
+            </p>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Invite Players:</span>
@@ -71,98 +115,128 @@
                 </div>
             </div>
             <p id="action-tray">
-                <a href="#">Leave Game</a>
+                <a href="#" id="leave-game">Leave Game</a>
             </p>
             <hr>
+            <div id="player-list">
+                <!-- NOTE: custom css is used to add the classes no-caret on dropdown and btn-group-justified on button groups-->
+                <b>Players:</b>
+                <div class="btn-group btn-group-justified" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-secondary" id="p1btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">jeffkmeng
+                            <span class="badge badge-light">Host</span> <span class="badge badge-light">You</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="p1btn">
+                            <a class="dropdown-item" href="#">Leave game</a>
 
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <h4>Players(2/4)</h4>
-                <ul id="players-list">
-                    <li>
-                        <b>jeffkmeng</b>
-                        <span class="badge badge-primary">host</span>
-                    </li>
-                    <li>
-                        <b>user2</b>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <h4>Chat</h4>
 
-                <hr>
-                <div id="chat-box">
-                    <p class="message">
-                        <b class="author">jeffkmeng:</b>
-                        <span class="content">Hi!</span>
-                    </p>
-                    <p class="message">
-                        <b class="author">player2:</b>
-                        <span class="content">Hey!</span>
-                    </p>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-secondary" id="p2btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">thecodingwizard</button>
+                        <div class="dropdown-menu" aria-labelledby="p2btn">
+                            <a class="dropdown-item" href="#">Whisper</a>
+                            <a class="dropdown-item" href="#">View profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#">Promote to host</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#">Report</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#">Remove from game</a>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-secondary disabled" id="p3btn">Searching
+                            <span class="loading-animation">...</span>
+
+                        </button>
+
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-secondary disabled" id="p4btn">Searching
+
+                            <span class="loading-animation">...</span>
+                        </button>
+
+                    </div>
+
+
                 </div>
-                <hr>
-                <div class="input-group mb-3">
+            </div>
+            <hr>
 
-                    <input type="text" class="form-control" placeholder="Chat...">
+            <div id="chat">
+
+                <div id="chat-messages">
+                    <p class="message site-message text-muted" id="chat-no-messages-yet">No messages yet. Be the first!</p>
+                </div>
+
+                <div class="input-group my-3">
+
+                    <input type="text" class="form-control" placeholder="Chat..." id="chat-msg">
                     <div class="input-group-append">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="chat-send">
                             Send
                         </button>
                     </div>
                 </div>
-
             </div>
-            <div class="col-lg-6" id="rules-box">
+            <hr>
+            <p>
+                <a data-toggle="collapse" href="#rules" aria-expanded="false" aria-controls="rules">
+                    How to play hearts
+                </a>
 
-                <div class="" id="rules-title">
-                    <h4>How to play Hearts</h4>
-                </div>
-                <div class="" id="rules-content">
-                    <h5>Intro</h5>
-                    Many trick-taking games are not directly related to Bridge or Whist. Perhaps the foremost one is Hearts, which is truly one
-                    of the greatest card games ever devised for four players, each playing individually.
+            </p>
+            <div class="collapse mb-4" id="rules">
+                <div class="card card-body">
+                    <div class="" id="rules-content">
+                        <h5>Intro</h5>
+                        Many trick-taking games are not directly related to Bridge or Whist. Perhaps the foremost one is Hearts, which is truly one
+                        of the greatest card games ever devised for four players, each playing individually.
 
-                    <h5>The Deck</h5>
+                        <h5>The Deck</h5>
 
-                    <p>The standard 52-card deck is used.</p>
+                        <p>The standard 52-card deck is used.</p>
 
-                    <h5>Object of the game</h5>
-                    <p>To be the player with the lowest score at the end of the game. When one player hits the agreed-upon score
-                        or higher, the game ends; and the player with the lowest score wins.
-                    </p>
-                    <h5>Scoring</h5>
-                    <p>
-                        At the end of each hand, players count the number of hearts they have taken as well as the queen of spades, if applicable.
-                        Hearts count as one point each and the queen counts 13 points.
-                        <br>Each heart - 1 point
-                        <br>The Queen of spades - 13 points
-                        <br>The aggregate total of all scores for each hand must be a multiple of 26.
-                        <br>The game is usually played to 100 points (some play to 50).
-                        <br>When a player takes all 13 hearts and the queen of spades in one hand, instead of losing 26 points,
-                        that player scores zero and each of his opponents score an additional 26 points.
-                    </p>
-                    <h5>Dealing</h5>
-                    Deal the cards one at a time, face down, clockwise. In a four-player game, each is dealt 13 cards; in a three-player game,
-                    the 2 of diamonds should be removed, and each player gets 17 cards; in a five-player game, the 2 of diamonds
-                    and 2 of clubs should be removed so that each player will get 10 cards.
+                        <h5>Object of the game</h5>
+                        <p>To be the player with the lowest score at the end of the game. When one player hits the agreed-upon
+                            score or higher, the game ends; and the player with the lowest score wins.
+                        </p>
+                        <h5>Scoring</h5>
+                        <p>
+                            At the end of each hand, players count the number of hearts they have taken as well as the queen of spades, if applicable.
+                            Hearts count as one point each and the queen counts 13 points.
+                            <br>Each heart - 1 point
+                            <br>The Queen of spades - 13 points
+                            <br>The aggregate total of all scores for each hand must be a multiple of 26.
+                            <br>The game is usually played to 100 points (some play to 50).
+                            <br>When a player takes all 13 hearts and the queen of spades in one hand, instead of losing 26 points,
+                            that player scores zero and each of his opponents score an additional 26 points.
+                        </p>
+                        <h5>Dealing</h5>
+                        Deal the cards one at a time, face down, clockwise. In a four-player game, each is dealt 13 cards; in a three-player game,
+                        the 2 of diamonds should be removed, and each player gets 17 cards; in a five-player game, the 2
+                        of diamonds and 2 of clubs should be removed so that each player will get 10 cards.
 
-                    <h5>Play</h5>
-                    <p>
-                        The player holding the 2 of clubs after the pass makes the opening lead. If the 2 has been removed for the three handed game,
-                        then the 3 of clubs is led.
-                        <br> Each player must follow suit if possible. If a player is void of the suit led, a card of any other
-                        suit may be discarded. However, if a player has no clubs when the first trick is led, a heart or
-                        the queen of spades cannot be discarded. The highest card of the suit led wins a trick and the winner
-                        of that trick leads next. There is no trump suit.
-                        <br> The winner of the trick collects it and places it face down. Hearts may not be led until a heart
-                        or the queen of spades has been discarded. The queen does not have to be discarded at the first opportunity.
-                        <br> The queen can be led at any time.</p>
+                        <h5>Play</h5>
+                        <p>
+                            The player holding the 2 of clubs after the pass makes the opening lead. If the 2 has been removed for the three handed game,
+                            then the 3 of clubs is led.
+                            <br> Each player must follow suit if possible. If a player is void of the suit led, a card of any
+                            other suit may be discarded. However, if a player has no clubs when the first trick is led, a
+                            heart or the queen of spades cannot be discarded. The highest card of the suit led wins a trick
+                            and the winner of that trick leads next. There is no trump suit.
+                            <br> The winner of the trick collects it and places it face down. Hearts may not be led until a heart
+                            or the queen of spades has been discarded. The queen does not have to be discarded at the first
+                            opportunity.
+                            <br> The queen can be led at any time.</p>
+                    </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -171,6 +245,26 @@
     <script src="https://cdn.jeffkmeng.com/clipboardjs/2.0.0/clipboard.min.js"></script>
     <script>
         var clip = new ClipboardJS(".clip");
+        var animationStage = 3;//represents the current number of dots;
+        var loadingText;
+        var loadingInterval = setInterval(function () {
+            loadingText = "";
+            for (var i = 0; i < 4; i++) {
+                if (i < animationStage) {
+                    loadingText += ".";
+                } else {
+                    loadingText += "&nbsp;";
+                }
+            }
+            $(".loading-animation").html(loadingText);
+            animationStage++;
+            animationStage = animationStage > 3 ? 0 : animationStage;
+        }, 300);
+        $(document).ready(function () {
+            $("#chat-messages").scrollTop($('#chat-messages')[0].scrollHeight);
+            
+        });
+
     </script>
     <script src="/lobby.js"></script>
 

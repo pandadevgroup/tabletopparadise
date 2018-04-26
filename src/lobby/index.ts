@@ -18,8 +18,9 @@ playersRef.on("value", snapshot => {
 });
 
 let playerId = localStorage.getItem("playerId");
+let username = "";
 if (!playerId) {
-	let username = prompt("Enter Your Username");
+	username = prompt("Enter Your Username");
 	playerId = playersRef.push({
 		username,
 		isHost: false
@@ -29,6 +30,73 @@ if (!playerId) {
 	console.log("Player ID is", playerId);
 }
 
+$("#leave-game").click(function() {
+	localStorage.removeItem("playerId");
+	window.location.href = window.location.href;
+});
+
+//TODO: move chat to external so both lobby and game can use it.
+let chatRef = firebase.database().ref(`/game/${gameId}/chat/messages/`);
+$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+
+chatRef.on("child_added", function(snapshot) {
+	if (!$("#chat-no-messages-yet").hasClass("hidden")) {
+		$("#chat-no-messages-yet").addClass("hidden");
+	}
+	let atBottomBeforeAppend = false;
+	if ($("#chat-messages")[0].scrollHeight - $("#chat-messages").scrollTop() == $("#chat-messages").innerHeight()) {
+		atBottomBeforeAppend = true;
+	}
+	$("#chat-messages").append(
+		`<p class="message user-message"><b>${snapshot.val().parentUsername}:</b> ${snapshot.val().payload}</p>`
+	);
+	if (atBottomBeforeAppend) {
+		$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+	}
+});
+$("#chat-msg").keypress(function(e) {
+	if (e.which == 13) {
+		$("#chat-send").click();
+	}
+});
+$("#chat-send").click(function() {
+	let message = $("#chat-msg")
+		.val()
+		.toString()
+		.trim(); //trim only exists on string
+	$("#chat-msg").val("");
+	if (message == "") {
+		return;
+	}
+	//TODO: add parsing for whisper, etc.
+	//TODO: add parsing for markdown, etc.
+	//TODO: replace html tags with &lt; and &gt;
+	console.log(username);
+	if (username == "") {
+		console.log(true);
+		console.log(playerId);
+		console.log(`/game/${gameId}/players/${playerId}/`);
+		firebase
+			.database()
+			.ref(`/game/${gameId}/players/${playerId}/username/`)
+			.once("value")
+			.then(function(snapshot) {
+				username = snapshot.val();
+				console.log(snapshot.val());
+				sendMessage(message);
+			});
+	} else {
+		sendMessage(message);
+	}
+});
+function sendMessage(message) {
+	chatRef.push({
+		parent: playerId,
+		parentUsername: username,
+		type: "general", //type can be general, whisper
+		payload: message
+	});
+}
 function getParameterByName(name, url = window.location.href) {
 	name = name.replace(/[\[\]]/g, "\\$&");
 	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -39,6 +107,13 @@ function getParameterByName(name, url = window.location.href) {
 }
 
 function getHTMLEmailTemplate(type, id) {
-	return encodeURIComponent(`I've invited you to join my Tabletop Paradise game!\n`
-	+ `Join ${type}#${id}: https://tabletopparadise.pandadevgroup.com/join/${id}`);
+	return encodeURIComponent(
+		`I've invited you to join my Tabletop Paradise game!\n` +
+			`Join ${type}#${id}: https://tabletopparadise.pandadevgroup.com/join/${id}`
+	);
 }
+
+$(document).ready(function() {
+	$("#loading").addClass("hidden");
+	$("#main").removeClass("hidden");
+});
