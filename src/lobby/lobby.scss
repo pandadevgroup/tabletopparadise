@@ -1,0 +1,69 @@
+html,
+body {
+	height: 100%;
+
+}
+
+html,
+body,
+#rules-box {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+#rules-box {
+	display: table;
+}
+
+#rules-title {
+	height: 100px;
+
+
+	display: table-row;
+}
+
+#rules-content {
+
+	display: table-row;
+}
+
+.hidden {
+	display: none;
+}
+
+.dropdown-toggle.no-caret::after {
+	display: none
+}
+
+/*https://stackoverflow.com/a/34450587/5511561*/
+
+.btn-group-justified {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: separate;
+}
+
+.btn-group-justified .btn,
+.btn-group-justified .btn-group {
+	float: none;
+	display: table-cell;
+	width: 1%;
+}
+
+.btn-group-justified .btn .btn,
+.btn-group-justified .btn-group .btn {
+	width: 100%;
+}
+
+.btn-group-justified .btn .dropdown-menu,
+.btn-group-justified .btn-group .dropdown-menu {
+	left: auto;
+}
+
+#chat-messages {
+	height: 200px;
+	overflow: auto;
+	box-shadow: inset 0px 11px 8px -10px #CCC, inset 0px -11px 8px -10px #CCC;
+}

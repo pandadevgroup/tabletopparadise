@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import { firebaseConfig } from "../config";
+import "./lobby.scss";
 
 firebase.initializeApp(firebaseConfig);
 
