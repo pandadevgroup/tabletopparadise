@@ -15,7 +15,15 @@ $("#invite-email-link").attr(
 
 let playersRef = firebase.database().ref(`/game/${gameId}/players`);
 playersRef.on("value", snapshot => {
-	console.log("Players", snapshot.val());
+	let players: any = snapshot.val();
+	let index = 1;
+	for (let id in players) {
+		$(`#p${index++}btn`).html(`
+			${players[id].username}
+			${playerId === id ? '<span class="badge badge-light">You</span>' : ''}
+			${players[id].isHost ? '<span class="badge badge-light">Host</span>' : ''}
+		`);
+	}
 });
 
 let playerId = localStorage.getItem("playerId");
