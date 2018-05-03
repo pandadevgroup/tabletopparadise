@@ -19,10 +19,11 @@ playersRef.on("value", snapshot => {
 	let index = 1;
 	for (let id in players) {
 		$(`#p${index++}btn`).html(`
-			${players[id].username}
+			${players[id].username.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}
 			${playerId === id ? '<span class="badge badge-light">You</span>' : ''}
 			${players[id].isHost ? '<span class="badge badge-light">Host</span>' : ''}
 		`);
+		$(`#p${index - 1}btn`).removeClass("disabled");
 	}
 });
 
@@ -44,7 +45,7 @@ $("#leave-game").click(function() {
 	window.location.href = window.location.href;
 });
 
-//TODO: move chat to external so both lobby and game can use it.
+//TODO: move chat to external file so both lobby and game can use it?
 let chatRef = firebase.database().ref(`/game/${gameId}/chat/messages/`);
 $("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 
@@ -126,3 +127,14 @@ $(document).ready(function() {
 	$("#loading").addClass("hidden");
 	$("#main").removeClass("hidden");
 });
+declare global {
+    interface String {
+        replaceAll(search: string, replacement: string) : string;
+    }
+}
+//http://stackoverflow.com/a/17606289/5511561s
+String.prototype.replaceAll = function(search: string, replacement: string) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+                        
