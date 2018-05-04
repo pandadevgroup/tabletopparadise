@@ -32,16 +32,16 @@ playersRef.on("value", snapshot => {
 		$(`#p${index - 1}btn`).removeClass("disabled");
 	}
 	if (inGame) {
-		$("#inGame").show();
-		$("#notInGame").hide();
+		$(".inGame").show();
+		$(".notInGame").hide();
 	} else {
-		$("#inGame").hide();
-		$("#notInGame").show();
+		$(".inGame").hide();
+		$(".notInGame").show();
 	}
 	if (isHost) {
-		$("#isHost").show();
+		$(".isHost").show();
 	} else {
-		$("#isHost").hide();
+		$(".isHost").hide();
 	}
 });
 
@@ -59,11 +59,16 @@ if (!playerId) {
 }
 
 $("#leave-game").click(function() {
+	setLoading(true);
 	firebase
 		.database()
 		.ref(`/game/${gameId}/players/${playerId}/username/`)
 		.set(null)
 		.then(function() {
+			localStorage.removeItem("playerId");
+			window.location.href = window.location.href;
+		})
+		.catch(function() {
 			localStorage.removeItem("playerId");
 			window.location.href = window.location.href;
 		});
