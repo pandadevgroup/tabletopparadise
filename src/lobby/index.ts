@@ -17,13 +17,31 @@ let playersRef = firebase.database().ref(`/game/${gameId}/players`);
 playersRef.on("value", snapshot => {
 	let players: any = snapshot.val();
 	let index = 1;
+	let inGame = false;
+	let isHost = false;
 	for (let id in players) {
+		if (playerId === id) {
+			inGame = true;
+			if (players[id].isHost) isHost = true;
+		}
 		$(`#p${index++}btn`).html(`
 			${players[id].username.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}
 			${playerId === id ? '<span class="badge badge-light">You</span>' : ''}
 			${players[id].isHost ? '<span class="badge badge-light">Host</span>' : ''}
 		`);
 		$(`#p${index - 1}btn`).removeClass("disabled");
+	}
+	if (inGame) {
+		$("#inGame").show();
+		$("#notInGame").hide();
+	} else {
+		$("#inGame").hide();
+		$("#notInGame").show();
+	}
+	if (isHost) {
+		$("#isHost").show();
+	} else {
+		$("#isHost").hide();
 	}
 });
 
@@ -137,4 +155,3 @@ String.prototype.replaceAll = function(search: string, replacement: string) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
-                        
