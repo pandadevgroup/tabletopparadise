@@ -26,8 +26,8 @@ playersRef.on("value", snapshot => {
 		}
 		$(`#p${index++}btn`).html(`
 			${players[id].username.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}
-			${playerId === id ? '<span class="badge badge-light">You</span>' : ''}
-			${players[id].isHost ? '<span class="badge badge-light">Host</span>' : ''}
+			${playerId === id ? '<span class="badge badge-light">You</span>' : ""}
+			${players[id].isHost ? '<span class="badge badge-light">Host</span>' : ""}
 		`);
 		$(`#p${index - 1}btn`).removeClass("disabled");
 	}
@@ -59,8 +59,14 @@ if (!playerId) {
 }
 
 $("#leave-game").click(function() {
-	localStorage.removeItem("playerId");
-	window.location.href = window.location.href;
+	firebase
+		.database()
+		.ref(`/game/${gameId}/players/${playerId}/username/`)
+		.set(null)
+		.then(function() {
+			localStorage.removeItem("playerId");
+			window.location.href = window.location.href;
+		});
 });
 
 //TODO: move chat to external file so both lobby and game can use it?
@@ -142,16 +148,24 @@ function getHTMLEmailTemplate(type, id) {
 }
 
 $(document).ready(function() {
-	$("#loading").addClass("hidden");
-	$("#main").removeClass("hidden");
+	setLoading(false);
 });
+function setLoading(state: boolean) {
+	if (state) {
+		$("#main").addClass("hidden");
+		$("#loading").removeClass("hidden");
+	} else {
+		$("#loading").addClass("hidden");
+		$("#main").removeClass("hidden");
+	}
+}
 declare global {
-    interface String {
-        replaceAll(search: string, replacement: string) : string;
-    }
+	interface String {
+		replaceAll(search: string, replacement: string): string;
+	}
 }
 //http://stackoverflow.com/a/17606289/5511561s
 String.prototype.replaceAll = function(search: string, replacement: string) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
+	var target = this;
+	return target.replace(new RegExp(search, "g"), replacement);
 };
