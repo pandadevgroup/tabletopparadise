@@ -18,8 +18,12 @@ playersRef.on("value", snapshot => {
 	let players: any = snapshot.val();
 	let index = 1;
 	let inGame = false;
+	let isHost = false;
 	for (let id in players) {
-		if (playerId === id) inGame = true;
+		if (playerId === id) {
+			inGame = true;
+			if (players[id].isHost) isHost = true;
+		}
 		$(`#p${index++}btn`).html(`
 			${players[id].username.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}
 			${playerId === id ? '<span class="badge badge-light">You</span>' : ''}
@@ -33,6 +37,11 @@ playersRef.on("value", snapshot => {
 	} else {
 		$("#inGame").hide();
 		$("#notInGame").show();
+	}
+	if (isHost) {
+		$("#isHost").show();
+	} else {
+		$("#isHost").hide();
 	}
 });
 
