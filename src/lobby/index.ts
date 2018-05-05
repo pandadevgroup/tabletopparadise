@@ -15,60 +15,83 @@ $("#invite-email-link").attr(
 
 let playersRef = firebase.database().ref(`/game/${gameId}/players`);
 playersRef.on("value", snapshot => {
-	let players: any = snapshot.val();
-	let index = 1;
+	let players: {} = snapshot.val();
+
+
+	let actualIndex = 1;//actual index is the index that we append in the background, while index is the location we render the button at
+	let index = actualIndex;
+	let playerIndex: number;
 	let inGame = false;
 	let isHost = false;
 	for (let id in players) {
+		actualIndex++;
+		index = actualIndex;
 		if (playerId === id) {
+			playerIndex = actualIndex;
+			index = 1;
+
 			inGame = true;
 			if (players[id].isHost) isHost = true;
 		}
-		$(`#p${index++}btn`).html(`
+
+		$(`#p${index}btn`).html(`
 			${players[id].username.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}
 			${playerId === id ? '<span class="badge badge-light">You</span>' : ""}
 			${players[id].isHost ? '<span class="badge badge-light">Host</span>' : ""}
 		`);
-		$(`#p${index - 1}btn`).removeClass("disabled");
+		$(`#p${index}btn`).removeClass("disabled");
 	}
 	if (inGame) {
-		$(".inGame").show();
-		$(".notInGame").hide();
+		$(".inGame").removeClass("hidden");
+		$(".notInGame").addClass("hidden");
 	} else {
-		$(".inGame").hide();
-		$(".notInGame").show();
+		$(".inGame").addClass("hidden");
+		$(".notInGame").removeClass("hidden");
 	}
 	if (isHost) {
-		$(".isHost").show();
+		$(".isHost").removeClass("hidden");
 	} else {
-		$(".isHost").hide();
+		$(".isHost").addClass("hidden");
 	}
 });
 
 let playerId = localStorage.getItem("playerId");
 let username = "";
 if (!playerId) {
-	username = prompt("Enter Your Username");
-	playerId = playersRef.push({
-		username,
-		isHost: false
-	}).key;
-	localStorage.setItem("playerId", playerId);
+	firebase.database().ref(`/game/${gameId}/lobby/`).once("value").then(function (snapshot) {
+		if (snapshot.val() == null) {
+			firebase.database().ref(`/game/${gameId}/lobby/size/`).set(4);
+		} else {
+			let size = snapshot.val().size;
+		}
+		username = prompt("Enter Your Username");
+		playerId = playersRef.push({
+			username,
+			isHost: false,
+			playerNumber: -1
+		}).key;
+		localStorage.setItem("playerId", playerId);
+		console.log("Player ID just set, it is", playerId);
+	});
+
+
 } else {
 	console.log("Player ID is", playerId);
 }
 
-$("#leave-game").click(function() {
+$("#leave-game").click(function () {
 	setLoading(true);
 	firebase
 		.database()
 		.ref(`/game/${gameId}/players/${playerId}/username/`)
 		.set(null)
-		.then(function() {
+		.then(function () {
 			localStorage.removeItem("playerId");
 			window.location.href = window.location.href;
 		})
-		.catch(function() {
+		.catch(function (e) {
+			alert("an unknown error occured. Please try again.");
+			console.log(e);
 			localStorage.removeItem("playerId");
 			window.location.href = window.location.href;
 		});
@@ -78,7 +101,7 @@ $("#leave-game").click(function() {
 let chatRef = firebase.database().ref(`/game/${gameId}/chat/messages/`);
 $("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 
-chatRef.on("child_added", function(snapshot) {
+chatRef.on("child_added", function (snapshot) {
 	if (!$("#chat-no-messages-yet").hasClass("hidden")) {
 		$("#chat-no-messages-yet").addClass("hidden");
 	}
@@ -93,12 +116,12 @@ chatRef.on("child_added", function(snapshot) {
 		$("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
 	}
 });
-$("#chat-msg").keypress(function(e) {
+$("#chat-msg").keypress(function (e) {
 	if (e.which == 13) {
 		$("#chat-send").click();
 	}
 });
-$("#chat-send").click(function() {
+$("#chat-send").click(function () {
 	let message = $("#chat-msg")
 		.val()
 		.toString()
@@ -119,7 +142,7 @@ $("#chat-send").click(function() {
 			.database()
 			.ref(`/game/${gameId}/players/${playerId}/username/`)
 			.once("value")
-			.then(function(snapshot) {
+			.then(function (snapshot) {
 				username = snapshot.val();
 				console.log(snapshot.val());
 				sendMessage(message);
@@ -148,11 +171,11 @@ function getParameterByName(name, url = window.location.href) {
 function getHTMLEmailTemplate(type, id) {
 	return encodeURIComponent(
 		`I've invited you to join my Tabletop Paradise game!\n` +
-			`Join ${type}#${id}: https://tabletopparadise.pandadevgroup.com/join/${id}`
+		`Join ${type}#${id}: https://tabletopparadise.pandadevgroup.com/join/${id}`
 	);
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 	setLoading(false);
 });
 function setLoading(state: boolean) {
@@ -170,7 +193,7 @@ declare global {
 	}
 }
 //http://stackoverflow.com/a/17606289/5511561s
-String.prototype.replaceAll = function(search: string, replacement: string) {
+String.prototype.replaceAll = function (search: string, replacement: string) {
 	var target = this;
 	return target.replace(new RegExp(search, "g"), replacement);
 };
