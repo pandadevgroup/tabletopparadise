@@ -4,7 +4,9 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
 	entry: {
 		game: "./src/game.ts",
-		lobby: "./src/lobby/index.ts"
+		lobby: "./src/lobby/index.ts",
+		account: "./src/account/index.ts",
+		account_login: "./src/account/login/index.ts"
 	},
 	output: {
 		filename: "[name].js",

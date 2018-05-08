@@ -9,7 +9,7 @@ export const firebaseConfig = {
 	messagingSenderId: "941646063027"
 };
 
-export const firebaseUIConfig = {
+/*export const firebaseUIConfig = {
 	signInOptions: [
 		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
 		// firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -24,4 +24,4 @@ export const firebaseUIConfig = {
 			return false;
 		}
 	},
-};
+};*/
