@@ -41,7 +41,8 @@ module.exports = {
 	plugins: [
 		new CopyWebpackPlugin([
 			{ from: "src/lobby/**/*.html", to: "lobby", flatten: true },
-			{ from: "src/account/**/*.html", to: "account", flatten: false },
+			{ from: "src/account/*.html", to: "account", flatten: true },
+			{ from: "src/account/login/*.html", to: "account/login", flatten: true },
 			{ from: "public", to: "." },
 			{ from: "src/game.html", to: "./game/index.html" },
 			{ from: "src/404/index.html", to: "./404.html" }
