@@ -31,6 +31,9 @@
 			<div class="form-group">
 				<label for="email">Email:</label>
 				<input type="text" class="form-control" id="email">
+				<div class="invalid-feedback">
+					The email address is badly formatted.
+				</div>
 
 			</div>
 			<div class="form-group">
@@ -39,27 +42,27 @@
 
 			</div>
 			<div class="form-group">
-				<label for="password">Repeat Password:</label>
-				<input type="password" class="form-control" id="password">
+				<label for="repeatpassword">Repeat Password:</label>
+				<input type="password" class="form-control" id="repeatpassword">
 				<div class="invalid-feedback">
 					Passwords do not match.
 				</div>
 
 			</div>
 			<div class="form-group">
-				<label for="password">Username:</label>
-				<input type="password" class="form-control" id="password">
+				<label for="username">Username:</label>
+				<input type="text" class="form-control" id="username">
 				<div class="invalid-feedback">
 					Username is taken.
 				</div>
 			</div>
 
-			<button class="btn btn-primary btn-block" id="login">Login</button>
+			<button class="btn btn-primary btn-block" id="create">Register</button>
 
 		</div>
 		<br>
 		<p class="text-center">
-			<a href="/account/login/">Login</a>
+			Have an account? <a href="/account/login/">Login</a>
 		</p>
 		<hr>
 
