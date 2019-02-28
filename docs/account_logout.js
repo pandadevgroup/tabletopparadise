@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/account/create/index.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/account/logout/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1233,15 +1233,15 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
-/***/ "./src/account/create/index.ts":
+/***/ "./src/account/logout/index.ts":
 /*!*************************************!*\
-  !*** ./src/account/create/index.ts ***!
+  !*** ./src/account/logout/index.ts ***!
   \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar firebase = __webpack_require__(/*! firebase */ \"./node_modules/firebase/dist/index.cjs.js\");\nvar config_1 = __webpack_require__(/*! ../../config */ \"./src/config.ts\");\nfirebase.initializeApp(config_1.firebaseConfig);\n$(\"#create\").click(function () {\n    $(\"#repeatpassword\").removeClass(\"is-invalid\");\n    $(\"#email\").removeClass(\"is-invalid\");\n    var email = $(\"#email\").val() + \"\";\n    var password = $(\"#password\").val() + \"\";\n    var retypePassword = $(\"#repeatpassword\").val() + \"\";\n    if (password === retypePassword) {\n        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {\n            // Handle Errors here.\n            var errorCode = error.code;\n            var errorMessage = error.message;\n            // ...\n            console.log(error);\n            if (error.code == \"auth/invalid-email\") {\n                $(\"#email\").addClass(\"is-invalid\");\n            }\n        }).then(function () {\n        });\n    }\n    else {\n        $(\"#repeatpassword\").addClass(\"is-invalid\");\n    }\n});\n\n\n//# sourceURL=webpack:///./src/account/create/index.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar firebase = __webpack_require__(/*! firebase */ \"./node_modules/firebase/dist/index.cjs.js\");\nvar config_1 = __webpack_require__(/*! ../../config */ \"./src/config.ts\");\nfirebase.initializeApp(config_1.firebaseConfig);\n//http://stackoverflow.com/a/901144/5511561\nfunction getQuery(name) {\n    var url = window.location.href;\n    name = name.replace(/[\\[\\]]/g, \"\\\\$&\");\n    var regex = new RegExp(\"[?&]\" + name + \"(=([^&#]*)|&|#|$)\"), results = regex.exec(url);\n    if (!results)\n        return null;\n    if (!results[2])\n        return '';\n    return decodeURIComponent(results[2].replace(/\\+/g, \" \"));\n}\nfirebase.auth().signOut().then(function () {\n    // Sign-out successful.\n}).catch(function (error) {\n    alert(\"An unknown error occured. Please try again later.\");\n});\nif (getQuery(\"redir\") != null && getQuery(\"redir\") != \"\") {\n    $(\"#login-again\").attr(\"href\", \"/account/login/?redir=\" + encodeURIComponent(getQuery(\"redir\")));\n}\n\n\n//# sourceURL=webpack:///./src/account/logout/index.ts?");
 
 /***/ }),
 
