@@ -8,6 +8,10 @@ let gamePlayers = {
 	"player1": {
 		username: "Player #1",
 		isHost: true
+	},
+	"player2": {
+		username: "Player #2",
+		isHost: false
 	}
 };
 
