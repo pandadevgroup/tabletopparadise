@@ -9,6 +9,8 @@ Planned to include the following premade games:
 - Bridge
 - Hearts
 - Palace
+- BS Poker
+- Big two
 
 
 ### Documentation
