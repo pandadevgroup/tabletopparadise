@@ -161,7 +161,7 @@ export class CardGame<
 		let playerPositions;
 		if (players.length === 2) playerPositions = ["bottom", "top"];
 		else if (players.length === 3) playerPositions = ["bottom", "left", "right"];
-		else playerPositions = ["bottom", "left", "top", "right"];
+		else playerPositions = ["bottom", "right", "top", "left"];
 
 		Object.values(this.players).map((player, i) => {
 			player.position = playerPositions[(localPlayerPosition - i + 4) % 4];

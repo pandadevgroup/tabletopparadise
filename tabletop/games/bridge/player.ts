@@ -10,7 +10,7 @@ export class BridgePlayer extends CardGamePlayer {
 	protected domHelper: BridgeDomHelper;
 
 	render() {
-		this.player$ = this.domHelper.createBridgePlayerFrag(this.name, this.tricks);
+		this.player$ = this.domHelper.createBridgePlayerFrag(this.name, this.tricks, this.isTurn);
 		this.cards.forEach(card => card.render());
 	}
 
