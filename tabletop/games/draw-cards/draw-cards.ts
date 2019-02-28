@@ -14,11 +14,18 @@ import {
 } from "../../card-game";
 import * as actions from "../../card-game/actions";
 import { ServerConnection } from "../../server";
+import { BridgeDomHelper } from "../bridge/dom-helper";
+import { BridgePlayer } from "../bridge/player";
 
 export class DrawCardsGame extends CardGame {
-	initOpts() {
-		this.opts.showDeck = true;
-		this.opts.initialHandSize = 5;
+	constructor(
+		protected $container: JQuery<HTMLElement>
+	) {
+		super($container, {
+			showDeck: true,
+			initialHandSize: 5,
+			sortMethod: CardUtils.COMPARE_BY_VALUE
+		});
 	}
 
 	initializeListeners() {

@@ -54,17 +54,13 @@ export class CardGame<
 	protected players: { [id: string]: PlayerType };
 	protected player: PlayerType;
 	protected tabletop: TabletopType;
-	protected opts: CardGameOptions = {
-		showDeck: false,
-		initialHandSize: 13,
-		sortMethod: CardUtils.COMPARE_BY_VALUE
-	};
 
 	protected deck: DeckType;
 	protected deckSynced = false;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
+		protected opts: CardGameOptions = {},
 		protected DomHelperClass: any = CardGameDomHelper,
 		protected PlayerClass: any = CardGamePlayer,
 		protected TabletopClass: any = CardGameTabletop,
@@ -72,13 +68,10 @@ export class CardGame<
 		protected DeckClass: any = Deck
 	) {
 		super($container, DomHelperClass, PlayerClass, TabletopClass, ServerConnectionClass);
-		this.initOpts();
+		if (!opts.showDeck) opts.showDeck = false;
+		if (!opts.initialHandSize) opts.initialHandSize = 13;
+		if (!opts.sortMethod) opts.sortMethod = CardUtils.COMPARE_BY_VALUE;
 	}
-
-	/**
-	 * Override this method to customize game options.
-	 */
-	initOpts() {}
 
 	async initialize() {
 		this.deck = new this.DeckClass(this.domHelper, this.tabletop, this.opts.showDeck, this);
@@ -171,7 +164,7 @@ export class CardGame<
 		else playerPositions = ["bottom", "left", "top", "right"];
 
 		Object.values(this.players).map((player, i) => {
-			player.position = playerPositions[Math.abs(localPlayerPosition - i)]
+			player.position = playerPositions[(localPlayerPosition - i + 4) % 4];
 		});
 	}
 
