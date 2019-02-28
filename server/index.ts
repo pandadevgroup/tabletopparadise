@@ -7,7 +7,7 @@ let gameActions = [];
 let gamePlayers = {
 	"player1": {
 		username: "Player #1",
-		isHost: false
+		isHost: true
 	}
 };
 

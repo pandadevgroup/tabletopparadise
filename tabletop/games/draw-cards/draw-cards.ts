@@ -2,10 +2,25 @@
  * @module Games
  */
 
-import { CardGame, Card } from "../../card-game";
+import {
+	CardGame,
+	Card,
+	CardGameDomHelper,
+	CardGamePlayer,
+	CardGameTabletop,
+	Deck,
+	CardUtils,
+	CardGameOptions
+} from "../../card-game";
 import * as actions from "../../card-game/actions";
+import { ServerConnection } from "../../server";
 
 export class DrawCardsGame extends CardGame {
+	initOpts() {
+		this.opts.showDeck = true;
+		this.opts.initialHandSize = 5;
+	}
+
 	initializeListeners() {
 		super.initializeListeners();
 

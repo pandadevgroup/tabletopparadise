@@ -78,7 +78,6 @@ export class ServerConnection {
 				isHost: data[playerId].isHost
 			});
 		}
-		console.log(players);
 		return players;
 	}
 
