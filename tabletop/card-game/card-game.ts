@@ -103,6 +103,8 @@ export class CardGame<
 
 			this.deckSynced = true;
 
+			console.log(action);
+
 			let hands = action.payload.hands;
 			hands.forEach(hand => {
 				const cards = this.deck.getCardsFromIds(hand.cardIds);

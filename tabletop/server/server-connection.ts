@@ -16,7 +16,7 @@ export class ServerConnection {
 	private actionsSubject: Subject<Action> = new Subject<Action>();
 	get actions() {
 		return this.actionsSubject.pipe(
-			distinctUntilChanged((x, y) => x.timestamp === y.timestamp)
+			distinctUntilChanged((x: Action, y: Action) => x.timestamp === y.timestamp)
 		);
 	}
 
