@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack-dev-server",
+    "start-server": "ts-node server/index.ts",
     "build": "webpack -p && npm run docs",
     "docs": "typedoc --out docs/docs tabletop --module commonjs",
     "clean": "rm -r docs"
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/pandadevgroup/tabletopparadise#readme",
   "devDependencies": {
     "@types/jquery": "^3.3.1",
+    "@types/socket.io": "^2.1.2",
     "copy-webpack-plugin": "^5.0.0",
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",
@@ -32,10 +34,14 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "firebase": "^5.8.4",
     "firebaseui": "^3.5.2",
     "jquery": "^3.3.1",
     "rxjs": "^6.4.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "typedoc-plugin-external-module-name": "^2.0.0",
     "webpack": "^4.29.5"
   }

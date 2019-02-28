@@ -2,10 +2,11 @@
  * @module Server
  */
 
-import * as firebase from "firebase";
 import { Subject } from "rxjs";
-import { filter, distinctUntilChanged } from "rxjs/operators";
+import { distinctUntilChanged, filter } from "rxjs/operators";
 import { Action } from "./action";
+import * as io from "socket.io-client";
+import { Player } from "../base-game";
 
 /**
  * Handles communication with the Firebase server.
@@ -13,6 +14,8 @@ import { Action } from "./action";
  * You may extend this class for your custom game.
  */
 export class ServerConnection {
+	private SERVER_HOST = "http://localhost:3001";
+
 	private actionsSubject: Subject<Action> = new Subject<Action>();
 	get actions() {
 		return this.actionsSubject.pipe(
@@ -20,23 +23,13 @@ export class ServerConnection {
 		);
 	}
 
+	private socket;
+
 	/**
 	 * Constructs a new instance of ServerConnection and starts listening for events.
 	 * @param gameId a unique game id used to identify the game.
 	 */
 	constructor(protected gameId?: string) {
-		if (!firebase.apps.length) {
-			// Initialize Firebase
-			var config = {
-				apiKey: "AIzaSyAulUtZj74h98YWLWJ9uZPn1nI0N_480HQ",
-				authDomain: "tabletop-paradise.firebaseapp.com",
-				databaseURL: "https://tabletop-paradise.firebaseio.com",
-				projectId: "tabletop-paradise",
-				storageBucket: "tabletop-paradise.appspot.com",
-				messagingSenderId: "941646063027"
-			};
-			firebase.initializeApp(config);
-		}
 		if (!gameId) this.gameId = this.getGameId();
 		if (!this.gameId) throw "Game ID is null; Perhaps game url parameter is not set?";
 		this.start();
@@ -47,14 +40,10 @@ export class ServerConnection {
 	 * ServerConnection is initialized.
 	 */
 	start() {
-		firebase.database()
-			.ref(`/game/${this.gameId}/actions`)
-			.orderByChild("timestamp")
-			.startAt(Date.now())
-			.on("child_added", (snapshot) => {
-				let action = snapshot.val();
-				this.actionsSubject.next(action);
-			});
+		this.socket = io("http://localhost:3001");
+		this.socket.on("new_action", action => {
+			this.actionsSubject.next(action);
+		});
 	}
 
 	on(type: string, callback: (value: Action) => void) {
@@ -68,7 +57,7 @@ export class ServerConnection {
 	 */
 	getGameId() {
 		let paramName = "game";
-		var regex = new RegExp("[?&]" + paramName + "(=([^&#]*)|&|#|$)"),
+		let regex = new RegExp("[?&]" + paramName + "(=([^&#]*)|&|#|$)"),
 			results = regex.exec(window.location.href);
 		if (!results) return null;
 		if (!results[2]) return '';
@@ -78,10 +67,9 @@ export class ServerConnection {
 	/**
 	 * Gets all players in game
 	 */
-	async getAllPlayers() {
-		let snap = await firebase.database().ref(`/game/${this.gameId}/players`).once("value");
-		let data = snap.val();
-
+	async getAllPlayers(): Promise<{ id: string, username: string, isHost: boolean }[]> {
+		const response = await fetch(`${this.SERVER_HOST}/players`);
+		const data = await response.json();
 		let players = [];
 		for (let playerId in data) {
 			players.push({
@@ -90,7 +78,7 @@ export class ServerConnection {
 				isHost: data[playerId].isHost
 			});
 		}
-
+		console.log(players);
 		return players;
 	}
 
@@ -110,12 +98,9 @@ export class ServerConnection {
 	 * Attach all listeners, then call this function.
 	 */
 	async runPrevActions() {
-		let snap = await firebase.database()
-			.ref(`/game/${this.gameId}/actions`)
-			.once("value");
-		if (snap.val() == null) return null;
-		return (Object.values(snap.val()) as Action[])
-			.forEach(action => this.actionsSubject.next(action));
+		const response = await fetch(`${this.SERVER_HOST}/actions`);
+		const data: Action[] = await response.json();
+		return data.forEach(action => this.actionsSubject.next(action));
 	}
 
 	/**
@@ -124,6 +109,7 @@ export class ServerConnection {
 	 */
 	dispatch(action: Action) {
 		action.timestamp = Date.now();
-		firebase.database().ref(`/game/${this.gameId}/actions`).push(action);
+		this.socket.emit("new_action", action);
+		this.actionsSubject.next(action);
 	}
 }
