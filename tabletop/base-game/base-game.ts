@@ -53,11 +53,6 @@ export class BaseGame<
 	protected $playButton: JQuery<HTMLElement>;
 
 	/**
-	 * Whether or not the game is playing back actions.
-	 */
-	protected playingBackActions = true;
-
-	/**
 	 * Creates an instance of a BaseGame.
 	 *
 	 * You may override this constructor to do additional work.
@@ -83,7 +78,6 @@ export class BaseGame<
 			.then(() => this.initialize())
 			.then(() => this.server.runPrevActions())
 			.then(() => {
-				this.playingBackActions = false;
 				if (this.player.isHost) {
 					this.runHostSetup();
 				}
@@ -107,7 +101,7 @@ export class BaseGame<
 	 * To use your own custom implementation of DomHelper, override property DomHelper.
 	 */
 	initializeDom() {
-		this.domHelper = new this.DomHelperClass(this.$container);
+		this.domHelper = new this.DomHelperClass(this.$container) as DomHelperType;
 
 		let debounce;
 		$(window).resize(() => {
@@ -125,7 +119,7 @@ export class BaseGame<
 	 * you may override this method.
 	 */
 	initializeTabletop() {
-		this.tabletop = new this.TabletopClass(this.$container);
+		this.tabletop = new this.TabletopClass(this.$container) as TabletopType;
 	}
 
 	/**
@@ -134,7 +128,7 @@ export class BaseGame<
 	 * Initializes `this.server`.
 	 */
 	initializeServer() {
-		this.server = new this.ServerConnectionClass();
+		this.server = new this.ServerConnectionClass() as ServerConnectionType;
 	}
 
 	/**
@@ -168,7 +162,7 @@ export class BaseGame<
 				"position",
 				this.domHelper,
 				this
-			);
+			) as PlayerType;
 		});
 		this.player = this.players[localPlayerId];
 	}

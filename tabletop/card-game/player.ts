@@ -20,9 +20,7 @@ export class CardGamePlayer extends Player {
 		public isHost: boolean,
 		public isLocal: boolean,
 		public position: any,
-		public playerNumber: number,
 		protected hideCards: boolean,
-		protected sortMethod: any,
 		protected domHelper: CardGameDomHelper,
 		protected tabletop: Tabletop,
 		protected game: CardGame
@@ -32,7 +30,7 @@ export class CardGamePlayer extends Player {
 
 	addCards(cards: Card[]) {
 		this.cards = [...this.cards, ...cards];
-		if (this.isLocal) this.sortCards();
+		if (this.isLocal) CardUtils.sortCards(this.cards);
 
 		this.cards.forEach((card, i) => {
 			card.index = i;
@@ -41,26 +39,12 @@ export class CardGamePlayer extends Player {
 		});
 	}
 
-	sortCards() {
-		CardUtils.sortCards(this.cards, this.sortMethod);
-	}
-
 	getCardIDs() {
 		return this.cards.map(card => card.id);
 	}
 
 	getSelectedCardIDs() {
 		return this.selectedCards.map(card => card.id);
-	}
-
-	deselectCard(card: Card) {
-		card.selected = false;
-		this.selectedCards.splice(this.selectedCards.indexOf(card), 1);
-		card.resize(this.getCardPosition(card));
-	}
-
-	deselectAllCards() {
-		this.selectedCards = [];
 	}
 
 	getCardsFromIDs(cardIds: string[]) {

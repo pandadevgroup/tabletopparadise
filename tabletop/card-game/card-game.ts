@@ -8,8 +8,6 @@ import { CardGameDomHelper } from "./dom-helper";
 import { CardGamePlayer } from "./player";
 import * as actions from "./actions";
 import { CardGameTabletop } from "./tabletop";
-import { ServerConnection } from "../server";
-import { CardUtils } from "./utils";
 
 export interface CardGameOptions {
 	/**
@@ -35,46 +33,23 @@ export interface CardGameOptions {
 	 * @type {((cards: Card[]) => Card[]) | boolean} [shuffle=true]
 	 */
 	shuffle?: ((cards: Card[]) => Card[]) | boolean;
-
-	/**
-	 * How to sort player's hands.
-	 */
-	sortMethod?: any;
 }
 
-export class CardGame<
-	DomHelperType extends CardGameDomHelper = CardGameDomHelper,
-	PlayerType extends CardGamePlayer = CardGamePlayer,
-	TabletopType extends CardGameTabletop = CardGameTabletop,
-	ServerConnectionType extends ServerConnection = ServerConnection,
-	DeckType extends Deck = Deck,
-> extends BaseGame<CardGameDomHelper, CardGamePlayer, CardGameTabletop> {
-	protected domHelper: DomHelperType;
-	protected server: ServerConnectionType;
-	protected players: { [id: string]: PlayerType };
-	protected player: PlayerType;
-	protected tabletop: TabletopType;
-
-	protected deck: DeckType;
+export class CardGame extends BaseGame<CardGameDomHelper, CardGamePlayer, CardGameTabletop> {
+	protected deck: Deck;
 	protected deckSynced = false;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>,
-		public opts: CardGameOptions = {},
-		protected DomHelperClass: any = CardGameDomHelper,
-		protected PlayerClass: any = CardGamePlayer,
-		protected TabletopClass: any = CardGameTabletop,
-		protected ServerConnectionClass: any = ServerConnection,
-		protected DeckClass: any = Deck
+		public opts: CardGameOptions = {}
 	) {
-		super($container, DomHelperClass, PlayerClass, TabletopClass, ServerConnectionClass);
+		super($container, CardGameDomHelper, CardGamePlayer, CardGameTabletop);
 		opts.showDeck = opts.showDeck || false;
 		opts.initialHandSize = opts.initialHandSize || 13;
-		opts.sortMethod = opts.sortMethod || CardUtils.COMPARE_BY_VALUE;
 	}
 
 	async initialize() {
-		this.deck = new this.DeckClass(this.domHelper, this.tabletop, this.opts.showDeck, this);
+		this.deck = new Deck(this.domHelper, this.tabletop, this.opts.showDeck, this);
 		this.tabletop.showDeck = this.opts.showDeck;
 	}
 
@@ -82,7 +57,7 @@ export class CardGame<
 		// Since this.opts is not initialized yet, default showDeck to false.
 		// showDeck will be set in the async initialize() function that is called
 		// after this.opts is initialized.
-		this.tabletop = new this.TabletopClass(this.$container, this.domHelper, false);
+		this.tabletop = new CardGameTabletop(this.$container, this.domHelper, false);
 	}
 
 	initializeLayoutOpts() {
@@ -99,8 +74,6 @@ export class CardGame<
 
 	initializeListeners() {
 		this.server.on(actions.DECK_SYNC_ACTION, action => {
-			if (this.deckSynced) return;
-
 			this.deckSynced = true;
 
 			let hands = action.payload.hands;
@@ -116,8 +89,6 @@ export class CardGame<
 
 	runHostSetup() {
 		if (!this.deckSynced) {
-			this.deckSynced = true;
-
 			if (this.opts.shuffle !== false) this.deck.shuffle(
 				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 			);
@@ -142,15 +113,13 @@ export class CardGame<
 		this.players = {};
 		players.map((playerInfo, i) => {
 			if (playerInfo.id === localPlayerId) localPlayerPosition = i;
-			this.players[playerInfo.id] = new this.PlayerClass(
+			this.players[playerInfo.id] = new CardGamePlayer(
 				playerInfo.id,
 				playerInfo.username,
 				playerInfo.isHost,
 				playerInfo.id === localPlayerId,
 				null,
-				i,
 				playerInfo.id !== localPlayerId,
-				this.opts.sortMethod,
 				this.domHelper,
 				this.tabletop,
 				this
@@ -182,17 +151,8 @@ export class CardGame<
 
 	protected playCards(player: CardGamePlayer, cards: Card[]) {
 		player.removeCards(cards);
-		cards.forEach(card => card.playedBy = player.id);
 		this.tabletop.playCards(player.position, cards);
 		player.resize();
-	}
-
-	protected getPlayerWithNumber(playerNumber: number) {
-		return Object.values(this.players).find(player => player.playerNumber === playerNumber);
-	}
-
-	protected getPlayerWithId(playerId: string) {
-		return Object.values(this.players).find(player => player.id === playerId);
 	}
 
 	updateLayoutOpts() {

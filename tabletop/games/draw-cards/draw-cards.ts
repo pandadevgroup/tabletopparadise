@@ -3,7 +3,7 @@
  */
 
 import { CardGame, Card } from "../../card-game";
-import * as actions from "../../card-game/actions";
+import * as actions from "./actions";
 
 export class DrawCardsGame extends CardGame {
 	initializeListeners() {

@@ -14,10 +14,6 @@ export class Card implements DomElement {
 	 * Used by CardGameTabletop. Represents which player played the card.
 	 */
 	position: "left" | "right" | "top" | "bottom";
-	/**
-	 * The ID of the player who played the card.
-	 */
-	playedBy: string = null;
 
 	constructor(
 		private domHelper: CardGameDomHelper,

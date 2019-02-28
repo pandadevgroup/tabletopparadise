@@ -37,52 +37,12 @@ export class CardGameTabletop extends Tabletop implements DomElement {
 		this.resize();
 	}
 
-	getPlayedCards() {
-		return this.cards;
-	}
-
-	clearCards(position = "bottom") {
-		this.cards.forEach(card => card.resize(this.getClearedCardPosition(card, position)));
-		this.cards = [];
-		this.numCards = {
-			top: 0,
-			left: 0,
-			right: 0,
-			bottom: 0
-		};
-	}
-
 	resize() {
 		this.cards.forEach(card => card.resize(this.getCardPosition(card)));
 	}
 
 	render() {
 		this.cards.forEach(card => card.render());
-	}
-
-	getClearedCardPosition(card: Card, position: string) {
-		const opts = this.domHelper.layoutOpts;
-		if (position === "bottom") {
-			return {
-				x: Math.round(this.width / 2),
-				y: this.height + 30
-			};
-		} else if (position === "left") {
-			return {
-				x: -(opts.cardHeight + 30),
-				y: Math.round(this.height / 2)
-			};
-		} else if (position === "right") {
-			return {
-				x: this.width + opts.cardHeight + 30,
-				y: Math.round(this.height / 2)
-			};
-		} else if (position === "top") {
-			return {
-				x: Math.round(this.width / 2),
-				y: -(opts.cardHeight + 30)
-			};
-		}
 	}
 
 	getCardPosition(card: Card) {
