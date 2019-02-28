@@ -22,7 +22,10 @@ export class CardGamePlayer extends Player {
 		public position: any,
 		public playerNumber: number,
 		protected hideCards: boolean,
-		protected sortMethod: any,
+		protected sortMethod: ((a, b, numberValueSystem, suitValueSystem, sortDirection) => number),
+		protected sortSuitValueSystem: string[],
+		protected sortNumberValueSystem: number[],
+		protected sortDirection: "left" | "right",
 		protected domHelper: CardGameDomHelper,
 		protected tabletop: Tabletop,
 		protected game: CardGame
@@ -42,7 +45,7 @@ export class CardGamePlayer extends Player {
 	}
 
 	sortCards() {
-		CardUtils.sortCards(this.cards, this.sortMethod);
+		CardUtils.sortCards(this.cards, this.sortMethod, this.sortSuitValueSystem, this.sortNumberValueSystem, this.sortDirection);
 	}
 
 	getCardIDs() {

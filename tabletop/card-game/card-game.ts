@@ -37,9 +37,24 @@ export interface CardGameOptions {
 	shuffle?: ((cards: Card[]) => Card[]) | boolean;
 
 	/**
-	 * How to sort player's hands.
+	 * How to compare cards when sorting. See CardUtils.sort().
 	 */
-	sortMethod?: any;
+	sortMethod?: ((a, b, numberValueSystem, suitValueSystem, sortDirection) => number);
+
+	/**
+	 * Number value system. See CardUtils.sort().
+	 */
+	sortNumberValueSystem?: number[];
+
+	/**
+	 * Suit value system. See CardUtils.sort().
+	 */
+	sortSuitValueSystem?: string[];
+
+	/**
+	 * Sort direction. See CardUtils.sort().
+	 */
+	sortDirection?: string[];
 }
 
 export class CardGame<
@@ -70,7 +85,8 @@ export class CardGame<
 		super($container, DomHelperClass, PlayerClass, TabletopClass, ServerConnectionClass);
 		opts.showDeck = opts.showDeck || false;
 		opts.initialHandSize = opts.initialHandSize || 13;
-		opts.sortMethod = opts.sortMethod || CardUtils.COMPARE_BY_VALUE;
+
+
 	}
 
 	async initialize() {
@@ -122,6 +138,7 @@ export class CardGame<
 				typeof this.opts.shuffle === "boolean" ? undefined : this.opts.shuffle
 			);
 			this.dealInitialCards(this.opts.initialHandSize);
+			console.log(this.deck);
 			this.server.dispatch(
 				new actions.DeckSyncAction({
 					deck: this.deck.getCardIds(),
@@ -151,6 +168,9 @@ export class CardGame<
 				i,
 				playerInfo.id !== localPlayerId,
 				this.opts.sortMethod,
+				this.opts.sortSuitValueSystem,
+				this.opts.sortNumberValueSystem,
+				this.opts.sortDirection,
 				this.domHelper,
 				this.tabletop,
 				this
