@@ -4,7 +4,7 @@
 
 import * as firebase from "firebase";
 import { Subject } from "rxjs";
-import { filter, distinctUntilChanged } from "rxjs/operators";
+import { filter } from "rxjs/operators";
 import { Action } from "./action";
 
 /**
@@ -15,9 +15,7 @@ import { Action } from "./action";
 export class ServerConnection {
 	private actionsSubject: Subject<Action> = new Subject<Action>();
 	get actions() {
-		return this.actionsSubject.pipe(
-			distinctUntilChanged((x, y) => x.timestamp === y.timestamp)
-		);
+		return this.actionsSubject.asObservable();
 	}
 
 	/**
@@ -100,7 +98,7 @@ export class ServerConnection {
 	 * Will be null if the player has not logged in.
 	 */
 	getLocalPlayerId() {
-		return localStorage.getItem("playerId");
+		return sessionStorage.getItem("playerId");
 	}
 
 	/**
