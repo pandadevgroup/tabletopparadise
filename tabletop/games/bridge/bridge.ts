@@ -5,12 +5,14 @@ import { CardGame, Card, CardUtils } from "../../card-game";
 import * as actions from "../../card-game/actions";
 import { BridgePlayer } from "./player";
 import { BridgeDomHelper } from "./dom-helper";
+import { BiddingModal } from "./bidding-modal";
 
 export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 	protected currentSuit = null;
 	// TODO
 	protected trumpSuit = CardUtils.HEART;
 	protected firstPlayer = null;
+	protected biddingModal: BiddingModal;
 
 	constructor(
 		protected $container: JQuery<HTMLElement>
@@ -20,6 +22,22 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 			initialHandSize: 13,
 			sortMethod: CardUtils.COMPARE_BY_SUIT
 		}, BridgeDomHelper, BridgePlayer);
+	}
+
+	async initialize() {
+		super.initialize();
+
+		this.biddingModal = new BiddingModal(this.domHelper);
+	}
+
+	render() {
+		super.render();
+		this.biddingModal.render();
+	}
+
+	resize() {
+		super.resize();
+		this.biddingModal.resize();
 	}
 
 	initializeListeners() {
@@ -189,7 +207,7 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 			) {
 				winning = card;
 			}
-		})
+		});
 
 		return winning;
 	}

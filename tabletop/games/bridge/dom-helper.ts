@@ -4,14 +4,14 @@
 import { CardGameDomHelper } from "../../card-game";
 
 export class BridgeDomHelper extends CardGameDomHelper {
-	protected $biddingModal: JQuery<HTMLElement>;
-
 	constructor(
 		protected $container: JQuery<HTMLElement>
 	) {
 		super($container);
+	}
 
-		this.$biddingModal = $(`
+	createBiddingModal() {
+		const $biddingModal = $(`
 			<div class="bridge-bidding-modal">
 				<h3>Bidding</h3>
 				<div class="bridge-bidding-modal__value">
@@ -43,7 +43,16 @@ export class BridgeDomHelper extends CardGameDomHelper {
 			</div>
 		`);
 
-		this.$frag.append(this.$biddingModal);
+		this.$frag.append($biddingModal);
+
+		return $biddingModal;
+	}
+
+	updateModalVisibility(modal: JQuery<HTMLElement>, visible: boolean) {
+		if (!this._ready) return;
+
+		if (visible) modal.show();
+		else modal.hide();
 	}
 
 	createBridgePlayerFrag(name: string, tricks: number, isTurn: boolean) {
