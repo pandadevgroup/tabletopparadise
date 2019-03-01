@@ -71,6 +71,17 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 		});
 	}
 
+	initializeLayoutOpts() {
+		super.initializeLayoutOpts();
+
+		this.domHelper.layoutOpts = {
+			...this.domHelper.layoutOpts,
+			playerWidth: 150,
+			playerHeight: 72,
+			playerPadding: 40,
+		};
+	}
+
 	handleRoundFinish() {
 		let cards = this.tabletop.getPlayedCards();
 		let winningCard = this.getWinningCard(cards, this.currentSuit, this.trumpSuit);

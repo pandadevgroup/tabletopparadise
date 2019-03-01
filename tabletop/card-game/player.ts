@@ -153,13 +153,13 @@ export class CardGamePlayer extends Player {
 			case "left": {
 				return {
 					x: cardSize + opts.playerPadding,
-					y: Math.round(tbl.height / 2 + opts.playerHeight / 2)
+					y: Math.round(tbl.height / 2 - opts.playerHeight / 2)
 				};
 			}
 			case "right": {
 				return {
 					x: tbl.width - cardSize - opts.playerPadding - opts.playerWidth,
-					y: Math.round(tbl.height / 2 + opts.playerHeight / 2)
+					y: Math.round(tbl.height / 2 - opts.playerHeight / 2)
 				};
 			}
 			case "top": {

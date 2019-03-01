@@ -3,6 +3,7 @@
  */
 import { CardGamePlayer } from "../../card-game";
 import { BridgeDomHelper } from "./dom-helper";
+import "./styles/player.scss";
 
 export class BridgePlayer extends CardGamePlayer {
 	public tricks = 0;
