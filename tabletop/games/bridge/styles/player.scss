@@ -11,3 +11,37 @@
 .bridge-player--active {
 	border: 3px solid red;
 }
+
+.bridge-bidding-modal {
+	position: fixed;
+	background-color: white;
+	width: 350px;
+	height: 380px;
+	top: calc(50% - 190px);
+	left: calc(50% - 175px);
+	padding: 30px;
+	z-index: 200;
+
+	&__value {
+		display: block;
+		margin: 15px 0;
+	}
+
+	&__suit {
+		display: block;
+		margin-top: 15px;
+		margin-bottom: 24px;
+	}
+
+	&__past-bids {
+		height: 100px;
+		overflow: auto;
+		h4 {
+			font-size: 22px;
+		}
+		p {
+			margin-bottom: 6px;
+		}
+		margin-bottom: 15px;
+	}
+}
