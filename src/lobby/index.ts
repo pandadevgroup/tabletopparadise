@@ -70,7 +70,8 @@ if (!playerId) {
 		username = prompt("Enter Your Username");
 		playerId = playersRef.push({
 			username:username,
-			isHost: false
+			isHost: false,
+			playerNumber: -1
 		}).key;
 		localStorage.setItem("playerId", playerId);
 		console.log("Player ID just set, it is", playerId);
@@ -79,10 +80,6 @@ if (!playerId) {
 
 
 } else {
-	playersRef.child(playerId).set({
-		username:username,
-		isHost: false
-	});
 	console.log("Player ID is", playerId);
 }
 
