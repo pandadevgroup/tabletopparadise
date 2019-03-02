@@ -2,7 +2,9 @@
  * @module Server
  */
 
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/database";
+import "firebase/auth";
 import { Subject } from "rxjs";
 import { filter, distinctUntilChanged } from "rxjs/operators";
 import { Action } from "./action";

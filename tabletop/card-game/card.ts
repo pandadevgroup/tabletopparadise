@@ -22,7 +22,7 @@ export class Card implements DomElement {
 	constructor(
 		private domHelper: CardGameDomHelper,
 		public number: number,
-		public suit: "club" | "diamond" | "heart" | "spade",
+		public suit: string,
 		public index: number,
 		public visible: boolean = true,
 		public id: string
@@ -55,6 +55,10 @@ export class Card implements DomElement {
 
 		if (actionable) this.domHelper.addClass(this.$card, "actionable");
 		else this.domHelper.removeClass(this.$card, "actionable")
+	}
+
+	setDomHelper(helper: CardGameDomHelper) {
+		this.domHelper = helper;
 	}
 
 	getImgName() {

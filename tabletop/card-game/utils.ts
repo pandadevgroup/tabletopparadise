@@ -57,7 +57,7 @@ export class CardUtils {
 		 * The next two, numberValueSystem and suitValueSystem, are the respective value systems. The remaining parameter,
 		 * sortDirection, specifies the direction, either left or right, in which the highest card (number and suit) should be ordered.
 		 */
-		compare?: ((a, b, numberValueSystem, suitValueSystem, sortDirection) => number),
+		compare: ((a, b, numberValueSystem, suitValueSystem, sortDirection) => number) = CardUtils.COMPARE_BY_VALUE,
 		/**
 		 * The suit value system is an array that provides ordering for suits. A lower indexed element in the
 		 * provided array is considered to be a lower value than all elements with a greater index than that element.

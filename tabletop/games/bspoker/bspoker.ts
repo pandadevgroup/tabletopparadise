@@ -3,10 +3,11 @@
  */
 import { CardGame, Card, CardUtils } from "../../card-game";
 import * as actions from "../../card-game/actions";
-import { BridgePlayer } from "./player";
-import { BridgeDomHelper } from "./dom-helper";
+import { BSPokerPlayer } from "./player";
+import { BSPokerDomHelper } from "./dom-helper";
 
-export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
+//TODO change bridge to BS Poker
+export class BSPokerGame extends CardGame<BSPokerDomHelper, BSPokerPlayer> {
 	protected currentSuit = null;
 
 	// Trump suit and bidding TODO
@@ -17,14 +18,14 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 		protected $container: JQuery<HTMLElement>
 	) {
 		super($container, {
-			showDeck: false,
-			initialHandSize: 13,
-			sortMethod: CardUtils.COMPARE_BY_SUIT,
+			showDeck: true,
+			initialHandSize: 5,
+			sortMethod: CardUtils.COMPARE_BY_VALUE,
 			// The diamond suit is the lowest to avoid confusion between the red heart and diamond suit
-			sortSuitValueSystem: [CardUtils.DIAMOND, CardUtils.CLUB, CardUtils.HEART, CardUtils.SPADE]
-		}, BridgeDomHelper, BridgePlayer);
+			sortSuitValueSystem:  CardUtils.DEFUALT_SUIT_VALUE_SYSTEM
+		}, BSPokerDomHelper, BSPokerPlayer);
 	}
-
+	/*
 	initializeListeners() {
 		super.initializeListeners();
 
@@ -40,7 +41,7 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 
 			this.playCards(player, cards);
 
-			// Shrow/hide play button if the card was played by this Player
+			// Show/hide play button if the card was played by this Player
 			if (player === this.player) {
 				this.player.deselectAllCards();
 				this.onSelectedCardsChange(this.player.selectedCards);
@@ -158,7 +159,7 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 				})
 			);
 
-			// Otherwise, switch the turn to the next player
+		// Otherwise, switch the turn to the next player
 		} else {
 			this.server.dispatch(
 				new actions.TurnSwitchAction({
@@ -235,4 +236,5 @@ export class BridgeGame extends CardGame<BridgeDomHelper, BridgePlayer> {
 
 		return winning;
 	}
+	*/
 }

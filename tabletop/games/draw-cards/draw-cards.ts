@@ -2,10 +2,23 @@
  * @module Games
  */
 
-import { CardGame, Card } from "../../card-game";
+import {CardGame, Card, CardUtils} from "../../card-game";
 import * as actions from "../../card-game/actions";
+import {BridgeDomHelper} from "../bridge/dom-helper";
+import {BridgePlayer} from "../bridge/player";
 
 export class DrawCardsGame extends CardGame {
+
+	constructor(
+		protected $container: JQuery<HTMLElement>
+	) {
+		super($container, {
+			showDeck: true,
+			initialHandSize: 0,
+			sortMethod: CardUtils.COMPARE_BY_VALUE,
+		}, BridgeDomHelper, BridgePlayer);
+	}
+
 	initializeListeners() {
 		super.initializeListeners();
 

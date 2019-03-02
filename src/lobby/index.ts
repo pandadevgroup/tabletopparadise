@@ -1,16 +1,19 @@
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import * as $ from "jquery";
+import "firebase/auth";
+import "firebase/database";
 import { firebaseConfig } from "../config";
 import "./lobby.scss";
 
 firebase.initializeApp(firebaseConfig);
 
-let gameId = getParameterByName("game");
+let gameId = getQuery("game");
 if (!gameId) window.location.href = "/";
 $("#invite-url").val("https://tabletopparadise.pandadevgroup.com/join/" + encodeURIComponent(gameId)); //possible xss if we use .html
 $(".game-id").text(gameId); //possible xss if we use .html
 $("#invite-email-link").attr(
 	"href",
-	"mailto:?subject=Join my Tabletop Paradise game!&body=" + getHTMLEmailTemplate("Bridge", gameId)
+	"mailto:?subject=Join my Tabletop Paradise game!&body=" + getHTMLEmailTemplate("Hearts", gameId)
 );
 
 let playersRef = firebase.database().ref(`/game/${gameId}/players`);
@@ -66,12 +69,13 @@ if (!playerId) {
 		}
 		username = prompt("Enter Your Username");
 		playerId = playersRef.push({
-			username,
+			username:username,
 			isHost: false,
 			playerNumber: -1
 		}).key;
 		localStorage.setItem("playerId", playerId);
 		console.log("Player ID just set, it is", playerId);
+		window.location.href = "/game/?game=" + gameId;
 	});
 
 
@@ -159,7 +163,7 @@ function sendMessage(message) {
 		payload: message
 	});
 }
-function getParameterByName(name, url = window.location.href) {
+function getQuery(name, url = window.location.href) {
 	name = name.replace(/[\[\]]/g, "\\$&");
 	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
 		results = regex.exec(url);
@@ -170,7 +174,7 @@ function getParameterByName(name, url = window.location.href) {
 
 function getHTMLEmailTemplate(type, id) {
 	return encodeURIComponent(
-		`I've invited you to join my Tabletop Paradise game!\n` +
+		`Join my Tabletop Paradise game!\n` +
 		`Join ${type}#${id}: https://tabletopparadise.pandadevgroup.com/join/${id}`
 	);
 }

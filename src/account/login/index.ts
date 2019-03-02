@@ -1,6 +1,6 @@
 import * as firebase from "firebase";
 import { firebaseConfig } from "../../config";
-
+import * as $ from "jquery";
 firebase.initializeApp(firebaseConfig);
 
 //http://stackoverflow.com/a/901144/5511561

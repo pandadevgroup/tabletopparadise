@@ -21,6 +21,11 @@ export interface CardGameOptions {
 	initialHandSize?: number;
 
 	/**
+	 * The Cards that the deck should be initialized with.
+	 */
+	initialCards?: Card[];
+
+	/**
 	 * If true, render a deck of cards.
 	 * Override CardGame.onDeckClick() to add handler when deck is clicked.
 	 *
@@ -30,7 +35,7 @@ export interface CardGameOptions {
 
 	/**
 	 * If true or omitted, or if a shuffle function is provided, shuffle the deck before dealing.
-	 * Otherwise deal without shuffling (defualt deck is AofClubs, AofDiamonds, AofHearts, AofSpades, 2OfClubs...KofSpades)
+	 * Otherwise deal without shuffling (default deck is AofClubs, AofDiamonds, AofHearts, AofSpades, 2OfClubs...KofSpades)
 	 *
 	 * @type {((cards: Card[]) => Card[]) | boolean} [shuffle=true]
 	 */
@@ -80,17 +85,18 @@ export class CardGame<
 		protected PlayerClass: any = CardGamePlayer,
 		protected TabletopClass: any = CardGameTabletop,
 		protected ServerConnectionClass: any = ServerConnection,
-		protected DeckClass: any = Deck
+		protected DeckClass: any = Deck,
+		protected initialCards:Card[] = Deck.FULL_DECK
 	) {
 		super($container, DomHelperClass, PlayerClass, TabletopClass, ServerConnectionClass);
 		opts.showDeck = opts.showDeck || false;
-		opts.initialHandSize = opts.initialHandSize || 13;
+		opts.initialHandSize = typeof opts.initialHandSize === "number" ? opts.initialHandSize : 13;
 
 
 	}
 
 	async initialize() {
-		this.deck = new this.DeckClass(this.domHelper, this.tabletop, this.opts.showDeck, this);
+		this.deck = new this.DeckClass(this.domHelper, this.tabletop, this.opts.showDeck, this, this.initialCards);
 		this.tabletop.showDeck = this.opts.showDeck;
 	}
 

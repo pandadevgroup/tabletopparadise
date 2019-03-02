@@ -1,3 +1,3 @@
 import { DrawCardsGame, BridgeGame } from "../tabletop";
 
-let game = new BridgeGame($("#game"));
+let game = new DrawCardsGame($("#game"));
