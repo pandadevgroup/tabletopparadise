@@ -3659,7 +3659,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar tabletop_1 = __webpack_require__(/*! ../tabletop */ \"./tabletop/index.ts\");\nvar game = new tabletop_1.DrawCardsGame($(\"#game\"));\n\n\n//# sourceURL=webpack:///./src/game.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nvar tabletop_1 = __webpack_require__(/*! ../tabletop */ \"./tabletop/index.ts\");\nconsole.log(\"updated\");\nvar game = new tabletop_1.DrawCardsGame($(\"#game\"));\n\n\n//# sourceURL=webpack:///./src/game.ts?");
 
 /***/ }),
 
