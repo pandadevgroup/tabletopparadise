@@ -86,6 +86,7 @@ if (!playerId) {
 		playerNumber: -1
 	});
 	console.log("Player ID is", playerId);
+	window.location.href = "/game/?game=" + gameId;
 }
 
 $("#leave-game").click(function () {
