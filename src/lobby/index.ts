@@ -80,6 +80,11 @@ if (!playerId) {
 
 
 } else {
+	playersRef.child(playerId).set({
+		username:username,
+		isHost: false,
+		playerNumber: -1
+	});
 	console.log("Player ID is", playerId);
 }
 
