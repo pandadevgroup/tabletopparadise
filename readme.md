@@ -14,7 +14,7 @@ Planned to include the following premade games:
 
 
 ### Documentation
-https://tabletopparadise.pandadevgroup.com/docs
+https://tabletopparadise.com/docs
 
 ### View
-https://tabletopparadise.pandadevgroup.com/
+https://tabletopparadise.com/
